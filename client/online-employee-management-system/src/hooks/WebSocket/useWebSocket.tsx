@@ -11,7 +11,6 @@ type serverMessageType = { sentBy: string | undefined; message: string };
 
 const useWebSocket = () => {
   const [ws, setWs] = useState<WebSocket | null>(null);
-  // const [isConnected, setIsConnected] = useState<boolean>(false);
   const [messagesList, setMessagesList] = useState<serverMessageType[]>([]);
   const [clientsOnline, setClientsOnline] = useState<string | undefined>("");
 
@@ -19,7 +18,6 @@ const useWebSocket = () => {
 
   useEffect(() => {
     !socket && setupSocket();
-    // ws && setIsConnected(true);
   }, []);
 
   const setupSocket = () => {
@@ -31,7 +29,7 @@ const useWebSocket = () => {
     };
 
     socket.onmessage = (event) => {
-      let data: webSocketDateType = JSON.parse(event.data);
+      const data: webSocketDateType = JSON.parse(event.data);
       if (data.type === "message") {
         // console.log("message", data);
         setMessagesList((prev) => [
@@ -58,7 +56,6 @@ const useWebSocket = () => {
 
   return {
     ws,
-    // isConnected,
     messagesList,
     clientsOnline,
     sendMessage,
