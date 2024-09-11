@@ -2,12 +2,16 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js", 
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
     "dev": "nodemon index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.20.0",
+    "ws": "^8.18.0"
+  }
 }
