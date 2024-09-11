@@ -1,7 +1,7 @@
 const express = require("express");
 const WebSocket = require("ws");
-
 const app = express();
+const {broadcast} = require("./utils/methods");
 
 const server = app.listen(4000, () => {
   console.log("Server is listening on port " + 4000);
@@ -9,10 +9,12 @@ const server = app.listen(4000, () => {
 
 const wss = new WebSocket.Server({ server });
 
+const connectedClients = [];
+let personCount = 0
+let sentBy = '';
+
 wss.on("connection", (ws) => {
   personCount = personCount + 1;
-  console.log("New client connected");
-  console.log("person no. ", personCount);
 
   connectedClients.push({
     personId: "person-" + personCount,
@@ -22,16 +24,15 @@ wss.on("connection", (ws) => {
   broadcast(
     connectedClients,
     null,
-    { personNo },
+    { personCount },
     { type: "clientsOnline" },
     WebSocket
   );
 
   ws.on("message", (data) => {
-    console.log("message received: %s", data);
     connectedClients.map((item) => {
       if (ws === item.client) {
-        sendBy = item.name;
+        sentBy = item.name;
         return;
       }
     });
@@ -39,7 +40,7 @@ wss.on("connection", (ws) => {
     broadcast(
       connectedClients,
       ws,
-      { sendBy: sendBy },
+      { sentBy: sentBy },
       { type: "message", data: "" + data },
       WebSocket
     );
@@ -56,7 +57,7 @@ wss.on("connection", (ws) => {
     broadcast(
       connectedClients,
       null,
-      { personNo },
+      { personCount },
       { type: "clientsOnline" },
       WebSocket
     );
@@ -64,8 +65,8 @@ wss.on("connection", (ws) => {
   });
 });
 
-app.get('/', (req, res) => {
-    res.json({
-        "message": 'hi'
-    });
+app.get("/", (req, res) => {
+  res.json({
+    message: "hi",
+  });
 });

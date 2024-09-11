@@ -7,7 +7,6 @@ const broadcast = (
 ) => {
   arrayOfAllClients.map((item) => {
     if (item.client.readyState === WebSocket.OPEN) {
-      console.log("dynamicData", dynamicData);
       item.client.send(
         JSON.stringify(whatToSend(item, currentClient, dynamicData, data))
       );
@@ -20,12 +19,12 @@ const whatToSend = (item, currentClient, dynamicData, data) => {
     case "message":
       return {
         ...data,
-        client: item.client === currentClient ? "you" : dynamicData.sendBy,
+        client: item.client === currentClient ? "you" : dynamicData.sentBy,
       };
     case "clientsOnline":
       return {
         ...data,
-        clientsOnline: "" + dynamicData.personNo,
+        clientsOnline: "" + dynamicData.personCount,
       };
     default:
       break;
