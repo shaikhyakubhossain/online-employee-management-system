@@ -21,7 +21,7 @@ const useWebSocket = () => {
   }, []);
 
   const setupSocket = () => {
-    socket = new WebSocket("wss://chat-app-backend-83vn.onrender.com/");
+    socket = new WebSocket("wss://oems-backend-npeq.onrender.com/");
     // socket = new WebSocket("ws://localhost:4000");
     socket.onopen = () => {
       console.log("connected to server");
