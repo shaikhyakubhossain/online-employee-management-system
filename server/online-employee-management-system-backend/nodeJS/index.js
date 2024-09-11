@@ -63,3 +63,9 @@ wss.on("connection", (ws) => {
     console.log("connection closed");
   });
 });
+
+app.get('/', (req, res) => {
+    res.json({
+        "message": 'hi'
+    });
+});
