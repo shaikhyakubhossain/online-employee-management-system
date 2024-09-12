@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from './real-time-chat.module.scss';
 import ChatBox from "../ChatBox/chat-box.component";
 import MessageInput from "../MessageInput/message-input.component";
