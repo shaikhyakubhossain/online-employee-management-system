@@ -1,5 +1,5 @@
 import "./globals.css";
-import RealTimeChat from "@/components/RealTimeChat/real-time-chat.component";
+import RealTimeChat from "@/components/ChatAppMini/RealTimeChat/real-time-chat.component";
 
 export default function Home() {
   return (

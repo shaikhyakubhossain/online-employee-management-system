@@ -1,5 +1,5 @@
 import styles from './message-input.module.scss';
-import Button from '../Button/button.component';
+import Button from '../../Button/button.component';
 
 type propsType = {
     sendMessageFunction: () => void,
