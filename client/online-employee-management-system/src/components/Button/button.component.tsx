@@ -1,7 +1,8 @@
+import React from "react";
 import styles from "./button.module.scss";
 
 type propsType = {
-  children: string,
+  children: React.ReactNode,
   customTW?: string,
   onClick?: () => void
 }
