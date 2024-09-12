@@ -1,0 +1,52 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Virtual environment
+venv/
+myenv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.db
+
+# Uvicorn logs (optional)
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDEs / Text editors
+.vscode/
+.idea/
