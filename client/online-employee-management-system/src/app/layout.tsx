@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: 'Employeeverse',
   description: 'Welcome to Employeeverse, an online employee management system.',

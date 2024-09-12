@@ -1,7 +1,8 @@
-type btnListType = {
+export type btnListType = {
     name: string;
     bg: string;
     base64Icon: string;
+    link: string;
     detail: string;
     peopleAddedList: string[];
 };
@@ -11,6 +12,7 @@ export const btnList: btnListType[] = [
         name: "Dashboard",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "",
         peopleAddedList: []
     },
@@ -18,6 +20,7 @@ export const btnList: btnListType[] = [
         name: "Notice",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "View all of your notices",
         peopleAddedList: []
     },
@@ -25,6 +28,7 @@ export const btnList: btnListType[] = [
         name: "Apply for leave",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "Here you can apply for your next leave",
         peopleAddedList: []
     },
@@ -32,6 +36,7 @@ export const btnList: btnListType[] = [
         name: "Access/Asset",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "Manage your all access and assets",
         peopleAddedList: []
     },
@@ -39,6 +44,7 @@ export const btnList: btnListType[] = [
         name: "Salary Slip",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "Maintain your salary slip",
         peopleAddedList: []
     },
@@ -46,6 +52,7 @@ export const btnList: btnListType[] = [
         name: "Attendance",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
         peopleAddedList: []
     },
@@ -53,6 +60,7 @@ export const btnList: btnListType[] = [
         name: "Holiday",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
         peopleAddedList: []
     },
@@ -60,6 +68,7 @@ export const btnList: btnListType[] = [
         name: "Employee detail",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
         peopleAddedList: []
     },
@@ -67,6 +76,7 @@ export const btnList: btnListType[] = [
         name: "Calender",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
         peopleAddedList: []
     },
@@ -74,6 +84,7 @@ export const btnList: btnListType[] = [
         name: "Resign",
         bg: "#",
         base64Icon: "M12 6v6m0 0v6m0-6h6m-6 0H6",
+        link: "",
         detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
         peopleAddedList: []
     },
