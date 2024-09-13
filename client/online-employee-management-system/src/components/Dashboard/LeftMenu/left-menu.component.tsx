@@ -1,18 +1,19 @@
 import styles from "./left-menu.module.scss";
 import Button from "@/components/Button/button.component";
+import { btnList } from "@/constants/Dashboard/data";
 import Link from "next/link";
 import type { btnListType } from "@/constants/Dashboard/data";
 
 type propsType = {
-  btnList: btnListType[];
+
 };
 
 export default function LeftMenu(props: propsType): JSX.Element {
   return (
     <div
-      className={`${styles.mainContainer} absolute top-0 bottom-0 w-60 shadow-2xl`}
+      className={`${styles.mainContainer} absolute top-20 bottom-0 w-60 shadow-2xl`}
     >
-      {props.btnList.map((item, index): JSX.Element => {
+      {btnList.map((item, index): JSX.Element => {
         return (
             <Link href={item.link} key={index}>
               <Button
