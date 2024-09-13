@@ -8,7 +8,7 @@ type propsType = {
 
 export default function HeroContent(props: propsType): JSX.Element {
     return (
-        <div className={`${styles.mainContainer} ml-60`}>
+        <div className={`${styles.mainContainer} grid gap-6`}>
             {
                 btnList.map((item, index) => {
                     return (

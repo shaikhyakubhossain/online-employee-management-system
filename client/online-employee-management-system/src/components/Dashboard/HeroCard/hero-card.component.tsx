@@ -1,3 +1,4 @@
+import styles from "./hero-card.module.scss";
 import type { btnListType } from "@/constants/Dashboard/data";
 
 type propsType = {
@@ -6,9 +7,9 @@ type propsType = {
 
 export default function HeroCard(props: propsType): JSX.Element {
   return (
-    <div>
+    <div className={`${styles.mainContainer}`}>
       <div>
-        <div>
+        <div className="flex">
           <div>{props.btnList.name}</div>
           <div>
             <img src={props.btnList.base64Icon} alt="" />
