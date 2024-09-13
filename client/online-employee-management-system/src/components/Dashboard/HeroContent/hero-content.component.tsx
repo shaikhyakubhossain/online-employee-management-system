@@ -1,5 +1,5 @@
 import styles from "./hero-content.module.scss";
-import { btnList } from "@/constants/Dashboard/data";
+import { btnList } from "@/constants/Basic/data";
 import HeroCard from "@/components/Dashboard/HeroCard/hero-card.component";
 
 export default function HeroContent(): JSX.Element {

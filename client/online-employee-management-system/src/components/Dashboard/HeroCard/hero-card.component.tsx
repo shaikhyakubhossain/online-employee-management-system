@@ -1,5 +1,5 @@
 import styles from "./hero-card.module.scss";
-import type { btnListType } from "@/constants/Dashboard/data";
+import type { btnListType } from "@/constants/Basic/data";
 
 type propsType = {
   btnList: btnListType;
