@@ -7,9 +7,9 @@ type propsType = {
 
 export default function HeroCard(props: propsType): JSX.Element {
   return (
-    <div className={`${styles.mainContainer}`}>
+    <div className={`${styles.mainContainer} p-8 rounded-lg`}>
       <div>
-        <div className="flex">
+        <div className="flex justify-between">
           <div>{props.btnList.name}</div>
           <div>
             <img src={props.btnList.base64Icon} alt="" />
