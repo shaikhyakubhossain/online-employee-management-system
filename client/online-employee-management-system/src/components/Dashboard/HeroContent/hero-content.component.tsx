@@ -2,11 +2,7 @@ import styles from "./hero-content.module.scss";
 import { btnList } from "@/constants/Dashboard/data";
 import HeroCard from "@/components/Dashboard/HeroCard/hero-card.component";
 
-type propsType = {
-
-}
-
-export default function HeroContent(props: propsType): JSX.Element {
+export default function HeroContent(): JSX.Element {
     return (
         <div className={`${styles.mainContainer} grid gap-6`}>
             {
