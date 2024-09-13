@@ -2,8 +2,9 @@
 import { useRef } from "react";
 import styles from "./left-menu.module.scss";
 import Button from "@/components/Button/button.component";
-import { btnList } from "@/constants/Dashboard/data";
+import { btnList } from "@/constants/Basic/data";
 import Link from "next/link";
+import { btnList2 } from "@/constants/Basic/data";
 
 export default function LeftMenu(): JSX.Element {
   const LeftMenuRef = useRef<HTMLDivElement>(null);
@@ -15,9 +16,9 @@ export default function LeftMenu(): JSX.Element {
   return (
     <div
       ref={LeftMenuRef}
-      className={`${styles.mainContainer} absolute top-20 bottom-0 w-60 shadow-2xl `}
+      className={`${styles.mainContainer} absolute top-20 bottom-0 w-60 shadow-2xl bg-white`}
     >
-      <div>
+      <div className={`${styles.section1} mb-8 px-3 pt-7`}>
         {btnList.map((item, index): JSX.Element => {
           return (
             <Link href={item.link} key={index}>
@@ -25,29 +26,42 @@ export default function LeftMenu(): JSX.Element {
                 customClassName={styles.btn}
                 customTW="text-left w-full bg-white text-black font-medium"
               >
-                <img src={item.base64Icon} alt="" />
-                <span className="text-black">{item.name}</span>
+                <div className="flex">
+                  <div className="my-auto mr-3">
+                    <img src={item.base64Icon} alt="" />
+                  </div>
+                  <div className="text-black">{item.name}</div>
+                </div>
               </Button>
             </Link>
           );
         })}
       </div>
 
-      <div>
+      <div className={`${styles.section2} px-3`}>
+        {}
         <Button
           customClassName={styles.btn}
           customTW="text-left w-full bg-white text-black font-medium"
         >
-          <img src={""} alt="" />
-          <span className="text-black">Logout</span>
+          <div className="flex">
+            <div className="my-auto mr-3">
+              <img src={btnList2[0].base64Icon} alt="" />
+            </div>
+            <div className="text-black">Logout</div>
+          </div>
         </Button>
         <Button
           onClick={collapseLeftMenu}
           customClassName={styles.btn}
           customTW="text-left w-full bg-white text-black font-medium"
         >
-          <img src={""} alt="" />
-          <span className="text-black">Collapse</span>
+          <div className="flex">
+            <div className="my-auto mr-3">
+              <img src={btnList2[1].base64Icon} alt="" />
+            </div>
+            <div className="text-black">Collapse</div>
+          </div>
         </Button>
       </div>
     </div>
