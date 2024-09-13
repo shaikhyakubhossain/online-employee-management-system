@@ -17,7 +17,11 @@ const useWebSocket = () => {
   let socket: WebSocket;
 
   useEffect(() => {
+    console.log("mounted");
     !socket && setupSocket();
+    return () => {
+      console.log("unmounted", ws);
+    }
   }, []);
 
   const setupSocket = () => {

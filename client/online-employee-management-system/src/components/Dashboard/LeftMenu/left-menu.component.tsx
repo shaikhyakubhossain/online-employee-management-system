@@ -2,9 +2,8 @@
 import { useRef } from "react";
 import styles from "./left-menu.module.scss";
 import Button from "@/components/Button/button.component";
-import { btnList } from "@/constants/Basic/data";
+import { btnList, btnList2 } from "@/constants/Basic/data";
 import Link from "next/link";
-import { btnList2 } from "@/constants/Basic/data";
 
 export default function LeftMenu(): JSX.Element {
   const LeftMenuRef = useRef<HTMLDivElement>(null);
