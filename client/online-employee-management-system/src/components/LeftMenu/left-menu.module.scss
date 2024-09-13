@@ -1,5 +1,10 @@
 .mainContainer {
     z-index: 1;
+    
+}
+
+.mainContainer::-webkit-scrollbar {
+    display: none;
 }
 
 .btn:hover {

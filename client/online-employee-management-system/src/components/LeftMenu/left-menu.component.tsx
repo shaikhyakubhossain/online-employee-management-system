@@ -15,7 +15,7 @@ export default function LeftMenu(): JSX.Element {
   return (
     <div
       ref={LeftMenuRef}
-      className={`${styles.mainContainer} absolute top-20 bottom-0 w-60 shadow-2xl bg-white`}
+      className={`${styles.mainContainer} fixed top-20 bottom-0 w-60 shadow-2xl bg-white overflow-y-scroll `}
     >
       <div className={`${styles.section1} mb-8 px-3 pt-7`}>
         {btnList.map((item, index): JSX.Element => {

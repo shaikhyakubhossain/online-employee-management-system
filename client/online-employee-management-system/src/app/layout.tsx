@@ -1,6 +1,6 @@
 import "./globals.css";
 import Nav from "../components/Nav/nav.component";
-import LeftMenu from "@/components/Dashboard/LeftMenu/left-menu.component";
+import LeftMenu from "@/components/LeftMenu/left-menu.component";
 
 export const metadata = {
   title: "Employeeverse",
@@ -18,7 +18,7 @@ export default function RootLayout({
       <body>
         <Nav />
         <LeftMenu />
-        <div className="ml-60 p-9">{children}</div>
+        <div className="ml-60 mt-20 p-9">{children}</div>
       </body>
     </html>
   );
