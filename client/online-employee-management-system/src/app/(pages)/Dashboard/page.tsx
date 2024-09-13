@@ -1,10 +1,10 @@
 import LeftMenu from "@/components/Dashboard/LeftMenu/left-menu.component";
-import { btnList } from "@/constants/Dashboard/data";
+import HeroContent from "@/components/Dashboard/HeroContent/hero-content.component";
 
 export default function Dashboard() {
   return (
     <div className="">
-      <LeftMenu btnList={btnList}/>
+      <HeroContent />
     </div>
   )
 }
