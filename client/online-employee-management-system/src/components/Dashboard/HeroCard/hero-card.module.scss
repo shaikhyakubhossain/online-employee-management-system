@@ -1,8 +1,3 @@
 .mainContainer {
-    background-color: var(--background);
-    @for $i from 1 through 10 {
-        &:nth-child(#{$i}) {
-            --background: #{rgba(random(255), random(255), random(255), 0.6)};
-        }
-    }
+    
 }
