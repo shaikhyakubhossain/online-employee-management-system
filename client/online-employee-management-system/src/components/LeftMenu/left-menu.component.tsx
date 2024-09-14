@@ -29,7 +29,7 @@ export default function LeftMenu(): JSX.Element {
                   <div className="my-auto mr-3">
                     <img src={item.base64Icon} alt="" />
                   </div>
-                  <div className="text-black">{item.name}</div>
+                  <div className={`${styles.name} text-black`}>{item.name}</div>
                 </div>
               </Button>
             </Link>

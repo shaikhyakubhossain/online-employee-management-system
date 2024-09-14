@@ -10,3 +10,7 @@
 .btn:hover {
     background: #E8E8FF;
 }
+
+.btn:hover > div > .name {
+    color: #01008A;
+}
