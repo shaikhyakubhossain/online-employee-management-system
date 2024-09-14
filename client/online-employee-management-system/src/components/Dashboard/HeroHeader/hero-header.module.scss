@@ -1,0 +1,10 @@
+@use '../../../constants/Css/colors.scss' as c;
+
+.mainContainer {
+    background: c.$secondaryColor;
+    color: c.$primaryColor;
+}
+
+.right {
+    color: c.$tertiaryColor;
+}
