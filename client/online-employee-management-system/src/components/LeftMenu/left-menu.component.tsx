@@ -15,7 +15,7 @@ export default function LeftMenu(): JSX.Element {
   return (
     <div
       ref={LeftMenuRef}
-      className={`${styles.mainContainer} fixed top-20 bottom-0 w-60 shadow-2xl bg-white overflow-y-scroll `}
+      className={`${styles.mainContainer} fixed top-20 bottom-0 w-60 shadow-2xl bg-white overflow-y-scroll transition-transform duration-700 ease-in-out`}
     >
       <div className={`${styles.section1} mb-8 px-3 pt-7`}>
         {btnList.map((item, index): JSX.Element => {
@@ -56,10 +56,11 @@ export default function LeftMenu(): JSX.Element {
           customTW="text-left w-full bg-white text-black font-medium"
         >
           <div className="flex">
-            <div className="my-auto mr-3">
+            <div className="text-black mr-5">Collapse</div>
+            <div className="flex my-auto">
+              <img src={btnList2[1].base64Icon} alt="" />
               <img src={btnList2[1].base64Icon} alt="" />
             </div>
-            <div className="text-black">Collapse</div>
           </div>
         </Button>
       </div>
