@@ -5,8 +5,8 @@ import Button from "@/components/Button/button.component";
 import { btnList, btnList2 } from "@/constants/Basic/data";
 import Link from "next/link";
 
-import { RootState } from "@/lib/store";
-import { useSelector, useDispatch } from "react-redux";
+// import { RootState } from "@/lib/store";
+import { useDispatch } from "react-redux";
 import { toggle } from "@/lib/features/LeftMenu/leftMenuSlice";
 
 export default function LeftMenu(): JSX.Element {
