@@ -1,6 +1,8 @@
 import "./globals.css";
 import Nav from "../components/Nav/nav.component";
 import LeftMenu from "@/components/LeftMenu/left-menu.component";
+import RTKStoreProvider from "@/components/RTKStoreProvider/rtk-store-provider.component";
+import BodyContainer from "@/components/BodyContainer/body-container.component";
 
 export const metadata = {
   title: "Employeeverse",
@@ -16,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Nav />
-        <LeftMenu />
-        <div className="ml-60 mt-20 p-9">{children}</div>
+        <RTKStoreProvider>
+          <Nav />
+          <LeftMenu />
+          <BodyContainer>{children}</BodyContainer>
+        </RTKStoreProvider>
       </body>
     </html>
   );
