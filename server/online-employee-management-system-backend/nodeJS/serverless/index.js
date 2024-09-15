@@ -21,7 +21,9 @@ mongoose
   });
 
 app.get("/", (req, res) => {
-  res.send("hi");
+  res.send({
+    message: "hello",
+  });
 });
 
 const server = app.listen(PORT, () => {
