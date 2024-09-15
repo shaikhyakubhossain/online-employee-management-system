@@ -9,6 +9,12 @@
     color: c.$tertiaryColor;
 }
 
+@media  screen and (max-width: 768px) {
+    .right {
+        display: none;
+    }
+}
+
 .svgs {
     position: absolute;
 }
