@@ -61,7 +61,6 @@ wss.on("connection", (ws) => {
       { type: "clientsOnline" },
       WebSocket
     );
-    console.log("connection closed");
   });
 });
 

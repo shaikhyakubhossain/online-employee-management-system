@@ -15,18 +15,21 @@ const useWebSocket = () => {
   const [clientsOnline, setClientsOnline] = useState<string | undefined>("");
 
   let socket: WebSocket;
-
+  
   useEffect(() => {
     console.log("mounted");
     !socket && setupSocket();
     return () => {
       console.log("unmounted", ws);
+      if(socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING) {
+        socket.close();
+      }
     }
   }, []);
 
   const setupSocket = () => {
-    socket = new WebSocket("wss://oems-backend-npeq.onrender.com/");
-    // socket = new WebSocket("ws://localhost:4000");
+    // socket = new WebSocket("wss://oems-backend-npeq.onrender.com/");
+    socket = new WebSocket("ws://localhost:4000");
     socket.onopen = () => {
       console.log("connected to server");
       setWs(socket);
