@@ -17,10 +17,8 @@ const useWebSocket = () => {
   let socket: WebSocket;
   
   useEffect(() => {
-    console.log("mounted");
     !socket && setupSocket();
     return () => {
-      console.log("unmounted", ws);
       if(socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING) {
         socket.close();
       }

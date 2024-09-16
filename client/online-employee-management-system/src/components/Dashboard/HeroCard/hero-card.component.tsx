@@ -8,7 +8,7 @@ type propsType = {
 export default function HeroCard(props: propsType): JSX.Element {
 
   return (
-    <div className={`${styles.mainContainer} p-8 rounded-lg cursor-pointer`} style={{ backgroundColor: props.btnList.bg + "30"}}>
+    <div className={`${styles.mainContainer} p-8 rounded-lg cursor-pointer`} style={{ backgroundColor: props.btnList.bg + "25"}}>
       <div className={`${styles.row1} mb-10`}>
         <div className="flex justify-between">
           <div className={`${styles.name} font-bold text-xl`} style={{ color: props.btnList.bg }}>{props.btnList.name}</div>

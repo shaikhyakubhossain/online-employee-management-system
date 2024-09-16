@@ -8,9 +8,13 @@ export default function Nav() {
                 <div className="text-3xl">OMS</div>
                 <div>Employee</div>
             </div>
-            <div className="flex">
-                <Link href={"/Dashboard"}><div>Dashboard</div></Link>
-                <Link href={"/Chat"}><div>Chat</div></Link>
+            <div className={`${styles.middle} flex`}>
+                <div><Link href={"/Dashboard"}><div>Dashboard</div></Link></div>
+                <div><Link href={"/Notice"}><div>Notice</div></Link></div>
+                <div><Link href={"/Apply-for-leave"}><div>Apply for leave</div></Link></div>
+                <div><Link href={"/Access-Asset"}><div>Access/Asset</div></Link></div>
+                <div><Link href={"/Salary-Slip"}><div>Salary Slip</div></Link></div>
+                <div><Link href={"/Chat"}><div>Chat</div></Link></div>
             </div>
             <div></div>
         </div>
