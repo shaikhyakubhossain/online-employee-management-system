@@ -30,7 +30,7 @@ export default function LeftMenu(): JSX.Element {
         ref={LeftMenuRef}
         className={`${styles.leftContainer} ${
           isOpen ? "-translate-x-60" : "translate-x-0"
-        } fixed top-20 bottom-0 w-60 shadow-2xl bg-white overflow-y-scroll transition-transform duration-300`}
+        } fixed top-20 left-0 bottom-0 w-60 shadow-2xl bg-white overflow-y-scroll transition-transform duration-300`}
       >
         <div className={`${styles.section1} mb-8 px-3 pt-7`}>
           {btnList.map((item, index): JSX.Element => {

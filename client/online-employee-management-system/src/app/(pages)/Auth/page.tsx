@@ -1,14 +1,21 @@
-export default function Auth() {
+import Login from "@/components/Auth/Login/login.component";
+import SignUp from "@/components/Auth/SignUp/signup.component";
+
+type propsType = {
+    searchParams: searchParamsType
+}
+
+type searchParamsType = {
+    type: string
+    role: string
+}
+
+export default function Auth(props: propsType) {
     return (
-        <div className="text-white">
-            <div className="text-3xl">
-                <div>Employeeverse</div>
-                <div className="text-2xl">Efficiently manage your workforce with our streamlined platform. Our system offers an all-in-one solution for organizing employee details, tracking performance, managing payroll, and more. Whether you’re a small business or a large enterprise, our tool ensures that you can handle all employee-related tasks with ease.</div>
-            </div>
-            <div>
-                <div>Admin Login</div>
-                <div>Employee Login</div>
-            </div>
+        <div className="text-white" style={{background: "rgba(20, 19, 112, 0.85)", height: "88.5dvh"}}>
+           {
+           props.searchParams.type === "login" ? <Login searchParams={props.searchParams} /> : <SignUp searchParams={props.searchParams} />
+           }
         </div>
     )
 }

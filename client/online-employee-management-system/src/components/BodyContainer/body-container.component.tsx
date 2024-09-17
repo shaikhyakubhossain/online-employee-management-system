@@ -1,6 +1,8 @@
 "use client";
 // import styles from "./body-container.module.scss";
 import { usePathname } from "next/navigation";
+import Nav from "../Nav/nav.component";
+import LeftMenu from "../LeftMenu/left-menu.component";
 
 import type { RootState } from "@/lib/store";
 import { useSelector } from "react-redux";
@@ -15,14 +17,30 @@ export default function BodyContainer(props: propsType): JSX.Element {
     (state: RootState) => state.leftMenu.isOpen
   );
 
-  console.log(usePathname());
+  const handleMarginLeft = () => {
+    if(pathname === "/" || pathname === "/Auth"){
+      return "0px";
+    }
+    else{
+      if(isLeftMenuOpen){
+        return "0px";
+      }
+      return "240px";
+    }
+  }
 
   return (
-    <div
-      className={`mt-20 ${pathname === "/" ? "" : "p-9"}`}
-      style={{ marginLeft: !isLeftMenuOpen && pathname !== "/" ? "240px" : "0px" }}
-    >
-      {props.children}
+    <div>
+      <Nav />
+      { pathname === "/" || pathname === "/Auth" ? null : <LeftMenu />}
+      <div
+        className={`mt-20 ${pathname === "/" || pathname === "/Auth" ? "" : "p-9"}`}
+        style={{
+          marginLeft: handleMarginLeft(),
+        }}
+      >
+        {props.children}
+      </div>
     </div>
   );
-};
+}
