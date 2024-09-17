@@ -83,7 +83,7 @@ export default function LeftMenu(): JSX.Element {
         </div>
       </div>
       <div
-        className={`${isOpen ? "block" : "hidden"} fixed top-96 left-0 z-10`}
+        className={`${styles.openBtn} ${isOpen ? "block" : "hidden"} fixed top-40 left-0 z-10`}
       >
         <Button
          onClick={expandLeftMenu}

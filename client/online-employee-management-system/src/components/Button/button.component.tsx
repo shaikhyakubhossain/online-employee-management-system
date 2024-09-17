@@ -5,7 +5,7 @@ type propsType = {
   children: React.ReactNode,
   customTW?: string,
   customClassName?: string
-  onClick?: () => void
+  onClick?: (event : React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const Button = (props: propsType): JSX.Element => {

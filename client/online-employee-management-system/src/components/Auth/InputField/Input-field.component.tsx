@@ -1,7 +1,7 @@
 type propsType = {
     label: string,
     type: string,
-    placeholder: string
+    placeholder?: string
     required?: boolean
 };
 
