@@ -1,13 +1,13 @@
-type propsType = {
-  searchParams: searchParamsType;
-};
+// type propsType = {
+//   searchParams: searchParamsType;
+// };
 
-type searchParamsType = {
-  type: string;
-  role: string;
-};
+// type searchParamsType = {
+//   type: string;
+//   role: string;
+// };
 
-export default function SignUp(props: propsType) {
+export default function SignUp() {
   return (
     <div className="text-center">
       <div>back</div>
