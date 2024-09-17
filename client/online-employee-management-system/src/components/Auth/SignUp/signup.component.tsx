@@ -29,7 +29,7 @@ export default function SignUp(props: propsType) {
     previousRoleBtn.current = current;
   };
 
-  console.log(props);
+  console.log(props.searchParams.role);
   return (
     <div
       className={`${styles.mainContainer} text-center flex p-14 h-full overflow-scroll`}
