@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import UserOptions from '../UserOptions/user-options.component';
 import AuthOptions from '../AuthOptions/auth-options.component';
-import { useParams } from 'next/navigation';
 
 import { RootState } from '@/lib/store';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,7 +11,6 @@ import { setDetail } from '@/lib/features/AuthDetail/authDetailSlice';
 export default function RightContainer() {
 
     const dispatch = useDispatch();
-    const params = useParams();
 
     const {token} = useSelector((state: RootState) => state.authDetail);
     const {data} = useSelector((state: RootState) => state.authDetail);
@@ -22,7 +20,6 @@ export default function RightContainer() {
         if(authDetail){
             dispatch(setDetail(JSON.parse(authDetail)));
         }
-        console.log("props.params: ", )
     }, [])
 
     return (
