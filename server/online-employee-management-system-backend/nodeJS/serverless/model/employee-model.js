@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
+const autoSequence = require("mongoose-sequence")(mongoose);
 
 const employeeSchema = new mongoose.Schema({
     employeeId: {
         type: Number,
-        required: true,
         unique: true,
     },
     firstName: {
@@ -26,6 +26,7 @@ const employeeSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -38,7 +39,7 @@ const employeeSchema = new mongoose.Schema({
 });
 
 
-employeeSchema.statics.signup = async function(employeeId, firstName, lastName, designation, regdNo, email, password, genderCode) {
+employeeSchema.statics.signup = async function(firstName, lastName, designation, regdNo, email, password, genderCode) {
 
     if(!firstName || !lastName || !designation || !regdNo || !email || !genderCode) {
         return {error: 'All fields must be filled'};
@@ -67,7 +68,6 @@ employeeSchema.statics.signup = async function(employeeId, firstName, lastName, 
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const employee = await this.create({
-        employeeId,
         firstName,
         lastName,
         designation,
@@ -99,4 +99,4 @@ employeeSchema.statics.login = async function(email, password) {
 
 // const employee = mongoose.model('Employees', employeeSchema, 'employees-data');
 
-module.exports = mongoose.model('Employees', employeeSchema, 'employees')
+module.exports = mongoose.model('Employees', employeeSchema, 'employee')
