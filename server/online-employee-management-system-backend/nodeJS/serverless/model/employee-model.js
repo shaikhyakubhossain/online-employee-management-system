@@ -1,16 +1,12 @@
 const mongoose = require("mongoose");
 
 const employeeSchema = new mongoose.Schema({
-<<<<<<< HEAD
     employeeId: {
         type: Number,
         required: true,
         unique: true,
     },
     firstName: {
-=======
-    FirstName: {
->>>>>>> ce6d09fb00f702cdc4bb9ed54013c182a354a53e
         type: String,
         required: true,
     },
@@ -35,30 +31,10 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-<<<<<<< HEAD
-=======
-    designation: {
-        type: String,
-        required: true,
-    },
-    employeeStatus: {
-        type: String,
-        required: true,
-    },
-    employeeType: {
-        type: String,
-        required: true,
-    },
-    State: {
-        type: String,
-        required: true,
-    },
->>>>>>> ce6d09fb00f702cdc4bb9ed54013c182a354a53e
     genderCode: {
         type: String,
         required: true,
     },
-<<<<<<< HEAD
 });
 
 
@@ -124,15 +100,3 @@ employeeSchema.statics.login = async function(email, password) {
 // const employee = mongoose.model('Employees', employeeSchema, 'employees-data');
 
 module.exports = mongoose.model('Employees', employeeSchema, 'employees')
-=======
-
-    performanceScore: {
-        type: String,
-        required: true,
-    },
-    currentEmployeeRating: {
-        type: Number,
-        required: true,
-    },
-});
->>>>>>> ce6d09fb00f702cdc4bb9ed54013c182a354a53e
