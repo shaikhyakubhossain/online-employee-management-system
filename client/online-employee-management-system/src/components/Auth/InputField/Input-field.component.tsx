@@ -1,13 +1,13 @@
 type propsType = {
     label: string,
     type: string,
-    placeholder?: string
-    required?: boolean
+    placeholder?: string,
+    required?: boolean,
+    updateDataToSend: (data: string) => void
 };
 
 export default function InputField(props: propsType): JSX.Element {
   return (
-    <div>
       <div className="mb-4">
         <label className="block text-left text-gray-700 text-sm font-bold mb-2">
           {props.label}
@@ -17,8 +17,8 @@ export default function InputField(props: propsType): JSX.Element {
           type={props.type}
           placeholder={props.placeholder}
           required={props.required}
+          onChange={(event) => props.updateDataToSend(event.target.value)}
         />
       </div>
-    </div>
   );
 }
