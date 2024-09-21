@@ -1,6 +1,6 @@
 "use client"
 // import styles from './right-container.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import UserOptions from '../UserOptions/user-options.component';
 import AuthOptions from '../AuthOptions/auth-options.component';
 
@@ -12,6 +12,8 @@ export default function RightContainer() {
 
     const dispatch = useDispatch();
 
+    const [path, setPath] = useState<null | string>(null);
+
     const {token} = useSelector((state: RootState) => state.authDetail);
     const {data} = useSelector((state: RootState) => state.authDetail);
 
@@ -20,6 +22,8 @@ export default function RightContainer() {
         if(authDetail){
             dispatch(setDetail(JSON.parse(authDetail)));
         }
+
+        setPath(window.location.pathname);
     }, [])
 
     return (
@@ -28,7 +32,7 @@ export default function RightContainer() {
                 token ?
                 <UserOptions firstName={data?.firstName} shortName={data && data.firstName[0] + data.lastName[0]} />
                 :
-                window.location.pathname === "/" || window.location.pathname === "/Auth" ?
+                path === "/" || path === "/Auth" ?
                 <AuthOptions />
                 :
                 null
