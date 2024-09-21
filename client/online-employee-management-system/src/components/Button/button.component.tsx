@@ -4,7 +4,7 @@ import styles from "./button.module.scss";
 type propsType = {
   children: React.ReactNode,
   customTW?: string,
-  customClassName?: string
+  customClassName?: string,
   onClick?: (event : React.MouseEvent<HTMLButtonElement>) => void
 }
 

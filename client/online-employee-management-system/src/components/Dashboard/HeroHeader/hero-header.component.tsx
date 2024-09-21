@@ -1,11 +1,12 @@
 import styles from './hero-header.module.scss';
 import { sveForHeroHeader } from '@/constants/Svg/svg';
+import Greeting from '../Greeting/greeting.component';
 
 export default function HeroHeader(): JSX.Element {
     return (
         <div className={`${styles.mainContainer} flex justify-between min-h-36 max-h-80 mb-7 pl-8 pr-24 rounded-2xl`}>
             <div className={`${styles.left} my-auto`}>
-            <div className={`${styles.greeting} font-bold text-4xl`}>Hello User 👋</div>
+                <Greeting />
             <div className='text-2xl'>You can manage your things from here</div>
             </div>
             <div className={`${styles.right} flex my-auto relative`}>

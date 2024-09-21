@@ -19,10 +19,10 @@ export default function SignUp(props: propsType) {
 
   const handleRoleSelection = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (previousRoleBtn.current) {
-      previousRoleBtn.current.classList.remove("bg-blue-400");
+      previousRoleBtn.current.style.backgroundColor = "lightblue";
     }
     const current = event.target as HTMLButtonElement;
-    current.classList.add("bg-blue-400");
+    current.style.backgroundColor = "blue";
     setRole(current.textContent);
     console.log(current.textContent);
 
@@ -39,10 +39,10 @@ export default function SignUp(props: propsType) {
         <div className="text-3xl">New user ? Register here </div>
         <div className="mx-auto w-96">
           <div className={`${styles.roleSelection} flex justify-center`}>
-            <Button onClick={(event) => handleRoleSelection(event)}>
+            <Button customTW="bg-blue-200" onClick={(event) => handleRoleSelection(event)}>
               Admin
             </Button>
-            <Button onClick={(event) => handleRoleSelection(event)}>
+            <Button customTW="bg-blue-200" onClick={(event) => handleRoleSelection(event)}>
               Employee
             </Button>
           </div>
