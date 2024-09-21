@@ -25,19 +25,20 @@ export default function Login(props: propsType) {
   const [dataToSend, setDataToSend] = useState({employeeId: "", password: ""});
 
   const handleSubmit = () => {
-
+    // dispatch(setDetail({}));
     fetch(`${getUrl()}/${props.searchParams.role}-login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dataToSend),
-    }).then((res) => {
+    })
+    .then((res) => {
       res.json().then((data) => {
         console.log(data);
         if(!data.error){
-          dispatch(setDetail({data: data.data, token: data.token}));
-          localStorage.setItem("token", data.token);
+          dispatch(setDetail(data));
+          localStorage.setItem("authDetail", JSON.stringify(data));
           router.push(`/Dashboard`);
       }
       else{
