@@ -12,7 +12,7 @@ const createToken = (_id) => {
 };
 
 const corsOrigin = {
-  origin: "http://localhost:3000",
+  origin: "https://employeeverse.vercel.app",
   // origin: "http://localhost:3000",
 };
 
