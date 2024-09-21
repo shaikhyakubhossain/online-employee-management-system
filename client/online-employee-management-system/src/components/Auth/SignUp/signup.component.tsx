@@ -47,12 +47,12 @@ export default function SignUp(props: propsType) {
             </Button>
           </div>
           <div className="text-white bg-blue-300 w-96 rounded p-14">
-            <InputField label="First name" type="text" />
-            <InputField label="Last name" type="text" />
-            <InputField label="Regd. No" type="text" />
-            <InputField label="Email" type="email" />
-            <InputField label="Create password" type="password" />
-            <InputField label="Re-enter password" type="password" />
+            <InputField updateDataToSend={(e) => console.log(e)} label="First name" type="text" />
+            <InputField updateDataToSend={(e) => console.log(e)} label="Last name" type="text" />
+            <InputField updateDataToSend={(e) => console.log(e)} label="Regd. No" type="text" />
+            <InputField updateDataToSend={(e) => console.log(e)} label="Email" type="email" />
+            <InputField updateDataToSend={(e) => console.log(e)} label="Create password" type="password" />
+            <InputField updateDataToSend={(e) => console.log(e)} label="Re-enter password" type="password" />
             <div className="">
               <Button>Submit</Button>
             </div>
