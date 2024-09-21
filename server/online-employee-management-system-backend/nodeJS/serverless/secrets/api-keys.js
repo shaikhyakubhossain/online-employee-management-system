@@ -1,5 +1,5 @@
 const PORT = 4000;
-const MongoDBUrl="mongodb+srv://samarjit9203:Employeeverse9203@employeedata.pmsxo.mongodb.net/EmployeeverseDB?retryWrites=true&w=majority&appName=Employeedata";
+const MongoDBUrl="mongodb+srv://samarjit:driemsconnect@driems-connect.onk2e.mongodb.net/DRIEMS-Connect?retryWrites=true&w=majority&appName=driems-connect";
 
 module.exports = {
     PORT,
