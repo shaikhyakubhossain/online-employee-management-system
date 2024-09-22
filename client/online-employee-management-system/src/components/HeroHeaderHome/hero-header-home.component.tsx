@@ -25,7 +25,7 @@ export default function HeroHeaderHome() {
 
   return (
     <div className="text-6xl mb-24 lg:w-3/4">
-      <div>Employee verse</div>
+      <div>DRIEMS Connect</div>
       <div className="text-2xl max-sm:text-sm mt-5">
         Efficiently manage your workforce with our streamlined platform. Our
         system offers an all-in-one solution for organizing employee details,
