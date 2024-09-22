@@ -4,12 +4,15 @@ import styles from "./left-menu.module.scss";
 import Button from "@/components/Button/button.component";
 import { btnList, btnList2 } from "@/constants/Basic/data";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { RootState } from "@/lib/store";
 import { useSelector, useDispatch } from "react-redux";
 import { setTrue, setFalse } from "@/lib/features/LeftMenu/leftMenuSlice";
+import { setDetail } from "@/lib/features/AuthDetail/authDetailSlice";
 
 export default function LeftMenu(): JSX.Element {
+  const router = useRouter();
   const { isOpen } = useSelector((state: RootState) => state.leftMenu);
   const dispatch = useDispatch();
   const LeftMenuRef = useRef<HTMLDivElement>(null);
@@ -22,6 +25,12 @@ export default function LeftMenu(): JSX.Element {
   const expandLeftMenu = () => {
     LeftMenuRef.current?.classList.remove("-translate-x-60");
     dispatch(setFalse());
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("authDetail");
+    dispatch(setDetail({data: null, token: null}));
+    router.push("/");
   }
 
   return (
@@ -59,6 +68,7 @@ export default function LeftMenu(): JSX.Element {
           <Button
             customClassName={styles.btn}
             customTW="text-left w-full bg-white text-black font-medium"
+            onClick={handleLogout}
           >
             <div className="flex">
               <div className="my-auto mr-3">
