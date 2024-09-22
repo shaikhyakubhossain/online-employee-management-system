@@ -15,7 +15,7 @@ export default function HeroHeaderHome() {
     const router = useRouter();
 
     useEffect(() => {
-        let authDetail = localStorage.getItem("authDetail");
+        const authDetail = localStorage.getItem("authDetail");
         if(!autoLogin && authDetail){
             dispatch(setDetail(JSON.parse(authDetail)));
             dispatch(setAutoLogin(true))
