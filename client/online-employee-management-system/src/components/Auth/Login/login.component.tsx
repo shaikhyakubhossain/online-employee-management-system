@@ -25,7 +25,6 @@ export default function Login(props: propsType) {
   const [dataToSend, setDataToSend] = useState({employeeId: "", password: ""});
 
   const handleSubmit = () => {
-    // dispatch(setDetail({}));
     fetch(`${getUrl()}/${props.searchParams.role}-login`, {
       method: "POST",
       headers: {

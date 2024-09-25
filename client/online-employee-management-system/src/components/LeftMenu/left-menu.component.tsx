@@ -14,6 +14,7 @@ import { setDetail } from "@/lib/features/AuthDetail/authDetailSlice";
 export default function LeftMenu(): JSX.Element {
   const router = useRouter();
   const { isOpen } = useSelector((state: RootState) => state.leftMenu);
+  const { role } = useSelector((state: RootState) => state.authDetail);
   const dispatch = useDispatch();
   const LeftMenuRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +43,8 @@ export default function LeftMenu(): JSX.Element {
         } fixed top-20 left-0 bottom-0 w-60 shadow-2xl bg-white overflow-y-scroll transition-transform duration-300`}
       >
         <div className={`${styles.section1} mb-8 px-3 pt-7`}>
-          {btnList.map((item, index): JSX.Element => {
+          {btnList.map((item, index): JSX.Element | undefined => {
+            if(item.role === "both" || item.role === role) {
             return (
               <Link href={item.link} key={index}>
                 <Button
@@ -51,7 +53,7 @@ export default function LeftMenu(): JSX.Element {
                 >
                   <div className="flex">
                     <div className="my-auto mr-3">
-                      <img src={item.base64Icon} alt="" />
+                      <img className="w-4" src={item.base64Icon} alt="" />
                     </div>
                     <div className={`${styles.name} text-black`}>
                       {item.name}
@@ -60,6 +62,7 @@ export default function LeftMenu(): JSX.Element {
                 </Button>
               </Link>
             );
+          }
           })}
         </div>
 
