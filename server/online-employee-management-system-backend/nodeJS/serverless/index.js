@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const { MongoDBUrl, PORT } = require("./secrets/api-keys");
 const Employee = require("./model/employee-model");
+const Admin = require("./model/admin-model");
 const { tokenSecret } = require("./secrets/token");
 const jwt = require("jsonwebtoken");
 const requireAuth = require("./middleware/require-auth");
@@ -12,7 +13,7 @@ const createToken = (_id) => {
 };
 
 const corsOrigin = {
-  origin: "https://employeeverse.vercel.app",
+  origin: "https://driemsconnect.vercel.app",
   // origin: "http://localhost:3000",
 };
 
@@ -34,9 +35,9 @@ mongoose
     });
 
     console.log("Connected to MongoDB");
-    // const emp = mongoose.connection.db.collection("employee");
-    // const arr = await emp.find().toArray();
-    // console.log(arr);
+    const emp = mongoose.connection.db.collection("admin");
+    const arr = await emp.find().toArray();
+    console.log(arr);
   })
   .catch((err) => {
     console.log(err);
@@ -52,7 +53,25 @@ app.post("/employee-login", async (req, res) => {
     } else {
       const token = createToken(employee._id);
       const data = await Employee.findById(employee._id);
-      res.status(200).json({ data, token });
+      res.status(200).json({ data, role: "employee", token });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: "Server error" });
+  }
+});
+
+app.post("/admin-login", async (req, res) => {
+  const { employeeId, password } = req.body;
+  console.log(employeeId, password);
+  try {
+    const admin = await Admin.login(employeeId, password);
+    if (admin.error) {
+      return res.status(400).json({ error: admin.error });
+    } else {
+      const token = createToken(admin._id);
+      const data = await Admin.findById(admin._id);
+      res.status(200).json({ data, role: "admin", token });
     }
   } catch (error) {
     console.log(error);
