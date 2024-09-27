@@ -1,4 +1,5 @@
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
+import SetDate from "../SetDate/set-date.component";
 
 export default function FormContents() {
     return (
@@ -9,6 +10,11 @@ export default function FormContents() {
             <RadioBtn label="Pay Leave" />
             <RadioBtn label="Sick Leave" />
             <RadioBtn label="Maternity Leave" />
+            </div>
+            <div className="text-2xl font-semibold">Set range</div>
+            <div className="flex my-5">
+                <SetDate label="From" />
+                <SetDate label="To" />
             </div>
         </div>
     );
