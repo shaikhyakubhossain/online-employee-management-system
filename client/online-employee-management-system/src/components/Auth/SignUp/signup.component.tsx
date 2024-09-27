@@ -3,6 +3,7 @@ import styles from "./signup.module.scss";
 import { useState, useRef } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
+import RadioBtn from "@/components/RadioBtn/radio-btn.component";
 
 type propsType = {
   searchParams: searchParamsType;
@@ -38,13 +39,9 @@ export default function SignUp(props: propsType) {
       <div className="mx-auto">
         <div className="text-3xl">New user ? Register here </div>
         <div className="mx-auto w-96">
-          <div className={`${styles.roleSelection} flex justify-center`}>
-            <Button customTW="bg-blue-200" onClick={(event) => handleRoleSelection(event)}>
-              Admin
-            </Button>
-            <Button customTW="bg-blue-200" onClick={(event) => handleRoleSelection(event)}>
-              Employee
-            </Button>
+          <div className={`${styles.roleSelection} flex justify-center text-white`}>
+            <RadioBtn label="Admin" />
+            <RadioBtn label="Employee" />
           </div>
           <div className="text-white bg-blue-300 w-96 rounded p-14">
             <InputField updateDataToSend={(e) => console.log(e)} label="First name" type="text" />
