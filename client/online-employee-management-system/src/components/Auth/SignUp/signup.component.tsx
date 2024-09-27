@@ -16,21 +16,15 @@ type searchParamsType = {
 
 export default function SignUp(props: propsType) {
   const [role, setRole] = useState<null | string>(null);
-  const previousRoleBtn = useRef<null | HTMLButtonElement>(null);
 
-  const handleRoleSelection = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (previousRoleBtn.current) {
-      previousRoleBtn.current.style.backgroundColor = "lightblue";
+  const handleRoleSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const current = event.target as HTMLInputElement;
+    if(current.nextSibling && current.nextSibling.textContent) {
+      setRole(current.nextSibling.textContent.toLowerCase());
     }
-    const current = event.target as HTMLButtonElement;
-    current.style.backgroundColor = "blue";
-    setRole(current.textContent);
-    console.log(current.textContent);
-
-    previousRoleBtn.current = current;
   };
 
-  console.log(props.searchParams.role, role);
+  // console.log(props.searchParams.role, role);
   return (
     <div
       className={`${styles.mainContainer} text-center flex p-14 h-full overflow-scroll`}
@@ -40,8 +34,8 @@ export default function SignUp(props: propsType) {
         <div className="text-3xl">New user ? Register here </div>
         <div className="mx-auto w-96">
           <div className={`${styles.roleSelection} flex justify-center text-white`}>
-            <RadioBtn label="Admin" />
-            <RadioBtn label="Employee" />
+            <RadioBtn label="Admin" onRadioClick={(event) => handleRoleSelection(event)} />
+            <RadioBtn label="Employee" onRadioClick={(event) => handleRoleSelection(event)} />
           </div>
           <div className="text-white bg-blue-300 w-96 rounded p-14">
             <InputField updateDataToSend={(e) => console.log(e)} label="First name" type="text" />
