@@ -1,6 +1,6 @@
 "use client";
 import styles from "./signup.module.scss";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
@@ -24,7 +24,7 @@ export default function SignUp(props: propsType) {
     }
   };
 
-  // console.log(props.searchParams.role, role);
+  console.log(props.searchParams.role, role);
   return (
     <div
       className={`${styles.mainContainer} text-center flex p-14 h-full overflow-scroll`}

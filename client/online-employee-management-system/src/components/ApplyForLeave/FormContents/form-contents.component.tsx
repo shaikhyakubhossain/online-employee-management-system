@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./form-contents.module.scss";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
 import SetDate from "../SetDate/set-date.component";
@@ -13,10 +13,6 @@ type dataToSendType = {
     additionalInfo?: string;
 }
 
-type propsType = {
-
-}
-
 export default function FormContents() {
 
     const [dataToSend, setDataToSend] = useState<dataToSendType>({
@@ -26,9 +22,9 @@ export default function FormContents() {
         additionalInfo: "",
     });
 
-    const handleSubmit = () => {
+    // const handleSubmit = () => {
 
-    }
+    // }
 
     console.log("dataToSend", dataToSend);
 
