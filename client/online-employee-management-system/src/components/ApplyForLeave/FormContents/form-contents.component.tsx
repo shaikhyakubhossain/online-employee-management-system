@@ -5,6 +5,10 @@ import RadioBtn from "@/components/RadioBtn/radio-btn.component";
 import SetDate from "../SetDate/set-date.component";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
+import { getUrl } from "@/constants/url";
+
+import { RootState } from "@/lib/store";
+import { useSelector } from "react-redux";
 
 type dataToSendType = {
     leaveType: string;
@@ -15,6 +19,8 @@ type dataToSendType = {
 
 export default function FormContents() {
 
+  const { token } = useSelector((state: RootState) => state.authDetail);
+
     const [dataToSend, setDataToSend] = useState<dataToSendType>({
         leaveType: "",
         fromDate: "",
@@ -22,9 +28,16 @@ export default function FormContents() {
         additionalInfo: "",
     });
 
-    // const handleSubmit = () => {
-
-    // }
+    const handleSubmit = () => {
+      fetch(`${getUrl()}/apply-for-leave`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(dataToSend)
+      })
+    }
 
     console.log("dataToSend", dataToSend);
 
