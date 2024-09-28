@@ -20,6 +20,7 @@ type dataToSendType = {
 export default function FormContents() {
 
   const { token } = useSelector((state: RootState) => state.authDetail);
+  const { data } = useSelector((state: RootState) => state.authDetail);
 
     const [dataToSend, setDataToSend] = useState<dataToSendType>({
         leaveType: "",
@@ -29,22 +30,49 @@ export default function FormContents() {
     });
 
     const handleSubmit = () => {
-      fetch(`${getUrl()}/apply-for-leave`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify(dataToSend)
-      })
+      if(dataToSend.leaveType === "" || dataToSend.fromDate === "" || dataToSend.toDate === ""){
+        alert("Please fill all the fields");
+      }
+      if(!data){
+        alert("Please login to apply for leave");
+      }
+      else{
+        fetch(`${getUrl()}/apply-leave`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            employeeId: data.employeeId,
+            designation: data.designation,
+            regdNo: data.regdNo,
+            email: data.email,
+            leaveType: dataToSend.leaveType,
+            leaveDateFrom: dataToSend.fromDate,
+            leaveDateTo: dataToSend.toDate,
+            additionalInfo: dataToSend.additionalInfo,
+          })
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data", data);
+          alert(data.error ? data.error : data.message);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      }
     }
 
-    console.log("dataToSend", dataToSend);
+    console.log(dataToSend);
 
   return (
     <div className="">
       <div className="text-2xl font-semibold">Choose type of leave :</div>
-      <div className="flex justify-evenly flex-wrap my-5">
+      <div className="flex justify-evenly flex-wrap my-2">
         <RadioBtn label="Casual Leave" onRadioClick={() => setDataToSend({ ...dataToSend, leaveType: "casual" })} />
         <RadioBtn label="Pay Leave" onRadioClick={() => setDataToSend({ ...dataToSend, leaveType: "pay" })} />
         <RadioBtn label="Sick Leave" onRadioClick={() => setDataToSend({ ...dataToSend, leaveType: "sick" })} />
@@ -66,15 +94,15 @@ export default function FormContents() {
         ></textarea>
       </div>
       <div>
-        <label></label>
-        <div></div>
+        <label className="block mb-2 text-2xl font-semibold my-5">Declaration:</label>
+        <div className="my-5">All the above details are best of my knowledge and true. The approval of this application is entirely depended upon the management as per the basic employee leave brochure . </div>
         <div className="flex items-center">
           <input
             type="checkbox"
             value=""
             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
           />
-          <label className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+          <label className="ms-2 text-sm font-medium text-gray-900">
             I agree with the{" "}
             <Link
               href="#"
@@ -88,7 +116,7 @@ export default function FormContents() {
       </div>
       <div className={`${styles.submitBtnContainer} flex justify-end m-6`}>
         <Button
-          onClick={() => console.log("submit")}
+          onClick={handleSubmit}
           customTW="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Submit

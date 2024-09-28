@@ -4,6 +4,7 @@ const cors = require("cors");
 const { MongoDBUrl, PORT } = require("./secrets/api-keys");
 const Employee = require("./model/employee-model");
 const Admin = require("./model/admin-model");
+const Leave = require("./model/leave-model");
 const { tokenSecret } = require("./secrets/token");
 const jwt = require("jsonwebtoken");
 const requireAuth = require("./middleware/require-auth");
@@ -35,9 +36,9 @@ mongoose
     });
 
     console.log("Connected to MongoDB");
-    const emp = mongoose.connection.db.collection("admin");
-    const arr = await emp.find().toArray();
-    console.log(arr);
+    // const emp = mongoose.connection.db.collection("leave");
+    // const arr = await emp.find().toArray();
+    // console.log(arr);
   })
   .catch((err) => {
     console.log(err);
@@ -115,8 +116,42 @@ app.post("/employee-signup", async (req, res) => {
 
 app.use(requireAuth);
 
-app.get("/", (req, res) => {
-  res.send({
-    message: "hello",
+app.post("/apply-leave", async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    employeeId,
+    designation,
+    regdNo,
+    email,
+    leaveType,
+    leaveDateFrom,
+    leaveDateTo,
+    additionalInfo
+  } = req.body;
+
+  try{
+    const leave = await Leave.applyLeave(firstName, lastName, employeeId, designation, regdNo, email, leaveType, leaveDateFrom, leaveDateTo, additionalInfo);
+    if(leave.error){
+      return res.status(400).json({error: leave.error});
+    }else{
+      res.status(200).json({message: "Your application for leave has been submitted successfully !"});
+    }
+  }catch(error){
+    console.log(error);
+    res.status(400).json({error: "Server error"});
+  }
+});
+
+app.get("/get-all-leave-applications", async (req, res) => {
+  mongoose.connection.db.collection("leave").find().toArray((err, result) => {
+    if(err) {
+      console.log(err);
+      res.status(400).json({error: "Server error"});
+    }else{
+      res.status(200).json({result});
+      console.log(result);
+    }
   });
 });
+

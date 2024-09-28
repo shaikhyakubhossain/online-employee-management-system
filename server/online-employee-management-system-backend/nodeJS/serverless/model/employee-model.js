@@ -115,6 +115,6 @@ employeeSchema.statics.login = async function (employeeId, password) {
   return employee;
 };
 
-// const employee = mongoose.model('Employees', employeeSchema, 'employees-data');
+// const employee = mongoose.model('Employees', employeeSchema, 'employees');
 
 module.exports = mongoose.model("Employees", employeeSchema, "employee");
