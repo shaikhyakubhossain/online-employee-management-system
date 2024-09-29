@@ -144,14 +144,7 @@ app.post("/apply-leave", async (req, res) => {
 });
 
 app.get("/get-all-leave-applications", async (req, res) => {
-  mongoose.connection.db.collection("leave").find().toArray((err, result) => {
-    if(err) {
-      console.log(err);
-      res.status(400).json({error: "Server error"});
-    }else{
-      res.status(200).json({result});
-      console.log(result);
-    }
-  });
+  const data = await Leave.find({});
+  res.status(200).json({data});
 });
 
