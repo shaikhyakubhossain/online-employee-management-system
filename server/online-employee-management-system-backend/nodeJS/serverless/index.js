@@ -148,3 +148,8 @@ app.get("/get-all-leave-applications", async (req, res) => {
   res.status(200).json({data});
 });
 
+app.get("/get-all-employees", async (req, res) => {
+  const data = await Employee.find({});
+  res.status(200).json({data});
+});
+
