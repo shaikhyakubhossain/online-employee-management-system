@@ -1,6 +1,6 @@
 export default function SearchBox() {
   return (
-    <div className="w-1/3 ml-auto">
+    <div className="w-1/3 ml-auto my-8">
       <label className="mb-2 text-sm font-medium text-gray-900 sr-only">
         Search
       </label>

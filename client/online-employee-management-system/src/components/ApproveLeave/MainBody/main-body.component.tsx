@@ -2,7 +2,8 @@
 import { useState, useEffect } from "react";
 import styles from "./main-body.module.scss";
 import Button from "@/components/Button/button.component";
-import Table from "../Table/table.component";
+import Table from "../../Table/table.component";
+import SearchBox from "../../SearchBox/search-box.component";
 import type { LeaveData } from "@/constants/Types/response-data";
 import { getUrl } from "../../../constants/url";
 
@@ -31,6 +32,7 @@ export default function MainBody() {
 
   return (
     <div className={`${styles.mainContainer}`}>
+      <SearchBox />
       <div className="flex gap-4">
         <div className="font-semibold text-2xl">Filter By : </div>
         <div>
@@ -41,7 +43,7 @@ export default function MainBody() {
         </div>
       </div>
       <div className={`${styles.tableContainer} my-5`}>
-        <Table data={data} />
+        <Table data={data} headers={["Employee Name", "Regd.ID", "Email ID", "Leave Type", "Date"]} />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import type { LeaveData } from "@/constants/Types/response-data";
 
 type PropsType = {
   data: LeaveData[] | null;
+  headers: string[];
 };
 
 export default function Table(props: PropsType) {
@@ -12,22 +13,15 @@ export default function Table(props: PropsType) {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
           <tr>
-            <th scope="col" className="px-6 py-3">
-              Employee name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Regd.ID
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Email ID
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Leave type
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Date
-            </th>
-            <th scope="col" className="px-6 py-3"></th>
+            {
+              props.headers.map((item, index) => {
+                return (
+                  <th key={index} scope="col" className="px-6 py-3">
+                    {item}
+                  </th>
+                )
+              })
+            }
           </tr>
         </thead>
         <tbody>
