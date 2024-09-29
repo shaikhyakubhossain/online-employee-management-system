@@ -1,7 +1,7 @@
-import type { LeaveData } from "@/constants/Types/response-data";
+import type { defaultData } from "@/constants/Types/response-data";
 
 type PropsType = {
-  data: LeaveData[] | null;
+  data: defaultData[] | null;
   headers: string[];
   showAction?: boolean;
 };
