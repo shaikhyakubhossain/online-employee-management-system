@@ -43,7 +43,7 @@ export default function MainBody() {
         </div>
       </div>
       <div className={`${styles.tableContainer} my-5`}>
-        <Table data={data} headers={["Employee Name", "Regd.ID", "Email ID", "Leave Type", "Date"]} />
+        <Table data={data} headers={["Employee Name", "Regd.ID", "Email ID", "Leave Type", "Date"]} showAction={true}/>
       </div>
     </div>
   );
