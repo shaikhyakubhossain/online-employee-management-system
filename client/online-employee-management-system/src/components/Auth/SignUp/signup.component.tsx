@@ -1,5 +1,6 @@
 "use client";
 import styles from "./signup.module.scss";
+import Link from "next/link";
 import { useState } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
@@ -29,7 +30,9 @@ export default function SignUp(props: propsType) {
     <div
       className={`${styles.mainContainer} text-center flex p-14 h-full overflow-scroll`}
     >
-      <div className="text-left text-3xl">Back</div>
+      <Link href={"/"}>
+         <div className="text-xl text-left">Go back</div>
+      </Link>
       <div className="mx-auto">
         <div className="text-3xl">New user ? Register here </div>
         <div className="mx-auto w-96">

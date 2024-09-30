@@ -3,9 +3,9 @@ import RTKStoreProvider from "@/components/RTKStoreProvider/rtk-store-provider.c
 import BodyContainer from "@/components/BodyContainer/body-container.component";
 
 export const metadata = {
-  title: "Employeeverse",
+  title: "DRIEMS Connect",
   description:
-    "Welcome to Employeeverse, an online employee management system.",
+    "Welcome to DRIEMS Connect, an online employee management system!",
 };
 
 export default function RootLayout({
