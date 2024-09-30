@@ -1,13 +1,11 @@
 "use client";
-import { useState } from "react";
 import React from "react";
 import Calendar from "react-calendar";
 // import styles from "./calender.module.scss";
 import "./calender.custom.css";
 
 export default function Calender(): JSX.Element {
-  const [currentDate, setCurrentDate] = useState(new Date());
-
+const currentDate = new Date();
   const tileClassName = ({ date, view }: {date: Date, view: string}) => {
     const defaultClassName = 'text-sm ';
     if (view === 'month') {
