@@ -13,7 +13,7 @@ export default function SubHeaderContainer(): JSX.Element {
     return (
         <div className={`${styles.mainContainer} flex mb-7`}>
             {
-                role === "employee" && 
+                // role === "employee" && 
                 <>
                 <LatestUpdates />
                 <Calender />
