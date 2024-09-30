@@ -152,4 +152,3 @@ app.get("/get-all-employees", async (req, res) => {
   const data = await Employee.find({});
   res.status(200).json({data});
 });
-
