@@ -4,9 +4,10 @@
 
 .mainContainerFullWidth {
     width: 100%;
+    transition: width 5s;
+
 }
 
 .mainContainerZeroWidth {
     width: 0%;
-    transition: width;
 }
