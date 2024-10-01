@@ -37,11 +37,11 @@ export default function Login(props: propsType) {
     .then((res) => {
       res.json().then((data) => {
         console.log(data);
+        dispatch(setStartLoadingFalse());
         if(!data.error){
           dispatch(setDetail(data));
           localStorage.setItem("authDetail", JSON.stringify(data));
           router.push(`/Dashboard`);
-          dispatch(setStartLoadingFalse());
       }
       else{
         alert(data.error);
