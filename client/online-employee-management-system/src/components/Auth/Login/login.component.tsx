@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 import { useDispatch } from "react-redux";
 import { setDetail } from "@/lib/features/AuthDetail/authDetailSlice";
+import { setStartLoadingTrue, setStartLoadingFalse } from "@/lib/features/MainLoading/mainLoadingSlice";
 
 type propsType = {
   searchParams: searchParamsType
@@ -25,6 +26,7 @@ export default function Login(props: propsType) {
   const [dataToSend, setDataToSend] = useState({employeeId: "", password: ""});
 
   const handleSubmit = () => {
+    dispatch(setStartLoadingTrue());
     fetch(`${getUrl()}/${props.searchParams.role}-login`, {
       method: "POST",
       headers: {
@@ -39,6 +41,7 @@ export default function Login(props: propsType) {
           dispatch(setDetail(data));
           localStorage.setItem("authDetail", JSON.stringify(data));
           router.push(`/Dashboard`);
+          dispatch(setStartLoadingFalse());
       }
       else{
         alert(data.error);
