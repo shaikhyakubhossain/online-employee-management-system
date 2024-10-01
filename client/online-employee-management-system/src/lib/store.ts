@@ -2,11 +2,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import leftMenuSlice from "./features/LeftMenu/leftMenuSlice";
 import authDetailSlice from "./features/AuthDetail/authDetailSlice";
+import mainLoadingSlice from "./features/MainLoading/mainLoadingSlice";
 
 export const store = configureStore({
     reducer: {
         leftMenu: leftMenuSlice,
-        authDetail: authDetailSlice
+        authDetail: authDetailSlice,
+        mainLoading: mainLoadingSlice
     }
 });
 
