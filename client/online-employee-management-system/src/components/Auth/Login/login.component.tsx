@@ -50,6 +50,7 @@ export default function Login(props: propsType) {
     })
     .catch((error) => {
       console.log(error);
+      dispatch(setStartLoadingFalse());
     })
 
     console.log(dataToSend);

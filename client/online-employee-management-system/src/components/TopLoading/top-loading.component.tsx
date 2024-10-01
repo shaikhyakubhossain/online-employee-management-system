@@ -7,6 +7,6 @@ type propsType = {
 export default function TopLoading(props: propsType) {
 
   return (
-    <div className={`${styles.mainContainer} fixed top-0 w-10 h-1 bg-red-400 transition-all duration-[${props.startLoading ? "5000ms" : "0ms"}]`} style={{width: props.startLoading ? "100%" : "0%", display: props.startLoading ? "block" : "block"}}></div>
+    <div className={`${styles.mainContainer} ${props.startLoading ? styles.mainContainerFullWidth : styles.mainContainerZeroWidth} fixed top-0 w-10 h-1 bg-red-400 duration-[${props.startLoading ? "5000ms" : "0ms"}]`}></div>
   )
 }
