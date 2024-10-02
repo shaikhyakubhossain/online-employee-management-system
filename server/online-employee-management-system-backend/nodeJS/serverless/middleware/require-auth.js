@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const Employee = require("../model/employee-model");
+const Admin = require("../model/admin-model");
 const {tokenSecret} = require("../secrets/token");
 
 const requireAuth = async (req, res, next) => {
@@ -14,7 +15,23 @@ const requireAuth = async (req, res, next) => {
 
     try{
         const {_id} = jwt.verify(token, tokenSecret);
-        req.employee = await Employee.findOne({ _id }).select("_id");
+
+        let user;
+
+        if(req.headers.role === "admin"){
+            user = await Admin.findOne({ _id }).select("_id");
+        }
+        else if(req.headers.role === "employee"){
+            user = await Employee.findOne({ _id }).select("_id");
+        }
+        // const user = await req.headers.role === "admin" ? Admin.findOne({ _id }).select("_id") : req.headers.role === "employee" && Employee.findOne({ _id }).select("_id");
+        if(!user){
+            return res.status(401).json({error: "access denied"});
+        }
+        else{
+            req.user = user;
+        }
+        console.log("req.user: not null");
         next();
     }
     catch(error){
