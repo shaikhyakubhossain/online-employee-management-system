@@ -5,7 +5,7 @@ const {tokenSecret} = require("../secrets/token");
 
 const requireAuth = async (req, res, next) => {
 
-    const { authorization } = req.headers;
+    const { authorization, role } = req.headers;
 
     if(!authorization){
         return res.status(401).json({error: "Authorization token required"});
@@ -18,13 +18,13 @@ const requireAuth = async (req, res, next) => {
 
         let user;
 
-        if(req.headers.role === "admin"){
+        if(role === "admin"){
             user = await Admin.findOne({ _id }).select("_id");
         }
-        else if(req.headers.role === "employee"){
+        else if(role === "employee"){
             user = await Employee.findOne({ _id }).select("_id");
         }
-        // const user = await req.headers.role === "admin" ? Admin.findOne({ _id }).select("_id") : req.headers.role === "employee" && Employee.findOne({ _id }).select("_id");
+        // const user = await role === "admin" ? Admin.findOne({ _id }).select("_id") : role === "employee" && Employee.findOne({ _id }).select("_id");
         if(!user){
             return res.status(401).json({error: "access denied"});
         }
