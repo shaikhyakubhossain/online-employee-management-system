@@ -31,7 +31,6 @@ const requireAuth = async (req, res, next) => {
         else{
             req.user = user;
         }
-        console.log("req.user: not null");
         next();
     }
     catch(error){
