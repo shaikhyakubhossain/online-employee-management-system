@@ -22,10 +22,12 @@ export default function MainBody() {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
+          "role": "admin"
         },
       });
       const data = await response.json();
       setData(data.data);
+      console.log("data: ", data);
     };
     fetchData();
   }, []);
@@ -43,7 +45,7 @@ export default function MainBody() {
         </div>
       </div>
       <div className={`${styles.tableContainer} my-5`}>
-        <Table data={data} headers={["Employee Name", "Regd.ID", "Email ID", "Leave Type", "Date"]} showAction={true}/>
+        <Table data={data} headers={["Employee Name", "Regd.ID", "Email ID", "Designation", "Leave Type", "Date", "Action"]} showAction={true}/>
       </div>
     </div>
   );

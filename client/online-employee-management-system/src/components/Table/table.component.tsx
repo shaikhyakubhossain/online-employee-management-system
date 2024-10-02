@@ -46,10 +46,10 @@ export default function Table(props: PropsType) {
                   </td>
                   {showAction && (
                     <td className="px-6 py-4">
-                      <span className="text-green-900 bg-green-200 px-2 py-1 rounded-md mx-1 hover:bg-green-600 hover:text-white cursor-pointer">
+                      <span className="text-green-900 bg-green-200 px-2 py-1 rounded-md mr-1 hover:bg-green-600 hover:text-white cursor-pointer">
                         Approve
                       </span>
-                      <span className="text-red-900 bg-red-200 px-2 py-1 rounded-md mx-1 hover:bg-red-600 hover:text-white cursor-pointer">
+                      <span className="text-red-900 bg-red-200 px-2 py-1 rounded-md ml-1 hover:bg-red-600 hover:text-white cursor-pointer">
                         Reject
                       </span>
                     </td>

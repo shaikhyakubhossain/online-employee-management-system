@@ -19,7 +19,8 @@ export default function MainBody() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                role: "admin"
             }
         })
         .then((res) => res.json())
