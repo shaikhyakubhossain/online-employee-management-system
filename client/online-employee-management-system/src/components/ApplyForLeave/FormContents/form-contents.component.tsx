@@ -47,12 +47,6 @@ export default function FormContents() {
           role: "employee",
         },
         body: JSON.stringify({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          employeeId: data.employeeId,
-          designation: data.designation,
-          regdNo: data.regdNo,
-          email: data.email,
           leaveType: dataToSend.leaveType,
           leaveDateFrom: dataToSend.fromDate,
           leaveDateTo: dataToSend.toDate,
