@@ -5,6 +5,7 @@ const { MongoDBUrl, PORT } = require("./secrets/api-keys");
 const Employee = require("./model/employee-model");
 const Admin = require("./model/admin-model");
 const Leave = require("./model/leave-model");
+const Notification = require("./model/notification-model")
 const { tokenSecret } = require("./secrets/token");
 const jwt = require("jsonwebtoken");
 const requireAuth = require("./middleware/require-auth");
@@ -14,8 +15,8 @@ const createToken = (_id) => {
 };
 
 const corsOrigin = {
-  origin: "https://driemsconnect.vercel.app",
-  // origin: "http://localhost:3000",
+  // origin: "https://driemsconnect.vercel.app",
+  origin: "http://localhost:3000",
 };
 
 const app = express();
@@ -36,9 +37,9 @@ mongoose
     });
 
     console.log("Connected to MongoDB");
-    // const emp = mongoose.connection.db.collection("leave");
-    // const arr = await emp.find().toArray();
-    // console.log(arr);
+    const emp = mongoose.connection.db.collection("leave");
+    const arr = await emp.find().toArray();
+    console.log(arr);
   })
   .catch((err) => {
     console.log(err);
@@ -118,29 +119,37 @@ app.use(requireAuth);
 
 app.post("/apply-leave", async (req, res) => {
   const {
-    firstName,
-    lastName,
-    employeeId,
-    designation,
-    regdNo,
-    email,
     leaveType,
     leaveDateFrom,
     leaveDateTo,
-    additionalInfo
+    additionalInfo,
   } = req.body;
 
+  const userDetails = await Employee.findById(req.user._id);
+  // console.log("userDetails", userDetails);
+  if(userDetails){
   try{
-    const leave = await Leave.applyLeave(firstName, lastName, employeeId, designation, regdNo, email, leaveType, leaveDateFrom, leaveDateTo, additionalInfo);
+    const leave = await Leave.applyLeave(userDetails.firstName, userDetails.lastName, userDetails.employeeId, userDetails.designation, userDetails.regdNo, userDetails.email, leaveType, leaveDateFrom, leaveDateTo, additionalInfo);
     if(leave.error){
       return res.status(400).json({error: leave.error});
     }else{
-      res.status(200).json({message: "Your application for leave has been submitted successfully !"});
+      const title = "Leave Application";
+      const message = ("Your application for " + leaveType + "leave from " + leaveDateFrom + " to " + leaveDateTo + " has been submitted successfully !");
+      const notification = await Notification.createNotification(userDetails.regdNo, title, message);
+      if(notification.error){
+        return res.status(400).json({error: notification.error});
+      }else{
+        res.status(200).json({message: "Your application for leave has been submitted successfully !"});
+      }
     }
   }catch(error){
     console.log(error);
     res.status(400).json({error: "Server error"});
   }
+}
+else{
+  res.status(400).json({error: "User does not exist"});
+}
 });
 
 app.get("/get-all-leave-applications", async (req, res) => {
@@ -151,4 +160,19 @@ app.get("/get-all-leave-applications", async (req, res) => {
 app.get("/get-all-employees", async (req, res) => {
   const data = await Employee.find({});
   res.status(200).json({data});
+});
+
+app.get("/get-all-notifications", async (req, res) => {
+
+  let regdNo = await Admin.findById(req.user._id).select("regdNo");
+
+  if(!regdNo){
+    regdNo = await Employee.findById(req.user._id).select("regdNo");
+  }
+  if(regdNo){
+    const data = await Notification.find({regdNo: regdNo.regdNo});
+    res.status(200).json({data});
+  }else{
+    res.status(400).json({error: "User does not exist"});
+  }
 });
