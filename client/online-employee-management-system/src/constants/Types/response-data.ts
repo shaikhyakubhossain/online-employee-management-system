@@ -37,3 +37,10 @@ export type defaultData = {
   leaveDateTo?: string;
   leaveStatus?: string;
 };
+
+export type notificationData = {
+  _id: string;
+  title: string;
+  message: string;
+};
+

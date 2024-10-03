@@ -2,12 +2,13 @@
 import styles from "./main-body.module.scss";
 import { useEffect, useState } from "react";
 import { getUrl } from "@/constants/url";
+import { notificationData } from "@/constants/Types/response-data";
 
 import { RootState } from "@/lib/store";
 import { useSelector } from "react-redux";
 
 export default function MainBody(){
-    const [notification, setNotification] = useState<any>(null);
+    const [notification, setNotification] = useState<notificationData[]>([]);
     const { token } = useSelector((state: RootState) => state.authDetail);
 
     const getNotification = async () => {
@@ -30,7 +31,7 @@ export default function MainBody(){
     return(
         <div className={`${styles.mainContainer}`}>
             {
-                notification && notification.length > 0 ? notification.map((notification: any): JSX.Element => {
+                notification && notification.length > 0 ? notification.map((notification: notificationData): JSX.Element => {
                     return(
                         <div key={notification._id} className="flex hover:bg-gray-200 bg-gray-100 p-2 rounded-md">
                             <div className="text-2xl mr-8">{notification.title}</div>
