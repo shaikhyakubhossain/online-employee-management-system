@@ -24,6 +24,12 @@ const requireAuth = async (req, res, next) => {
         else if(role === "employee"){
             user = await Employee.findOne({ _id }).select("_id");
         }
+        else if(role === "both"){
+            user = await Admin.findOne({ _id }).select("_id");
+            if(!user){
+                user = await Employee.findOne({ _id }).select("_id");
+            }
+        }
         // const user = await role === "admin" ? Admin.findOne({ _id }).select("_id") : role === "employee" && Employee.findOne({ _id }).select("_id");
         if(!user){
             return res.status(401).json({error: "access denied"});
