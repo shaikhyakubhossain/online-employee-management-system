@@ -15,8 +15,8 @@ const createToken = (_id) => {
 };
 
 const corsOrigin = {
-  // origin: "https://driemsconnect.vercel.app",
-  origin: "http://localhost:3000",
+  origin: "https://driemsconnect.vercel.app",
+  // origin: "http://localhost:3000",
 };
 
 const app = express();
