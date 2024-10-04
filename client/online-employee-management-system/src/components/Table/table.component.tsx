@@ -1,9 +1,11 @@
 import type { defaultData } from "@/constants/Types/response-data";
+import React from "react";
 
 type PropsType = {
   data: defaultData[] | null;
   headers: string[];
   showAction?: boolean;
+  handleAction?: (id: string, action: string) => void;
 };
 
 export default function Table(props: PropsType) {
@@ -45,14 +47,17 @@ export default function Table(props: PropsType) {
                     {item.leaveDateFrom} - {item.leaveDateTo}
                   </td>
                   {showAction && (
+                    <>
+                    <td className="px-6 py-4">{item.leaveStatus}</td>
                     <td className="px-6 py-4">
-                      <span className="text-green-900 bg-green-200 px-2 py-1 rounded-md mr-1 hover:bg-green-600 hover:text-white cursor-pointer">
+                      <span onClick={() => props.handleAction ? props.handleAction(item._id, "approved"):null} className="text-green-900 bg-green-200 px-2 py-1 rounded-md mr-1 hover:bg-green-600 hover:text-white cursor-pointer">
                         Approve
                       </span>
-                      <span className="text-red-900 bg-red-200 px-2 py-1 rounded-md ml-1 hover:bg-red-600 hover:text-white cursor-pointer">
+                      <span onClick={() => props.handleAction ? props.handleAction(item._id, "rejected"):null} className="text-red-900 bg-red-200 px-2 py-1 rounded-md ml-1 hover:bg-red-600 hover:text-white cursor-pointer">
                         Reject
                       </span>
                     </td>
+                    </>
                   )}
                 </tr>
               );

@@ -32,14 +32,14 @@ app.use((req, res, next) => {
 mongoose
   .connect(MongoDBUrl)
   .then(async () => {
-    server = app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log("Server is listening on PORT " + PORT);
     });
 
     console.log("Connected to MongoDB");
-    const emp = mongoose.connection.db.collection("leave");
-    const arr = await emp.find().toArray();
-    console.log(arr);
+    // const emp = mongoose.connection.db.collection("leave");
+    // const arr = await emp.find().toArray();
+    // console.log(arr);
   })
   .catch((err) => {
     console.log(err);
@@ -134,7 +134,7 @@ app.post("/apply-leave", async (req, res) => {
       return res.status(400).json({error: leave.error});
     }else{
       const title = "Leave Application";
-      const message = ("Your application for " + leaveType + "leave from " + leaveDateFrom + " to " + leaveDateTo + " has been submitted successfully !");
+      const message = ("Your application for " + leaveType + " leave from " + leaveDateFrom + " to " + leaveDateTo + " has been submitted successfully !");
       const notification = await Notification.createNotification(userDetails.regdNo, title, message);
       if(notification.error){
         return res.status(400).json({error: notification.error});
@@ -174,5 +174,32 @@ app.get("/get-all-notifications", async (req, res) => {
     res.status(200).json({data});
   }else{
     res.status(400).json({error: "User does not exist"});
+  }
+});
+
+app.patch("/leave-action", async (req, res) => {
+  const {_id, action} = req.body;
+  try{
+    const leave = await Leave.findById(_id);
+    if(leave){
+      leave.leaveStatus = action;
+      await leave.save();
+      const regdNo = await Employee.find({regdNo: leave.regdNo}).select("regdNo");
+      const adminName = await Admin.findById(req.user._id).select("firstName lastName");
+
+      if(regdNo && adminName){
+        const notification = await Notification.createNotification(regdNo[0].regdNo, "Leave Application", "Your leave application has been " + action + " by " + adminName.firstName + " " + adminName.lastName);
+        if(notification.error){
+          res.status(400).json({error: notification.error});
+        }else{
+          res.status(200).json({message: action + " Leave action updated successfully"});
+        }
+      }
+
+      res.status(200).json({message: "Leave action updated successfully"});
+    }else{
+      res.status(400).json({error: "Leave not found"});
+    }
+  }catch(error){
   }
 });

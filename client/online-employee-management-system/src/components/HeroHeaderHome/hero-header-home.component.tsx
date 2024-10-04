@@ -31,12 +31,8 @@ export default function HeroHeaderHome() {
         <img className={styles.heroImage} src="favicon.ico" alt="" />
         <div className="ml-4 ${styles.heroTitle}">DRIEMS Connect</div>
       </div>{" "}
-      <div className="text-2xl max-sm:text-sm mt-5">
-        Efficiently manage your workforce with our streamlined platform. Our
-        system offers an all-in-one solution for organizing employee details,
-        tracking performance, managing payroll, and more. Whether you’re a small
-        business or a large enterprise, our tool ensures that you can handle all
-        employee-related tasks with ease.
+      <div className="text-xl max-sm:text-sm mt-5">
+      The Online Employee Management System is a comprehensive web-based application designed to streamline HR operations by managing employee information, tracking attendance, and monitoring performance. It provides functionalities for adding, updating, and removing employee details, while maintaining an organized database. The system supports role-based access control, allowing administrators to assign different permissions to employees and manage their roles efficiently. Additionally, it includes features such as leave management, payroll generation, and real-time reporting, making it an all-in-one solution for simplifying workforce management.
       </div>
     </div>
   );

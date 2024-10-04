@@ -8,27 +8,49 @@ import type { leaveData } from "@/constants/Types/response-data";
 import { getUrl } from "../../../constants/url";
 
 import { RootState } from "@/lib/store";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setStartLoadingTrue, setStartLoadingFalse } from "@/lib/features/MainLoading/mainLoadingSlice";
 
 export default function MainBody() {
 
-  const [data, setData] = useState<null |leaveData[]>(null);
+  const dispatch = useDispatch();
+
+  const [data, setData] = useState<null | leaveData[]>(null);
   const token = useSelector((state: RootState) => state.authDetail.token);
 
+  const handleAction = async (id: string, action: string) => {
+    dispatch(setStartLoadingTrue());
+    const response = await fetch(`${getUrl()}/leave-action`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        role: "admin",
+      },
+      body: JSON.stringify({ _id: id, action: action }),
+    });
+    const data = await response.json();
+    console.log("data: ", data);
+    fetchData();
+  };
+
+  const fetchData = async () => {
+    const response = await fetch(`${getUrl()}/get-all-leave-applications`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        role: "admin",
+      },
+    });
+    const data = await response.json();
+    setData(data.data);
+    // console.log("data: ", data);
+    dispatch(setStartLoadingFalse());
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`${getUrl()}/get-all-leave-applications`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-          "role": "admin"
-        },
-      });
-      const data = await response.json();
-      setData(data.data);
-      console.log("data: ", data);
-    };
+    dispatch(setStartLoadingTrue());
     fetchData();
   }, []);
 
@@ -45,7 +67,21 @@ export default function MainBody() {
         </div>
       </div>
       <div className={`${styles.tableContainer} my-5`}>
-        <Table data={data} headers={["Employee Name", "Regd.ID", "Email ID", "Designation", "Leave Type", "Date", "Action"]} showAction={true}/>
+        <Table
+          data={data}
+          headers={[
+            "Employee Name",
+            "Regd.ID",
+            "Email ID",
+            "Designation",
+            "Leave Type",
+            "Date",
+            "Status",
+            "Action",
+          ]}
+          showAction={true}
+          handleAction={handleAction}
+        />
       </div>
     </div>
   );
