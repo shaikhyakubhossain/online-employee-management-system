@@ -33,7 +33,7 @@ export default function MainBody(){
             {
                 notification && notification.length > 0 ? notification.map((notification: notificationData): JSX.Element => {
                     return(
-                        <div key={notification._id} className="flex hover:bg-gray-200 bg-gray-100 p-2 rounded-md">
+                        <div key={notification._id} className="flex hover:bg-gray-200 bg-gray-100 p-2 rounded-md my-2 cursor-pointer">
                             <div className="text-2xl mr-8">{notification.title}</div>
                             <div className="text-lg my-auto">{notification.message}</div>
                         </div>
