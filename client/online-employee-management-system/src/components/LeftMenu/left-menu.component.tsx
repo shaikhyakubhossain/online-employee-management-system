@@ -26,13 +26,13 @@ export default function LeftMenu(): JSX.Element {
   const expandLeftMenu = () => {
     LeftMenuRef.current?.classList.remove("-translate-x-60");
     dispatch(setFalse());
-  }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("authDetail");
-    dispatch(setDetail({data: null, token: null}));
+    dispatch(setDetail({ data: null, token: null }));
     router.push("/");
-  }
+  };
 
   return (
     <div>
@@ -44,25 +44,25 @@ export default function LeftMenu(): JSX.Element {
       >
         <div className={`${styles.section1} mb-8 px-3 pt-7`}>
           {btnList.map((item, index): JSX.Element | undefined => {
-            if(item.role === "both" || item.role === role) {
-            return (
-              <Link href={item.link} key={index}>
-                <Button
-                  customClassName={styles.btn}
-                  customTW="text-left w-full bg-white text-black font-medium"
-                >
-                  <div className="flex">
-                    <div className="my-auto mr-3">
-                      <img className="w-4" src={item.base64Icon} alt="" />
+            if (item.role === "both" || item.role === role) {
+              return (
+                <Link href={item.link} key={index}>
+                  <Button
+                    customClassName={styles.btn}
+                    customTW="text-left w-full bg-white text-black font-medium"
+                  >
+                    <div className="flex">
+                      <div className="my-auto mr-3">
+                        <img className="w-4" src={item.base64Icon} alt="" />
+                      </div>
+                      <div className={`${styles.name} text-black`}>
+                        {item.name}
+                      </div>
                     </div>
-                    <div className={`${styles.name} text-black`}>
-                      {item.name}
-                    </div>
-                  </div>
-                </Button>
-              </Link>
-            );
-          }
+                  </Button>
+                </Link>
+              );
+            }
           })}
         </div>
 
@@ -96,12 +96,14 @@ export default function LeftMenu(): JSX.Element {
         </div>
       </div>
       <div
-        className={`${styles.openBtn} ${isOpen ? "block" : "hidden"} fixed top-40 left-0 z-10`}
+        className={`${styles.openBtn} ${
+          isOpen ? "block" : "hidden"
+        } fixed top-40 left-0 z-10`}
       >
         <Button
-         onClick={expandLeftMenu}
-         customClassName={styles.btn}
-         customTW="text-left w-full bg-white text-black font-medium"
+          onClick={expandLeftMenu}
+          customClassName={styles.btn}
+          customTW="text-left w-full bg-white text-black font-medium"
         >
           <div className="flex my-auto rotate-180">
             <img src={btnList2[1].base64Icon} alt="" />
