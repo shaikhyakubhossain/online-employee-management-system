@@ -44,3 +44,8 @@ export type notificationData = {
   message: string;
 };
 
+export type Holiday = {
+  name: string;
+  date: string;
+  localName: string;
+}
