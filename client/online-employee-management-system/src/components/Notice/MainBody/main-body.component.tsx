@@ -1,9 +1,7 @@
 "use client";
 import Section from "../Section/section.component";
-import { useState, useEffect } from "react";
-export default function MainBody() {
 
-    const [data, setData] = useState<any>([]);
+export default function MainBody() {
 
     return (
         <div>

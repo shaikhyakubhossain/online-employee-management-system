@@ -63,9 +63,9 @@ class Holiday extends React.Component<{}, HolidayState> {
     }));
 
     return (
-      <div className="p-8">
+      <div className="">
         <h1 className="text-5xl mb-12 font-semibold border-b-2 border-gray-800 text-blue-900">
-          Holiday Page
+          Holiday List
         </h1>
         <p className="mb-6">
           Welcome to the Holiday Page. Here you can find information about
