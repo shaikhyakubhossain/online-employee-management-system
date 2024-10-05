@@ -6,7 +6,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const localizer = momentLocalizer(moment);
 
-interface Holiday {
+type Holiday = {
   name: string;
   date: string;
   localName: string;
