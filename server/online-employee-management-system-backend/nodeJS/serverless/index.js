@@ -127,79 +127,79 @@ app.post("/apply-leave", async (req, res) => {
 
   const userDetails = await Employee.findById(req.user._id);
   // console.log("userDetails", userDetails);
-  if(userDetails){
-  try{
-    const leave = await Leave.applyLeave(userDetails.firstName, userDetails.lastName, userDetails.employeeId, userDetails.designation, userDetails.regdNo, userDetails.email, leaveType, leaveDateFrom, leaveDateTo, additionalInfo);
-    if(leave.error){
-      return res.status(400).json({error: leave.error});
-    }else{
-      const title = "Leave Application";
-      const message = ("Your application for " + leaveType + " leave from " + leaveDateFrom + " to " + leaveDateTo + " has been submitted successfully !");
-      const notification = await Notification.createNotification(userDetails.regdNo, title, message);
-      if(notification.error){
-        return res.status(400).json({error: notification.error});
-      }else{
-        res.status(200).json({message: "Your application for leave has been submitted successfully !"});
+  if (userDetails) {
+    try {
+      const leave = await Leave.applyLeave(userDetails.firstName, userDetails.lastName, userDetails.employeeId, userDetails.designation, userDetails.regdNo, userDetails.email, leaveType, leaveDateFrom, leaveDateTo, additionalInfo);
+      if (leave.error) {
+        return res.status(400).json({ error: leave.error });
+      } else {
+        const title = "Leave Application";
+        const message = ("Your application for " + leaveType + " leave from " + leaveDateFrom + " to " + leaveDateTo + " has been submitted successfully !");
+        const notification = await Notification.createNotification(userDetails.regdNo, title, message);
+        if (notification.error) {
+          return res.status(400).json({ error: notification.error });
+        } else {
+          res.status(200).json({ message: "Your application for leave has been submitted successfully !" });
+        }
       }
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: "Server error" });
     }
-  }catch(error){
-    console.log(error);
-    res.status(400).json({error: "Server error"});
   }
-}
-else{
-  res.status(400).json({error: "User does not exist"});
-}
+  else {
+    res.status(400).json({ error: "User does not exist" });
+  }
 });
 
 app.get("/get-all-leave-applications", async (req, res) => {
   const data = await Leave.find({});
-  res.status(200).json({data});
+  res.status(200).json({ data });
 });
 
 app.get("/get-all-employees", async (req, res) => {
   const data = await Employee.find({});
-  res.status(200).json({data});
+  res.status(200).json({ data });
 });
 
 app.get("/get-all-notifications", async (req, res) => {
 
   let regdNo = await Admin.findById(req.user._id).select("regdNo");
 
-  if(!regdNo){
+  if (!regdNo) {
     regdNo = await Employee.findById(req.user._id).select("regdNo");
   }
-  if(regdNo){
-    const data = await Notification.find({regdNo: regdNo.regdNo});
-    res.status(200).json({data});
-  }else{
-    res.status(400).json({error: "User does not exist"});
+  if (regdNo) {
+    const data = await Notification.find({ regdNo: regdNo.regdNo });
+    res.status(200).json({ data });
+  } else {
+    res.status(400).json({ error: "User does not exist" });
   }
 });
 
 app.patch("/leave-action", async (req, res) => {
-  const {_id, action} = req.body;
-  try{
+  const { _id, action } = req.body;
+  try {
     const leave = await Leave.findById(_id);
-    if(leave){
+    if (leave) {
       leave.leaveStatus = action;
       await leave.save();
-      const regdNo = await Employee.find({regdNo: leave.regdNo}).select("regdNo");
+      const regdNo = await Employee.find({ regdNo: leave.regdNo }).select("regdNo");
       const adminName = await Admin.findById(req.user._id).select("firstName lastName");
 
-      if(regdNo && adminName){
+      if (regdNo && adminName) {
         const notification = await Notification.createNotification(regdNo[0].regdNo, "Leave Application", "Your leave application has been " + action + " by " + adminName.firstName + " " + adminName.lastName);
-        if(notification.error){
-          res.status(400).json({error: notification.error});
-        }else{
-          res.status(200).json({message: action + " Leave action updated successfully"});
+        if (notification.error) {
+          res.status(400).json({ error: notification.error });
+        } else {
+          res.status(200).json({ message: action + " Leave action updated successfully" });
         }
       }
 
-      res.status(200).json({message: "Leave action updated successfully"});
-    }else{
-      res.status(400).json({error: "Leave not found"});
+      res.status(200).json({ message: "Leave action updated successfully" });
+    } else {
+      res.status(400).json({ error: "Leave not found" });
     }
-  }catch(error){
+  } catch (error) {
   }
 });
