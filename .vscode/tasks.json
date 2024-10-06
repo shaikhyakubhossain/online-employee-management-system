@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "start client",
+            "type": "shell",
+            "command": "cd client/online-employee-management-system && npm run dev",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "start serverless backend",
+            "type": "shell",
+            "command": "cd server/online-employee-management-system-backend/nodeJS/serverless && npm run dev",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }
+    ]
+}
