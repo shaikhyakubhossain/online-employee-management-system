@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import BigCalendar from "@/components/Holiday/BigCalendar/big-calendar.component";
+import BigCalendar from "@/components/BigCalendar/big-calendar.component";
 import type { Holiday } from "@/constants/Types/response-data";
 import List from "@/components/Holiday/List/list.component";
 import SelectedHoliday from "@/components/Holiday/SelectedHoliday/selected-holiday.component";

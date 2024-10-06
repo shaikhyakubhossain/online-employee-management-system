@@ -4,17 +4,17 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import type { Holiday } from "@/constants/Types/response-data";
 
 type propsType = {
-    handleNavigate: (newDate: Date) => void;
-    handleEventClick: (event: { title: string }) => void;
+    handleNavigate?: (newDate: Date) => void;
+    handleEventClick?: (event: { title: string }) => void;
     date: Date;
-    calenderEvents: Holiday[];
+    calenderEvents?: Holiday[];
 }
 
 const localizer = momentLocalizer(moment);
 
 export default function BigCalendar(props: propsType) {
     
-      const events = props.calenderEvents.map((holiday) => ({
+      const events = props.calenderEvents?.map((holiday) => ({
         title: holiday.name,
         start: new Date(holiday.date),
         end: new Date(holiday.date),
