@@ -1,8 +1,10 @@
 import FormContents from "@/components/ApplyForLeave/FormContents/form-contents.component"
+import PageHeader from "@/components/PageHeader/page-header.component";
+
 export default function ApplyForLeave() {
     return (
         <div className="">
-            <div className="text-5xl mb-12 font-semibold border-b-2 border-gray-800 text-blue-900">Leave Application</div>
+            <PageHeader title="Leave Application" />
             <FormContents />
         </div>
     )
