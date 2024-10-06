@@ -40,7 +40,10 @@ const requireAuth = async (req, res, next) => {
         next();
     }
     catch(error){
-        console.log("error");
+        // console.log("error:", error);
+        if(error.message === "jwt expired"){
+            return res.status(401).json({error: "token expired"});
+        }
         return res.status(401).json({error: "request is not authorized"});
     }
 }
