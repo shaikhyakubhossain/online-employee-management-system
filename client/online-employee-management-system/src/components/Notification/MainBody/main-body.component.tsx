@@ -17,11 +17,10 @@ export default function MainBody(){
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`,
-                role: "both"
+                "role": "both"
             }
         });
         const json = await data.json();
-        // console.log(json);
         setNotification(json.data);
     }
 
