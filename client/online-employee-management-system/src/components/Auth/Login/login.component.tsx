@@ -76,7 +76,7 @@ export default function Login(props: propsType) {
         <div className="text-xl text-left absolute left-0 pl-2">Go back</div>
       </Link>
       <div>
-        <div className="text-3xl my-4">{props.searchParams.role} Login</div>
+        <div className="text-3xl my-4 capitalize">{props.searchParams.role} Login</div>
         <div className="bg-blue-300 w-96 rounded mx-auto p-10">
           <InputField
             updateDataToSend={(data) =>
