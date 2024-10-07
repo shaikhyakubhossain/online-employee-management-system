@@ -1,5 +1,6 @@
 import styles from "./hero-card.module.scss";
 import type { btnListType } from "@/constants/Basic/data";
+import Link from "next/link";
 
 type propsType = {
   btnList: btnListType;
@@ -8,6 +9,7 @@ type propsType = {
 export default function HeroCard(props: propsType): JSX.Element {
 
   return (
+    <Link href={props.btnList.link}>
     <div className={`${styles.mainContainer} p-8 rounded-lg cursor-pointer`} style={{ backgroundColor: props.btnList.bg + "25"}}>
       <div className={`${styles.row1} mb-10`}>
         <div className="flex justify-between">
@@ -23,5 +25,6 @@ export default function HeroCard(props: propsType): JSX.Element {
         <div></div>
       </div>
     </div>
+    </Link>
   );
 }
