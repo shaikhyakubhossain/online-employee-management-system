@@ -19,7 +19,7 @@ const useWebSocket = () => {
   useEffect(() => {
     !socket && setupSocket();
     return () => {
-      if(socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING) {
+      if(socket.readyState === WebSocket.OPEN) {
         socket.close();
       }
     }
