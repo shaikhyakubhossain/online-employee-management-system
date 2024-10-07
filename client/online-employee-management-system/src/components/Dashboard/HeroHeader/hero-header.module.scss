@@ -1,5 +1,18 @@
 @use '../../../constants/Css/colors.scss' as c;
 
+@media screen and (max-width: 1200px) {
+    .right {
+        display: none;
+    }
+    .image {
+        display: none;
+    }
+}
+
+.svgs {
+    position: absolute;
+}
+
 .mainContainer {
     background: c.$secondaryColor;
     color: c.$primaryColor;
@@ -7,14 +20,4 @@
 
 .right {
     color: c.$tertiaryColor;
-}
-
-@media  screen and (max-width: 768px) {
-    .right {
-        display: none;
-    }
-}
-
-.svgs {
-    position: absolute;
 }
