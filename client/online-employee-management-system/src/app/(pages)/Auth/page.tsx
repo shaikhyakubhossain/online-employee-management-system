@@ -12,7 +12,7 @@ type searchParamsType = {
 
 export default function Auth(props: propsType) {
   return (
-    <div
+    <div  
       className="relative text-white"
       style={{ background: "rgba(20, 19, 112, 0.85)", height: "88.5dvh" }}
     >
