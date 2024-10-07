@@ -37,7 +37,7 @@ mongoose
     });
 
     console.log("Connected to MongoDB");
-    // const emp = mongoose.connection.db.collection("leave");
+    // const emp = mongoose.connection.db.collection("admin");
     // const arr = await emp.find().toArray();
     // console.log(arr);
   })
@@ -46,10 +46,10 @@ mongoose
   });
 
 app.post("/employee-login", async (req, res) => {
-  const { employeeId, password } = req.body;
-  console.log(employeeId, password);
+  const { username, password } = req.body;
+  console.log(username, password);
   try {
-    const employee = await Employee.login(employeeId, password);
+    const employee = await Employee.login(username, password);
     if (employee.error) {
       return res.status(400).json({ error: employee.error });
     } else {
@@ -64,10 +64,10 @@ app.post("/employee-login", async (req, res) => {
 });
 
 app.post("/admin-login", async (req, res) => {
-  const { employeeId, password } = req.body;
-  console.log(employeeId, password);
+  const { username, password } = req.body;
+  console.log(username, password);
   try {
-    const admin = await Admin.login(employeeId, password);
+    const admin = await Admin.login(username, password);
     if (admin.error) {
       return res.status(400).json({ error: admin.error });
     } else {

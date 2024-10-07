@@ -7,6 +7,11 @@ const employeeSchema = new mongoose.Schema({
     type: Number,
     unique: true,
   },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   firstName: {
     type: String,
     required: true,
@@ -94,8 +99,8 @@ employeeSchema.statics.signup = async function (
   return employee;
 };
 
-employeeSchema.statics.login = async function (employeeId, password) {
-  const employee = await this.findOne({ employeeId });
+employeeSchema.statics.login = async function (username, password) {
+  const employee = await this.findOne({ username });
 
   if (!employee) {
     return { error: "Employee does not exist" };
