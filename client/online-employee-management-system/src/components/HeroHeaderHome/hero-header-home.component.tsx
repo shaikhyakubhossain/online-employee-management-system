@@ -9,7 +9,6 @@ import {
   setDetail,
   setAutoLogin,
 } from "@/lib/features/AuthDetail/authDetailSlice";
-import Head from "next/head"; // Import Head component from Next.js
 
 export default function HeroHeaderHome() {
   const { autoLogin } = useSelector((state: RootState) => state.authDetail);
@@ -46,15 +45,6 @@ export default function HeroHeaderHome() {
   }, [autoLogin, dispatch, router]);
 
   return (
-    <>
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <div
         className="text-6xl mb-24 lg:w-3/4"
         style={{ fontFamily: "Lora, serif" }}
@@ -70,10 +60,8 @@ export default function HeroHeaderHome() {
           </div>
         </div>
         <div className="text-4xl mt-6">
-          Explore <span className="typed-text"></span>{" "}
-          {/* This is where the typing effect will appear */}
+          Explore <span className="typed-text"></span>
         </div>
-
         <div className="text-2xl max-sm:text-sm mt-6 text-justify">
           The Online Employee Management System is a comprehensive web-based
           application designed to streamline HR operations by managing employee
@@ -84,6 +72,5 @@ export default function HeroHeaderHome() {
           permissions to employees and manage their roles efficiently.
         </div>
       </div>
-    </>
   );
 }

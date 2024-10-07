@@ -29,14 +29,8 @@ export default function SignUp(props: propsType) {
   return (
     <div
       className={`${styles.mainContainer} text-center flex p-14 h-full overflow-scroll`}
-      style={{ fontFamily: "Lora, serif" }} // Apply Google font here
+      style={{ fontFamily: "Lora, serif" }}
     >
-      <img
-        className="absolute top-0 left-0 w-full -z-10"
-        style={{ height: "100vh" }}
-        src={`https://drive.google.com/thumbnail?id=1BjLxXodycVILUUQ4rKuaNdcWVFqGG085`}
-        alt=""
-      />
       <Link href={"/"}>
         <div className="text-xl text-left absolute left-0 pl-2">Go back</div>
       </Link>
