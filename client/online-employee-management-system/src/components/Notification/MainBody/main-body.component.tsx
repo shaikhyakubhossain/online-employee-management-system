@@ -1,32 +1,14 @@
 "use client";
 import styles from "./main-body.module.scss";
-import { useEffect, useState } from "react";
-import { getUrl } from "@/constants/url";
+import { useState } from "react";
 import { notificationData } from "@/constants/Types/response-data";
-
-import { RootState } from "@/lib/store";
-import { useSelector } from "react-redux";
+import useFetchGetMethod from "@/hooks/FetchGetMethod/useFetchGetMethod";
 
 export default function MainBody(){
     const [notification, setNotification] = useState<notificationData[]>([]);
-    const { token } = useSelector((state: RootState) => state.authDetail);
 
-    const getNotification = async () => {
-        const data = await fetch(`${getUrl()}/get-all-notifications`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-                "role": "both"
-            }
-        });
-        const json = await data.json();
-        setNotification(json.data);
-    }
+    useFetchGetMethod("get-all-notifications", "both", setNotification);
 
-    useEffect(() => {
-        getNotification();
-    },[])
     return(
         <div className={`${styles.mainContainer}`}>
             {

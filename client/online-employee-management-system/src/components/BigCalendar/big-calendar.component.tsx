@@ -7,7 +7,7 @@ type propsType = {
     handleNavigate?: (newDate: Date) => void;
     handleEventClick?: (event: { title: string }) => void;
     date: Date;
-    calenderEvents?: Holiday[];
+    calenderEvents?: Holiday[] | null;
 }
 
 const localizer = momentLocalizer(moment);

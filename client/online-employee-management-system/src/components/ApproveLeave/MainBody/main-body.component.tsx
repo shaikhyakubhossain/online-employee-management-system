@@ -1,25 +1,24 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./main-body.module.scss";
 import Button from "@/components/Button/button.component";
 import Table from "../../Table/table.component";
 import SearchBox from "../../SearchBox/search-box.component";
 import type { leaveData } from "@/constants/Types/response-data";
-import { getUrl } from "../../../constants/url";
+import useFetchGetMethod from "@/hooks/FetchGetMethod/useFetchGetMethod";
+import { getUrl } from "@/constants/url";
 
 import { RootState } from "@/lib/store";
-import { useSelector, useDispatch } from "react-redux";
-import { setStartLoadingTrue, setStartLoadingFalse } from "@/lib/features/MainLoading/mainLoadingSlice";
+import { useSelector } from "react-redux";
 
 export default function MainBody() {
 
-  const dispatch = useDispatch();
-
-  const [data, setData] = useState<null | leaveData[]>(null);
   const token = useSelector((state: RootState) => state.authDetail.token);
+  const [data, setData] = useState<null | leaveData[]>(null);
+
+  useFetchGetMethod("get-all-leave-applications", "admin", setData);
 
   const handleAction = async (id: string, action: string) => {
-    dispatch(setStartLoadingTrue());
     const response = await fetch(`${getUrl()}/leave-action`, {
       method: "PATCH",
       headers: {
@@ -31,28 +30,7 @@ export default function MainBody() {
     });
     const data = await response.json();
     console.log("data: ", data);
-    fetchData();
   };
-
-  const fetchData = async () => {
-    const response = await fetch(`${getUrl()}/get-all-leave-applications`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-        role: "admin",
-      },
-    });
-    const data = await response.json();
-    setData(data.data);
-    // console.log("data: ", data);
-    dispatch(setStartLoadingFalse());
-  };
-
-  useEffect(() => {
-    dispatch(setStartLoadingTrue());
-    fetchData();
-  }, []);
 
   return (
     <div className={`${styles.mainContainer}`}>
