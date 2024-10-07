@@ -1,6 +1,6 @@
 "use client";
 // import styles from "./main-body.module.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchBox from "@/components/SearchBox/search-box.component";
 import Table from "@/components/Table/table.component";
 import type{ employeeData } from "@/constants/Types/response-data";
@@ -10,9 +10,7 @@ export default function MainBody() {
 
     const [data, setData] = useState<employeeData[] | null>(null);
 
-    useEffect(() => {
-        useFetchGetMethod("get-all-employees", "admin", setData);
-    },[])
+    useFetchGetMethod("get-all-employees", "admin", setData);
     
     return (
         <div>
