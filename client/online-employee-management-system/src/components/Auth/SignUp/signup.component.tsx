@@ -29,6 +29,7 @@ export default function SignUp(props: propsType) {
   return (
     <div
       className={`${styles.mainContainer} text-center flex p-14 h-full overflow-scroll`}
+      style={{ fontFamily: "Lora, serif" }} // Apply Google font here
     >
       <img
         className="absolute top-0 left-0 w-full -z-10"
@@ -40,7 +41,7 @@ export default function SignUp(props: propsType) {
         <div className="text-xl text-left absolute left-0 pl-2">Go back</div>
       </Link>
       <div className="mx-auto">
-        <div className="text-3xl">New user ? Register here </div>
+        <div className="text-3xl">New user? Register here</div>
         <div className="mx-auto w-96">
           <div
             className={`${styles.roleSelection} flex justify-center text-white`}

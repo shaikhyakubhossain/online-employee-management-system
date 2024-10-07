@@ -65,7 +65,9 @@ export default function Login(props: propsType) {
   }, []);
 
   return (
-    <div className="text-center p-4">
+    <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>
+      {" "}
+      {/* Apply Google font here */}
       <img
         className="absolute top-0 left-0 w-full -z-10"
         style={{ height: "100vh" }}
@@ -76,7 +78,9 @@ export default function Login(props: propsType) {
         <div className="text-xl text-left absolute left-0 pl-2">Go back</div>
       </Link>
       <div>
-        <div className="text-3xl my-4 capitalize">{props.searchParams.role} Login</div>
+        <div className="text-3xl my-4 capitalize">
+          {props.searchParams.role} Login
+        </div>
         <div className="bg-blue-300 w-96 rounded mx-auto p-10">
           <InputField
             updateDataToSend={(data) =>
@@ -99,7 +103,7 @@ export default function Login(props: propsType) {
           </div>
         </div>
         <div>
-          Do not have an account ? Click here to &nbsp;
+          Do not have an account? Click here to &nbsp;
           <Link className="text-blue-200" href={"/Auth?type=signup&role=Admin"}>
             Sign up
           </Link>
