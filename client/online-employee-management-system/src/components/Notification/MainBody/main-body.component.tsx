@@ -2,7 +2,7 @@
 import styles from "./main-body.module.scss";
 import { useState } from "react";
 import type { notificationData } from "@/constants/Types/response-data";
-import useFetchGetMethod from "@/hooks/FetchGetMethod/useFetchGetMethod";
+import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 
 export default function MainBody(){
     const [notification, setNotification] = useState<notificationData[] | null>([]);

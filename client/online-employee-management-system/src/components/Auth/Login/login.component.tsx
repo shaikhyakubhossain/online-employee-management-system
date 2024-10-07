@@ -26,7 +26,7 @@ export default function Login(props: propsType) {
   const dispatch = useDispatch();
 
   const [dataToSend, setDataToSend] = useState({
-    employeeId: "",
+    username: "",
     password: "",
   });
 
@@ -76,11 +76,11 @@ export default function Login(props: propsType) {
         <div className="bg-blue-300 w-96 rounded mx-auto p-10">
           <InputField
             updateDataToSend={(data) =>
-              setDataToSend({ ...dataToSend, employeeId: data })
+              setDataToSend({ ...dataToSend, username: data })
             }
-            label={props.searchParams.role + " ID"}
+            label={props.searchParams.role + " username"}
             type="text"
-            placeholder={"Enter " + props.searchParams.role + " ID"}
+            placeholder={"Enter " + props.searchParams.role + " username"}
           />
           <InputField
             updateDataToSend={(data) =>

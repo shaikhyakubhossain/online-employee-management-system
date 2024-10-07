@@ -5,7 +5,7 @@ import Button from "@/components/Button/button.component";
 import Table from "../../Table/table.component";
 import SearchBox from "../../SearchBox/search-box.component";
 import type { leaveData } from "@/constants/Types/response-data";
-import useFetchGetMethod from "@/hooks/FetchGetMethod/useFetchGetMethod";
+import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import { getUrl } from "@/constants/url";
 
 import { RootState } from "@/lib/store";

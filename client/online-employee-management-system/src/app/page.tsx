@@ -8,13 +8,13 @@ export default function Home() {
         className="relative text-white p-16"
         style={{
           background: "rgba(20, 19, 112, 0.85)",
-          height: "88.5dvh",
+          height: "calc(100dvh - 80px)",
           fontFamily: "Lora, serif",
         }}
       >
         <img
           className="absolute top-0 left-0 w-full -z-10"
-          style={{ height: "88.5dvh" }}
+          style={{ height: "calc(100dvh - 80px)" }}
           src={`https://drive.google.com/thumbnail?id=1BjLxXodycVILUUQ4rKuaNdcWVFqGG085`}
           alt=""
         />

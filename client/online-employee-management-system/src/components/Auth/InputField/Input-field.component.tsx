@@ -9,7 +9,7 @@ type propsType = {
 export default function InputField(props: propsType): JSX.Element {
   return (
       <div className="mb-4">
-        <label className="block text-left text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-left text-gray-700 text-sm font-bold mb-2 capitalize">
           {props.label}
         </label>
         <input

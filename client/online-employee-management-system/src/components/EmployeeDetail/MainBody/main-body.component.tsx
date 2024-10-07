@@ -4,7 +4,7 @@ import { useState } from "react";
 import SearchBox from "@/components/SearchBox/search-box.component";
 import Table from "@/components/Table/table.component";
 import type { employeeData } from "@/constants/Types/response-data";
-import useFetchGetMethod from "@/hooks/FetchGetMethod/useFetchGetMethod";
+import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 
 export default function MainBody() {
 
