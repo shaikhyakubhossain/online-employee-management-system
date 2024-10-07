@@ -14,9 +14,9 @@ import { useSelector } from "react-redux";
 export default function MainBody() {
 
   const token = useSelector((state: RootState) => state.authDetail.token);
-  const [data, setData] = useState<null | leaveData[]>(null);
+  const [data, setData] = useState<leaveData[] | null>(null);
 
-  useFetchGetMethod("get-all-leave-applications", "admin", setData);
+  useFetchGetMethod("get-all-leave-applications", "admin", (data: leaveData[] | null) => setData(data));
 
   const handleAction = async (id: string, action: string) => {
     const response = await fetch(`${getUrl()}/leave-action`, {

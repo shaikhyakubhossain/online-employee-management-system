@@ -12,7 +12,7 @@ import {
 const useFetchGetMethod = (
   endpoint: string,
   role: string,
-  callback: (data: any) => void
+  callback: (data: null) => void
 ) => {
   const dispatch = useDispatch();
 

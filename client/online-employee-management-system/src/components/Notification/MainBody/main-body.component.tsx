@@ -1,13 +1,13 @@
 "use client";
 import styles from "./main-body.module.scss";
 import { useState } from "react";
-import { notificationData } from "@/constants/Types/response-data";
+import type { notificationData } from "@/constants/Types/response-data";
 import useFetchGetMethod from "@/hooks/FetchGetMethod/useFetchGetMethod";
 
 export default function MainBody(){
-    const [notification, setNotification] = useState<notificationData[]>([]);
+    const [notification, setNotification] = useState<notificationData[] | null>([]);
 
-    useFetchGetMethod("get-all-notifications", "both", setNotification);
+    useFetchGetMethod("get-all-notifications", "both", (data: notificationData[] | null) => setNotification(data));
 
     return(
         <div className={`${styles.mainContainer}`}>
