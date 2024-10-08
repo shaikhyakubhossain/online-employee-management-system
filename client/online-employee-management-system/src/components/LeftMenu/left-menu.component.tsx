@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setTrue, setFalse } from "@/lib/features/LeftMenu/leftMenuSlice";
 import { setDetail } from "@/lib/features/AuthDetail/authDetailSlice";
 
-export default function LeftMenu(): JSX.Element {
+export default function LeftMenu(props: { screenSize: number | null }): JSX.Element {
   const router = useRouter();
   const { isOpen } = useSelector((state: RootState) => state.leftMenu);
   const { role } = useSelector((state: RootState) => state.authDetail);
@@ -34,16 +34,11 @@ export default function LeftMenu(): JSX.Element {
     router.push("/");
   };
 
-  const handleResize = () => {
-    if (window.innerWidth < 1010) {
+  useEffect(() => {
+    if (props.screenSize && props.screenSize < 1010) {
       dispatch(setTrue());
     }
-  };
-
-  useEffect(() => {
-    console.log(window.innerWidth);
-    handleResize();
-  }, []);
+  }, [props.screenSize]);
 
   return (
     <div>

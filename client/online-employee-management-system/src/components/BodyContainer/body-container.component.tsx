@@ -1,5 +1,6 @@
 "use client";
 // import styles from "./body-container.module.scss";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Nav from "../Nav/nav.component";
 import LeftMenu from "../LeftMenu/left-menu.component";
@@ -23,22 +24,31 @@ export default function BodyContainer(props: propsType): JSX.Element {
     (state: RootState) => state.mainLoading.startLoading
   );
 
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
+
   const handleMarginLeft = () => {
     if (pathname === "/" || pathname === "/Auth") {
       return "0px";
     } else {
       if (isLeftMenuOpen) {
         return "0px";
+      } else if (!isLeftMenuOpen && windowWidth && windowWidth < 1010) {
+        return "0px";
+      } else {
+        return "240px";
       }
-      return "240px";
     }
   };
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
 
   return (
     <div>
       <TopLoading startLoading={startLoading} />
       <Nav />
-      {pathname === "/" || pathname === "/Auth" ? null : <LeftMenu />}
+      {pathname === "/" || pathname === "/Auth" ? null : <LeftMenu screenSize={windowWidth} />}
       <div
         className={`mt-20 ${
           pathname === "/" || pathname === "/Auth" ? "" : "p-9"
