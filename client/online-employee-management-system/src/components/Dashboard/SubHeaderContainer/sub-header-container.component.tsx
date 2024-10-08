@@ -11,7 +11,7 @@ export default function SubHeaderContainer(): JSX.Element {
     // const {role} = useSelector((state: RootState) => state.authDetail);
 
     return (
-        <div className={`${styles.mainContainer} flex mb-7`}>
+        <div className={`${styles.mainContainer} flex mb-7 max-[743px]:flex-col max-[743px]:gap-7`}>
             {
                 // role === "employee" && 
                 <>

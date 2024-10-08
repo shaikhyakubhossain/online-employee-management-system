@@ -2,7 +2,7 @@ import styles from "./latest-updates.module.scss"
 
 export default function LatestUpdates() {
     return (
-        <div className=" w-1/2 p-7 mr-7 rounded-lg h-60" style={{background: "#F3F3F3"}}>
+        <div className="w-1/2 max-[743px]:w-full p-7 mr-7 rounded-lg h-60" style={{background: "#F3F3F3"}}>
             <div className="flex justify-between font-semibold">
                 <div className="text-xl">Notice Board</div>
                 <div></div>

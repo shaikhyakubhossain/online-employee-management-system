@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./left-menu.module.scss";
 import Button from "@/components/Button/button.component";
 import { btnList, btnList2 } from "@/constants/Basic/data";
@@ -33,6 +33,17 @@ export default function LeftMenu(): JSX.Element {
     dispatch(setDetail({ data: null, token: null }));
     router.push("/");
   };
+
+  const handleResize = () => {
+    if (window.innerWidth < 1010) {
+      dispatch(setTrue());
+    }
+  };
+
+  useEffect(() => {
+    console.log(window.innerWidth);
+    handleResize();
+  }, []);
 
   return (
     <div>
