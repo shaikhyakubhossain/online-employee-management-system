@@ -1,6 +1,6 @@
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./big-calender.custom.css";
 import type { Holiday } from "@/constants/Types/response-data";
 
 type propsType = {
