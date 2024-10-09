@@ -32,9 +32,9 @@ export default function SignUp(props: propsType) {
     >
       <div className="mx-auto">
         <div className="text-3xl">New user? Register here</div>
-        <div className="mx-auto w-96">
+        <div className="mx-auto">
           <div
-            className={`${styles.roleSelection} flex justify-center text-white`}
+            className={`${styles.roleSelection} flex flex-wrap justify-center text-white`}
           >
             <RadioBtn
               label="Admin"
@@ -45,7 +45,7 @@ export default function SignUp(props: propsType) {
               onRadioClick={(event) => handleRoleSelection(event)}
             />
           </div>
-          <div className="text-white bg-blue-300 w-96 rounded p-14">
+          <div className="text-white bg-blue-300 min-w-1 max-w-96 rounded p-14">
             <InputField
               updateDataToSend={(e) => console.log(e)}
               label="First name"

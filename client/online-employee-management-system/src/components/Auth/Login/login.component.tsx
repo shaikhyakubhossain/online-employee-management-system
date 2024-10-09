@@ -66,11 +66,11 @@ export default function Login(props: propsType) {
 
   return (
     <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>
-      <div>
+      <div className="">
         <div className="text-3xl my-4 capitalize">
           {props.searchParams.role} Login
         </div>
-        <div className="bg-blue-300 w-96 rounded mx-auto p-10">
+        <div className="bg-blue-300 min-w-1 max-w-96 rounded mx-auto p-10">
           <InputField
             updateDataToSend={(data) =>
               setDataToSend({ ...dataToSend, username: data })

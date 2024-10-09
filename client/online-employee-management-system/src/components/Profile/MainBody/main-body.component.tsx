@@ -11,14 +11,18 @@ export default function MainBody(): JSX.Element {
       <div className="bg-gray-300 rounded-full p-4">
         <img className="w-32 h-32" src={btnList[8].base64Icon} alt="profile" />
       </div>
-      <div className={`${styles.profileDetail} flex flex-col gap-2 my-4 text-lg font-semibold`}>
-      <div>
-        <div>Employee ID: </div>
+      <div
+        className={`${styles.profileDetail} flex flex-col gap-2 my-4 text-lg font-semibold`}
+      >
+        <div>
+          <div>Employee ID: </div>
           <div>{data?.employeeId}</div>
         </div>
         <div>
           <div>Name: </div>
-          <div>{data?.firstName} {data?.lastName}</div>
+          <div>
+            {data?.firstName} {data?.lastName}
+          </div>
         </div>
         <div>
           <div>Username: </div>
@@ -43,4 +47,4 @@ export default function MainBody(): JSX.Element {
       </div>
     </div>
   );
-}   
+}
