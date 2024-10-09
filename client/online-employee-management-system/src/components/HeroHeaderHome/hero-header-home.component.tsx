@@ -55,14 +55,14 @@ export default function HeroHeaderHome() {
             src="favicon.ico"
             alt=""
           />
-          <div className={`ml-4 ${styles.heroTitle} ${styles.heroContainer}`}>
+          <div className={`ml-4 ${styles.heroTitle} ${styles.heroContainer} text-2xl`}>
             DRIEMS Connect
           </div>
         </div>
-        <div className="text-4xl mt-6">
+        <div className="text-4xl max-sm:text-sm mt-6">
           Explore <span className="typed-text"></span>
         </div>
-        <div className="text-2xl max-sm:text-sm mt-6 text-justify">
+        <div className="text-2xl max-sm:text-xs mt-6 text-justify">
           The Online Employee Management System is a comprehensive web-based
           application designed to streamline HR operations by managing employee
           information, tracking attendance, and monitoring performance. It

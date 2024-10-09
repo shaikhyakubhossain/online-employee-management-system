@@ -1,33 +1,30 @@
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
 import HeroHeaderHome from "@/components/HeroHeaderHome/hero-header-home.component";
+import { MainBackgroundImg } from "@/components/Auth/MainBackgroundImg/main-background-img.component";
 
 export default function Home() {
   return (
       <div
-        className="relative text-white p-16"
+        className="relative text-white p-16 overflow-y-scroll"
         style={{
           background: "rgba(20, 19, 112, 0.85)",
           height: "calc(100dvh - 80px)",
           fontFamily: "Lora, serif",
+          scrollbarWidth: "none"
         }}
       >
-        <img
-          className="absolute top-0 left-0 w-full -z-10"
-          style={{ height: "calc(100dvh - 80px)" }}
-          src={`https://drive.google.com/thumbnail?id=1BjLxXodycVILUUQ4rKuaNdcWVFqGG085`}
-          alt=""
-        />
+        <MainBackgroundImg />
         <HeroHeaderHome />
-        <div className="flex text-2xl max-sm:text-sm mt-6">
-          <div className="mr-4">
+        <div className="flex flex-wrap text-2xl max-sm:text-sm mt-6">
+          <div className="mx-4 my-2">
             <Link href={"/Auth?type=login&role=admin"}>
               <Button customTW="bg-blue-500 rounded-xl hover:bg-blue-400 hover:text-white px-8 py-4">
                 Admin Login
               </Button>
             </Link>
           </div>
-          <div className="ml-4">
+          <div className="mx-4 my-2">
             <Link href={"/Auth?type=login&role=employee"}>
               <Button customTW="bg-blue-500 rounded-xl hover:bg-blue-400 hover:text-white px-8 py-4">
                 Employee Login
