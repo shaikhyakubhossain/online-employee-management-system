@@ -1,6 +1,5 @@
 "use client";
 import styles from "./signup.module.scss";
-import Link from "next/link";
 import { useState } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
