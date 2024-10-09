@@ -1,6 +1,8 @@
 import Login from "@/components/Auth/Login/login.component";
 import SignUp from "@/components/Auth/SignUp/signup.component";
 import { MainBackgroundImg } from "@/components/Auth/MainBackgroundImg/main-background-img.component";
+import Link from "next/link";
+import { btnList2 } from "@/constants/Basic/data";
 
 type propsType = {
   searchParams: searchParamsType;
@@ -13,11 +15,14 @@ type searchParamsType = {
 
 export default function Auth(props: propsType) {
   return (
-    <div  
+    <div
       className="relative text-white"
       style={{ background: "rgba(20, 19, 112, 0.85)", height: "88.5dvh" }}
     >
       <MainBackgroundImg customTW="blur-sm" />
+      <Link href={"/"}>
+        <div className="text-xl text-left absolute left-0 bg-white rounded-sm p-2 m-4"><img className="w-6 h-6" src={btnList2[1].base64Icon} alt="" /></div>
+      </Link>
       {props.searchParams.type === "login" ? (
         <Login searchParams={props.searchParams} />
       ) : (

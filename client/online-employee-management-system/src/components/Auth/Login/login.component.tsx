@@ -66,9 +66,6 @@ export default function Login(props: propsType) {
 
   return (
     <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>
-      <Link href={"/"}>
-        <div className="text-xl text-left absolute left-0 pl-2">Go back</div>
-      </Link>
       <div>
         <div className="text-3xl my-4 capitalize">
           {props.searchParams.role} Login

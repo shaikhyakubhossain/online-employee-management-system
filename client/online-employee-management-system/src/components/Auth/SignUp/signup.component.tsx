@@ -31,9 +31,6 @@ export default function SignUp(props: propsType) {
       className={`${styles.mainContainer} text-center flex p-14 h-full overflow-scroll`}
       style={{ fontFamily: "Lora, serif" }}
     >
-      <Link href={"/"}>
-        <div className="text-xl text-left absolute left-0 pl-2">Go back</div>
-      </Link>
       <div className="mx-auto">
         <div className="text-3xl">New user? Register here</div>
         <div className="mx-auto w-96">
