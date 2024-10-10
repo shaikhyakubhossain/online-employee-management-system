@@ -1,3 +1,11 @@
 .mainContainer > div {
     margin: 0 10px;
 }
+
+.notificationBtnLeft {
+    transform: translateX(40px);
+}
+
+.notificationBtnRight {
+    transform: translateX(0px);
+}
