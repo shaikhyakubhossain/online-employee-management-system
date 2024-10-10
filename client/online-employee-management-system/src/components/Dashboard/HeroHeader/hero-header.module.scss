@@ -1,10 +1,15 @@
 @use '../../../constants/Css/colors.scss' as c;
 
-@media screen and (max-width: 1200px) {
-    .right {
+@media screen and (max-width: 1120px) {
+    .svgs {
         display: none;
     }
     .image {
+        display: none;
+    }
+}
+@media screen and (max-width: 1050px) {
+    .right{
         display: none;
     }
 }

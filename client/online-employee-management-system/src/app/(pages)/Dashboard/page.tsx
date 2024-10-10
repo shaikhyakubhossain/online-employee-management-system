@@ -4,10 +4,10 @@ import SubHeaderContainer from "@/components/Dashboard/SubHeaderContainer/sub-he
 
 export default function Dashboard() {
   return (
-    <div className="">
+    <div className="font-times">
       <HeroHeader />
       <SubHeaderContainer />
       <HeroContent />
     </div>
-  )
+  );
 }

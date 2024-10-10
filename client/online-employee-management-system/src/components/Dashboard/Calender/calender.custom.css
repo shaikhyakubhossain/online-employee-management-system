@@ -80,3 +80,43 @@
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
 }
+
+/* Styles for screens smaller than 600px */
+@media (max-width: 599px) {
+  .react-calendar {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .react-calendar__navigation {
+    height: 40px;
+  }
+
+  .react-calendar__navigation button {
+    min-width: 30px;
+    font-size: 0.8em;
+  }
+
+  .react-calendar__month-view__weekdays {
+    font-size: 0.6em;
+  }
+
+  .react-calendar__tile {
+    padding: 10px;
+    font-size: 0.8em;
+  }
+}
+
+/* Styles for screens between 600px and 1199px */
+@media only screen and (max-width: 980px) {
+
+  .react-calendar__navigation__label {
+    display: none;
+  }
+
+  .react-calendar__month-view__weekdays__weekday:nth-child(even) {
+    visibility: hidden;
+  }
+
+
+}

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^14.2.15",
     "@reduxjs/toolkit": "^2.2.7",
     "date-holidays": "^3.23.12",
     "moment": "^2.30.1",

@@ -14,10 +14,14 @@ export default function Greeting(): JSX.Element {
 
   return (
     <div>
-      <div className={`${styles.greeting} font-bold text-4xl max-[552px]:text-[6.5vw]`}>
+      <div
+        className={`${styles.greeting} font-bold text-4xl max-[552px]:text-[6.5vw]`}
+      >
         Hello&nbsp;{data?.designation}.&nbsp;{data?.firstName}&nbsp;👋
       </div>
-      <div className="text-2xl">You can manage your things from here</div>
+      <div className={`${styles.subtext} text-2xl`}>
+        You can manage your things here
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import MainBody from "@/components/Profile/MainBody/main-body.component";
 
 export default function Profile() {
   return (
-    <div>
+    <div className="font-times">
       <PageHeader title="Profile" />
       <MainBody />
     </div>

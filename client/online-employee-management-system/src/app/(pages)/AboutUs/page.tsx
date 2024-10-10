@@ -1,3 +1,3 @@
 export default function AboutUs() {
-  return <div>AboutUs</div>;
+  return <div className="font-times">AboutUs</div>;
 }

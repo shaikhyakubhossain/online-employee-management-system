@@ -3,13 +3,13 @@ import RightSideNotificationUpdateBtn from "@/components/Notice/RightSideNotific
 import PageHeader from "@/components/PageHeader/page-header.component";
 
 export default function Notice() {
-    return (
-        <div>
-            <div className="flex justify-between items-center">
-                <PageHeader title="Notice Board" />
-                <RightSideNotificationUpdateBtn />
-            </div>
-            <MainBody />
-        </div>
-    )
+  return (
+    <div>
+      <div className="flex justify-between items-center font-times">
+        <PageHeader title="Notice Board" />
+        <RightSideNotificationUpdateBtn />
+      </div>
+      <MainBody />
+    </div>
+  );
 }

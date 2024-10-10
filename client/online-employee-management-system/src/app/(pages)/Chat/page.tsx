@@ -2,8 +2,8 @@ import RealTimeChat from "@/components/ChatAppMini/RealTimeChat/real-time-chat.c
 
 export default function Chat() {
   return (
-    <div className="">
+    <div className="font-times">
       <RealTimeChat />
     </div>
-  )
+  );
 }
