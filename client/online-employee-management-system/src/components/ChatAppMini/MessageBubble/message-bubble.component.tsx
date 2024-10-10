@@ -11,10 +11,10 @@ export default function MessageBubble(props: propsType): JSX.Element {
   let toggleSide;
 
   if (props.sentBy === "you") {
-    toggleColor = "bg-green-300";
+    toggleColor = "bg-green-400";
     toggleSide = "justify-end";
   } else {
-    toggleColor = "bg-pink-300";
+    toggleColor = "bg-blue-300";
     toggleSide = "justify-start";
   }
 

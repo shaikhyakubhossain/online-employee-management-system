@@ -69,7 +69,7 @@ export default function RealTimeChat(): JSX.Element {
 
   return (
     <div
-      className={`${styles.mainContainer} text-center mx-auto`}
+      className={`${styles.mainContainer} bg-green-200 text-center mx-auto relative`}
       ref={containerOfMessageOutputRef}
     >
       {ws ? (
@@ -107,7 +107,7 @@ export default function RealTimeChat(): JSX.Element {
         </div>
         <div>
           {clientsOnline && (
-            <div className="bg-slate-500 text-white rounded p-2">
+            <div className="absolute top-0 right-0 bg-slate-500 text-white rounded p-2 m-4">
               Clients Online: {clientsOnline}
             </div>
           )}
