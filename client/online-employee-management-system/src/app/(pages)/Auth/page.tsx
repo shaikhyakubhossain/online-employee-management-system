@@ -16,8 +16,8 @@ type searchParamsType = {
 export default function Auth(props: propsType) {
   return (
     <div
-      className="relative text-white"
-      style={{ background: "rgba(20, 19, 112, 0.85)", height: "88.5dvh" }}
+      className="relative text-white overflow-y-scroll"
+      style={{ background: "rgba(20, 19, 112, 0.85)", height: "calc(100dvh - 80px)" }}
     >
       <MainBackgroundImg customTW="blur-sm" />
       <Link href={"/"}>

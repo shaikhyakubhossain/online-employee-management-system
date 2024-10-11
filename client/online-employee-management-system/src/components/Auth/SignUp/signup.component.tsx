@@ -28,12 +28,12 @@ export default function SignUp(props: propsType) {
 
   return (
     <div
-      className={`${styles.mainContainer} text-center flex flex-col p-14 h-full justify-center`}
+      className={`${styles.mainContainer} text-center flex flex-col p-20 pt-0 h-full justify-center`}
       style={{ fontFamily: "Lora, serif" }}
     >
-      <div className="mx-auto w-full">
+      <div className="mx-auto w-full max-[600px]:mt-72">
         <div className="text-3xl mb-8">New user? Register here</div>
-        <div className="grid grid-cols-3 gap-8 justify-center items-start">
+        <div className="grid grid-cols-3 max-[940px]:grid-cols-1 gap-1 justify-center items-start">
           <div className="col-span-1">
             <div
               className={`${styles.roleSelection} flex flex-wrap justify-center text-white mb-8`}
@@ -49,7 +49,7 @@ export default function SignUp(props: propsType) {
             </div>
           </div>
           <div className="col-span-2 bg-blue-300 rounded p-8">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-4">
               <InputField
                 updateDataToSend={(e) => console.log(e)}
                 label="First name"
