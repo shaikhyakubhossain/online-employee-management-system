@@ -25,10 +25,9 @@ export default function SignUp(props: propsType) {
   };
 
   console.log(props.searchParams.role, role);
-
   return (
     <div
-      className={`${styles.mainContainer} text-center flex flex-col p-14 h-full justify-center`}
+      className={`${styles.mainContainer} text-center flex p-14 h-full overflow-scroll`}
       style={{ fontFamily: "Lora, serif" }}
     >
       <div className="mx-auto">
@@ -46,7 +45,7 @@ export default function SignUp(props: propsType) {
               onRadioClick={(event) => handleRoleSelection(event)}
             />
           </div>
-          <div className="text-white bg-blue-300 min-w-1 max-w-96 rounded p-14">
+          <div className="grid grid-cols-2 max-[700px]:grid-cols-1 gap-4 text-white bg-blue-300 min-w-1 max-w-96 rounded p-14">
             <InputField
               updateDataToSend={(e) => console.log(e)}
               label="First name"
@@ -77,7 +76,7 @@ export default function SignUp(props: propsType) {
               label="Re-enter password"
               type="password"
             />
-            <div className="">
+            <div className="min-[700px]:col-span-2">
               <Button>Submit</Button>
             </div>
           </div>
