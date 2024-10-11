@@ -12,11 +12,14 @@ import { RootState } from "@/lib/store";
 import { useSelector } from "react-redux";
 
 export default function MainBody() {
-
   const token = useSelector((state: RootState) => state.authDetail.token);
   const [data, setData] = useState<leaveData[] | null>(null);
 
-  useFetchGetMethod("get-all-leave-applications", "admin", (data: leaveData[] | null) => setData(data));
+  useFetchGetMethod(
+    "get-all-leave-applications",
+    "admin",
+    (data: leaveData[] | null) => setData(data)
+  );
 
   const handleAction = async (id: string, action: string) => {
     const response = await fetch(`${getUrl()}/leave-action`, {
@@ -37,11 +40,13 @@ export default function MainBody() {
       <SearchBox />
       <div className="flex gap-4">
         <div className="font-semibold text-2xl">Filter By : </div>
-        <div>
-          <Button>Approved</Button>
-        </div>
-        <div>
-          <Button>Rejected</Button>
+        <div className="flex flex-wrap gap-4">
+          <div>
+            <Button>Approved</Button>
+          </div>
+          <div>
+            <Button>Rejected</Button>
+          </div>
         </div>
       </div>
       <div className={`${styles.tableContainer} my-5`}>
