@@ -17,7 +17,7 @@ export default function Auth(props: propsType) {
   return (
     <div
       className="relative text-white overflow-y-scroll"
-      style={{ background: "rgba(20, 19, 112, 0.85)", height: "calc(100dvh - 80px)" }}
+      style={{ background: "rgba(20, 19, 112, 0.85)", height: "calc(100dvh - 80px)", scrollbarWidth: "none" }}
     >
       <MainBackgroundImg customTW="blur-sm" />
       <Link href={"/"}>
