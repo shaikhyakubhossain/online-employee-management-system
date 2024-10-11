@@ -32,7 +32,7 @@ export default function AboutUs() {
         the power of technology to transform HR processes, making them more
         efficient and effective, and we are committed to providing ongoing
         support and enhancements as businesses evolve. DRIEMS Connect is not
-        just a tool; it is a partner in your organization's journey toward
+        just a tool; it is a partner in your organizations journey toward
         operational excellence and employee empowerment, ultimately driving
         success and fostering a thriving workplace culture.
       </p>
