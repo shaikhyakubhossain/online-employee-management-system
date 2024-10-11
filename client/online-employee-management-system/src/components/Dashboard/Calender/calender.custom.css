@@ -80,11 +80,29 @@
   background-color: #e6e6e6;
 }
 
-@media (max-width: 720px) {
+@media screen and (max-width: 1070px) {
+  .react-calendar__navigation {
+    font-size: 1.4vw;
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 1.4vw;
+  }
+}
+
+@media screen and (max-width: 743px) {
+  .react-calendar__navigation {
+    font-size: 14px;
+  }
+  .react-calendar__month-view__weekdays {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 440px) {
   .react-calendar__navigation {
     font-size: 12px;
   }
   .react-calendar__month-view__weekdays {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
