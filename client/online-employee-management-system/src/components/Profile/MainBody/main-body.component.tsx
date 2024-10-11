@@ -9,7 +9,7 @@ export default function MainBody(): JSX.Element {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="bg-gray-300 rounded-full p-4">
-        <img className="w-32 h-32" src={btnList[8].base64Icon} alt="profile" />
+        <img className="w-32 h-32" src={btnList[7].base64Icon} alt="profile" />
       </div>
       <div
         className={`${styles.profileDetail} flex flex-col gap-2 my-4 text-lg font-semibold`}
