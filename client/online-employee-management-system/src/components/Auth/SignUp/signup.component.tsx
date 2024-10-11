@@ -28,10 +28,10 @@ export default function SignUp(props: propsType) {
 
   return (
     <div
-      className={`${styles.mainContainer} text-center flex flex-col p-20 pt-0 h-full justify-center`}
+      className={`${styles.mainContainer} text-center flex flex-col p-20 justify-center`}
       style={{ fontFamily: "Lora, serif" }}
     >
-      <div className="mx-auto w-full max-[600px]:mt-72">
+      <div className="mx-auto w-full ">
         <div className="text-3xl mb-8">New user? Register here</div>
         <div className="grid grid-cols-3 max-[940px]:grid-cols-1 gap-1 justify-center items-start">
           <div className="col-span-1">
