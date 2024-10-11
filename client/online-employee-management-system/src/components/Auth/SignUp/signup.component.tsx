@@ -25,58 +25,69 @@ export default function SignUp(props: propsType) {
   };
 
   console.log(props.searchParams.role, role);
+
   return (
     <div
-      className={`${styles.mainContainer} text-center flex p-14 h-full overflow-scroll`}
+      className={`${styles.mainContainer} text-center flex flex-col p-14 h-full justify-center`}
       style={{ fontFamily: "Lora, serif" }}
     >
-      <div className="mx-auto">
-        <div className="text-3xl">New user? Register here</div>
-        <div className="mx-auto">
-          <div
-            className={`${styles.roleSelection} flex flex-wrap justify-center text-white`}
-          >
-            <RadioBtn
-              label="Admin"
-              onRadioClick={(event) => handleRoleSelection(event)}
-            />
-            <RadioBtn
-              label="Employee"
-              onRadioClick={(event) => handleRoleSelection(event)}
-            />
+      <div className="mx-auto w-full">
+        <div className="text-3xl mb-8">New user? Register here</div>
+        <div className="grid grid-cols-3 gap-8 justify-center items-start">
+          <div className="col-span-1">
+            <div
+              className={`${styles.roleSelection} flex flex-wrap justify-center text-white mb-8`}
+            >
+              <RadioBtn
+                label="Admin"
+                onRadioClick={(event) => handleRoleSelection(event)}
+              />
+              <RadioBtn
+                label="Employee"
+                onRadioClick={(event) => handleRoleSelection(event)}
+              />
+            </div>
           </div>
-          <div className="grid grid-cols-2 max-[700px]:grid-cols-1 gap-4 text-white bg-blue-300 min-w-1 max-w-96 rounded p-14">
-            <InputField
-              updateDataToSend={(e) => console.log(e)}
-              label="First name"
-              type="text"
-            />
-            <InputField
-              updateDataToSend={(e) => console.log(e)}
-              label="Last name"
-              type="text"
-            />
-            <InputField
-              updateDataToSend={(e) => console.log(e)}
-              label="Regd. No"
-              type="text"
-            />
-            <InputField
-              updateDataToSend={(e) => console.log(e)}
-              label="Email"
-              type="email"
-            />
-            <InputField
-              updateDataToSend={(e) => console.log(e)}
-              label="Create password"
-              type="password"
-            />
-            <InputField
-              updateDataToSend={(e) => console.log(e)}
-              label="Re-enter password"
-              type="password"
-            />
-            <div className="min-[700px]:col-span-2">
+          <div className="col-span-2 bg-blue-300 rounded p-8">
+            <div className="grid grid-cols-2 gap-4">
+              <InputField
+                updateDataToSend={(e) => console.log(e)}
+                label="First name"
+                type="text"
+                placeholder="Enter First name"
+              />
+              <InputField
+                updateDataToSend={(e) => console.log(e)}
+                label="Last name"
+                type="text"
+                placeholder="Enter Last name"
+              />
+              <InputField
+                updateDataToSend={(e) => console.log(e)}
+                label="Regd. No"
+                type="text"
+                placeholder="Enter Regd. No"
+              />
+              <InputField
+                updateDataToSend={(e) => console.log(e)}
+                label="Email"
+                type="email"
+                placeholder="Enter your email"
+              />
+              <InputField
+                updateDataToSend={(e) => console.log(e)}
+                label="Create password"
+                type="password"
+                placeholder="Enter password"
+              />
+              <InputField
+                updateDataToSend={(e) => console.log(e)}
+                label="Re-enter password"
+                type="password"
+                placeholder="Re-enter password"
+              />
+            </div>
+            <div className="mt-4">
               <Button>Submit</Button>
             </div>
           </div>
