@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./left-menu.module.scss";
 import Button from "@/components/Button/button.component";
 import { btnList, btnList2 } from "@/constants/Basic/data";
@@ -15,6 +15,7 @@ export default function LeftMenu(props: { screenSize: number | null }): JSX.Elem
   const router = useRouter();
   const { isOpen } = useSelector((state: RootState) => state.leftMenu);
   const { role } = useSelector((state: RootState) => state.authDetail);
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
   const dispatch = useDispatch();
   const LeftMenuRef = useRef<HTMLDivElement>(null);
 
@@ -35,6 +36,7 @@ export default function LeftMenu(props: { screenSize: number | null }): JSX.Elem
   };
 
   useEffect(() => {
+    setWindowWidth(props.screenSize);
     if (props.screenSize && props.screenSize < 1010) {
       dispatch(setTrue());
     }
@@ -52,7 +54,7 @@ export default function LeftMenu(props: { screenSize: number | null }): JSX.Elem
           {btnList.map((item, index): JSX.Element | undefined => {
             if (item.role === "both" || item.role === role) {
               return (
-                <Link href={item.link} key={index} onClick={collapseLeftMenu}>
+                <Link href={item.link} key={index} onClick={windowWidth && windowWidth < 1010 ? collapseLeftMenu : undefined}>
                   <Button
                     customClassName={styles.btn}
                     customTW="text-left w-full bg-white text-black font-medium"
