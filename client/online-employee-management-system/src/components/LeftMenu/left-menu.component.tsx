@@ -52,7 +52,7 @@ export default function LeftMenu(props: { screenSize: number | null }): JSX.Elem
           {btnList.map((item, index): JSX.Element | undefined => {
             if (item.role === "both" || item.role === role) {
               return (
-                <Link href={item.link} key={index}>
+                <Link href={item.link} key={index} onClick={collapseLeftMenu}>
                   <Button
                     customClassName={styles.btn}
                     customTW="text-left w-full bg-white text-black font-medium"

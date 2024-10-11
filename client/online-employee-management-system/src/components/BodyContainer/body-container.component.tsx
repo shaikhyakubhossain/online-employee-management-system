@@ -27,7 +27,7 @@ export default function BodyContainer(props: propsType): JSX.Element {
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
   const handleMarginLeft = () => {
-    if (pathname === "/" || pathname === "/Auth") {
+    if (pathname === "/" || pathname === "/Auth" || pathname === "/AboutUs" || pathname === "/ContactUs" || pathname === "/Help") {
       return "0px";
     } else {
       if (isLeftMenuOpen) {
@@ -48,7 +48,7 @@ export default function BodyContainer(props: propsType): JSX.Element {
     <div>
       <TopLoading startLoading={startLoading} />
       <Nav />
-      {pathname === "/" || pathname === "/Auth" ? null : <LeftMenu screenSize={windowWidth} />}
+      {pathname === "/" || pathname === "/Auth" || pathname === "/AboutUs" || pathname === "/ContactUs" || pathname === "/Help" ? null : <LeftMenu screenSize={windowWidth} />}
       <div
         className={`mt-20 ${
           pathname === "/" || pathname === "/Auth" ? "" : "p-9"
