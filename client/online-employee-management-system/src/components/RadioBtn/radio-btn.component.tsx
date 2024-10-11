@@ -1,11 +1,13 @@
 type propsType = {
   label: string;
   onRadioClick?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
 export default function RadioBtn(props: propsType): JSX.Element {
   return (
-    <div className={`flex items-center m-6 ps-4 border px-5 bg-gray-50 border-gray-200 rounded dark:border-gray-700`}>
+    <div
+      className={`flex items-center m-6 ps-4 border px-5 bg-gray-50 border-gray-200 rounded dark:border-gray-700`}
+    >
       <input
         type="radio"
         value=""
