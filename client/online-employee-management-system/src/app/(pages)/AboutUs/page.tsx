@@ -4,10 +4,10 @@ import { btnList2 } from "@/constants/Basic/data";
 
 export default function AboutUs() {
   return (
-    <div className="font-times">
+    <div className="font-times p-8 bg-gray-200 text-xl">
       <PageHeader title="About Us" />
       <Link href={"/"}>
-        <div className="text-xl text-left absolute left-0 bg-white rounded-sm p-2 m-4">
+        <div className="text-xl text-left fixed left-4 top-24 bg-white rounded-sm p-2">
           <img className="w-6 h-6" src={btnList2[1].base64Icon} alt="" />
         </div>
       </Link>

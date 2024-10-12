@@ -4,6 +4,7 @@ import { useState } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
+import Link from "next/link";
 
 type propsType = {
   searchParams: searchParamsType;
@@ -28,7 +29,7 @@ export default function SignUp(props: propsType) {
 
   return (
     <div
-      className={`${styles.mainContainer} text-center flex flex-col p-20 justify-center`}
+      className={`${styles.mainContainer} text-center flex flex-col p-20 pt-10 justify-center`}
       style={{ fontFamily: "Lora, serif" }}
     >
       <div className="mx-auto w-full ">
@@ -91,6 +92,15 @@ export default function SignUp(props: propsType) {
               <Button>Submit</Button>
             </div>
           </div>
+        </div>
+        <div>
+          I already have an account. Click here to &nbsp;
+          <Link
+            className="text-blue-200 login"
+            href={"/Auth?type=login&role=employee"}
+          >
+            Log In
+          </Link>
         </div>
       </div>
     </div>
