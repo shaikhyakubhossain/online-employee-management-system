@@ -37,7 +37,7 @@ mongoose
     });
 
     console.log("Connected to MongoDB");
-    const emp = mongoose.connection.db.collection("employee");
+    // const emp = mongoose.connection.db.collection("employee");
     // const arr = await emp.find({ regdNo: "123" }).toArray();
     // console.log(await arr);
   })
@@ -123,6 +123,57 @@ app.post("/employee-signup", async (req, res) => {
       res.status(200).json({
         data,
         role: "employee",
+        token,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: "Server error" });
+  }
+});
+
+app.post("/admin-signup", async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    username,
+    designation,
+    regdNo,
+    email,
+    password,
+    confirmPassword,
+    genderCode,
+  } = req.body;
+  try {
+    const admin = await Admin.signup(
+      firstName,
+      lastName,
+      username,
+      designation,
+      regdNo,
+      email,
+      password,
+      confirmPassword,
+      genderCode
+    );
+    if (admin.error) {
+      return res.status(400).json({ error: admin.error });
+    } else {
+      const token = createToken(admin._id);
+      const data = {
+        employeeId: admin.employeeId,
+        firstName,
+        lastName,
+        username,
+        designation,
+        regdNo,
+        email,
+        genderCode: admin.genderCode,
+        token,
+      }
+      res.status(200).json({
+        data,
+        role: "admin",
         token,
       });
     }

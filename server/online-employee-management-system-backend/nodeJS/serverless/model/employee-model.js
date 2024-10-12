@@ -42,7 +42,7 @@ const employeeSchema = new mongoose.Schema({
   genderCode: {
     type: String,
     required: true,
-  },
+  }
 });
 
 employeeSchema.plugin(autoSequence, { inc_field: "employeeId" });
@@ -61,7 +61,6 @@ employeeSchema.statics.signup = async function (
   if (
     !firstName ||
     !lastName ||
-    !username ||
     !designation ||
     !regdNo ||
     !email
@@ -106,6 +105,7 @@ employeeSchema.statics.signup = async function (
     regdNo,
     genderCode: "Not Set",
     email,
+    role: "employee",
     password: hashedPassword,
   });
 

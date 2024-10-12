@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const validator = require("validator");
 const autoSequence = require("mongoose-sequence")(mongoose);
 
 const adminSchema = new mongoose.Schema({
@@ -41,16 +42,20 @@ const adminSchema = new mongoose.Schema({
   genderCode: {
     type: String,
     required: true,
-  },
+  }
 });
+
+// adminSchema.plugin(autoSequence, { inc_field: "employeeId" });
 
 adminSchema.statics.signup = async function (
   firstName,
   lastName,
+  username,
   designation,
   regdNo,
   email,
   password,
+  confirmPassword,
   genderCode
 ) {
   if (
@@ -58,8 +63,7 @@ adminSchema.statics.signup = async function (
     !lastName ||
     !designation ||
     !regdNo ||
-    !email ||
-    !genderCode
+    !email
   ) {
     return { error: "All fields must be filled" };
   }
@@ -70,17 +74,23 @@ adminSchema.statics.signup = async function (
 
   const doesEmailExist = await this.findOne({ email });
   const doesRegdNoExist = await this.findOne({ regdNo });
+  const doesUsernameExist = await this.findOne({ username });
 
   if (doesEmailExist) {
     return { error: "Email already exists" };
   }
-
   if (doesRegdNoExist) {
     return { error: "Regd No already exists" };
+  }
+  if (doesUsernameExist) {
+    return { error: "Username No already exists" };
   }
 
   if (password.length <= 5) {
     return { error: "Password must be at least 6 characters" };
+  }
+  if(password !== confirmPassword){
+    return { error: "Passwords do not match" };
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -89,10 +99,12 @@ adminSchema.statics.signup = async function (
   const admin = await this.create({
     firstName,
     lastName,
+    username,
     designation,
     regdNo,
-    genderCode,
+    genderCode: "Not Set",
     email,
+    role: "admin",
     password: hashedPassword,
   });
 
