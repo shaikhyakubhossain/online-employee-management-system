@@ -21,12 +21,12 @@ export default function Auth(props: propsType) {
     >
       <MainBackgroundImg customTW="blur-sm" />
       <Link href={"/"}>
-        <div className="text-xl text-left absolute left-0 bg-white rounded-sm p-2 m-4"><img className="w-6 h-6" src={btnList2[1].base64Icon} alt="" /></div>
+        <div className="text-xl text-left fixed left-0 bg-white rounded-sm p-2 m-4"><img className="w-6 h-6" src={btnList2[1].base64Icon} alt="" /></div>
       </Link>
       {props.searchParams.type === "login" ? (
         <Login searchParams={props.searchParams} />
       ) : (
-        <SignUp searchParams={props.searchParams} />
+        <SignUp />
       )}
     </div>
   );

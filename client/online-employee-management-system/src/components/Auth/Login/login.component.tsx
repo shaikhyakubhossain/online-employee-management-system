@@ -93,7 +93,7 @@ export default function Login(props: propsType) {
         </div>
         <div>
           Do not have an account? Click here to &nbsp;
-          <Link className="text-blue-200" href={"/Auth?type=signup&role=Admin"}>
+          <Link className="text-blue-200" href={"/Auth?type=signup"}>
             Sign up
           </Link>
         </div>

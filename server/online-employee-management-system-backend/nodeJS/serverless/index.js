@@ -5,7 +5,7 @@ const { MongoDBUrl, PORT } = require("./secrets/api-keys");
 const Employee = require("./model/employee-model");
 const Admin = require("./model/admin-model");
 const Leave = require("./model/leave-model");
-const Notification = require("./model/notification-model")
+const Notification = require("./model/notification-model");
 const { tokenSecret } = require("./secrets/token");
 const jwt = require("jsonwebtoken");
 const requireAuth = require("./middleware/require-auth");
@@ -37,9 +37,9 @@ mongoose
     });
 
     console.log("Connected to MongoDB");
-    // const emp = mongoose.connection.db.collection("admin");
-    // const arr = await emp.find().toArray();
-    // console.log(arr);
+    const emp = mongoose.connection.db.collection("employee");
+    // const arr = await emp.find({ regdNo: "123" }).toArray();
+    // console.log(await arr);
   })
   .catch((err) => {
     console.log(err);
@@ -85,29 +85,39 @@ app.post("/employee-signup", async (req, res) => {
   const {
     firstName,
     lastName,
+    username,
     designation,
     regdNo,
     email,
     password,
+    confirmPassword,
     genderCode,
   } = req.body;
   try {
-    const employee = await Employee.signup(firstName, lastName, designation, regdNo, email, password, genderCode);
+    const employee = await Employee.signup(
+      firstName,
+      lastName,
+      username,
+      designation,
+      regdNo,
+      email,
+      password,
+      confirmPassword,
+      genderCode
+    );
     if (employee.error) {
       return res.status(400).json({ error: employee.error });
     } else {
       const token = createToken(employee._id);
-      res
-        .status(200)
-        .json({
-          firstName,
-          lastName,
-          designation,
-          regdNo,
-          email,
-          genderCode,
-          token,
-        });
+      res.status(200).json({
+        firstName,
+        lastName,
+        designation,
+        regdNo,
+        email,
+        genderCode,
+        token,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -118,36 +128,57 @@ app.post("/employee-signup", async (req, res) => {
 app.use(requireAuth);
 
 app.post("/apply-leave", async (req, res) => {
-  const {
-    leaveType,
-    leaveDateFrom,
-    leaveDateTo,
-    additionalInfo,
-  } = req.body;
+  const { leaveType, leaveDateFrom, leaveDateTo, additionalInfo } = req.body;
 
   const userDetails = await Employee.findById(req.user._id);
   // console.log("userDetails", userDetails);
   if (userDetails) {
     try {
-      const leave = await Leave.applyLeave(userDetails.firstName, userDetails.lastName, userDetails.employeeId, userDetails.designation, userDetails.regdNo, userDetails.email, leaveType, leaveDateFrom, leaveDateTo, additionalInfo);
+      const leave = await Leave.applyLeave(
+        userDetails.firstName,
+        userDetails.lastName,
+        userDetails.employeeId,
+        userDetails.designation,
+        userDetails.regdNo,
+        userDetails.email,
+        leaveType,
+        leaveDateFrom,
+        leaveDateTo,
+        additionalInfo
+      );
       if (leave.error) {
         return res.status(400).json({ error: leave.error });
       } else {
         const title = "Leave Application";
-        const message = ("Your application for " + leaveType + " leave from " + leaveDateFrom + " to " + leaveDateTo + " has been submitted successfully !");
-        const notification = await Notification.createNotification(userDetails.regdNo, title, message);
+        const message =
+          "Your application for " +
+          leaveType +
+          " leave from " +
+          leaveDateFrom +
+          " to " +
+          leaveDateTo +
+          " has been submitted successfully !";
+        const notification = await Notification.createNotification(
+          userDetails.regdNo,
+          title,
+          message
+        );
         if (notification.error) {
           return res.status(400).json({ error: notification.error });
         } else {
-          res.status(200).json({ message: "Your application for leave has been submitted successfully !" });
+          res
+            .status(200)
+            .json({
+              message:
+                "Your application for leave has been submitted successfully !",
+            });
         }
       }
     } catch (error) {
       console.log(error);
       res.status(400).json({ error: "Server error" });
     }
-  }
-  else {
+  } else {
     res.status(400).json({ error: "User does not exist" });
   }
 });
@@ -163,7 +194,6 @@ app.get("/get-all-employees", async (req, res) => {
 });
 
 app.get("/get-all-notifications", async (req, res) => {
-
   let regdNo = await Admin.findById(req.user._id).select("regdNo");
 
   if (!regdNo) {
@@ -184,15 +214,30 @@ app.patch("/leave-action", async (req, res) => {
     if (leave) {
       leave.leaveStatus = action;
       await leave.save();
-      const regdNo = await Employee.find({ regdNo: leave.regdNo }).select("regdNo");
-      const adminName = await Admin.findById(req.user._id).select("firstName lastName");
+      const regdNo = await Employee.find({ regdNo: leave.regdNo }).select(
+        "regdNo"
+      );
+      const adminName = await Admin.findById(req.user._id).select(
+        "firstName lastName"
+      );
 
       if (regdNo && adminName) {
-        const notification = await Notification.createNotification(regdNo[0].regdNo, "Leave Application", "Your leave application has been " + action + " by " + adminName.firstName + " " + adminName.lastName);
+        const notification = await Notification.createNotification(
+          regdNo[0].regdNo,
+          "Leave Application",
+          "Your leave application has been " +
+            action +
+            " by " +
+            adminName.firstName +
+            " " +
+            adminName.lastName
+        );
         if (notification.error) {
           res.status(400).json({ error: notification.error });
         } else {
-          res.status(200).json({ message: action + " Leave action updated successfully" });
+          res
+            .status(200)
+            .json({ message: action + " Leave action updated successfully" });
         }
       }
 
@@ -200,6 +245,5 @@ app.patch("/leave-action", async (req, res) => {
     } else {
       res.status(400).json({ error: "Leave not found" });
     }
-  } catch (error) {
-  }
+  } catch (error) {}
 });
