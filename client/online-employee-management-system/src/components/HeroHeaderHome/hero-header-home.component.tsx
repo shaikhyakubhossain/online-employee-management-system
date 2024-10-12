@@ -47,7 +47,7 @@ export default function HeroHeaderHome() {
 
   return (
     <div
-      className="text-6xl mb-24 lg:w-3/4"
+      className="text-6xl mb-12 lg:w-3/4"
       style={{ fontFamily: "Times New Roman, serif" }}
     >
       <div className="flex items-center mb-5">

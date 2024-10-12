@@ -17,7 +17,7 @@ export default function Home() {
       />
 
       <div
-        className="relative text-white p-16 overflow-y-scroll"
+        className="relative text-white p-16 overflow-y-scroll pb-0"
         style={{
           background: "rgba(20, 19, 112, 0.85)",
           height: "calc(100dvh - 80px)",
@@ -43,6 +43,18 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
+        <footer className="text-white pt-16 text-center pb-0">
+          <p className="text-sm">
+            &copy; 2024 DRIEMS Connect. All rights reserved.
+          </p>
+          <p className="text-m">
+            Made with <span className="text-red-500">&hearts;</span> by Team{" "}
+            <Link href={"/Credits"} className="text-cyan-400 hover:underline">
+              Elite Six
+            </Link>
+          </p>
+        </footer>
       </div>
     </>
   );
