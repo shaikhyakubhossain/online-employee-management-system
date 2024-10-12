@@ -55,6 +55,7 @@ export default function SignUp() {
         }
         else{
           dispatch(setStartLoadingFalse());
+          console.log(data);
           dispatch(setDetail(data));
           localStorage.setItem("authDetail", JSON.stringify(data));
           router.push(`/Dashboard`);
@@ -65,10 +66,10 @@ export default function SignUp() {
 
   const handleSubmit = () => {
     if(dataToSend.role === "") {
-      dispatch(setStartLoadingTrue());
       alert("Please select role");
     }
     else{
+      dispatch(setStartLoadingTrue());
       fetchData();
     }
   };

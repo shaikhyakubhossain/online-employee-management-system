@@ -109,13 +109,19 @@ app.post("/employee-signup", async (req, res) => {
       return res.status(400).json({ error: employee.error });
     } else {
       const token = createToken(employee._id);
-      res.status(200).json({
+      const data = {
         firstName,
         lastName,
+        username,
         designation,
         regdNo,
         email,
         genderCode,
+        token,
+      }
+      res.status(200).json({
+        data,
+        role: "employee",
         token,
       });
     }
