@@ -4,6 +4,7 @@ import { useState } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
+import Link from "next/link";
 import { getUrl } from "@/constants/url";
 import { useRouter } from "next/navigation";
 
@@ -151,6 +152,15 @@ export default function SignUp() {
               <Button onClick={handleSubmit}>Submit</Button>
             </div>
           </div>
+        </div>
+        <div>
+          I already have an account. Click here to &nbsp;
+          <Link
+            className="text-blue-200 login"
+            href={"/Auth?type=login&role=employee"}
+          >
+            Log In
+          </Link>
         </div>
       </div>
     </div>

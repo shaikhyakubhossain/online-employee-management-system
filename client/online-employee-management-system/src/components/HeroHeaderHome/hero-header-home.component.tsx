@@ -30,6 +30,7 @@ export default function HeroHeaderHome() {
         "Academic Notes",
         "Interview Questions",
         "Leave Applications",
+        "Attendance Records",
       ],
       typeSpeed: 25,
       backSpeed: 25,
@@ -46,8 +47,8 @@ export default function HeroHeaderHome() {
 
   return (
     <div
-      className="text-6xl mb-24 lg:w-3/4"
-      style={{ fontFamily: "Lora, serif" }}
+      className="text-6xl mb-12 lg:w-3/4"
+      style={{ fontFamily: "Times New Roman, serif" }}
     >
       <div className="flex items-center mb-5">
         <img
