@@ -110,13 +110,14 @@ app.post("/employee-signup", async (req, res) => {
     } else {
       const token = createToken(employee._id);
       const data = {
+        employeeId: employee.employeeId,
         firstName,
         lastName,
         username,
         designation,
         regdNo,
         email,
-        genderCode,
+        genderCode: employee.genderCode,
         token,
       }
       res.status(200).json({
