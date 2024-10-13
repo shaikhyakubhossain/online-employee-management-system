@@ -19,7 +19,7 @@ export default function Greeting(): JSX.Element {
       >
         Hello&nbsp;{data?.designation}.&nbsp;{data?.firstName}&nbsp;👋
       </div>
-      <div className={`${styles.subtext} text-2xl`}>
+      <div className={`${styles.subtext} text-2xl max-[552px]:text-[4.5vw]`}>
         You can manage your things here
       </div>
     </div>
