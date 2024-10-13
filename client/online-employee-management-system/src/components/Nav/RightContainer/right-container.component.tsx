@@ -1,6 +1,6 @@
 "use client"
 // import styles from './right-container.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import UserOptions from '../UserOptions/user-options.component';
 import AuthOptions from '../AuthOptions/auth-options.component';
 
