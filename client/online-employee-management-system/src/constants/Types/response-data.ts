@@ -39,6 +39,8 @@ export type defaultData = {
   resignId?: number;
   reason?: string;
   status?: string;
+  title?: string;
+  message?: string;
 };
 
 export type notificationData = {
@@ -59,4 +61,10 @@ export type resignData = {
   regdNo: string;
   reason: string;
   status: string;
+}
+
+export type noticeData = {
+  noticeId?: number;
+  title: string;
+  message: string;
 }

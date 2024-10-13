@@ -1,8 +1,9 @@
 import styles from "./section.module.scss";
+import type { noticeData } from "@/constants/Types/response-data";
 
 type propsType = {
     title: string;
-    // data: any;
+    data: noticeData[] | null;
 }
 
 export default function Section(props: propsType): JSX.Element {
@@ -11,11 +12,14 @@ export default function Section(props: propsType): JSX.Element {
             <div className={`${styles.sectionTitle} text-red-500 text-2xl font-semibold`}>{props.title}</div>
             <div className={`${styles.sectionBody}`}>
                 {
-                    [...Array(2)].map((_, index) => (
-                        <div className={`${styles.notice} text-blue-700 font-semibold my-4`} key={index}>
-                            • Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    props.data ? props.data.map((item) => (
+                        <div className={`${styles.notice} flex text-blue-700 font-semibold my-4`} key={item.noticeId}>
+                            <div className="text-2xl m-2">{item.title}</div>
+                            <div className="self-center m-2">{item.message}</div>
                         </div>
                     ))
+                    :
+                    <div>empty</div>
                 }
             </div>
         </div>
