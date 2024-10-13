@@ -36,6 +36,9 @@ export type defaultData = {
   leaveDateFrom?: string;
   leaveDateTo?: string;
   leaveStatus?: string;
+  resignId?: number;
+  reason?: string;
+  status?: string;
 };
 
 export type notificationData = {
@@ -48,4 +51,12 @@ export type Holiday = {
   name: string;
   date: string;
   localName: string;
+}
+
+export type resignData = {
+  _id: string;
+  resignId: number;
+  regdNo: string;
+  reason: string;
+  status: string;
 }

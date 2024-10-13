@@ -6,6 +6,7 @@ const Employee = require("./model/employee-model");
 const Admin = require("./model/admin-model");
 const Leave = require("./model/leave-model");
 const Notification = require("./model/notification-model");
+const Resign = require("./model/resign-model");
 const { tokenSecret } = require("./secrets/token");
 const jwt = require("jsonwebtoken");
 const requireAuth = require("./middleware/require-auth");
@@ -248,6 +249,11 @@ app.get("/get-all-leave-applications", async (req, res) => {
 
 app.get("/get-all-employees", async (req, res) => {
   const data = await Employee.find({});
+  res.status(200).json({ data });
+});
+
+app.get("/get-all-resign-applications", async (req, res) => {
+  const data = await Resign.find({});
   res.status(200).json({ data });
 });
 
