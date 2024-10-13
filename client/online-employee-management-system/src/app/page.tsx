@@ -45,9 +45,6 @@ export default function Home() {
         </div>
 
         <footer className="text-white pt-16 text-center pb-0">
-          <p className="text-sm">
-            &copy; 2024 DRIEMS Connect. All rights reserved.
-          </p>
           <p className="text-m">
             Made with <span className="text-red-500">&hearts;</span> by Team{" "}
             <Link href={"/Credits"} className="text-cyan-400 hover:underline">

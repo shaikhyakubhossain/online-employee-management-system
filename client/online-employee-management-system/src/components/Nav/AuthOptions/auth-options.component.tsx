@@ -5,7 +5,7 @@ import AuthDropdown from "../AuthDropdown/auth-dropdown.component";
 export default function AuthOptions() {
   return (
     <div className={`${styles.mainContainer} `}>
-      { window.innerWidth > 1010 ?
+      { window.innerWidth > 800 ?
         <div className={`${styles.desktop} flex text-2xl text-white`}>
           <div>
             <Link href={"/Auth?type=login&role=employee"}>
