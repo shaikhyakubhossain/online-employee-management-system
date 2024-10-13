@@ -26,16 +26,18 @@ export default function RightContainer() {
         setPath(window.location.pathname);
     }, [])
 
+    console.log("token:", token);
+
     return (
         <div>
             {
                 token ?
                 <UserOptions firstName={data?.firstName} shortName={data && data.firstName[0] + data.lastName[0]} />
                 :
-                path === "/" || path === "/Auth" ?
+                // path === "/" || path === "/Auth" ?
                 <AuthOptions />
-                :
-                null
+                // :
+                // <div className='text-white text-2xl'>debugging</div>
                 
             }
         </div>
