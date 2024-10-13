@@ -1,6 +1,7 @@
 import PageHeader from "@/components/PageHeader/page-header.component";
 import Link from "next/link";
 import { btnList2 } from "@/constants/Basic/data";
+import ContactComponent from "@/components/Contact/contact.component";
 
 export default function ContactUs() {
   return (
@@ -11,6 +12,8 @@ export default function ContactUs() {
           <img className="w-6 h-6" src={btnList2[1].base64Icon} alt="" />
         </div>
       </Link>
+      {/* Contact form component */}
+      <ContactComponent />
     </div>
   );
 }
