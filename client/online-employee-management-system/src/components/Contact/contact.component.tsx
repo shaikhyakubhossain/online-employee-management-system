@@ -18,8 +18,8 @@ function Contact() {
   return (
     <section className="py-6">
       <div className="container mx-auto text-center mb-4" data-aos="fade-up">
-        <p className="">
-          If you have any questions, suggestions or want to contact, feel free
+        <p>
+          If you have any questions, suggestions, or want to contact, feel free
           to reach out!
         </p>
       </div>

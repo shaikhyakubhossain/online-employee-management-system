@@ -17,7 +17,7 @@ export default function Home() {
       />
 
       <div
-        className="relative text-white p-16 overflow-y-scroll pb-0"
+        className="relative text-white p-8 sm:p-12 md:p-16 overflow-y-scroll pb-0"
         style={{
           background: "rgba(20, 19, 112, 0.85)",
           height: "calc(100dvh - 80px)",
@@ -27,25 +27,25 @@ export default function Home() {
       >
         <MainBackgroundImg />
         <HeroHeaderHome />
-        <div className="flex flex-wrap text-2xl max-sm:text-sm mt-6">
-          <div className="mx-4 my-2">
+        <div className="flex flex-wrap text-xs sm:text-sm md:text-xl mt-4 sm:mt-6">
+          <div className="mx-2 my-2 sm:mx-4">
             <Link href={"/Auth?type=login&role=admin"}>
-              <Button customTW="bg-blue-500 rounded-xl hover:bg-blue-400 hover:text-white px-8 py-4">
+              <Button customTW="bg-blue-500 rounded-xl hover:bg-blue-400 hover:text-white px-4 py-2 sm:px-6 sm:py-3">
                 Admin Login
               </Button>
             </Link>
           </div>
-          <div className="mx-4 my-2">
+          <div className="mx-2 my-2 sm:mx-4">
             <Link href={"/Auth?type=login&role=employee"}>
-              <Button customTW="bg-blue-500 rounded-xl hover:bg-blue-400 hover:text-white px-8 py-4">
+              <Button customTW="bg-blue-500 rounded-xl hover:bg-blue-400 hover:text-white px-4 py-2 sm:px-6 sm:py-3">
                 Employee Login
               </Button>
             </Link>
           </div>
         </div>
 
-        <footer className="text-white pt-16 text-center pb-0">
-          <p className="text-m">
+        <footer className="text-white pt-12 sm:pt-16 text-center pb-0">
+          <p className="text-sm sm:text-base md:text-lg">
             Made with <span className="text-red-500">&hearts;</span> by Team{" "}
             <Link href={"/Credits"} className="text-cyan-400 hover:underline">
               Elite Six

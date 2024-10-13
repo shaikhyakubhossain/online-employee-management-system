@@ -4,18 +4,23 @@ import { btnList2 } from "@/constants/Basic/data";
 
 export default function Help() {
   return (
-    <div className="font-times p-8 bg-gray-200 text-xl" id="help-container">
+    <div
+      className="font-times p-6 md:p-8 bg-gray-200 text-lg md:text-xl"
+      id="help-container"
+    >
       <PageHeader title="Help" />
       <Link href={"/"}>
-        <div className="text-xl text-left fixed left-4 top-24 bg-white rounded-sm p-2">
+        <div className="text-lg md:text-xl text-left fixed left-4 top-24 bg-white rounded-sm p-2">
           <img className="w-6 h-6" src={btnList2[1].base64Icon} alt="" />
         </div>
       </Link>
 
       {/* Table of Contents */}
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Table of Contents</h2>
-        <ul className="list-disc pl-8 space-y-2">
+      <section className="mb-6 md:mb-8">
+        <h2 className="text-xl md:text-2xl font-bold mb-4">
+          Table of Contents
+        </h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>
             <a
               href="#getting-started"
@@ -78,7 +83,6 @@ export default function Help() {
               Managing Employee Profiles
             </a>
           </li>
-
           <li>
             <a href="#calendar" className="text-blue-800 hover:underline">
               Calendar
@@ -113,9 +117,11 @@ export default function Help() {
       </section>
 
       {/* Sections */}
-      <section id="getting-started" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Getting Started</h2>
-        <ul className="list-disc pl-8 space-y-2">
+      <section id="getting-started" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">
+          Getting Started
+        </h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>Login with your organization-provided credentials.</li>
           <li>Access the Dashboard to see quick insights.</li>
           <li>Navigate through the left sidebar for all functionalities.</li>
@@ -124,9 +130,10 @@ export default function Help() {
           </li>
         </ul>
       </section>
-      <section id="dashboard" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Dashboard</h2>
-        <ul className="list-disc pl-8 space-y-2">
+
+      <section id="dashboard" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Dashboard</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>Get access to everything you need from the Dashboard.</li>
           <li>
             See an overview of your tasks, leave requests, and notifications.
@@ -137,18 +144,22 @@ export default function Help() {
           <li>Admins can manage employee attendance and leave requests.</li>
         </ul>
       </section>
-      <section id="notice" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Notice</h2>
-        <ul className="list-disc pl-8 space-y-2">
+
+      <section id="notice" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Notice</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>Navigate to Notices from Left menu bar.</li>
           <li>View company announcements and important notices.</li>
           <li>Receive notifications about new notices added.</li>
           <li>Admins can create and manage notices for employees.</li>
         </ul>
       </section>
-      <section id="apply-for-leave" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Apply for Leave</h2>
-        <ul className="list-disc pl-8 space-y-2">
+
+      <section id="apply-for-leave" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">
+          Apply for Leave
+        </h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>Select leave type (Casual, Sick, Paid) from the list.</li>
           <li>Pick the start and end date of your leave period.</li>
           <li>Submit the leave request and await approval.</li>
@@ -156,20 +167,23 @@ export default function Help() {
         </ul>
       </section>
 
-      <section id="approve-leave" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">
+      <section id="approve-leave" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">
           Approve Leave (for Admin only)
         </h2>
-        <ul className="list-disc pl-8 space-y-2">
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>Review pending leave applications from employees.</li>
           <li>Check employee leave balance and performance record.</li>
           <li>Approve or reject the leave request.</li>
           <li>Send notifications to employees about leave status changes.</li>
         </ul>
       </section>
-      <section id="access-assets" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Access/Assets Page</h2>
-        <ul className="list-disc pl-8 space-y-2">
+
+      <section id="access-assets" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">
+          Access/Assets Page
+        </h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>
             Browse academic materials and documents from Left menu Assets Page.
           </li>
@@ -180,27 +194,32 @@ export default function Help() {
           <li>Manage and categorize resources for better accessibility.</li>
         </ul>
       </section>
-      <section id="attendance" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Attendance</h2>
-        <ul className="list-disc pl-8 space-y-2">
+
+      <section id="attendance" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Attendance</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>Navigate to Attendance page from Left menu bar.</li>
           <li>Employees can give attendance.</li>
           <li>Everyday attendance will be recorded in the database.</li>
           <li>Admins can view Attendance percentage for an Employee.</li>
         </ul>
       </section>
-      <section id="holiday" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Holiday</h2>
-        <ul className="list-disc pl-8 space-y-2">
+
+      <section id="holiday" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Holiday</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>Navigate to the Holiday page from Left menu bar.</li>
           <li>View the list of public company holidays and breaks.</li>
           <li>Track upcoming holidays and prepare your schedule.</li>
           <li>Interact with the Calendar for specific holiday details.</li>
         </ul>
       </section>
-      <section id="employee-details" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Employee Details</h2>
-        <ul className="list-disc pl-8 space-y-2">
+
+      <section id="employee-details" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">
+          Employee Details
+        </h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
           <li>View personal and professional details of employees.</li>
           <li>Check employee performance reviews and records.</li>
           <li>Track attendance and leave history.</li>
@@ -208,83 +227,75 @@ export default function Help() {
         </ul>
       </section>
 
-      <section id="managing-employee-profiles" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">
+      <section id="managing-employee-profiles" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">
           Managing Employee Profiles
         </h2>
-        <ul className="list-disc pl-8 space-y-2">
-          <li>Add a new employee to the system with the required details.</li>
-          <li>Edit employee information such as roles and departments.</li>
-          <li>Delete an employee profile (admin-only access).</li>
-          <li>
-            View detailed employee records, including leave and attendance.
-          </li>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
+          <li>Navigate to Employee Profiles from Left menu bar.</li>
+          <li>View and edit employee profiles and details.</li>
+          <li>Update employee roles and access privileges.</li>
+          <li>Archive or deactivate profiles as necessary.</li>
         </ul>
       </section>
 
-      <section id="calendar" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Calendar</h2>
-        <ul className="list-disc pl-8 space-y-2">
-          <li>View public holidays and events.</li>
-          <li>Sync personal leave schedule with the calendar.</li>
-          <li>Navigate to Calendar Section from the Left menu bar.</li>
-          <li>
-            Toggle between monthly and weekly views for detailed schedules.
-          </li>
+      <section id="calendar" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Calendar</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
+          <li>Access the Calendar from the Left menu bar.</li>
+          <li>View all upcoming holidays and events.</li>
+          <li>Check daily attendance and holiday status.</li>
+          <li>Interact with the calendar to plan your work schedule.</li>
         </ul>
       </section>
 
-      <section id="chat" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Chat</h2>
-        <ul className="list-disc pl-8 space-y-2">
-          <li>Navigate to Server Chat at the Left Menu bar.</li>
-          <li>Send direct messages to colleagues for quick communication.</li>
-          <li>Receive real-time chat notifications and alerts.</li>
-          <li>You can chat anonymously with anyone online on the server.</li>
-        </ul>
-      </section>
-      <section id="chatbot" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Chatbot</h2>
-        <ul className="list-disc pl-8 space-y-2">
-          <li>Meet Ashley the bot at bottom right on the page.</li>
-          <li>Ashley will help your navigating pages.</li>
-          <li>Ask Ashley, any queries about DRIEMS Connect.</li>
-          <li>She will go through our website to answer the question.</li>
-        </ul>
-      </section>
-      <section id="notifications" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Notifications</h2>
-        <ul className="list-disc pl-8 space-y-2">
-          <li>Navigate to notifications page at top right.</li>
-          <li>
-            Receive real-time notifications about tasks, chats, and approvals.
-          </li>
-          <li>Inspect whether your application is approved or rejected.</li>
-          <li>Get reminders for deadlines and important events.</li>
+      <section id="chat" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Chat</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
+          <li>Access the Chat page from the Left menu bar.</li>
+          <li>Interact with team members through real-time messaging.</li>
+          <li>Send files and documents through chat.</li>
+          <li>Keep track of ongoing conversations and notifications.</li>
         </ul>
       </section>
 
-      <section id="profile" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Profile</h2>
-        <ul className="list-disc pl-8 space-y-2">
-          <li>
-            Go to your profile by simply clicking on your name on top right.
-          </li>
-          <li>Update personal information like name, contact details.</li>
-          <li>View your role, department, and more.</li>
-          <li>Admins can update employee profiles and permissions.</li>
+      <section id="chatbot" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Chatbot</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
+          <li>Engage with the Chatbot for quick assistance.</li>
+          <li>Get answers to common queries instantly.</li>
+          <li>Access resources and documents through Chatbot commands.</li>
+          <li>Get notifications and updates from the Chatbot.</li>
         </ul>
       </section>
 
-      <section id="contact-us" className="pt-24">
-        <h2 className="text-xl font-semibold mb-3">Contact Us</h2>
-        <ul className="list-disc pl-8 space-y-2">
-          <li>Fill out the form for inquiries or technical support.</li>
-          <li>
-            Get in touch with the admin team via provided contact details.
-          </li>
-          <li>Leveraging Web3forms API for fast and secure messaging.</li>
-          <li>Response times typically within 24-48 hours.</li>
+      <section id="notifications" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Notifications</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
+          <li>Check notifications for important updates and messages.</li>
+          <li>Get alerts for leave requests, approvals, and rejections.</li>
+          <li>Stay updated on company news and announcements.</li>
+          <li>Manage your notification preferences in settings.</li>
+        </ul>
+      </section>
+
+      <section id="profile" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Profile</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
+          <li>View and edit your personal profile information.</li>
+          <li>Update your contact details and preferences.</li>
+          <li>Change your password and security settings.</li>
+          <li>Log out from your profile when done.</li>
+        </ul>
+      </section>
+
+      <section id="contact-us" className="pt-20 md:pt-24">
+        <h2 className="text-lg md:text-xl font-semibold mb-3">Contact Us</h2>
+        <ul className="list-disc pl-4 md:pl-8 space-y-2">
+          <li>Reach out for support or queries through the Contact Us page.</li>
+          <li>Fill out the contact form with your details and message.</li>
+          <li>Expect a response from the support team shortly.</li>
+          <li>Provide feedback about your experience with the system.</li>
         </ul>
       </section>
     </div>

@@ -47,25 +47,27 @@ export default function HeroHeaderHome() {
 
   return (
     <div
-      className="text-6xl mb-12 lg:w-3/4"
+      className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 sm:mb-8 lg:mb-12 lg:w-3/4"
       style={{ fontFamily: "Times New Roman, serif" }}
     >
-      <div className="flex items-center mb-5">
+      <div className="flex items-center mb-3 sm:mb-4 md:mb-5">
         <img
-          className={`${styles.heroImage} rounded-s-xl`}
+          className={`${styles.heroImage} rounded-s-xl w-4 sm:w-8 md:w-12 lg:w-16 xl:w-20`}
           src="favicon.ico"
           alt=""
         />
+
         <div
-          className={`ml-4 ${styles.heroTitle} ${styles.heroContainer} text-5xl`}
+          className={`ml-2 sm:ml-3 md:ml-4 lg:ml-5 ${styles.heroTitle} ${styles.heroContainer} text-2xl sm:text-3xl md:text-4xl lg:text-5xl`}
         >
           DRIEMS Connect
         </div>
       </div>
-      <div className="text-4xl max-sm:text-sm mt-6">
+
+      <div className="text-lg sm:text-xl md:text-2xl lg:text-4xl mt-3 sm:mt-4 lg:mt-6">
         Explore <span className="typed-text"></span>
       </div>
-      <div className="text-2xl max-sm:text-xs mt-6 text-justify">
+      <div className="text-base sm:text-lg md:text-lg lg:text-2xl mt-4 text-justify">
         The Online Employee Management System is a comprehensive web-based
         application designed to streamline HR operations by managing employee
         information, tracking attendance, and monitoring performance. It

@@ -11,3 +11,10 @@
 .heroContainer {
   font-family: 'Lora', serif;
 }
+
+@media screen and (max-width: 768px) {
+  .heroContainer {
+    padding: 0;
+  }
+  
+}
