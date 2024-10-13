@@ -19,6 +19,7 @@
     "react-calendar": "^5.0.0",
     "react-dom": "^18",
     "react-redux": "^9.1.2",
+    "redux-persist": "^6.0.0",
     "sass": "^1.78.0",
     "typed.js": "^2.1.0"
   },
