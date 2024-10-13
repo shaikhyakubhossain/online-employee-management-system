@@ -185,7 +185,7 @@ export default function Help() {
         <ul className="list-disc pl-8 space-y-2">
           <li>Navigate to Attendance page from Left menu bar.</li>
           <li>Employees can give attendance.</li>
-          <li>Everyday's attendance will be recorded in the database.</li>
+          <li>Everyday attendance will be recorded in the database.</li>
           <li>Admins can view Attendance percentage for an Employee.</li>
         </ul>
       </section>

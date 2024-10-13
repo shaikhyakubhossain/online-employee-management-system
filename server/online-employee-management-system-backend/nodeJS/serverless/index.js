@@ -284,11 +284,11 @@ app.patch("/leave-action", async (req, res) => {
           regdNo[0].regdNo,
           "Leave Application",
           "Your leave application has been " +
-            action +
-            " by " +
-            adminName.firstName +
-            " " +
-            adminName.lastName
+          action +
+          " by " +
+          adminName.firstName +
+          " " +
+          adminName.lastName
         );
         if (notification.error) {
           res.status(400).json({ error: notification.error });
@@ -303,5 +303,5 @@ app.patch("/leave-action", async (req, res) => {
     } else {
       res.status(400).json({ error: "Leave not found" });
     }
-  } catch (error) {}
+  } catch (error) { }
 });
