@@ -1,8 +1,19 @@
+"use client";
+import GiveResignation from "../GiveResignation/give-resignation.component";
+import ApproveResignation from "../ApproveResignation/approve-resignation.component";
+
+import { RootState } from "@/lib/store";
+import { useSelector } from "react-redux";
+
 export default function Resign() {
+
+    const { role } = useSelector((state: RootState) => state.authDetail);
+
     return (
         <div className="font-times">
-           <div className="text-3xl text-red-500 bg-slate-200 p-3 rounded-lg">Danger Zone</div>
-           <div className="text-lg text-red-600 my-6"><span className="bg-black hover:bg-white p-3 rounded-lg cursor-pointer border-2 border-red-500">Resign</span></div>
+            {
+                role === "admin" ? <ApproveResignation /> : <GiveResignation />
+            }
         </div>
     );
 }
