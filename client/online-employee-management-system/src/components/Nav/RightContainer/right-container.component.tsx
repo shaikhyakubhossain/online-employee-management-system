@@ -12,8 +12,6 @@ export default function RightContainer() {
 
     const dispatch = useDispatch();
 
-    const [path, setPath] = useState<null | string>(null);
-
     const {token} = useSelector((state: RootState) => state.authDetail);
     const {data} = useSelector((state: RootState) => state.authDetail);
 
@@ -22,8 +20,6 @@ export default function RightContainer() {
         if(authDetail){
             dispatch(setDetail(JSON.parse(authDetail)));
         }
-
-        setPath(window.location.pathname);
     }, [])
 
     console.log("token:", token);
