@@ -5,6 +5,7 @@ const { MongoDBUrl, PORT } = require("./secrets/api-keys");
 const Employee = require("./model/employee-model");
 const Admin = require("./model/admin-model");
 const Leave = require("./model/leave-model");
+const Notice = require("./model/notice-model");
 const Notification = require("./model/notification-model");
 const Resign = require("./model/resign-model");
 const { tokenSecret } = require("./secrets/token");
@@ -242,6 +243,17 @@ app.post("/apply-leave", async (req, res) => {
   }
 });
 
+app.post("/add-notice", async (req, res) => {
+  const { title, message } = req.body;
+  const notice = await Notice.createNotice(title, message);
+  if(notice.error){
+    res.status(400).json({ error: notice.error });
+  }else{
+    res.status(200).json({ message: "Notice added successfully" });
+  }
+  
+})
+
 app.get("/get-all-leave-applications", async (req, res) => {
   const data = await Leave.find({});
   res.status(200).json({ data });
@@ -256,6 +268,11 @@ app.get("/get-all-resign-applications", async (req, res) => {
   const data = await Resign.find({});
   res.status(200).json({ data });
 });
+
+app.get("/get-all-notices", async (req, res) => {
+  const data = await Notice.find({});
+  res.status(200).json({ data });
+})
 
 app.get("/get-all-notifications", async (req, res) => {
   let regdNo = await Admin.findById(req.user._id).select("regdNo");
