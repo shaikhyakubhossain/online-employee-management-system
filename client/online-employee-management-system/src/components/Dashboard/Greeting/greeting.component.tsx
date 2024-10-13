@@ -15,7 +15,7 @@ export default function Greeting(): JSX.Element {
   return (
     <div>
       <div
-        className={`${styles.greeting} font-bold text-4xl max-[552px]:text-[6.5vw]`}
+        className={`${styles.greeting} font-bold text-4xl max-[552px]:text-[6.5vw] max-[363px]:text-[5.5vw]`}
       >
         Hello&nbsp;{data?.designation}.&nbsp;{data?.firstName}&nbsp;👋
       </div>
