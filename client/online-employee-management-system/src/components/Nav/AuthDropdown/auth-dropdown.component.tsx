@@ -37,23 +37,23 @@ export default function AuthDropdown() {
       <div
         className={`${styles.menu} absolute -left-20 top-10 ${
           isActive ? "block" : "hidden"
-        } bg-white text-black p-3`}
+        } bg-white text-black text-center rounded-lg`}
       >
-        <Link href="/Auth?type=login&role=employee">
-          <div onClick={handleClick}>Login</div>
-        </Link>
-        <Link href="/AboutUs">
-          <div onClick={handleClick}>About us</div>
-        </Link>
-        <Link href="/Auth?type=signup">
-          <div onClick={handleClick}>Register</div>
-        </Link>
-        <Link href="/Help">
-          <div onClick={handleClick}>Help</div>
-        </Link>
-        <Link href="/ContactUs">
-          <div onClick={handleClick}>Contact us</div>
-        </Link>
+        <div onClick={handleClick}><Link href="/Auth?type=login&role=employee">
+          Login
+        </Link></div>
+        <div onClick={handleClick}><Link href="/AboutUs">
+          About us
+        </Link></div>
+        <div onClick={handleClick}><Link href="/Auth?type=signup">
+          Register
+        </Link></div>
+        <div onClick={handleClick}><Link href="/Help">
+          Help
+        </Link></div>
+        <div onClick={handleClick}><Link href="/ContactUs">
+          Contact us
+        </Link></div>
       </div>
     </div>
   );
