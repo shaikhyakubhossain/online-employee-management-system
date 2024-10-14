@@ -256,9 +256,9 @@ app.post("/add-notice", async (req, res) => {
 app.post("/add-resign", async (req, res) => {
   console.log(req.user);
   const { reason } = req.body;
-  const regdNo = await Employee.findById(req.user._id).select("regdNo");
-  if (regdNo) {
-    const resign = await Resign.createResignApplication(regdNo.regdNo, reason);
+  const user = await Employee.findById(req.user._id);
+  if (user) {
+    const resign = await Resign.createResignApplication(user.firstName, user.lastName, user.designation, user.email, user.regdNo, reason);
     if(resign.error){
       res.status(400).json({ error: resign.error });
     }else{
