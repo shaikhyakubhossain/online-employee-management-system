@@ -45,7 +45,7 @@ const leaveSchema = new mongoose.Schema({
   additionalInfo: {
     type: String,
   },
-  leaveStatus: {
+  status: {
     type: String,
     required: true,
   },
@@ -64,7 +64,6 @@ leaveSchema.statics.applyLeave = async function (
   leaveDateFrom,
   leaveDateTo,
   additionalInfo,
-  leaveStatus
 ) {
   if (
     !firstName ||
@@ -92,7 +91,7 @@ leaveSchema.statics.applyLeave = async function (
     leaveDateFrom,
     leaveDateTo,
     additionalInfo,
-    leaveStatus: "pending",
+    status: "pending",
   });
 
   return leave;
