@@ -35,7 +35,6 @@ export type defaultData = {
   leaveReason?: string;
   leaveDateFrom?: string;
   leaveDateTo?: string;
-  leaveStatus?: string;
   resignId?: number;
   reason?: string;
   status?: string;
@@ -60,7 +59,6 @@ export type resignData = {
   resignId: number;
   regdNo: string;
   reason: string;
-  status: string;
 }
 
 export type noticeData = {

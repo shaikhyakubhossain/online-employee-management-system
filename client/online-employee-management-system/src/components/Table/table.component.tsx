@@ -48,7 +48,7 @@ export default function Table(props: PropsType) {
                   </td>
                   {showAction && (
                     <>
-                    <td className="px-6 py-4">{item.leaveStatus}</td>
+                    <td className="px-6 py-4">{item.status}</td>
                     <td className="px-6 py-4">
                       <span onClick={() => props.handleAction ? props.handleAction(item._id, "approved"):null} className="text-green-900 bg-green-200 px-2 py-1 rounded-md mr-1 hover:bg-green-600 hover:text-white cursor-pointer">
                         Approve
