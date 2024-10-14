@@ -13,7 +13,7 @@ type propsType = {
 
 export default function RTKStoreProvider(props: propsType): JSX.Element {
 
-  let persistor = persistStore(store);
+  const persistor = persistStore(store);
 
   return (
     <div className={styles.mainContainer}>
