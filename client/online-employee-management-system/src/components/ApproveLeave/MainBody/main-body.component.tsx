@@ -33,6 +33,7 @@ export default function MainBody() {
     });
     const data = await response.json();
     console.log("data: ", data);
+    window.location.reload();
   };
 
   return (
