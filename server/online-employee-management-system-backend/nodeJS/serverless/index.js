@@ -251,7 +251,23 @@ app.post("/add-notice", async (req, res) => {
   }else{
     res.status(200).json({ message: "Notice added successfully" });
   }
-  
+})
+
+app.post("/add-resign", async (req, res) => {
+  console.log(req.user);
+  const { reason } = req.body;
+  const regdNo = await Employee.findById(req.user._id).select("regdNo");
+  if (regdNo) {
+    const resign = await Resign.createResignApplication(regdNo.regdNo, reason);
+    if(resign.error){
+      res.status(400).json({ error: resign.error });
+    }else{
+      res.status(200).json({ message: "Resign application submitted successfully" });
+    }
+  }
+  else {
+    res.status(400).json({ error: "User does not exist" });
+  }
 })
 
 app.get("/get-all-leave-applications", async (req, res) => {
