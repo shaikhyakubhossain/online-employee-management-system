@@ -260,8 +260,10 @@ app.get("/get-all-leave-applications", async (req, res) => {
 });
 
 app.get("/get-all-employees", async (req, res) => {
-  const data = await Employee.find({});
-  res.status(200).json({ data });
+  const employees = await Employee.find({});
+  const admin = await Admin.find({});
+  const combinedData = [...employees, ...admin];
+  res.status(200).json({ data: combinedData });
 });
 
 app.get("/get-all-resign-applications", async (req, res) => {
