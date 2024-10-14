@@ -34,7 +34,7 @@ const resignSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+}, { timestamps: true });
 
 resignSchema.plugin(autoSequence, { inc_field: "resignId" });
 

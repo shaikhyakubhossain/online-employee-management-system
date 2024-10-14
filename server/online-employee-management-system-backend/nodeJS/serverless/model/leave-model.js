@@ -49,7 +49,7 @@ const leaveSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+}, { timestamps: true });
 
 leaveSchema.plugin(autoSequence, { inc_field: "leaveId" });
 

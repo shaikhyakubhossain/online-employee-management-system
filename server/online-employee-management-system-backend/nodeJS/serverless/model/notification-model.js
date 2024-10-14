@@ -18,7 +18,7 @@ const notificationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+}, { timestamps: true });
 
 notificationSchema.plugin(autoSequence, { inc_field: "notificationId" });
 
