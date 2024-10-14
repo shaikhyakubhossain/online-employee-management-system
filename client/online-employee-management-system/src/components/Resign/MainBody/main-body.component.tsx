@@ -21,9 +21,7 @@ export default function MainBody() {
     });
     const { role, token } = useSelector((state: RootState) => state.authDetail);
 
-    if(role === "admin"){
         useFetchGetMethod('get-all-resign-applications', 'admin', (data: defaultData[] | null) => setData(data));
-    }
 
     const handleGiveResignation = () => {
         fetch(`${getUrl()}/add-resign`, {
