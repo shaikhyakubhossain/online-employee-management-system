@@ -5,11 +5,12 @@ type PropsType = {
   data: defaultData[] | null;
   headers: string[];
   showAction?: boolean;
+  isLeave?: boolean;
   handleAction?: (id: string, action: string) => void;
 };
 
 export default function Table(props: PropsType) {
-  const { data, showAction = false } = props;
+  const { data, showAction = false, isLeave = false } = props;
 
   return (
     <div className="relative overflow-x-auto">
@@ -42,21 +43,39 @@ export default function Table(props: PropsType) {
                   <td className="px-6 py-4">{item.regdNo}</td>
                   <td className="px-6 py-4">{item.email}</td>
                   <td className="px-6 py-4">{item.designation}</td>
-                  <td className="px-6 py-4">{item.leaveType}</td>
-                  <td className="px-6 py-4">
-                    {item.leaveDateFrom} - {item.leaveDateTo}
-                  </td>
+                  { isLeave &&
+                    <>
+                      <td className="px-6 py-4">{item.leaveType}</td>
+                      <td className="px-6 py-4">
+                        {item.leaveDateFrom} - {item.leaveDateTo}
+                      </td>
+                    </>
+                  }
                   {showAction && (
                     <>
-                    <td className="px-6 py-4">{item.status}</td>
-                    <td className="px-6 py-4">
-                      <span onClick={() => props.handleAction ? props.handleAction(item._id, "approved"):null} className="text-green-900 bg-green-200 px-2 py-1 rounded-md mr-1 hover:bg-green-600 hover:text-white cursor-pointer">
-                        Approve
-                      </span>
-                      <span onClick={() => props.handleAction ? props.handleAction(item._id, "rejected"):null} className="text-red-900 bg-red-200 px-2 py-1 rounded-md ml-1 hover:bg-red-600 hover:text-white cursor-pointer">
-                        Reject
-                      </span>
-                    </td>
+                      <td className="px-6 py-4">{item.status}</td>
+                      <td className="px-6 py-4">
+                        <span
+                          onClick={() =>
+                            props.handleAction
+                              ? props.handleAction(item._id, "approved")
+                              : null
+                          }
+                          className="text-green-900 bg-green-200 px-2 py-1 rounded-md mr-1 hover:bg-green-600 hover:text-white cursor-pointer"
+                        >
+                          Approve
+                        </span>
+                        <span
+                          onClick={() =>
+                            props.handleAction
+                              ? props.handleAction(item._id, "rejected")
+                              : null
+                          }
+                          className="text-red-900 bg-red-200 px-2 py-1 rounded-md ml-1 hover:bg-red-600 hover:text-white cursor-pointer"
+                        >
+                          Reject
+                        </span>
+                      </td>
                     </>
                   )}
                 </tr>

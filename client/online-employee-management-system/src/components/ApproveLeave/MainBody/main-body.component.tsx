@@ -64,6 +64,7 @@ export default function MainBody() {
             "Action",
           ]}
           showAction={true}
+          isLeave={true}
           handleAction={handleAction}
         />
       </div>
