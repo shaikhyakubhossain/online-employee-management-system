@@ -9,6 +9,7 @@ import { RootState } from "@/lib/store";
 import { useSelector } from "react-redux";
 
 export default function MainBody() {
+
     const [dataToSend, setDataToSend] = useState<noticeData>({
         title: "",
         message: ""
@@ -23,7 +24,8 @@ export default function MainBody() {
     );
 
     const handleAddNotice = () => {
-        sendData()
+        sendData();
+        window.location.reload();
     }
 
     const sendData = () => {
