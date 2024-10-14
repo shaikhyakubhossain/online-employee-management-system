@@ -35,7 +35,7 @@ export default function AuthDropdown() {
       </div>
 
       <div
-        className={`${styles.menu} absolute -left-20 top-10 ${
+        className={`${styles.menu} absolute -left-40 right-0 top-10 ${
           isActive ? "block" : "hidden"
         } bg-white text-black text-center rounded-lg`}
       >
