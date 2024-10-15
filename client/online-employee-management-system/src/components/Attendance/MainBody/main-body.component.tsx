@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function MainBody(): JSX.Element {
 
-    const [data, setData] = useState([]);
+    const [data] = useState([]);
 
     return (
         <div>
