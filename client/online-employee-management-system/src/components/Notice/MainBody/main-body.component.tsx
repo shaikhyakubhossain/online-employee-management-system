@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { noticeData } from "@/constants/Types/response-data";
 import { getUrl } from "@/constants/url";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
+import AddNotice from "../AddNotice/add-notice.component copy";
 
 import { RootState } from "@/lib/store";
 import { useSelector } from "react-redux";
@@ -46,15 +47,7 @@ export default function MainBody() {
     return (
         <div>
             {
-                role === "admin" && (
-                    <div className="">
-                        <div>
-                        <div className="text-2xl">Add Notice</div>
-                        <input className="border-2 border-black m-2" onChange={event => setDataToSend({ ...dataToSend, title: event.target.value })} type="text" placeholder="Title" /><br /><textarea className="border-2 border-black m-2" onChange={event => setDataToSend({ ...dataToSend, message: event.target.value })} placeholder="Body" />
-                        </div>
-                        <div className="text-lg my-6"><span onClick={handleAddNotice} className="text-red-500 bg-slate-200 p-3 rounded-lg cursor-pointer hover:bg-slate-300">submit</span></div>
-                    </div>
-                )
+                role === "admin" && <AddNotice updateTitle={(data: string) => setDataToSend({ ...dataToSend, title: data })} updateMessage={(data: string) => setDataToSend({ ...dataToSend, message: data })} handleAddNotice={handleAddNotice} />
             }
             <Section title="Latest Notices" data={data} />
             <Section title="Other Notices" data={data} />
