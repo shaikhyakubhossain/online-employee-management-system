@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
 import HeroHeaderHome from "@/components/HeroHeaderHome/hero-header-home.component";
+import ContinueAs from "@/components/Auth/ContinueAs/continue-as.component";
 import { MainBackgroundImg } from "@/components/Auth/MainBackgroundImg/main-background-img.component";
 import Script from "next/script";
 
@@ -42,6 +43,7 @@ export default function Home() {
               </Button>
             </Link>
           </div>
+          <div className="mx-2 my-2 sm:mx-4"><ContinueAs customTW="bg-pink-500 rounded-xl hover:bg-pink-400 hover:text-white px-4 py-2 sm:px-6 sm:py-3" /></div>
         </div>
 
         <footer className="text-white pt-12 sm:pt-16 text-center pb-0">
