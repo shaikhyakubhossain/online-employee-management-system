@@ -7,6 +7,7 @@ export default function MainBody(): JSX.Element {
     <div className="">
       <AddFile />
       <Section title="Study Materials"/>
+      <Section title="Interview Questions"/>
     </div>
   );
 }
