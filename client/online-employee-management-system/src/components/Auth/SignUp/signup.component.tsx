@@ -15,11 +15,24 @@ import {
   setStartLoadingFalse,
 } from "@/lib/features/MainLoading/mainLoadingSlice";
 
+type dataToSendType = {
+  firstName: string;
+  lastName: string;
+  username: string;
+  designation: string;
+  regdNo: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  role: string;
+  secretCode: string;
+};
+
 export default function SignUp() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [dataToSend, setDataToSend] = useState({
+  const [dataToSend, setDataToSend] = useState<dataToSendType>({
     firstName: "",
     lastName: "",
     username: "",
@@ -29,6 +42,7 @@ export default function SignUp() {
     password: "",
     confirmPassword: "",
     role: "",
+    secretCode: ""
   });
 
   const handleRoleSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,6 +177,14 @@ export default function SignUp() {
                 label="Re-enter password"
                 type="password"
                 placeholder="Re-enter password"
+              />
+              <InputField
+                updateDataToSend={(event) =>
+                  setDataToSend({ ...dataToSend, secretCode: event })
+                }
+                label="Secret Code"
+                type="text"
+                placeholder="Enter Secret Code"
               />
             </div>
             <div className="mt-4">

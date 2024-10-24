@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const { MongoDBUrl, PORT } = require("./secrets/api-keys");
+const { MongoDBUrl, PORT, SecretCode } = require("./secrets/api-keys");
 const Employee = require("./model/employee-model");
 const Admin = require("./model/admin-model");
 const Leave = require("./model/leave-model");
@@ -39,8 +39,8 @@ mongoose
     });
 
     console.log("Connected to MongoDB");
-    // const emp = mongoose.connection.db.collection("employee");
-    // const arr = await emp.find({ regdNo: "123" }).toArray();
+    // const emp = mongoose.connection.db.collection("admin");
+    // const arr = await emp.find({}).toArray();
     // console.log(await arr);
   })
   .catch((err) => {
@@ -94,7 +94,12 @@ app.post("/employee-signup", async (req, res) => {
     password,
     confirmPassword,
     genderCode,
+    secretCode
   } = req.body;
+
+  if (secretCode !== SecretCode) {
+    return res.status(400).json({ error: "You are not authorized" });
+  }
   try {
     const employee = await Employee.signup(
       firstName,
@@ -145,7 +150,11 @@ app.post("/admin-signup", async (req, res) => {
     password,
     confirmPassword,
     genderCode,
+    secretCode
   } = req.body;
+  if (secretCode !== SecretCode) {
+    return res.status(400).json({ error: "You are not authorized" });
+  }
   try {
     const admin = await Admin.signup(
       firstName,
