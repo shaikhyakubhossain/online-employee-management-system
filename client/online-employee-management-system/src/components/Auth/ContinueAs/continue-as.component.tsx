@@ -18,10 +18,10 @@ export default function ContinueAs(props: propsType): JSX.Element {
         <Link href={"/Dashboard"}>
           <Button customTW={props.customTW}>Continue as { data?.firstName + " " + data?.lastName }</Button>
         </Link>
-      ) : (
-        <Link href={"/Auth?type=singup&role=employee"}>
-          <Button customTW={props.customTW}>Sign Up</Button>
-        </Link>
+      ) : ( null
+        // <Link href={"/Auth?type=singup&role=employee"}>
+        //   <Button customTW={props.customTW}>Sign Up</Button>
+        // </Link>
       )}
     </>
   );
