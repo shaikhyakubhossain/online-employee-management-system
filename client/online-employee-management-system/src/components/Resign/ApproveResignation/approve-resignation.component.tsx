@@ -3,6 +3,7 @@ import type { defaultData } from "@/constants/Types/response-data";
 
 type propsType = {
   data: defaultData[] | null;
+  handleAction: (id: string, action: string) => void;
 };
 
 export default function ApproveResignation(props: propsType) {
@@ -19,6 +20,7 @@ export default function ApproveResignation(props: propsType) {
             "Status",
           ]}
           showAction={true}
+          handleAction={props.handleAction}
         />
     </div>
   );

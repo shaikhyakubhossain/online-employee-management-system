@@ -42,12 +42,27 @@ export default function MainBody() {
             });
     }
 
+    const handleAction = async (id: string, action: string) => {
+        const response = await fetch(`${getUrl()}/resign-action`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+              role: "admin",
+            },
+            body: JSON.stringify({ _id: id, action: action }),
+          });
+          const data = await response.json();
+          console.log("data: ", data);
+          window.location.reload();
+    }
+
     console.log(dataToSend);
 
     return (
         <div className="font-times">
             {
-                role === "admin" ? <ApproveResignation data={data} /> : <GiveResignation updateDataToSend={(e) => setDataToSend({ ...dataToSend, reason: e })} submit={handleGiveResignation} />
+                role === "admin" ? <ApproveResignation data={data} handleAction={handleAction} /> : <GiveResignation updateDataToSend={(e) => setDataToSend({ ...dataToSend, reason: e })} submit={handleGiveResignation} />
             }
         </div>
     );
