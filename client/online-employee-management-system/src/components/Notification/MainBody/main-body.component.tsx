@@ -7,7 +7,7 @@ import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 export default function MainBody(){
     const [notification, setNotification] = useState<notificationData[] | null>([]);
 
-    useFetchGetMethod("get-all-notifications", "both", (data: notificationData[] | null) => setNotification(data));
+    useFetchGetMethod("get-all-notifications", "both", (data: notificationData[] | null) => setNotification(data), true);
 
     return(
         <div className={`${styles.mainContainer}`}>

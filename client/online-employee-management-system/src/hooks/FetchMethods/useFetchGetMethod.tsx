@@ -12,7 +12,8 @@ import {
 const useFetchGetMethod = (
   endpoint: string,
   role: string,
-  callback: (data: null) => void
+  callback: (data: null) => void,
+  shouldReverse: boolean = false
 ) => {
   const dispatch = useDispatch();
 
@@ -29,8 +30,14 @@ const useFetchGetMethod = (
     })
       .then((res) => res.json())
       .then((data) => {
-        callback(data.data);
-        console.log(data);
+        if(shouldReverse){
+          const reverse = data.data.reverse();
+          callback(reverse); 
+        }
+        else{
+          callback(data.data);
+          console.log(data);
+        }
       })
       .finally(() => {
         dispatch(setStartLoadingFalse());
