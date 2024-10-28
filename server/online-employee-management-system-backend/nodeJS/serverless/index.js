@@ -4,18 +4,17 @@ const cors = require("cors");
 const { MongoDBUrl, PORT } = require("./secrets/api-keys");
 const Employee = require("./model/employee-model");
 const Admin = require("./model/admin-model");
-const Leave = require("./model/leave-model");
 const Notice = require("./model/notice-model");
 const Notification = require("./model/notification-model");
 const Resign = require("./model/resign-model");
 const requireAuth = require("./middleware/require-auth");
 const { login, signup, simpleGet } = require("./routes/data-fetch");
 const { adminAction } = require("./routes/admin-action");
-const {createToken} = require("./secrets/token");
+const { applyLeave } = require("./routes/apply-leave");
 
 const corsOrigin = {
-  origin: "https://driemsconnect.vercel.app",
-  // origin: "http://localhost:3001",
+  // origin: "https://driemsconnect.vercel.app",
+  origin: "http://localhost:3001",
 };
 
 const app = express();
@@ -54,61 +53,7 @@ app.post("/admin-signup", async (req, res) => signup(req, res, "admin"));
 
 app.use(requireAuth);
 
-app.post("/apply-leave", async (req, res) => {
-  const { leaveType, leaveDateFrom, leaveDateTo, additionalInfo } = req.body;
-
-  const userDetails = await Employee.findById(req.user._id);
-  // console.log("userDetails", userDetails);
-  if (userDetails) {
-    try {
-      const leave = await Leave.applyLeave(
-        userDetails.firstName,
-        userDetails.lastName,
-        userDetails.employeeId,
-        userDetails.designation,
-        userDetails.regdNo,
-        userDetails.email,
-        leaveType,
-        leaveDateFrom,
-        leaveDateTo,
-        additionalInfo
-      );
-      if (leave.error) {
-        return res.status(400).json({ error: leave.error });
-      } else {
-        const title = "Leave Application";
-        const message =
-          "Your application for " +
-          leaveType +
-          " leave from " +
-          leaveDateFrom +
-          " to " +
-          leaveDateTo +
-          " has been submitted successfully !";
-        const notification = await Notification.createNotification(
-          userDetails.regdNo,
-          title,
-          message
-        );
-        if (notification.error) {
-          return res.status(400).json({ error: notification.error });
-        } else {
-          res
-            .status(200)
-            .json({
-              message:
-                "Your application for leave has been submitted successfully !",
-            });
-        }
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(400).json({ error: "Server error" });
-    }
-  } else {
-    res.status(400).json({ error: "User does not exist" });
-  }
-});
+app.post("/apply-leave", async (req, res) => applyLeave(req, res));
 
 app.post("/add-notice", async (req, res) => {
   const { title, message } = req.body;

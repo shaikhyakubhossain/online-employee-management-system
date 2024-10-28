@@ -33,7 +33,7 @@ const sendNotification = async (regdNo, title, message) => {
   } else {
     res
       .status(200)
-      .json({ message: action + " Leave action updated successfully" });
+      .json({ message: "successfully done" });
   }
 };
 
