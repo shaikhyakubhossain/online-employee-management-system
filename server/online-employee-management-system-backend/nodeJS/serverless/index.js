@@ -9,12 +9,13 @@ const Notice = require("./model/notice-model");
 const Notification = require("./model/notification-model");
 const Resign = require("./model/resign-model");
 const requireAuth = require("./middleware/require-auth");
-const { login, signup, simpleGet } = require("./routes/auth");
+const { login, signup, simpleGet } = require("./routes/data-fetch");
+const { adminAction } = require("./routes/admin-action");
 const {createToken} = require("./secrets/token");
 
 const corsOrigin = {
-  // origin: "https://driemsconnect.vercel.app",
-  origin: "http://localhost:3001",
+  origin: "https://driemsconnect.vercel.app",
+  // origin: "http://localhost:3001",
 };
 
 const app = express();
@@ -163,82 +164,6 @@ app.get("/get-all-notifications", async (req, res) => {
   }
 });
 
-app.patch("/leave-action", async (req, res) => {
-  const { _id, action } = req.body;
-  try {
-    const leave = await Leave.findById(_id);
-    if (leave) {
-      leave.status = action;
-      await leave.save();
-      const regdNo = await Employee.find({ regdNo: leave.regdNo }).select(
-        "regdNo"
-      );
-      const adminName = await Admin.findById(req.user._id).select(
-        "firstName lastName"
-      );
+app.patch("/leave-action", async (req, res) => adminAction(req, res, "leave", { title: "Leave Application", message: "Your leave application has been successfully submitted" }));
 
-      if (regdNo && adminName) {
-        const notification = await Notification.createNotification(
-          regdNo[0].regdNo,
-          "Leave Application",
-          "Your leave application has been " +
-          action +
-          " by " +
-          adminName.firstName +
-          " " +
-          adminName.lastName
-        );
-        if (notification.error) {
-          res.status(400).json({ error: notification.error });
-        } else {
-          res
-            .status(200)
-            .json({ message: action + " Leave action updated successfully" });
-        }
-      }
-
-      res.status(200).json({ message: "Leave action updated successfully" });
-    } else {
-      res.status(400).json({ error: "Leave not found" });
-    }
-  } catch (error) { }
-});
-
-app.patch("/resign-action", async (req, res) => {
-  const { _id, action } = req.body;
-  try {
-    const resign = await Resign.findById(_id);
-    if (resign) {
-      resign.status = action;
-      await resign.save();
-      const regdNo = await Employee.find({ regdNo: resign.regdNo }).select(
-        "regdNo"
-      );
-      const adminName = await Admin.findById(req.user._id).select(
-        "firstName lastName"
-      );
-
-      if (regdNo && adminName) {
-        const notification = await Notification.createNotification(
-          regdNo[0].regdNo,
-          "Resign Application",
-          "Your resign application has been " +
-          action +
-          " by " +
-          adminName.firstName +
-          " " +
-          adminName.lastName
-        );
-        if (notification.error) {
-          res.status(400).json({ error: notification.error });
-        } else {
-          res.status(200).json({ message: action + " Resign action updated successfully" });
-        }
-      }
-
-      res.status(200).json({ message: "Resign action updated successfully" });
-    } else {
-      res.status(400).json({ error: "Resign not found" });
-    }
-  } catch (error) { }
-});
+app.patch("/resign-action", async (req, res) => adminAction(req, res, "resign", { title: "Resign Application", message: "Your resign application has been successfully submitted" }));
