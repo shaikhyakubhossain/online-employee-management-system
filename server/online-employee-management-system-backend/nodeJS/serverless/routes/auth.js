@@ -1,6 +1,7 @@
 const Employee = require("../model/employee-model");
 const Admin = require("../model/admin-model");
 const { createToken } = require("../secrets/token");
+const { SecretCode } = require("../secrets/api-keys");
 
 const setModel = (loginRole) => {
     if (loginRole === "admin") {
@@ -29,6 +30,62 @@ const login = async (req, res, loginRole) => {
         }
 }
 
+const signup = async (req, res, loginRole) => {
+    const {
+        firstName,
+        lastName,
+        username,
+        designation,
+        regdNo,
+        email,
+        password,
+        confirmPassword,
+        genderCode,
+        secretCode
+      } = req.body;
+      if (secretCode !== SecretCode) {
+        return res.status(400).json({ error: "You are not authorized" });
+      }
+      try {
+        const user = await setModel(loginRole).signup(
+          firstName,
+          lastName,
+          username,
+          designation,
+          regdNo,
+          email,
+          password,
+          confirmPassword,
+          genderCode
+        );
+        if (user.error) {
+          return res.status(400).json({ error: user.error });
+        } else {
+          const token = createToken(user._id);
+          const data = {
+            employeeId: user.employeeId,
+            firstName,
+            lastName,
+            username,
+            designation,
+            regdNo,
+            email,
+            genderCode: user.genderCode,
+            token,
+          }
+          res.status(200).json({
+            data,
+            role: loginRole === "admin" ? "admin" : "employee",
+            token,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        res.status(400).json({ error: "Server error" });
+      }
+}
+
 module.exports = {
-    login
+    login,
+    signup
 }

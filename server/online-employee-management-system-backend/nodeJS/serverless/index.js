@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const { MongoDBUrl, PORT, SecretCode } = require("./secrets/api-keys");
+const { MongoDBUrl, PORT } = require("./secrets/api-keys");
 const Employee = require("./model/employee-model");
 const Admin = require("./model/admin-model");
 const Leave = require("./model/leave-model");
@@ -9,12 +9,12 @@ const Notice = require("./model/notice-model");
 const Notification = require("./model/notification-model");
 const Resign = require("./model/resign-model");
 const requireAuth = require("./middleware/require-auth");
-const { login } = require("./routes/auth");
+const { login, signup } = require("./routes/auth");
 const {createToken} = require("./secrets/token");
 
 const corsOrigin = {
-  origin: "https://driemsconnect.vercel.app",
-  // origin: "http://localhost:3001",
+  // origin: "https://driemsconnect.vercel.app",
+  origin: "http://localhost:3001",
 };
 
 const app = express();
@@ -47,116 +47,9 @@ app.post("/employee-login", async (req, res) => login(req, res, "employee"));
 
 app.post("/admin-login", async (req, res) => login(req, res, "admin"));
 
-app.post("/employee-signup", async (req, res) => {
-  const {
-    firstName,
-    lastName,
-    username,
-    designation,
-    regdNo,
-    email,
-    password,
-    confirmPassword,
-    genderCode,
-    secretCode
-  } = req.body;
+app.post("/employee-signup", async (req, res) => signup(req, res, "employee"));
 
-  if (secretCode !== SecretCode) {
-    return res.status(400).json({ error: "You are not authorized" });
-  }
-  try {
-    const employee = await Employee.signup(
-      firstName,
-      lastName,
-      username,
-      designation,
-      regdNo,
-      email,
-      password,
-      confirmPassword,
-      genderCode
-    );
-    if (employee.error) {
-      return res.status(400).json({ error: employee.error });
-    } else {
-      const token = createToken(employee._id);
-      const data = {
-        employeeId: employee.employeeId,
-        firstName,
-        lastName,
-        username,
-        designation,
-        regdNo,
-        email,
-        genderCode: employee.genderCode,
-        token,
-      }
-      res.status(200).json({
-        data,
-        role: "employee",
-        token,
-      });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: "Server error" });
-  }
-});
-
-app.post("/admin-signup", async (req, res) => {
-  const {
-    firstName,
-    lastName,
-    username,
-    designation,
-    regdNo,
-    email,
-    password,
-    confirmPassword,
-    genderCode,
-    secretCode
-  } = req.body;
-  if (secretCode !== SecretCode) {
-    return res.status(400).json({ error: "You are not authorized" });
-  }
-  try {
-    const admin = await Admin.signup(
-      firstName,
-      lastName,
-      username,
-      designation,
-      regdNo,
-      email,
-      password,
-      confirmPassword,
-      genderCode
-    );
-    if (admin.error) {
-      return res.status(400).json({ error: admin.error });
-    } else {
-      const token = createToken(admin._id);
-      const data = {
-        employeeId: admin.employeeId,
-        firstName,
-        lastName,
-        username,
-        designation,
-        regdNo,
-        email,
-        genderCode: admin.genderCode,
-        token,
-      }
-      res.status(200).json({
-        data,
-        role: "admin",
-        token,
-      });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: "Server error" });
-  }
-});
+app.post("/admin-signup", async (req, res) => signup(req, res, "admin"));
 
 app.use(requireAuth);
 
