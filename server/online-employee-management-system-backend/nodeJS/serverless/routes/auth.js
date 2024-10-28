@@ -1,14 +1,29 @@
 const Employee = require("../model/employee-model");
 const Admin = require("../model/admin-model");
+const Leave = require("../model/leave-model");
+const Notice = require("../model/notice-model");
+const Notification = require("../model/notification-model");
+const Resign = require("../model/resign-model");
 const { createToken } = require("../secrets/token");
 const { SecretCode } = require("../secrets/api-keys");
 
-const setModel = (loginRole) => {
-    if (loginRole === "admin") {
-        return Admin;
-    } else if (loginRole === "employee") {
-        return Employee
-    }
+const setModel = (modelName) => {
+   switch(modelName){
+     case "admin":
+       return Admin;
+     case "employee":
+       return Employee;
+    case "resign":
+      return Resign;
+    case "leave":
+      return Leave;
+    case "notice":
+      return Notice;
+    case "notification":
+      return Notification;
+     default:
+       return null
+   }
 }
 
 const login = async (req, res, loginRole) => {
@@ -85,7 +100,13 @@ const signup = async (req, res, loginRole) => {
       }
 }
 
+const simpleGet = async (req, res, dataToGetFromModel) => {
+    const data = await setModel(dataToGetFromModel).find({});
+    res.status(200).json({ data });
+}
+
 module.exports = {
     login,
-    signup
+    signup,
+    simpleGet
 }

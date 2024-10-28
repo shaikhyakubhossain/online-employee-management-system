@@ -9,7 +9,7 @@ const Notice = require("./model/notice-model");
 const Notification = require("./model/notification-model");
 const Resign = require("./model/resign-model");
 const requireAuth = require("./middleware/require-auth");
-const { login, signup } = require("./routes/auth");
+const { login, signup, simpleGet } = require("./routes/auth");
 const {createToken} = require("./secrets/token");
 
 const corsOrigin = {
@@ -136,11 +136,6 @@ app.post("/add-resign", async (req, res) => {
   }
 })
 
-app.get("/get-all-leave-applications", async (req, res) => {
-  const data = await Leave.find({});
-  res.status(200).json({ data });
-});
-
 app.get("/get-all-employees", async (req, res) => {
   const employees = await Employee.find({});
   const admin = await Admin.find({});
@@ -148,15 +143,11 @@ app.get("/get-all-employees", async (req, res) => {
   res.status(200).json({ data: combinedData });
 });
 
-app.get("/get-all-resign-applications", async (req, res) => {
-  const data = await Resign.find({});
-  res.status(200).json({ data });
-});
+app.get("/get-all-leave-applications", async (req, res) => simpleGet(req, res, "leave"));
 
-app.get("/get-all-notices", async (req, res) => {
-  const data = await Notice.find({});
-  res.status(200).json({ data });
-})
+app.get("/get-all-resign-applications", async (req, res) => simpleGet(req, res, "resign"));;
+
+app.get("/get-all-notices", async (req, res) => simpleGet(req, res, "notice"));
 
 app.get("/get-all-notifications", async (req, res) => {
   let regdNo = await Admin.findById(req.user._id).select("regdNo");
