@@ -17,6 +17,8 @@ const setModel = (modelName) => {
       return Leave;
     case "notice":
       return Notice;
+    case "notification":
+      return Notification;
     default:
       return null;
   }

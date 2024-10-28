@@ -8,13 +8,14 @@ const Notice = require("./model/notice-model");
 const Notification = require("./model/notification-model");
 const Resign = require("./model/resign-model");
 const requireAuth = require("./middleware/require-auth");
-const { login, signup, simpleGet } = require("./routes/data-fetch");
+const { simpleGet, getNotification, getEmployee } = require("./routes/data-fetch");
+const { login, signup } = require("./routes/auth");
 const { adminAction } = require("./routes/admin-action");
 const { applyLeave } = require("./routes/apply-leave");
 
 const corsOrigin = {
-  // origin: "https://driemsconnect.vercel.app",
-  origin: "http://localhost:3001",
+  origin: "https://driemsconnect.vercel.app",
+  // origin: "http://localhost:3001",
 };
 
 const app = express();
@@ -87,19 +88,7 @@ app.get("/get-all-resign-applications", async (req, res) => simpleGet(req, res, 
 
 app.get("/get-all-notices", async (req, res) => simpleGet(req, res, "notice"));
 
-app.get("/get-all-notifications", async (req, res) => {
-  let regdNo = await Admin.findById(req.user._id).select("regdNo");
-
-  if (!regdNo) {
-    regdNo = await Employee.findById(req.user._id).select("regdNo");
-  }
-  if (regdNo) {
-    const data = await Notification.find({ regdNo: regdNo.regdNo });
-    res.status(200).json({ data });
-  } else {
-    res.status(400).json({ error: "User does not exist" });
-  }
-});
+app.get("/get-all-notifications", async (req, res) => getNotification(req, res));
 
 app.patch("/leave-action", async (req, res) => adminAction(req, res, "leave", { title: "Leave Application", message: "Your leave application has been successfully submitted" }));
 
