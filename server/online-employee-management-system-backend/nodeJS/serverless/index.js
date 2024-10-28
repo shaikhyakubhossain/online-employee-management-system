@@ -8,17 +8,13 @@ const Leave = require("./model/leave-model");
 const Notice = require("./model/notice-model");
 const Notification = require("./model/notification-model");
 const Resign = require("./model/resign-model");
-const { tokenSecret } = require("./secrets/token");
-const jwt = require("jsonwebtoken");
 const requireAuth = require("./middleware/require-auth");
-
-const createToken = (_id) => {
-  return jwt.sign({ _id }, tokenSecret, { expiresIn: "1d" });
-};
+const { login } = require("./routes/auth");
+const {createToken} = require("./secrets/token");
 
 const corsOrigin = {
   origin: "https://driemsconnect.vercel.app",
-  // origin: "http://localhost:3000",
+  // origin: "http://localhost:3001",
 };
 
 const app = express();
@@ -47,41 +43,9 @@ mongoose
     console.log(err);
   });
 
-app.post("/employee-login", async (req, res) => {
-  const { username, password } = req.body;
-  console.log(username, password);
-  try {
-    const employee = await Employee.login(username, password);
-    if (employee.error) {
-      return res.status(400).json({ error: employee.error });
-    } else {
-      const token = createToken(employee._id);
-      const data = await Employee.findById(employee._id);
-      res.status(200).json({ data, role: "employee", token });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: "Server error" });
-  }
-});
+app.post("/employee-login", async (req, res) => login(req, res, "employee"));
 
-app.post("/admin-login", async (req, res) => {
-  const { username, password } = req.body;
-  console.log(username, password);
-  try {
-    const admin = await Admin.login(username, password);
-    if (admin.error) {
-      return res.status(400).json({ error: admin.error });
-    } else {
-      const token = createToken(admin._id);
-      const data = await Admin.findById(admin._id);
-      res.status(200).json({ data, role: "admin", token });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: "Server error" });
-  }
-});
+app.post("/admin-login", async (req, res) => login(req, res, "admin"));
 
 app.post("/employee-signup", async (req, res) => {
   const {
