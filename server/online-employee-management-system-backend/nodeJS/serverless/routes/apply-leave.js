@@ -1,10 +1,12 @@
 const {sendNotification} = require("../utils/methods");
+const { setModel } = require("../utils/methods");
+const Leave = require("../model/leave-model");
 
-const applyLeave = async (req, res) => {
+const applyLeave = async (req, res, leaveAppliedBy) => {
     {
         const { leaveType, leaveDateFrom, leaveDateTo, additionalInfo } = req.body;
       
-        const userDetails = await Employee.findById(req.user._id);
+        const userDetails = await setModel(leaveAppliedBy).findById(req.user._id);
         // console.log("userDetails", userDetails);
         if (userDetails) {
           try {
@@ -23,7 +25,7 @@ const applyLeave = async (req, res) => {
             if (leave.error) {
               return res.status(400).json({ error: leave.error });
             } else {
-                sendNotification(userDetails.regdNo, "Leave Application", "Your leave application has been successfully submitted");
+                sendNotification(res, userDetails.regdNo, "Leave Application", "Your leave application for " + leaveType + " " + " from " + leaveDateFrom + " to " + leaveDateTo + " has been successfully submitted");
             }
           } catch (error) {
             console.log(error);

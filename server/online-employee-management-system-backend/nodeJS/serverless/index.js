@@ -27,13 +27,10 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose
-  .connect(MongoDBUrl)
-  .then(async () => {
+mongoose.connect(MongoDBUrl).then(async () => {
     const server = app.listen(PORT, () => {
       console.log("Server is listening on PORT " + PORT);
     });
-
     console.log("Connected to MongoDB");
     // const emp = mongoose.connection.db.collection("admin");
     // const arr = await emp.find({}).toArray();
@@ -53,7 +50,7 @@ app.post("/admin-signup", async (req, res) => signup(req, res, "admin"));
 
 app.use(requireAuth);
 
-app.post("/apply-leave", async (req, res) => applyLeave(req, res));
+app.post("/apply-leave", async (req, res) => applyLeave(req, res, "employee"));
 
 app.post("/add-notice", async (req, res) => {
   const { title, message } = req.body;
@@ -78,16 +75,11 @@ app.post("/add-resign", async (req, res) => {
     }
   }
   else {
-    res.status(400).json({ error: "User does not exist" });
+    res.status(400).json({ error: "access denied" });
   }
 })
 
-app.get("/get-all-employees", async (req, res) => {
-  const employees = await Employee.find({});
-  const admin = await Admin.find({});
-  const combinedData = [...employees, ...admin];
-  res.status(200).json({ data: combinedData });
-});
+app.get("/get-all-employees", async (req, res) => getEmployee(req, res));
 
 app.get("/get-all-leave-applications", async (req, res) => simpleGet(req, res, "leave"));
 

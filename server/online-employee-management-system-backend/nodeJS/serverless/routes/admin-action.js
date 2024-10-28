@@ -14,7 +14,7 @@ const adminAction = async (req, res, actionOnModel, notificationObject) => {
         "firstName lastName"
       );
       if (regdNo && adminName) {
-        sendNotification(regdNo[0].regdNo, notificationObject.title, notificationObject.message);
+        sendNotification(res, regdNo[0].regdNo, notificationObject.title, notificationObject.message);
       }
       res.status(200).json({ message: actionOnModel + " action updated successfully" });
     } else {

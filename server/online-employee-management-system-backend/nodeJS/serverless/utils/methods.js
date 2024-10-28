@@ -22,7 +22,7 @@ const setModel = (modelName) => {
   }
 };
 
-const sendNotification = async (regdNo, title, message) => {
+const sendNotification = async (res, regdNo, title, message) => {
   const notification = await Notification.createNotification(
     regdNo,
     title,
