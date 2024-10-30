@@ -30,7 +30,7 @@ export default function LeftMenu(props: { screenSize: number | null }): JSX.Elem
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("authDetail");
+    localStorage.removeItem("OEMS-authDetail");
     dispatch(setDetail({ data: null, token: null }));
     router.push("/");
   };

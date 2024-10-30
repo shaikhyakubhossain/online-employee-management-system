@@ -17,7 +17,7 @@ export default function HeroHeaderHome() {
   const typedRef = useRef<Typed | null>(null);
 
   useEffect(() => {
-    const authDetail = localStorage.getItem("authDetail");
+    const authDetail = localStorage.getItem("OEMS-authDetail");
     if (!autoLogin && authDetail) {
       dispatch(setDetail(JSON.parse(authDetail)));
       dispatch(setAutoLogin(true));

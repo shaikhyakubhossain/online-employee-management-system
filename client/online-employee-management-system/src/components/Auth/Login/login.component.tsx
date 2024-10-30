@@ -45,7 +45,7 @@ export default function Login(props: propsType) {
           dispatch(setStartLoadingFalse());
           if (!data.error) {
             dispatch(setDetail(data));
-            localStorage.setItem("authDetail", JSON.stringify(data));
+            localStorage.setItem("OEMS-authDetail", JSON.stringify(data));
             router.push(`/Dashboard`);
           } else {
             alert(data.error);

@@ -72,7 +72,7 @@ export default function SignUp() {
           dispatch(setStartLoadingFalse());
           console.log(data);
           dispatch(setDetail(data));
-          localStorage.setItem("authDetail", JSON.stringify(data));
+          localStorage.setItem("OEMS-authDetail", JSON.stringify(data));
           router.push(`/Dashboard`);
         }
         console.log(data);

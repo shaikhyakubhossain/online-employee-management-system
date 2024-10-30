@@ -16,7 +16,7 @@ export default function RightContainer() {
     const {data} = useSelector((state: RootState) => state.authDetail);
 
     useEffect (() => {
-        const authDetail = localStorage.getItem("authDetail");
+        const authDetail = localStorage.getItem("OEMS-authDetail");
         if(authDetail){
             dispatch(setDetail(JSON.parse(authDetail)));
         }
