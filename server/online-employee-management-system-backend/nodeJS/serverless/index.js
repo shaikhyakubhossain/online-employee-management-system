@@ -1,21 +1,18 @@
+const { MongoDBUrl, PORT } = require("./secrets/api-keys");
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
-const { MongoDBUrl, PORT } = require("./secrets/api-keys");
-const Employee = require("./model/employee-model");
-const Admin = require("./model/admin-model");
-const Notice = require("./model/notice-model");
-const Notification = require("./model/notification-model");
-const Resign = require("./model/resign-model");
 const requireAuth = require("./middleware/require-auth");
 const { simpleGet, getNotification, getEmployee } = require("./routes/data-fetch");
+const { addResignApplication } = require("./routes/resign");
 const { login, signup } = require("./routes/auth");
 const { adminAction } = require("./routes/admin-action");
 const { applyLeave } = require("./routes/apply-leave");
+const { addNotice } = require("./routes/notice");
 
 const corsOrigin = {
   origin: "https://driemsconnect.vercel.app",
-  // origin: "http://localhost:3001",
+  // origin: "http://localhost:3000",
 };
 
 const app = express();
@@ -53,32 +50,9 @@ app.use(requireAuth);
 
 app.post("/apply-leave", async (req, res) => applyLeave(req, res, "employee"));
 
-app.post("/add-notice", async (req, res) => {
-  const { title, message } = req.body;
-  const notice = await Notice.createNotice(title, message);
-  if(notice.error){
-    res.status(400).json({ error: notice.error });
-  }else{
-    res.status(200).json({ message: "Notice added successfully" });
-  }
-})
+app.post("/add-notice", async (req, res) => addNotice(req, res));
 
-app.post("/add-resign", async (req, res) => {
-  console.log(req.user);
-  const { reason } = req.body;
-  const user = await Employee.findById(req.user._id);
-  if (user) {
-    const resign = await Resign.createResignApplication(user.firstName, user.lastName, user.designation, user.email, user.regdNo, reason);
-    if(resign.error){
-      res.status(400).json({ error: resign.error });
-    }else{
-      res.status(200).json({ message: "Resign application submitted successfully" });
-    }
-  }
-  else {
-    res.status(400).json({ error: "access denied" });
-  }
-})
+app.post("/add-resign", async (req, res) => addResignApplication(req, res));
 
 app.get("/get-all-employees", async (req, res) => getEmployee(req, res));
 
