@@ -1,6 +1,8 @@
+require('dotenv').config();
+
 const PORT = 4000;
-const MongoDBUrl="mongodb+srv://samarjit:driemsconnect@driems-connect.onk2e.mongodb.net/DRIEMS-Connect?retryWrites=true&w=majority&appName=driems-connect";
-const SecretCode = "368174";
+const MongoDBUrl=process.env.MONGO_DB_URI;
+const SecretCode=process.env.SIGNUP_SECRET_CODE;
 
 module.exports = {
     PORT,

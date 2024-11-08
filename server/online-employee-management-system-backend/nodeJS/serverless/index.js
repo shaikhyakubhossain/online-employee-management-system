@@ -30,9 +30,6 @@ mongoose.connect(MongoDBUrl).then(async () => {
       console.log("Server is listening on PORT " + PORT);
     });
     console.log("Connected to MongoDB");
-    // const emp = mongoose.connection.db.collection("admin");
-    // const arr = await emp.find({}).toArray();
-    // console.log(await arr);
   })
   .catch((err) => {
     console.log(err);
