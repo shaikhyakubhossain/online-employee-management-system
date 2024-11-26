@@ -60,7 +60,7 @@ export default function HeroHeaderHome() {
         <div
           className={`ml-2 sm:ml-3 md:ml-4 lg:ml-5 ${styles.heroTitle} ${styles.heroContainer} text-2xl sm:text-3xl md:text-4xl lg:text-5xl`}
         >
-          DRIEMS Connect
+          Employee Verse
         </div>
       </div>
 
