@@ -11,7 +11,7 @@ const { applyLeave } = require("./routes/apply-leave");
 const { addNotice } = require("./routes/notice");
 
 const corsOrigin = {
-  origin: "https://driemsconnect.vercel.app",
+  origin: "https://employeeverse.vercel.app",
   // origin: "http://localhost:3000",
 };
 
