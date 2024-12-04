@@ -2,6 +2,8 @@
 import styles from "./hero-header-home.module.scss";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import HeroLogo from "@/constants/Svg/heroLogo";
+
 import Typed from "typed.js";
 import { RootState } from "@/lib/store";
 import { useSelector, useDispatch } from "react-redux";
@@ -51,12 +53,9 @@ export default function HeroHeaderHome() {
       style={{ fontFamily: "Times New Roman, serif" }}
     >
       <div className="flex items-center mb-3 sm:mb-4 md:mb-5">
-        <img
-          className={`${styles.heroImage} rounded-s-xl w-4 sm:w-8 md:w-12 lg:w-16 xl:w-20`}
-          src="favicon.ico"
-          alt=""
-        />
-
+        <div>
+          <HeroLogo color="white" width="100px" height="100px" />
+        </div>
         <div
           className={`ml-2 sm:ml-3 md:ml-4 lg:ml-5 ${styles.heroTitle} ${styles.heroContainer} text-2xl sm:text-3xl md:text-4xl lg:text-5xl`}
         >
