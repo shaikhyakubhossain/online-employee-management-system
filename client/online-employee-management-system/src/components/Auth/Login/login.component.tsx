@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
 import InputField from "../InputField/Input-field.component";
+import Toast from "@/components/Toast/toast.component";
 import { getUrl } from "@/constants/url";
 import { useRouter } from "next/navigation";
 
@@ -29,6 +30,9 @@ export default function Login(props: propsType) {
     username: "",
     password: "",
   });
+  const [toast, setToast] = useState<boolean>(false);
+
+  const errorMessageRef = useRef<string | null>(null);
 
   const handleSubmit = () => {
     dispatch(setStartLoadingTrue());
@@ -41,14 +45,14 @@ export default function Login(props: propsType) {
     })
       .then((res) => {
         res.json().then((data) => {
-          console.log(data);
           dispatch(setStartLoadingFalse());
           if (!data.error) {
             dispatch(setDetail(data));
             localStorage.setItem("OEMS-authDetail", JSON.stringify(data));
             router.push(`/Dashboard`);
           } else {
-            alert(data.error);
+            errorMessageRef.current = data.error;
+            setToast(true);
           }
         });
       })
@@ -56,16 +60,16 @@ export default function Login(props: propsType) {
         console.log(error);
         dispatch(setStartLoadingFalse());
       });
-
-    console.log(dataToSend);
   };
 
   useEffect(() => {
-    console.log(props.searchParams);
-  }, []);
+    const toastTimeOut = setTimeout(() => setToast(false), 3000);
+    return () => clearTimeout(toastTimeOut);
+  }, [toast]);
 
   return (
     <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>
+      <Toast show={toast} message={errorMessageRef.current} />
       <div className="">
         <div className="text-3xl my-4 capitalize">
           {props.searchParams.role} Login
