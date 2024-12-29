@@ -21,8 +21,8 @@ export default function Toast(props: propsType) {
 
   return (
     <div
-      className="fixed bottom-14 left-5 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
-      style={{ display: props.show ? "flex" : "none" }}
+      className="fixed bottom-14 left-5 flex items-center w-full max-w-xs p-4 text-black font-semibold bg-white rounded-lg shadow transition-transform duration-100 ease-in-out"
+      style={{ transform: props.show ? "translateX(0)" : "translateX(-120%)" }}
     >
       <div className="text-sm font-normal">{props.message}</div>
     </div>
