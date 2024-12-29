@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./form-contents.module.scss";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
 import SetDate from "../SetDate/set-date.component";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
+import Toast from "@/components/Toast/toast.component";
 import { getUrl } from "@/constants/url";
 
 import { RootState } from "@/lib/store";
@@ -27,6 +28,9 @@ export default function FormContents() {
     toDate: "",
     additionalInfo: "",
   });
+  const [toast, setToast] = useState(false);
+
+  const errorMessageRef = useRef<string | null>(null);
 
   const handleSubmit = () => {
     if (
@@ -34,10 +38,12 @@ export default function FormContents() {
       dataToSend.fromDate === "" ||
       dataToSend.toDate === ""
     ) {
-      alert("Please fill all the fields");
+      errorMessageRef.current = "Please fill all the fields";
+      setToast(true);
     }
     if (!data) {
-      alert("Please login to apply for leave");
+      errorMessageRef.current = "Please login to apply for leave";
+      setToast(true);
     } else {
       fetch(`${getUrl()}/apply-leave`, {
         method: "POST",
@@ -56,7 +62,8 @@ export default function FormContents() {
         .then((response) => response.json())
         .then((data) => {
           console.log("data", data);
-          alert(data.error ? data.error : data.message);
+          errorMessageRef.current = data.error ? data.error : data.message;
+          setToast(true);
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -68,6 +75,7 @@ export default function FormContents() {
 
   return (
     <div className="">
+      <Toast show={toast} hide={() => setToast(false)} message={errorMessageRef.current} />
       <div className="text-2xl font-semibold">Choose type of leave :</div>
       <div className="flex justify-evenly flex-wrap my-2">
         <RadioBtn

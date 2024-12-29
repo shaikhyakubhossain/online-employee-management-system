@@ -94,17 +94,12 @@ export default function SignUp() {
     }
   };
 
-  useEffect(() => {
-    const toastTimeOut = setTimeout(() => setToast(false), 3000);
-    return () => clearTimeout(toastTimeOut);
-  }, [toast]);
-
   return (
     <div
       className={`${styles.mainContainer} text-center flex flex-col p-5 sm:p-10 lg:p-20 justify-center`}
       style={{ fontFamily: "Lora, serif" }}
     >
-      <Toast show={toast} message={errorMessageRef.current} />
+      <Toast show={toast} message={errorMessageRef.current} hide={() => setToast(false)} />
       <div className="mx-auto w-full">
         <div className="text-2xl sm:text-3xl mb-2">New user? Register here</div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center items-start">

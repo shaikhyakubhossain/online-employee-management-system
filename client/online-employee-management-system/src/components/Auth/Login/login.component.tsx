@@ -62,14 +62,9 @@ export default function Login(props: propsType) {
       });
   };
 
-  useEffect(() => {
-    const toastTimeOut = setTimeout(() => setToast(false), 3000);
-    return () => clearTimeout(toastTimeOut);
-  }, [toast]);
-
   return (
     <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>
-      <Toast show={toast} message={errorMessageRef.current} />
+      <Toast show={toast} message={errorMessageRef.current} hide={() => setToast(false)} />
       <div className="">
         <div className="text-3xl my-4 capitalize">
           {props.searchParams.role} Login
