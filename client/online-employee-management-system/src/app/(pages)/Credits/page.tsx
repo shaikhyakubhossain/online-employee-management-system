@@ -7,15 +7,14 @@ const teamMembers = [
     name: "Shaikh Yakub Hossain",
     regdNo: "2221229012",
     designation: "Full Stack Developer",
-    photoUrl:
-      "https://media.licdn.com/dms/image/v2/D5603AQGEhhenn-3UlA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1704397672049?e=1733961600&v=beta&t=_AHPBR2ewfUuPpYpE224B2IjRaLBhJwgUsrxLU7ZSzo",
+    photoUrl: "https://avatars.githubusercontent.com/u/74724579?v=4",
     github: "https://github.com/shaikhyakubhossain",
     linkedin: "https://www.linkedin.com/in/shaikh-yakub-hossain/",
   },
   {
     name: "Samarjit Sahoo",
     regdNo: "2101229204",
-    designation: "Full Stack Developer",
+    designation: "Machine Learning Engineer",
     photoUrl: "https://avatars.githubusercontent.com/u/145245473?v=4",
     github: "https://github.com/samarjitsahoo",
     linkedin: "https://www.linkedin.com/in/samarjitsahoo",
@@ -23,7 +22,7 @@ const teamMembers = [
   {
     name: "Soumya Das",
     regdNo: "2221229014",
-    designation: "UI/UX Designer",
+    designation: "Database Administrator",
     photoUrl: "https://avatars.githubusercontent.com/u/181587082?v=4",
     github: "https://github.com/soumya-das22",
     linkedin: "https://www.linkedin.com/in/soumya-das-46510a29a/",
@@ -39,7 +38,7 @@ const teamMembers = [
   {
     name: "Udit Narayan Giri",
     regdNo: "2101229192",
-    designation: "Web accessories Engineer",
+    designation: "Software Developer",
     photoUrl: "https://avatars.githubusercontent.com/u/144381953?v=4",
     github: "https://github.com/uditnarayan122",
     linkedin: "https://www.linkedin.com/in/udit-narayan-giri/",
