@@ -11,7 +11,7 @@ export default function AddFile() {
       <div className=" text-2xl font-semibold m-2">Add File:</div>
       <Button onClick={() => setShowDropDown(!showDropDown)} customTW="m-2">File Type</Button>
       <div
-        className={`${styles.dropDown} absolute top-14 left-[120px] bg-white border-gray-400 border p-2 text-black rounded-md`}
+        className={`${styles.dropDown} absolute top-14 left-[120px] bg-white border-gray-400 border p-2 text-black rounded-md z-10`}
         style={{ display: showDropDown ? "block" : "none" }}
       >
         <div className="text-xl font-semibold border-b-2 border-gray-400">
