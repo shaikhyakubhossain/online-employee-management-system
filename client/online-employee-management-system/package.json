@@ -13,7 +13,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "date-holidays": "^3.23.12",
     "moment": "^2.30.1",
-    "next": "14.2.9",
+    "next": "14.2.22",
     "react": "^18",
     "react-big-calendar": "^1.15.0",
     "react-calendar": "^5.0.0",
