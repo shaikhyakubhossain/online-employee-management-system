@@ -32,9 +32,6 @@ export default function RightContainer() {
                 :
                 // path === "/" || path === "/Auth" ?
                 <AuthOptions />
-                // :
-                // <div className='text-white text-2xl'>debugging</div>
-                
             }
         </div>
     )
