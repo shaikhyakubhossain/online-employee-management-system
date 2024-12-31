@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
 import InputField from "../InputField/Input-field.component";

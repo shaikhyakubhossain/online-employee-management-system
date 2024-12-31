@@ -1,6 +1,6 @@
 "use client";
 import styles from "./signup.module.scss";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
