@@ -8,6 +8,8 @@ import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 
 export default function MainBody() {
   const [data, setData] = useState<employeeData[] | null>(null);
+  const [searchResults, setSearchResults] = useState<employeeData[]>([]);
+  const [searchData, setSearchData] = useState<string>("");
 
   useFetchGetMethod(
     "get-all-employees",
@@ -15,11 +17,18 @@ export default function MainBody() {
     (data: employeeData[] | null) => setData(data)
   );
 
+  const handleSearch = () => {
+    if (!data) return;
+    const localData: employeeData[] = data.filter((item) => item.firstName.includes(searchData));
+    console.log("searching: ", searchData);
+    setSearchResults(localData);
+  };
+
   return (
     <div>
-      <SearchBox />
+      <SearchBox updateSearchData={(data: string) => setSearchData(data)} startSearch={handleSearch} />
       <Table
-        data={data}
+        data={searchResults ? searchResults : data}
         headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
         showAction={false}
       />
