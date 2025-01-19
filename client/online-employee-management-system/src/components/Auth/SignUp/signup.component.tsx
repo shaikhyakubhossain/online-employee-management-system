@@ -1,6 +1,6 @@
 "use client";
 import styles from "./signup.module.scss";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import Toast from "@/components/Toast/toast.component";
 import { getUrl } from "@/constants/url";
 import { useRouter } from "next/navigation";
+import type { toastType } from "@/constants/Types/local";
 
 import { useDispatch } from "react-redux";
 import { setDetail } from "@/lib/features/AuthDetail/authDetailSlice";
@@ -45,9 +46,7 @@ export default function SignUp() {
     role: "",
     secretCode: "",
   });
-  const [toast, setToast] = useState<boolean>(false);
-
-  const errorMessageRef = useRef<string | null>(null);
+  const [toast, setToast] = useState<toastType>({ show: false, message: "" });
 
   const handleRoleSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
     const current = event.target as HTMLInputElement;
@@ -71,8 +70,7 @@ export default function SignUp() {
       .then((data) => {
         if (data.error) {
           dispatch(setStartLoadingFalse());
-          errorMessageRef.current = data.error;
-          setToast(true);
+          setToast({ show: true, message: data.error });
         } else {
           dispatch(setStartLoadingFalse());
           console.log(data);
@@ -86,8 +84,7 @@ export default function SignUp() {
 
   const handleSubmit = () => {
     if (dataToSend.role === "") {
-      errorMessageRef.current = "Please select role";
-      setToast(true);
+      setToast({ show: true, message: "Please select role" });
     } else {
       dispatch(setStartLoadingTrue());
       fetchData();
@@ -99,7 +96,7 @@ export default function SignUp() {
       className={`${styles.mainContainer} text-center flex flex-col p-5 sm:p-10 lg:p-20 justify-center`}
       style={{ fontFamily: "Lora, serif" }}
     >
-      <Toast show={toast} message={errorMessageRef.current} hide={() => setToast(false)} />
+      <Toast show={toast.show} hide={() => setToast({ show: false, message: "" })} message={toast.message} />
       <div className="mx-auto w-full">
         <div className="text-2xl sm:text-3xl mb-2">New user? Register here</div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center items-start">

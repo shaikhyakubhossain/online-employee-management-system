@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import styles from "./form-contents.module.scss";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
 import SetDate from "../SetDate/set-date.component";
@@ -7,6 +7,7 @@ import Link from "next/link";
 import Button from "@/components/Button/button.component";
 import Toast from "@/components/Toast/toast.component";
 import { getUrl } from "@/constants/url";
+import type { toastType } from "@/constants/Types/local";
 
 import { RootState } from "@/lib/store";
 import { useSelector } from "react-redux";
@@ -28,9 +29,7 @@ export default function FormContents() {
     toDate: "",
     additionalInfo: "",
   });
-  const [toast, setToast] = useState(false);
-
-  const errorMessageRef = useRef<string | null>(null);
+  const [toast, setToast] = useState<toastType>({ show: false, message: "" });
 
   const handleSubmit = () => {
     if (
@@ -38,12 +37,10 @@ export default function FormContents() {
       dataToSend.fromDate === "" ||
       dataToSend.toDate === ""
     ) {
-      errorMessageRef.current = "Please fill all the fields";
-      setToast(true);
+      setToast({ show: true, message: "Please fill all the fields" });
     }
     if (!data) {
-      errorMessageRef.current = "Please login to apply for leave";
-      setToast(true);
+      setToast({ show: true, message: "Please login to apply for leave" });
     } else {
       fetch(`${getUrl()}/apply-leave`, {
         method: "POST",
@@ -62,8 +59,7 @@ export default function FormContents() {
         .then((response) => response.json())
         .then((data) => {
           console.log("data", data);
-          errorMessageRef.current = data.error ? data.error : data.message;
-          setToast(true);
+          setToast({ show: true, message: data.error ? data.error : data.message });
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -75,7 +71,7 @@ export default function FormContents() {
 
   return (
     <div className="">
-      <Toast show={toast} hide={() => setToast(false)} message={errorMessageRef.current} />
+      <Toast show={toast.show} hide={() => setToast({ show: false, message: "" })} message={toast.message} />
       <div className="text-2xl font-semibold">Choose type of leave :</div>
       <div className="flex justify-evenly flex-wrap my-2">
         <RadioBtn

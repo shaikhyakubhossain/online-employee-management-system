@@ -1,11 +1,12 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
 import InputField from "../InputField/Input-field.component";
 import Toast from "@/components/Toast/toast.component";
 import { getUrl } from "@/constants/url";
 import { useRouter } from "next/navigation";
+import type { toastType } from "@/constants/Types/local";
 
 import { useDispatch } from "react-redux";
 import { setDetail } from "@/lib/features/AuthDetail/authDetailSlice";
@@ -30,9 +31,7 @@ export default function Login(props: propsType) {
     username: "",
     password: "",
   });
-  const [toast, setToast] = useState<boolean>(false);
-
-  const errorMessageRef = useRef<string | null>(null);
+  const [toast, setToast] = useState<toastType>({ show: false, message: "" });
 
   const handleSubmit = () => {
     dispatch(setStartLoadingTrue());
@@ -51,8 +50,7 @@ export default function Login(props: propsType) {
             localStorage.setItem("OEMS-authDetail", JSON.stringify(data));
             router.push(`/Dashboard`);
           } else {
-            errorMessageRef.current = data.error;
-            setToast(true);
+            setToast({ show: true, message: data.error });
           }
         });
       })
@@ -64,7 +62,7 @@ export default function Login(props: propsType) {
 
   return (
     <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>
-      <Toast show={toast} message={errorMessageRef.current} hide={() => setToast(false)} />
+      <Toast show={toast.show} hide={() => setToast({ show: false, message: "" })} message={toast.message} />
       <div className="">
         <div className="text-3xl my-4 capitalize">
           {props.searchParams.role} Login
