@@ -1,6 +1,6 @@
 type propsType = {
-  updateSearchData: (data: string) => void;
-  startSearch: () => void;
+  updateSearchData?: (data: string) => void;
+  startSearch?: () => void;
 }
 
 export default function SearchBox(props: propsType) {
@@ -28,7 +28,7 @@ export default function SearchBox(props: propsType) {
           </svg>
         </div>
         <input
-        onChange={(event) => props.updateSearchData(event.target.value)}
+        onChange={(event) => props.updateSearchData && props.updateSearchData(event.target.value)}
           type="search"
           id="default-search"
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-600 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
