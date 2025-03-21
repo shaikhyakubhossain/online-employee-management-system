@@ -54,7 +54,7 @@ export default function Table(props: PropsType) {
                   {showAction && (
                     <>
                       <td className="px-6 py-4">{item.status}</td>
-                      <td className="px-6 py-4">
+                      { item.status === "pending" && <td className="px-6 py-4">
                         <span
                           onClick={() =>
                             props.handleAction
@@ -75,7 +75,7 @@ export default function Table(props: PropsType) {
                         >
                           Reject
                         </span>
-                      </td>
+                      </td>}
                     </>
                   )}
                 </tr>

@@ -1,4 +1,5 @@
 const Resign = require("../model/resign-model");
+const Employee = require("../model/employee-model");
 
 const addResignApplication = async (req, res) => {
   console.log(req.user);

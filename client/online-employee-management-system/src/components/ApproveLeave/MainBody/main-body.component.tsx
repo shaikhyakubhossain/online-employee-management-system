@@ -22,6 +22,7 @@ export default function MainBody() {
   );
 
   const handleAction = async (id: string, action: string) => {
+    console.log("hi")
     const response = await fetch(`${getUrl()}/leave-action`, {
       method: "PATCH",
       headers: {
@@ -31,6 +32,7 @@ export default function MainBody() {
       },
       body: JSON.stringify({ _id: id, action: action }),
     });
+    console.log("here")
     const data = await response.json();
     console.log("data: ", data);
     window.location.reload();

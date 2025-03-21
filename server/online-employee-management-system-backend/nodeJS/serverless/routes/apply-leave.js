@@ -7,7 +7,7 @@ const applyLeave = async (req, res, leaveAppliedBy) => {
         const { leaveType, leaveDateFrom, leaveDateTo, additionalInfo } = req.body;
       
         const userDetails = await setModel(leaveAppliedBy).findById(req.user._id);
-        // console.log("userDetails", userDetails);
+        console.log("userDetails", userDetails);
         if (userDetails) {
           try {
             const leave = await Leave.applyLeave(
