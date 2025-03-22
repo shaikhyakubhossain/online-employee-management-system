@@ -14,7 +14,7 @@ export default function MainBody(): JSX.Element {
   const fetchHolidays = async () => {
     try {
       const response = await fetch(
-        `https://date.nager.at/api/v3/PublicHolidays/2024/US`
+        `https://date.nager.at/api/v3/PublicHolidays/2025/US`
       );
 
       if (!response.ok) {
@@ -35,18 +35,32 @@ export default function MainBody(): JSX.Element {
   }, []);
 
   return (
-    <div className="">
-      {loading ? (
-        <div className="text-center my-auto">Loading holidays...</div>
-      ) : (
-        <div>
-          <List holidays={holidays} />
-          <SelectedHoliday selectedHoliday={selectedHoliday} />
+    <div className="flex flex-col items-center p-6">
+      <div className="w-full max-w-4xl p-6 bg-gray-100 shadow-lg rounded-xl border">
+        <BigCalendar
+          handleNavigate={(event) => setDate(event)}
+          handleEventClick={(event) => setSelectedHoliday(event.title)}
+          date={date}
+          calenderEvents={holidays}
+        />
+      </div>
 
-          <BigCalendar handleNavigate={(event) => setDate(event)} handleEventClick={(event) => setSelectedHoliday(event.title)} date={date} calenderEvents={holidays} />
+      <div className="w-full max-w-3xl mt-6">
+        <h2 className="text-xl font-semibold text-gray-700 text-center mb-3">
+          List of Holidays
+        </h2>
 
-        </div>
-      )}
+        {loading ? (
+          <div className="text-center text-gray-500 py-4 animate-pulse">
+            Fetching holidays...
+          </div>
+        ) : (
+          <div className="p-4 bg-gray-100 shadow-md rounded-lg">
+            <SelectedHoliday selectedHoliday={selectedHoliday} />
+            <List holidays={holidays} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
