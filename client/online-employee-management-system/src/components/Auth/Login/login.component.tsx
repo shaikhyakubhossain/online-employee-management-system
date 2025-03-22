@@ -49,7 +49,8 @@ export default function Login(props: propsType) {
             dispatch(setDetail(data));
             localStorage.setItem("OEMS-authDetail", JSON.stringify(data));
             router.push(`/Dashboard`);
-          } else {
+          }
+          else {
             setToast({ show: true, message: data.error });
           }
         });
@@ -62,7 +63,11 @@ export default function Login(props: propsType) {
 
   return (
     <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>
-      <Toast show={toast.show} hide={() => setToast({ show: false, message: "" })} message={toast.message} />
+      <Toast
+        show={toast.show}
+        hide={() => setToast({ show: false, message: "" })}
+        message={toast.message}
+      />
       <div className="">
         <div className="text-3xl my-4 capitalize">
           {props.searchParams.role} Login
