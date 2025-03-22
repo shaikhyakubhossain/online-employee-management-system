@@ -30,6 +30,8 @@ export default function FormContents() {
     additionalInfo: "",
   });
   const [toast, setToast] = useState<toastType>({ show: false, message: "" });
+  const [isChecked, setIsChecked] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const handleSubmit = () => {
     if (
@@ -69,98 +71,122 @@ export default function FormContents() {
 
   console.log(dataToSend);
 
-  return (
-    <div className="">
-      <Toast show={toast.show} hide={() => setToast({ show: false, message: "" })} message={toast.message} />
-      <div className="text-2xl font-semibold">Choose type of leave :</div>
-      <div className="flex justify-evenly flex-wrap my-2">
-        <RadioBtn
-          label="Casual Leave"
-          onRadioClick={() =>
-            setDataToSend({ ...dataToSend, leaveType: "casual" })
-          }
-        />
-        <RadioBtn
-          label="Pay Leave"
-          onRadioClick={() =>
-            setDataToSend({ ...dataToSend, leaveType: "pay" })
-          }
-        />
-        <RadioBtn
-          label="Sick Leave"
-          onRadioClick={() =>
-            setDataToSend({ ...dataToSend, leaveType: "sick" })
-          }
-        />
-        <RadioBtn
-          label="Maternity Leave"
-          onRadioClick={() =>
-            setDataToSend({ ...dataToSend, leaveType: "maternity" })
-          }
-        />
-      </div>
-      <div className="text-2xl font-semibold">Set range</div>
-      <div className="flex my-5">
-        <SetDate
-          updateDataToSend={(event) =>
-            setDataToSend({ ...dataToSend, fromDate: event.target.value })
-          }
-          label="From"
-        />
-        <SetDate
-          updateDataToSend={(event) =>
-            setDataToSend({ ...dataToSend, toDate: event.target.value })
-          }
-          label="To"
-        />
-      </div>
-      <div className="mt-12 mb-3">
-        <label className="block mb-2 text-2xl font-semibold">
-          Additional info : (Optional)
-        </label>
-        <textarea
-          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Write additional info here..."
-          onChange={(event) =>
-            setDataToSend({ ...dataToSend, additionalInfo: event.target.value })
-          }
-        ></textarea>
-      </div>
-      <div>
-        <label className="block mb-2 text-2xl font-semibold my-5">
-          Declaration:
-        </label>
-        <div className="my-5">
-          All the above details are best of my knowledge and true. The approval
-          of this application is entirely depended upon the management as per
-          the basic employee leave brochure .{" "}
-        </div>
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            value=""
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-          />
-          <label className="ms-2 text-sm font-medium text-gray-900">
-            I agree with the{" "}
-            <Link
-              href="#"
-              className="text-blue-600 dark:text-blue-500 hover:underline"
-            >
-              terms and conditions
-            </Link>
-            .
-          </label>
-        </div>
-      </div>
-      <div className={`${styles.submitBtnContainer} flex justify-end m-6`}>
-        <Button
-          onClick={handleSubmit}
-          customTW="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Submit
-        </Button>
-      </div>
-    </div>
-  );
+ return (
+   <div className="p-6 bg-gray-100 rounded-xl shadow-md">
+     <Toast
+       show={toast.show}
+       hide={() => setToast({ show: false, message: "" })}
+       message={toast.message}
+     />
+     <div className="text-2xl font-semibold text-gray-800 mb-4">
+       Choose Leave Type
+     </div>
+     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+       {[
+         { label: "Casual Leave", value: "casual" },
+         { label: "Pay Leave", value: "pay" },
+         { label: "Sick Leave", value: "sick" },
+         { label: "Maternity Leave", value: "maternity" },
+       ].map((option, index) => (
+         <label
+           key={index}
+           className="flex items-center gap-3 p-4 bg-white border border-gray-300 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition-all duration-200"
+         >
+           <input
+             type="radio"
+             name="leaveType"
+             value={option.value}
+             className="accent-blue-600"
+             onChange={() =>
+               setDataToSend({ ...dataToSend, leaveType: option.value })
+             }
+           />
+           <span className="text-gray-700 font-medium">{option.label}</span>
+         </label>
+       ))}
+     </div>
+     <div className="text-2xl font-semibold text-gray-800 mt-6">
+       Select Date Range
+     </div>
+     <div className="flex flex-col md:flex-row gap-4 mt-4">
+       <SetDate
+         updateDataToSend={(event) =>
+           setDataToSend({ ...dataToSend, fromDate: event.target.value })
+         }
+         label="From"
+       />
+       <SetDate
+         updateDataToSend={(event) =>
+           setDataToSend({ ...dataToSend, toDate: event.target.value })
+         }
+         label="To"
+       />
+     </div>
+     <div className="mt-6">
+       <label className="block mb-2 text-2xl font-semibold text-gray-800">
+         Additional Information (Optional)
+       </label>
+       <textarea
+         rows={7}
+         className="block w-full p-3 text-sm text-gray-900 bg-white rounded-lg border border-gray-300"
+         placeholder="Describe us in brief, why are you applying for this leave..."
+         onChange={(event) =>
+           setDataToSend({ ...dataToSend, additionalInfo: event.target.value })
+         }
+       ></textarea>
+     </div>
+     <div className="mt-6">
+       <label className="block mb-2 text-2xl font-semibold text-gray-800">
+         Declaration
+       </label>
+       <p className="text-gray-700">
+         I hereby declare that all the provided details are true to my
+         knowledge. The approval of this application is subject to management’s
+         discretion as per the employee leave policy.
+       </p>
+       <div className="flex items-center mt-3">
+         <input
+           type="checkbox"
+           checked={isChecked}
+           onChange={(e) => setIsChecked(e.target.checked)}
+           className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+         />
+         <label className="ml-2 text-sm text-gray-800">
+           I agree to the{" "}
+           <Link href="#" className="text-blue-600 hover:underline">
+             terms and conditions
+           </Link>
+           .
+         </label>
+       </div>
+       {!isChecked && showError && (
+         <p className="text-red-500 text-sm mt-2">
+           You must agree to continue.
+         </p>
+       )}
+     </div>
+     <div className="flex justify-end mt-8">
+       <Button
+         onClick={() => {
+           if (!isChecked) {
+             setShowError(true);
+             return;
+           }
+           handleSubmit();
+         }}
+         customTW={`py-2 px-6 rounded-lg shadow-md transition-all duration-200 font-semibold ${
+           isChecked
+             ? "bg-blue-600 hover:bg-blue-700 text-white"
+             : "bg-gray-400 cursor-not-allowed text-gray-200"
+         }`}
+       >
+         Submit
+       </Button>
+     </div>
+   </div>
+ );
+
+
+
+
 }
