@@ -17,6 +17,8 @@ export default function MainBody() {
     (data: employeeData[] | null) => setData(data)
   );
 
+  console.log(data)
+
   const handleSearch = () => {
     if (!data) return;
     const localData: employeeData[] = data.filter((item) => item.firstName.includes(searchData));
@@ -28,7 +30,7 @@ export default function MainBody() {
     <div>
       <SearchBox updateSearchData={(data: string) => setSearchData(data)} startSearch={handleSearch} />
       <Table
-        data={searchResults ? searchResults : data}
+        data={searchResults.length > 0 ? searchResults : data}
         headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
         showAction={false}
       />
