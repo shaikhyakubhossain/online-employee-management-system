@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/Button/button.component";
 
 export default function MainBody(): JSX.Element {
-  const { data } = useSelector((state: RootState & { authDetail: any }) => state.authDetail);
+  const { data } = useSelector((state: RootState) => state.authDetail);
   const dispatch = useDispatch();
   const router = useRouter();
 
