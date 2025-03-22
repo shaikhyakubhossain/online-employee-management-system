@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import styles from "./form-contents.module.scss";
-import RadioBtn from "@/components/RadioBtn/radio-btn.component";
+// import styles from "./form-contents.module.scss";
+// import RadioBtn from "@/components/RadioBtn/radio-btn.component";
 import SetDate from "../SetDate/set-date.component";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
