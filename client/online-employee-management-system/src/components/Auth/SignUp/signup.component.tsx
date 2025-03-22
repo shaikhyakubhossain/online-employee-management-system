@@ -22,6 +22,7 @@ type dataToSendType = {
   lastName: string;
   username: string;
   designation: string;
+  gender: string;
   regdNo: string;
   email: string;
   password: string;
@@ -39,6 +40,7 @@ export default function SignUp() {
     lastName: "",
     username: "",
     designation: "",
+    gender: "",
     regdNo: "",
     email: "",
     password: "",
@@ -90,6 +92,8 @@ export default function SignUp() {
       fetchData();
     }
   };
+
+  console.log(dataToSend);
 
   return (
     <div
@@ -147,6 +151,14 @@ export default function SignUp() {
                 label="Designation"
                 type="text"
                 placeholder="Enter Designation"
+              />
+              <InputField
+                updateDataToSend={(event) =>
+                  setDataToSend({ ...dataToSend, gender: event })
+                }
+                label="Gender"
+                type="select"
+                placeholder="Enter Gender"
               />
               <InputField
                 updateDataToSend={(event) =>
