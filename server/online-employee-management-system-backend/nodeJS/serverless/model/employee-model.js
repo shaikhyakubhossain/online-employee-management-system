@@ -63,7 +63,8 @@ employeeSchema.statics.signup = async function (
     !lastName ||
     !designation ||
     !regdNo ||
-    !email
+    !email ||
+    !genderCode
 ) {
   console.log(firstName, lastName, username, designation, regdNo, email)
     return { error: "All fields must be filled" };
@@ -103,7 +104,7 @@ employeeSchema.statics.signup = async function (
     username,
     designation,
     regdNo,
-    genderCode: "Not Set",
+    genderCode,
     email,
     role: "employee",
     password: hashedPassword,

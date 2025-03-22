@@ -34,6 +34,7 @@ const signup = async (req, res, loginRole) => {
         genderCode,
         secretCode
       } = req.body;
+      console.log("req.body here", req.body)
       if (secretCode !== SecretCode) {
         return res.status(400).json({ error: "You are not authorized" });
       }
@@ -61,7 +62,7 @@ const signup = async (req, res, loginRole) => {
             designation,
             regdNo,
             email,
-            genderCode: user.genderCode,
+            gender,
             token,
           }
           res.status(200).json({

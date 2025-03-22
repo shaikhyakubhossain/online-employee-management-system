@@ -63,7 +63,8 @@ adminSchema.statics.signup = async function (
     !lastName ||
     !designation ||
     !regdNo ||
-    !email
+    !email ||
+    !genderCode
   ) {
     return { error: "All fields must be filled" };
   }
@@ -102,7 +103,7 @@ adminSchema.statics.signup = async function (
     username,
     designation,
     regdNo,
-    genderCode: "Not Set",
+    genderCode,
     email,
     role: "admin",
     password: hashedPassword,

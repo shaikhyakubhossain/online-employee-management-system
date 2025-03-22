@@ -22,7 +22,7 @@ type dataToSendType = {
   lastName: string;
   username: string;
   designation: string;
-  gender: string;
+  genderCode: string;
   regdNo: string;
   email: string;
   password: string;
@@ -40,7 +40,7 @@ export default function SignUp() {
     lastName: "",
     username: "",
     designation: "",
-    gender: "",
+    genderCode: "",
     regdNo: "",
     email: "",
     password: "",
@@ -154,7 +154,7 @@ export default function SignUp() {
               />
               <InputField
                 updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, gender: event })
+                  setDataToSend({ ...dataToSend, genderCode: event })
                 }
                 label="Gender"
                 type="select"
