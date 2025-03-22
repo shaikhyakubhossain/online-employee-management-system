@@ -52,10 +52,11 @@ export default function SignUp() {
 
   const handleRoleSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
     const current = event.target as HTMLInputElement;
-    if (current.nextSibling && current.nextSibling.textContent) {
+    console.log(current.parentElement?.parentElement?.textContent);
+    if (current.parentElement?.parentElement?.textContent) {
       setDataToSend({
         ...dataToSend,
-        role: current.nextSibling.textContent.toLowerCase(),
+        role: current.parentElement?.parentElement?.textContent.toLowerCase(),
       });
     }
   };
