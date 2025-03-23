@@ -1,6 +1,7 @@
 import "./globals.css";
 import RTKStoreProvider from "@/components/RTKStoreProvider/rtk-store-provider.component";
 import BodyContainer from "@/components/BodyContainer/body-container.component";
+import WhatsAppButton from "@/components/Whatsapp/whatsapp.component";
 
 export const metadata = {
   title: "Employee Verse",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body>
         <RTKStoreProvider>
           <BodyContainer>{children}</BodyContainer>
+          <WhatsAppButton />
         </RTKStoreProvider>
       </body>
     </html>
