@@ -3,20 +3,10 @@ import Button from "@/components/Button/button.component";
 import HeroHeaderHome from "@/components/HeroHeaderHome/hero-header-home.component";
 import ContinueAs from "@/components/Auth/ContinueAs/continue-as.component";
 import { MainBackgroundImg } from "@/components/Auth/MainBackgroundImg/main-background-img.component";
-import Script from "next/script";
 
 export default function Home() {
   return (
     <>
-      <Script
-        src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"
-        strategy="afterInteractive"
-      />
-      <Script
-        src="https://files.bpcontent.cloud/2024/10/11/09/20241011093608-RK2S5C9N.js"
-        strategy="afterInteractive"
-      />
-
       <div
         className="relative text-white p-8 sm:p-12 md:p-16 overflow-y-scroll pb-0"
         style={{

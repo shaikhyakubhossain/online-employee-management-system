@@ -16,7 +16,9 @@ export default function Dashboard() {
   const [topEmployee, setTopEmployee] = useState<Employee | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/top-employees") // Fetch data from FastAPI backend
+    fetch(
+      "https://online-employee-management-system.onrender.com/top-employees"
+    ) // Fetch data from FastAPI backend
       .then((res) => res.json())
       .then((data) => {
         if (data.length > 0) {
