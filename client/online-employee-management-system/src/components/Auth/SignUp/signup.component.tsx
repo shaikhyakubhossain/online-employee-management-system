@@ -197,9 +197,9 @@ export default function SignUp() {
                 updateDataToSend={(event) =>
                   setDataToSend({ ...dataToSend, secretCode: event })
                 }
-                label="Secret Code"
+                label="Authorized Pin"
                 type="text"
-                placeholder="Enter Secret Code"
+                placeholder="Enter Authorized Pin"
               />
             </div>
             <div className="mt-4">
