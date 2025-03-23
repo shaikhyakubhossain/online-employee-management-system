@@ -6,8 +6,8 @@ export default function MainBody(): JSX.Element {
   return (
     <div className="">
       <AddFile />
-      <Section title="Study Materials"/>
-      <Section title="Interview Questions"/>
+      <Section title="Project"/>
+      <Section title="Case study"/>
     </div>
   );
 }
