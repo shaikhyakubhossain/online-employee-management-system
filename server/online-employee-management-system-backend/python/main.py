@@ -64,3 +64,33 @@ def get_top_employees():
 
     # Convert to JSON format and return
     return top_employees.to_dict(orient="records")
+
+@app.get("/bot")
+def public_content():
+    try:
+        # Define projection to exclude ML-related fields
+        projection = {
+            "_id": 0, 
+            "performanceScore": 0,
+            "attendanceScore": 0,
+            "peerFeedbackScore": 0,
+            "managerRating": 0,
+            "overtimeScore": 0,
+            "innovationScore": 0,
+            "leadershipScore": 0,
+            "customerFeedbackScore": 0,
+            "taskCompletionEfficiency": 0,
+            "problemSolvingScore": 0
+        }
+
+        # Fetch ALL data from MongoDB (no limit applied)
+        cursor = collection.find({}, projection)
+        employees = list(cursor)  # Convert cursor to a list
+
+        if not employees:
+            return {"message": "No employees found"}
+
+        return {"employees": employees}
+
+    except Exception as e:
+        return {"error": "Server error", "details": str(e)}
