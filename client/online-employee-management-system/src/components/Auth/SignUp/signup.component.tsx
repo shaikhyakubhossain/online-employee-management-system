@@ -40,7 +40,7 @@ export default function SignUp() {
     lastName: "",
     username: "",
     designation: "",
-    genderCode: "male",
+    genderCode: "Male",
     regdNo: "",
     email: "",
     password: "",
