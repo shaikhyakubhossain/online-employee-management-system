@@ -4,7 +4,7 @@ const validator = require("validator");
 const autoSequence = require("mongoose-sequence")(mongoose);
 
 const adminSchema = new mongoose.Schema({
-  employeeId: {
+  adminId: {
     type: Number,
     unique: true,
   },
@@ -45,7 +45,7 @@ const adminSchema = new mongoose.Schema({
   }
 });
 
-// adminSchema.plugin(autoSequence, { inc_field: "employeeId" });
+adminSchema.plugin(autoSequence, { inc_field: "adminId" });
 
 adminSchema.statics.signup = async function (
   firstName,

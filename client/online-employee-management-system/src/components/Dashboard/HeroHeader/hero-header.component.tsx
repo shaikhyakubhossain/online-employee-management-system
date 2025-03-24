@@ -8,6 +8,7 @@ type propsType = {
   showEmoji: boolean;
   greeting: string;
   showCurrentUserName: boolean;
+  showSvg: boolean;
   swapTextLocation?: boolean;
 };
 
@@ -20,13 +21,13 @@ export default function HeroHeader(props: propsType): JSX.Element {
         <Greeting title={props.title} message={props.message} showEmoji={props.showEmoji} showCurrentUserName={props.showCurrentUserName} />
       </div>
       <div className={`${styles.right} flex my-auto relative`}>
-        <div className={`${styles.svgs} ${ props.swapTextLocation ? "-left-14" : "-left-24"} -top-14`}>
+        {props.showSvg && <div className={`${styles.svgs} ${ props.swapTextLocation ? "-left-14" : "-left-24"} -top-14`}>
           <img src={svgForHeroHeader[0].base64} alt="" />
-        </div>
+        </div>}
         <div className="font-bold text-6xl my-auto welcome">{props.greeting}</div>
-        <div className={`${styles.svgs} -right-16 -top-11`}>
+        {props.showSvg && <div className={`${styles.svgs} -right-16 -top-11`}>
           <img src={svgForHeroHeader[1].base64} alt="" />
-        </div>
+        </div>}
       </div>
     </div>
   );
