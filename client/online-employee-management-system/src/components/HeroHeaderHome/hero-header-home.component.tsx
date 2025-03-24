@@ -48,10 +48,7 @@ export default function HeroHeaderHome() {
   }, [autoLogin, dispatch, router]);
 
   return (
-    <div
-      className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 sm:mb-8 lg:mb-12 lg:w-3/4"
-      style={{ fontFamily: "Times New Roman, serif" }}
-    >
+    <div className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 sm:mb-8 lg:mb-12 lg:w-3/4">
       <div className="flex items-center mb-3 sm:mb-4 md:mb-5">
         <div>
           <HeroLogo color="white" width="100px" height="100px" />

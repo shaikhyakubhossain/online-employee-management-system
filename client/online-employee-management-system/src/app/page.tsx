@@ -12,7 +12,6 @@ export default function Home() {
         style={{
           background: "rgba(20, 19, 112, 0.85)",
           height: "calc(100dvh - 80px)",
-          fontFamily: "'Times New Roman', serif",
           scrollbarWidth: "none",
         }}
       >

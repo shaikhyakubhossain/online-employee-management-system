@@ -5,3 +5,7 @@
 html {
     scroll-behavior: smooth;
 }
+
+* {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}

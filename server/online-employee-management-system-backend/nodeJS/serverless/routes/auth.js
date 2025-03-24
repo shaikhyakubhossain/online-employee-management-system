@@ -62,7 +62,7 @@ const signup = async (req, res, loginRole) => {
             designation,
             regdNo,
             email,
-            gender,
+            genderCode,
             token,
           }
           res.status(200).json({
