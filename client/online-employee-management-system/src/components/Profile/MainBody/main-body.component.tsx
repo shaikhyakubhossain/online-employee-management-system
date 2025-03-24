@@ -40,7 +40,7 @@ export default function MainBody(): JSX.Element {
           </h3>
           <div className="bg-gray-100 p-4 rounded-lg shadow-sm">
             {[
-              { label: "Employee ID", value: data?.employeeId ? data?.employeeId : data?.adminId },
+              { label: data?.adminId ? "Admin ID" : "Employee ID", value: data?.employeeId ? data?.employeeId : data?.adminId },
               { label: "Email", value: data?.email },
               { label: "Designation", value: data?.designation },
               { label: "Regd No", value: data?.regdNo },
