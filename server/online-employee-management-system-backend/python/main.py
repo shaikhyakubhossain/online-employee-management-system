@@ -42,7 +42,7 @@ def read_root():
 def get_top_employees():
     # Fetch employeeId, username, firstName, lastName, and ML features from MongoDB
     projection = {"employeeId": 1, "username": 1, "firstName": 1, "lastName": 1, 
-                 **{feature: 1 for feature in ml_features}, "_id": 0}
+                  **{feature: 1 for feature in ml_features}, "_id": 0}
 
     cursor = collection.find({}, projection)
     employees = pd.DataFrame(list(cursor))
@@ -51,19 +51,20 @@ def get_top_employees():
         return {"message": "No employees found"}
 
     # Extract ML features for prediction
-    X = employees[ml_features]
+    X = employees.get(ml_features, pd.DataFrame(columns=ml_features))  # Ensure all features exist
 
-    # Ensure all ML features exist in DataFrame
-    X = X.reindex(columns=ml_features, fill_value=0)
+    # Fill missing values with 0 and cast to float
+    X = X.fillna(0).astype(float)
 
     # Predict final scores using the loaded model
     employees["finalScore"] = model.predict(X)
 
     # Get top 10 employees
-    top_employees = employees.nlargest(10, "finalScore")[["employeeId", "username", "firstName", "lastName"]]
+    top_employees = employees.nlargest(10, "finalScore")[["employeeId", "username", "firstName", "lastName", "finalScore"]]
 
     # Convert to JSON format and return
     return top_employees.to_dict(orient="records")
+
 
 @app.get("/bot")
 def public_content():
