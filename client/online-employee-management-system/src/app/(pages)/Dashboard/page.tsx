@@ -1,6 +1,7 @@
-"use client"; // Add this at the top
-
+"use client";
 import { useEffect, useState } from "react";
+import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
+import type { noticeData } from "@/constants/Types/response-data";
 import HeroHeader from "@/components/Dashboard/HeroHeader/hero-header.component";
 import HeroContent from "@/components/Dashboard/HeroContent/hero-content.component";
 import SubHeaderContainer from "@/components/Dashboard/SubHeaderContainer/sub-header-container.component";
@@ -14,15 +15,22 @@ interface Employee {
 
 export default function Dashboard() {
   const [topEmployee, setTopEmployee] = useState<Employee | null>(null);
+  const [noticeData, setNoticeData] = useState<noticeData[] | null>(null);
+
+    useFetchGetMethod(
+      "get-all-notices",
+       "both", 
+      (data: null | noticeData[]) => setNoticeData(data)
+    )
 
   useEffect(() => {
     fetch(
       "https://online-employee-management-system.onrender.com/top-employees"
-    ) // Fetch data from FastAPI backend
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.length > 0) {
-          setTopEmployee(data[0]); // Get the highest-ranked employee
+          setTopEmployee(data[0]);
         }
       })
       .catch((err) => console.error("Error fetching top employee:", err));
@@ -38,7 +46,7 @@ export default function Dashboard() {
         showCurrentUserName={true}
         showSvg={true}
       />
-      <SubHeaderContainer />
+      <SubHeaderContainer noticeData={noticeData} />
       <HeroHeader
         greeting="We congratulate"
         title="Employee of the Year"

@@ -2,11 +2,16 @@
 import styles from './sub-header-container.module.scss';
 import LatestUpdates from '../LatestUpdates/latest-updates.component';
 import Calender from '../Calender/calender.component';
+import type { noticeData } from '@/constants/Types/response-data';
 
 // import { RootState } from '@/lib/store';
 // import { useSelector } from 'react-redux';
 
-export default function SubHeaderContainer(): JSX.Element {
+type propsType = {
+    noticeData: noticeData[] | null;
+}
+
+export default function SubHeaderContainer(props: propsType): JSX.Element {
 
     // const {role} = useSelector((state: RootState) => state.authDetail);
 
@@ -15,7 +20,7 @@ export default function SubHeaderContainer(): JSX.Element {
             {
                 // role === "employee" && 
                 <>
-                <LatestUpdates />
+                <LatestUpdates noticeData={props.noticeData} />
                 <Calender />
                 </>
             }
