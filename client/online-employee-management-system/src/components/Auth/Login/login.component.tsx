@@ -43,6 +43,7 @@ export default function Login(props: propsType) {
       body: JSON.stringify(dataToSend),
     })
       .then((res) => {
+        console.log(res)
         res.json().then((data) => {
           dispatch(setStartLoadingFalse());
           if (!data.error) {
