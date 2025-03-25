@@ -22,7 +22,7 @@ export default function LatestUpdates(props: propsType) {
       >
         {
             props.noticeData?.map((item) => {
-                return (<div key={item.noticeId} className="flex justify-start items-center my-5 border-b-2 border-gray-400">
+                return (<div key={item.noticeId} className="flex justify-start items-center my-5 border-b-2 py-4 border-gray-400">
                     <div>{item.title}&nbsp;{"-"}</div>
                     <div>&nbsp;{item.message}</div>
                   </div>)
