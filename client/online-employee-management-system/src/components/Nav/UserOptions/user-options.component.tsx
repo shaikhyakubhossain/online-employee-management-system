@@ -19,9 +19,9 @@ export default function UserOptions(props: propsType) {
                 })
             }
             </div>
-            <Link href={'/Profile'}><div className='flex my-auto mx-6'>
+            <Link href={'/Profile'}><div className='flex justify-center items-center my-auto mx-6'>
                 <div className='flex justify-center items-center rounded-full w-10 h-10 bg-white overflow-hidden text-black text-center mr-4'>{props.shortName}</div>
-                <div className='max-[480px]:hidden'>{props.firstName}</div>
+                <div className='flex justify-center items-center max-[480px]:hidden'>{props.firstName}</div>
             </div></Link>
         </div>
     )

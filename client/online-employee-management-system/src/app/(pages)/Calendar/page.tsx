@@ -1,10 +1,10 @@
-import MainBody from "@/components/Calendar/MainBody/main-body.component";
+import MainBody from "@/components/Holiday/MainBody/main-body.component";
 import PageHeader from "@/components/PageHeader/page-header.component";
 
-export default function Calendar(): JSX.Element {
+export default function Calendar() {
   return (
     <div className="font-times">
-      <PageHeader title="Calendar" />
+      <PageHeader title="Calender" />
       <MainBody />
     </div>
   );
