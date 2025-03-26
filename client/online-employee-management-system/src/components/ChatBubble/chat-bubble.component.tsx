@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 declare global {
   interface Window {
-    chatbase?: (...args: any[]) => void;
+    chatbase?: (method: string, options: { chatbotId: string; domain: string }) => void;
   }
 }
 
