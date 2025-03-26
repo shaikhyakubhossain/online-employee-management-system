@@ -24,7 +24,7 @@ export default function MainBody() {
     const [toast, setToast] = useState<toastType>({ show: false, message: "" });
     const { role, token } = useSelector((state: RootState) => state.authDetail);
 
-        useFetchGetMethod('get-all-resign-applications', 'admin', (data: defaultData[] | null) => setData(data));
+        useFetchGetMethod('get-all-resign-applications', 'admin', (data: defaultData[] | null) => setData(data), true);
 
     const handleGiveResignation = () => {
         fetch(`${getUrl()}/add-resign`, {

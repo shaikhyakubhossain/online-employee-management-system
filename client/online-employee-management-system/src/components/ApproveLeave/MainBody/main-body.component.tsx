@@ -21,7 +21,8 @@ export default function MainBody() {
   useFetchGetMethod(
     "get-all-leave-applications",
     "admin",
-    (data: leaveData[] | null) => setData(data)
+    (data: leaveData[] | null) => setData(data),
+    true
   );
 
   const handleSearch = () => {
