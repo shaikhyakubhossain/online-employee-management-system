@@ -53,7 +53,7 @@ export default function MainBody() {
             {
                 role === "admin" && <AddNotice updateTitle={(data: string) => setDataToSend({ ...dataToSend, title: data })} updateMessage={(data: string) => setDataToSend({ ...dataToSend, message: data })} handleAddNotice={handleAddNotice} />
             }
-            <Section title="Latest Notices" data={data && data.slice(0, 3)} />
+            <Section title="Latest Notices" data={data && data.slice(0, 5)} />
             <Section title="Other Notices" data={data} />
         </div>
     )
