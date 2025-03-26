@@ -24,7 +24,8 @@ export default function MainBody() {
     useFetchGetMethod(
         "get-all-notices",
         "both",
-        (data: noticeData[] | null) => setData(data)
+        (data: noticeData[] | null) => setData(data),
+        true
     );
 
     const handleAddNotice = () => {
@@ -52,7 +53,7 @@ export default function MainBody() {
             {
                 role === "admin" && <AddNotice updateTitle={(data: string) => setDataToSend({ ...dataToSend, title: data })} updateMessage={(data: string) => setDataToSend({ ...dataToSend, message: data })} handleAddNotice={handleAddNotice} />
             }
-            <Section title="Latest Notices" data={data} />
+            <Section title="Latest Notices" data={data && data.slice(0, 3)} />
             <Section title="Other Notices" data={data} />
         </div>
     )
