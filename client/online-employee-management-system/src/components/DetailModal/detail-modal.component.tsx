@@ -13,9 +13,7 @@ export default function DetailModal(props: propsType) {
       style={{ backdropFilter: "blur(5px)" }}
     >
       {props.data && (
-        <div
-          className="flex justify-between items-center w-3/4 h-3/4 p-4 z-20 bg-[#cbcafb] rounded-lg"
-        >
+        <div className="flex justify-between items-center w-3/4 h-3/4 p-4 z-20 bg-[#cbcafb] rounded-lg">
           <div className="flex flex-col justify-between items-center w-full h-full">
             <div className="flex justify-evenly items-center w-full bg-[#dcdbff] text-2xl">
               <div>
@@ -39,11 +37,20 @@ export default function DetailModal(props: propsType) {
                 <div>
                   Name:&nbsp;{props.data.firstName}&nbsp;{props.data.lastName}
                 </div>
-                <div>RegdNo:&nbsp;{props.data.regdNo}</div>
                 <div>Email:&nbsp;{props.data.email}</div>
                 <div>Designation:&nbsp;{props.data.designation}</div>
+                <div>RegdNo:&nbsp;{props.data.regdNo}</div>
+                <div>Gender:&nbsp;{props.data.genderCode}</div>
               </div>
-              <div></div>
+              {props.data.innovationScore && (
+                <div className="text-left text-lg">
+                  <div>InnovationScore:&nbsp;{props.data.innovationScore}</div>
+                  <div>LeadershipScore:&nbsp;{props.data.leadershipScore}</div>
+                  <div>ManagerRating:&nbsp;{props.data.managerRating}</div>
+                  <div>OvertimeScore:&nbsp;{props.data.overtimeScore}</div>
+                  <div>PerformanceScore:&nbsp;{props.data.performanceScore}</div>
+                </div>
+              )}
             </div>
             <div></div>
           </div>

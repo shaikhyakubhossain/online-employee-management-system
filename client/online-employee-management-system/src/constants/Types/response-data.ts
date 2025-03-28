@@ -21,6 +21,12 @@ export type employeeData = {
   designation: string;
   regdNo: string;
   email: string;
+  genderCode?: string;
+  innovationScore?: number;
+  leadershipScore?: number;
+  managerRating?: number;
+  overtimeScore?: number;
+  performanceScore?: number;
 };
 
 export type defaultData = {
