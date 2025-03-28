@@ -20,7 +20,8 @@ export default function Dashboard() {
     useFetchGetMethod(
       "get-all-notices",
        "both", 
-      (data: null | noticeData[]) => setNoticeData(data)
+      (data: null | noticeData[]) => setNoticeData(data),
+      true
     )
 
   useEffect(() => {
