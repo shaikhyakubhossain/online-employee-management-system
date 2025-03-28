@@ -7,6 +7,7 @@ type PropsType = {
   showAction?: boolean;
   isLeave?: boolean;
   handleAction?: (id: string, action: string) => void;
+  handleRowDetailToShowInModal?:(row: defaultData) => void;
 };
 
 export default function Table(props: PropsType) {
@@ -32,6 +33,7 @@ export default function Table(props: PropsType) {
               return (
                 <tr
                   key={item._id}
+                  onClick={() => props.handleRowDetailToShowInModal && props.handleRowDetailToShowInModal(item)}
                   className="bg-white border-b cursor-pointer hover:bg-gray-100"
                 >
                   <th

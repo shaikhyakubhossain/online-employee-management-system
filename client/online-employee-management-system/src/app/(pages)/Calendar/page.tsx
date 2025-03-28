@@ -4,7 +4,7 @@ import PageHeader from "@/components/PageHeader/page-header.component";
 export default function Calendar() {
   return (
     <div className="font-times">
-      <PageHeader title="Calender" />
+      <PageHeader title="Calendar" />
       <MainBody />
     </div>
   );

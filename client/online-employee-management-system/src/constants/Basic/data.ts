@@ -120,7 +120,16 @@ export const btnList: btnListType[] = [
         link: "/Resign",
         detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
         peopleAddedList: [],
-        role: "both"
+        role: "employee"
+    },
+    {
+        name: "Approve Resign",
+        bg: "#1D68D8",
+        base64Icon: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNSAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik05Ljc2NTMgMS4wMTA1Nkg0LjIwNDg2QzIuNDgyOSAxLjAxMDU2IDEgMi40MDU2OSAxIDQuMTI3NjVWMTMuMTk2NEMxIDE1LjAxNTMgMi4zODU5MyAxNi4zNTE5IDQuMjA0ODYgMTYuMzUxOUgxMC44ODIxQzEyLjYwNCAxNi4zNTE5IDE0IDE0LjkxODQgMTQgMTMuMTk2NFY1LjQyMDhMOS43NjUzIDEuMDEwNTZaIiBzdHJva2U9IiMwMTAwOEEiIHN0cm9rZS13aWR0aD0iMS4yNTM4NiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik05LjU0NTcyIDFWMy40MzE2NUM5LjU0NTcyIDQuNjE4NjMgMTAuNTA2MiA1LjU4MTYgMTEuNjkzMiA1LjU4NDFDMTIuNzkzMiA1LjU4NjYxIDEzLjkxOTIgNS41ODc0NSAxMy45OTUyIDUuNTgyNDMiIHN0cm9rZT0iIzAxMDA4QSIgc3Ryb2tlLXdpZHRoPSIxLjI1Mzg2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggb3BhY2l0eT0iMC40IiBkPSJNOS4zOTU1NCAxMC4xOTI0SDUuMjk4NzciIHN0cm9rZT0iIzAxMDA4QSIgc3Ryb2tlLXdpZHRoPSIxLjI1Mzg2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==",
+        link: "/Resign",
+        detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
+        peopleAddedList: [],
+        role: "admin"
     },
 ];
 

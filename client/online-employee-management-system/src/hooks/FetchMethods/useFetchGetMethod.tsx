@@ -30,7 +30,7 @@ const useFetchGetMethod = (
     })
       .then((res) => res.json())
       .then((data) => {
-        if(shouldReverse){
+        if(data.data && shouldReverse){
           const reverse = data.data.reverse();
           callback(reverse); 
         }
