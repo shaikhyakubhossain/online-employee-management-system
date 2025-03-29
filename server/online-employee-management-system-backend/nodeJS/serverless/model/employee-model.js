@@ -25,6 +25,10 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  department : {
+    type: String,
+    required: true,
+  },
   regdNo: {
     type: String,
     required: true,
@@ -52,6 +56,7 @@ employeeSchema.statics.signup = async function (
   lastName,
   username,
   designation,
+  department,
   regdNo,
   email,
   password,
@@ -62,11 +67,12 @@ employeeSchema.statics.signup = async function (
     !firstName ||
     !lastName ||
     !designation ||
+    !department ||
     !regdNo ||
     !email ||
     !genderCode
 ) {
-  console.log(firstName, lastName, username, designation, regdNo, email)
+  console.log(firstName, lastName, username, designation, department, regdNo, email)
     return { error: "All fields must be filled" };
   }
 
@@ -103,6 +109,7 @@ employeeSchema.statics.signup = async function (
     lastName,
     username,
     designation,
+    department,
     regdNo,
     genderCode,
     email,
