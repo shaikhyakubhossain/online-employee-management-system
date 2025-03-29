@@ -22,6 +22,7 @@ type dataToSendType = {
   lastName: string;
   username: string;
   designation: string;
+  department?: string;
   genderCode: string;
   regdNo: string;
   email: string;
@@ -40,6 +41,7 @@ export default function SignUp() {
     lastName: "",
     username: "",
     designation: "",
+    department: "",
     genderCode: "Male",
     regdNo: "",
     email: "",
@@ -153,6 +155,14 @@ export default function SignUp() {
                 type="text"
                 placeholder="Enter Designation"
               />
+              {dataToSend.role === "employee" && <InputField
+                updateDataToSend={(event) =>
+                  setDataToSend({ ...dataToSend, department: event })
+                }
+                label="Department"
+                type="text"
+                placeholder="Enter Department"
+              />}
               <InputField
                 updateDataToSend={(event) =>
                   setDataToSend({ ...dataToSend, genderCode: event })

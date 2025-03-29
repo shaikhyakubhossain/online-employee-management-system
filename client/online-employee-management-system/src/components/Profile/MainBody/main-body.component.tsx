@@ -18,7 +18,6 @@ export default function MainBody(): JSX.Element {
       router.push("/");
     };
 
-    console.log()
 
   return (
     <div className="flex flex-col justify-center items-center p-4 bg-gray-100">
@@ -45,6 +44,7 @@ export default function MainBody(): JSX.Element {
               { label: data?.adminId ? "Admin ID" : "Employee ID", value: data?.employeeId ? data?.employeeId : data?.adminId },
               { label: "Email", value: data?.email },
               { label: "Designation", value: data?.designation },
+              { label: "Department", value: data?.department },
               { label: "Regd No", value: data?.regdNo },
               { label: "Gender", value: data?.genderCode },
             ].map((item, index) => (

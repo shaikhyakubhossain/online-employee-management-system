@@ -5,6 +5,7 @@ export type authDetailDataType = {
     lastName: string;
     username: string;
     designation: string;
+    department: string;
     email: string;
     password: string;
     regdNo: string;

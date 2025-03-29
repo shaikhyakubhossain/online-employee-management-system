@@ -4,6 +4,7 @@ export type leaveData = {
   lastName: string;
   employeeId: number;
   designation: string;
+  department: string;
   regdNo: string;
   email: string;
   leaveType: string;
@@ -19,6 +20,7 @@ export type employeeData = {
   lastName: string;
   employeeId: number;
   designation: string;
+  department: string;
   regdNo: string;
   email: string;
   genderCode?: string;
@@ -35,6 +37,7 @@ export type defaultData = {
   lastName: string;
   employeeId: number;
   designation: string;
+  department: string;
   regdNo: string;
   email: string;
   leaveType?: string;
