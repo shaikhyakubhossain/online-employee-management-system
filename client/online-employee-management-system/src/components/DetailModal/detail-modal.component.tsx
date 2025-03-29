@@ -1,5 +1,7 @@
 import type { employeeData } from "@/constants/Types/response-data";
 import { btnList } from "@/constants/Basic/data";
+import Button from "../Button/button.component";
+import { btnList2 } from "@/constants/Basic/data";
 
 type propsType = {
   data: employeeData | null;
@@ -17,10 +19,15 @@ export default function DetailModal(props: propsType) {
           <div className="flex flex-col justify-between items-center w-full h-full">
             <div className="flex justify-evenly items-center w-full bg-[#dcdbff] text-2xl">
               <div>
+            <Button onClick={props.hide} customTW="text-sm bg-[#FFFFFF]"><img src={btnList2[1].base64Icon} alt="" /></Button>
+              </div>
+              <div className="flex justify-between px-12 items-center w-full ">
+              <div>
                 {props.data.firstName}&nbsp;{props.data.lastName}
               </div>
               <div>{props.data.designation}</div>
               <div>{props.data.email}</div>
+              </div>
             </div>
             <div className="flex justify-evenly items-center w-full gap-3">
               <div className="flex flex-col justify-center items-center">
@@ -33,7 +40,7 @@ export default function DetailModal(props: propsType) {
                 </div>
                 <div>Employee Id:&nbsp;{props.data.employeeId}</div>
               </div>
-              <div className="text-left text-lg">
+              <div className="bg-slate-100 rounded-lg p-4 text-left text-lg leading-9">
                 <div>
                   Name:&nbsp;{props.data.firstName}&nbsp;{props.data.lastName}
                 </div>
@@ -43,7 +50,7 @@ export default function DetailModal(props: propsType) {
                 <div>Gender:&nbsp;{props.data.genderCode}</div>
               </div>
               {props.data.innovationScore && (
-                <div className="text-left text-lg">
+                <div className="bg-slate-100 rounded-lg p-4 text-left text-lg leading-9">
                   <div>InnovationScore:&nbsp;{props.data.innovationScore}</div>
                   <div>LeadershipScore:&nbsp;{props.data.leadershipScore}</div>
                   <div>ManagerRating:&nbsp;{props.data.managerRating}</div>
