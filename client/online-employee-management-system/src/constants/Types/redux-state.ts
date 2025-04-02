@@ -11,4 +11,8 @@ export type authDetailDataType = {
     regdNo: string;
     genderCode: string;
     token: string;
+    dateOfJoining?: string;
+    workExperience?: number;
+    dob?: string;
+    employmentType?: string;
 };

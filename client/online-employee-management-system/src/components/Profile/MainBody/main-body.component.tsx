@@ -13,16 +13,15 @@ export default function MainBody(): JSX.Element {
   const router = useRouter();
 
   const handleLogout = () => {
-      localStorage.removeItem("OEMS-authDetail");
-      dispatch(setDetail({ data: null, token: null }));
-      router.push("/");
-    };
-
+    localStorage.removeItem("OEMS-authDetail");
+    dispatch(setDetail({ data: null, token: null }));
+    router.push("/");
+  };
 
   return (
     <div className="flex flex-col justify-center items-center p-4 bg-gray-100">
       <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-xl p-6 max-w-3xl w-full">
-        <div className="flex flex-col items-center md:w-1/3 md:border-r md:pr-6 mb-4 md:mb-0">
+        <div className="flex flex-col justify-center items-center md:w-1/3 md:border-r md:pr-6 mb-4 md:mb-0">
           <div className="bg-gray-300 rounded-full p-4">
             <img
               className="w-32 h-32 rounded-full"
@@ -41,10 +40,12 @@ export default function MainBody(): JSX.Element {
           </h3>
           <div className="bg-gray-100 p-4 rounded-lg shadow-sm">
             {[
-              { label: data?.adminId ? "Admin ID" : "Employee ID", value: data?.employeeId ? data?.employeeId : data?.adminId },
+              {
+                label: data?.adminId ? "Admin ID" : "Employee ID",
+                value: data?.employeeId ? data?.employeeId : data?.adminId,
+              },
               { label: "Email", value: data?.email },
               { label: "Designation", value: data?.designation },
-              { label: "Department", value: data?.department },
               { label: "Regd No", value: data?.regdNo },
               { label: "Gender", value: data?.genderCode },
             ].map((item, index) => (
@@ -55,6 +56,44 @@ export default function MainBody(): JSX.Element {
                 <span className="text-gray-600 font-medium">{item.label}:</span>
                 <span className="text-gray-800 font-semibold">
                   {item.value || "N/A"}
+                </span>
+              </div>
+            ))}
+            {!data?.adminId &&
+              [
+                { label: "Department", value: data?.department },
+                { label: "Employment Type", value: data?.employmentType },
+                {
+                  label: "Work Experience",
+                  value:
+                    data?.workExperience && data?.workExperience > 1
+                      ? `${data?.workExperience} years`
+                      : `${data?.workExperience} year`,
+                },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between py-2 border-b last:border-none"
+                >
+                  <span className="text-gray-600 font-medium">
+                    {item.label}:
+                  </span>
+                  <span className="text-gray-800 font-semibold">
+                    {item.value || "N/A"}
+                  </span>
+                </div>
+              ))}
+            {[
+              { label: "Date of Joining", value: data?.dateOfJoining },
+              { label: "Date of Birth", value: data?.dob },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="flex justify-between py-2 border-b last:border-none"
+              >
+                <span className="text-gray-600 font-medium">{item.label}:</span>
+                <span className="text-gray-800 font-semibold">
+                  {item.value?.split("T")[0] || "N/A"}
                 </span>
               </div>
             ))}

@@ -29,7 +29,7 @@ export default function DetailModal(props: propsType) {
               <div>{props.data.email}</div>
               </div>
             </div>
-            <div className="flex justify-evenly items-center w-full gap-3">
+            <div className="flex justify-evenly w-full gap-3">
               <div className="flex flex-col justify-center items-center">
                 <div className="bg-gray-400 rounded-full p-4">
                   <img
@@ -49,13 +49,12 @@ export default function DetailModal(props: propsType) {
                 <div>RegdNo:&nbsp;{props.data.regdNo}</div>
                 <div>Gender:&nbsp;{props.data.genderCode}</div>
               </div>
-              {props.data.innovationScore && (
+              {props.data.workExperience && (
                 <div className="bg-slate-100 rounded-lg p-4 text-left text-lg leading-9">
-                  <div>InnovationScore:&nbsp;{props.data.innovationScore}</div>
-                  <div>LeadershipScore:&nbsp;{props.data.leadershipScore}</div>
-                  <div>ManagerRating:&nbsp;{props.data.managerRating}</div>
-                  <div>OvertimeScore:&nbsp;{props.data.overtimeScore}</div>
-                  <div>PerformanceScore:&nbsp;{props.data.performanceScore}</div>
+                  <div>Employment Type:&nbsp;{props.data.employmentType}</div>
+                  <div>Work Experience:&nbsp;{props.data.workExperience > 1 ? props.data.workExperience + " years" : props.data.workExperience + " year"}</div>
+                  <div>Date of Joining:&nbsp;{props.data.dateOfJoining}</div>
+                  <div>Date of Birth:&nbsp;{props.data.dob}</div>
                 </div>
               )}
             </div>
