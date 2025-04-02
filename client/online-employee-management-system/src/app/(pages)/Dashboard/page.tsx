@@ -47,7 +47,7 @@ export default function Dashboard() {
         showCurrentUserName={true}
         showSvg={true}
       />
-      <SubHeaderContainer noticeData={noticeData} />
+      <SubHeaderContainer noticeData={noticeData && noticeData.slice(0, 5)} />
       <HeroHeader
         greeting="We congratulate"
         title="Employee of the Year"
