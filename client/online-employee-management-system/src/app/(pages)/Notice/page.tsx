@@ -7,7 +7,7 @@ export default function Notice() {
     <div>
       <div className="flex max-[730px]:flex-col justify-between items-center max-[730px]:items-start font-times">
         <PageHeader title="Notice Board" />
-        <RightSideNotificationUpdateBtn />
+        {/* <RightSideNotificationUpdateBtn /> */}
       </div>
       <MainBody />
     </div>

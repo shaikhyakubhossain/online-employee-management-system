@@ -19,7 +19,7 @@ export default function Section(props: propsType): JSX.Element {
                         </div>
                     ))
                     :
-                    <div>empty</div>
+                    <div>Loading...</div>
                 }
             </div>
         </div>
