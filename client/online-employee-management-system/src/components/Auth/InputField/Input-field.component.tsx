@@ -1,6 +1,7 @@
 type propsType = {
   label: string;
   type: string;
+  selectList?: string[];
   placeholder?: string;
   required?: boolean;
   updateDataToSend: (data: string) => void;
@@ -16,10 +17,20 @@ export default function InputField(props: propsType): JSX.Element {
         <select
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           name={props.label}
+          required={props.required}
           onChange={(event) => props.updateDataToSend(event.target.value)}
         >
-          <option value="male">Male</option>
-          <option value="female">Female</option>
+          <option value="" disabled selected>
+            {props.placeholder}
+          </option>
+          {props.selectList &&
+            props.selectList.map((item, index) => {
+              return (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              );
+            })}
         </select>
       ) : (
         <input

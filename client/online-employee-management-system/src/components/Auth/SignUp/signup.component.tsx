@@ -24,6 +24,10 @@ type dataToSendType = {
   designation: string;
   department?: string;
   genderCode: string;
+  employmentType: string;
+  workExperience: number;
+  dob: string;
+  dateOfJoining: string;
   regdNo: string;
   email: string;
   password: string;
@@ -36,13 +40,19 @@ export default function SignUp() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const currentDateAsStringInAnArray = (new Date()).toString().split(' ');
+
   const [dataToSend, setDataToSend] = useState<dataToSendType>({
     firstName: "",
     lastName: "",
     username: "",
     designation: "",
     department: "",
-    genderCode: "Male",
+    genderCode: "",
+    employmentType: "",
+    workExperience: 0,
+    dob: "",
+    dateOfJoining: currentDateAsStringInAnArray[1] + "-" + currentDateAsStringInAnArray[2] + "-" + currentDateAsStringInAnArray[3],
     regdNo: "",
     email: "",
     password: "",
@@ -62,6 +72,8 @@ export default function SignUp() {
       });
     }
   };
+
+  console.log("hiiiiiiiiiiiii: ", (new Date()).toString().split(' ')[3]);
 
   const fetchData = async () => {
     fetch(`${getUrl()}/${dataToSend.role}-signup`, {
@@ -155,6 +167,14 @@ export default function SignUp() {
                 type="text"
                 placeholder="Enter Designation"
               />
+              <InputField
+                updateDataToSend={(event) =>
+                  setDataToSend({ ...dataToSend, workExperience: parseInt(event) })
+                }
+                label="Work Experience"
+                type="number"
+                placeholder="Enter Work Experience"
+              />
               {dataToSend.role === "employee" && <InputField
                 updateDataToSend={(event) =>
                   setDataToSend({ ...dataToSend, department: event })
@@ -169,7 +189,17 @@ export default function SignUp() {
                 }
                 label="Gender"
                 type="select"
+                selectList={["Male", "Female"]}
                 placeholder="Enter Gender"
+              />
+              <InputField
+                updateDataToSend={(event) =>
+                  setDataToSend({ ...dataToSend, employmentType: event })
+                }
+                label="Employment Type"
+                type="select"
+                selectList={["Full-time", "Part-time", "Contract", "Intern"]}
+                placeholder="Enter Employment Type"
               />
               <InputField
                 updateDataToSend={(event) =>
@@ -178,6 +208,14 @@ export default function SignUp() {
                 label="Regd. No"
                 type="text"
                 placeholder="Enter Regd. No"
+              />
+              <InputField
+                updateDataToSend={(event) =>
+                  setDataToSend({ ...dataToSend, dob: event })
+                }
+                label="Date of Birth"
+                type="text"
+                placeholder="Enter Date of Birth"
               />
               <InputField
                 updateDataToSend={(event) =>

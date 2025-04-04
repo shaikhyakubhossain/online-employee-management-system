@@ -17,7 +17,7 @@ export default function MainBody(): JSX.Element {
     dispatch(setDetail({ data: null, token: null }));
     router.push("/");
   };
-
+  
   return (
     <div className="flex flex-col justify-center items-center p-4 bg-gray-100">
       <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-xl p-6 max-w-3xl w-full">
