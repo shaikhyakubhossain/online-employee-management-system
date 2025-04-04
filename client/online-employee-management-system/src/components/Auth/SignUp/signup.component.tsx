@@ -1,6 +1,6 @@
 "use client";
 import styles from "./signup.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
@@ -107,6 +107,15 @@ export default function SignUp() {
       fetchData();
     }
   };
+
+  useEffect(() => {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        handleSubmit();
+      }
+    })
+    return () => document.removeEventListener("keydown", () => { });
+  }, []);
 
   console.log(dataToSend);
 

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
 import InputField from "../InputField/Input-field.component";
@@ -61,6 +61,15 @@ export default function Login(props: propsType) {
         dispatch(setStartLoadingFalse());
       });
   };
+
+  useEffect(() => {
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          handleSubmit();
+        }
+      })
+      return () => document.removeEventListener("keydown", () => { });
+    }, []);
 
   return (
     <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>

@@ -25,7 +25,23 @@ const employeeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  department : {
+  department: {
+    type: String,
+    required: true,
+  },
+  workExperience: {
+    type: Number,
+    required: true,
+  },
+  dateOfJoining: {
+    type: String,
+    required: true,
+  },
+  dob: {
+    type: String,
+    required: true,
+  },
+  employmentType: {
     type: String,
     required: true,
   },
@@ -46,7 +62,7 @@ const employeeSchema = new mongoose.Schema({
   genderCode: {
     type: String,
     required: true,
-  }
+  },
 });
 
 employeeSchema.plugin(autoSequence, { inc_field: "employeeId" });
@@ -57,6 +73,10 @@ employeeSchema.statics.signup = async function (
   username,
   designation,
   department,
+  workExperience,
+  dateOfJoining,
+  dob,
+  employmentType,
   regdNo,
   email,
   password,
@@ -68,11 +88,23 @@ employeeSchema.statics.signup = async function (
     !lastName ||
     !designation ||
     !department ||
+    !workExperience ||
+    !dateOfJoining ||
+    !dob ||
+    !employmentType ||
     !regdNo ||
     !email ||
     !genderCode
-) {
-  console.log(firstName, lastName, username, designation, department, regdNo, email)
+  ) {
+    console.log(
+      firstName,
+      lastName,
+      username,
+      designation,
+      department,
+      regdNo,
+      email
+    );
     return { error: "All fields must be filled" };
   }
 
@@ -82,7 +114,7 @@ employeeSchema.statics.signup = async function (
 
   const doesEmailExist = await this.findOne({ email });
   const doesRegdNoExist = await this.findOne({ regdNo });
-  const doesUsernameExist = await this.findOne({ username })
+  const doesUsernameExist = await this.findOne({ username });
 
   if (doesEmailExist) {
     return { error: "Email already exists" };
@@ -97,7 +129,7 @@ employeeSchema.statics.signup = async function (
   if (password.length <= 5) {
     return { error: "Password must be at least 6 characters" };
   }
-  if(password !== confirmPassword){
+  if (password !== confirmPassword) {
     return { error: "Passwords do not match" };
   }
 
@@ -110,6 +142,10 @@ employeeSchema.statics.signup = async function (
     username,
     designation,
     department,
+    workExperience,
+    dateOfJoining,
+    dob,
+    employmentType,
     regdNo,
     genderCode,
     email,
@@ -133,8 +169,7 @@ employeeSchema.statics.login = async function (username, password) {
     if (!matchPassword) {
       return { error: "Incorrect password" };
     }
-  }
-  else if(employee.password !== password){
+  } else if (employee.password !== password) {
     return { error: "Incorrect password" };
   }
 
