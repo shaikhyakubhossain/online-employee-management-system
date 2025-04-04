@@ -20,7 +20,7 @@ export default function InputField(props: propsType): JSX.Element {
           required={props.required}
           onChange={(event) => props.updateDataToSend(event.target.value)}
         >
-          <option value="" disabled selected>
+          <option value="" disabled selected hidden>
             {props.placeholder}
           </option>
           {props.selectList &&
