@@ -86,17 +86,19 @@ export default function MainBody(): JSX.Element {
             {[
               { label: "Date of Joining", value: data?.dateOfJoining },
               { label: "Date of Birth", value: data?.dob },
-            ].map((item, index) => (
+            ].map((item, index) => {
+              const shortDate = item.value?.split(" ");
+              return (
               <div
                 key={index}
                 className="flex justify-between py-2 border-b last:border-none"
               >
                 <span className="text-gray-600 font-medium">{item.label}:</span>
                 <span className="text-gray-800 font-semibold">
-                  {item.value?.split("T")[0] || "N/A"}
+                  {shortDate && shortDate[0] + " " + shortDate[1] + " " + shortDate[2] + " " + shortDate[3] || "N/A"}
                 </span>
               </div>
-            ))}
+            )})}
           </div>
         </div>
       </div>
