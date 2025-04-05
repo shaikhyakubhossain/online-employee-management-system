@@ -17,7 +17,7 @@ export default function MainBody(): JSX.Element {
     dispatch(setDetail({ data: null, token: null }));
     router.push("/");
   };
-  
+
   return (
     <div className="flex flex-col justify-center items-center p-4 bg-gray-100">
       <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-xl p-6 max-w-3xl w-full">
@@ -89,16 +89,27 @@ export default function MainBody(): JSX.Element {
             ].map((item, index) => {
               const shortDate = item.value?.split(" ");
               return (
-              <div
-                key={index}
-                className="flex justify-between py-2 border-b last:border-none"
-              >
-                <span className="text-gray-600 font-medium">{item.label}:</span>
-                <span className="text-gray-800 font-semibold">
-                  {shortDate && shortDate[0] + " " + shortDate[1] + " " + shortDate[2] + " " + shortDate[3] || "N/A"}
-                </span>
-              </div>
-            )})}
+                <div
+                  key={index}
+                  className="flex justify-between py-2 border-b last:border-none"
+                >
+                  <span className="text-gray-600 font-medium">
+                    {item.label}:
+                  </span>
+                  <span className="text-gray-800 font-semibold">
+                    {(shortDate &&
+                      shortDate[0] +
+                        " " +
+                        shortDate[1] +
+                        " " +
+                        shortDate[2] +
+                        " " +
+                        shortDate[3]) ||
+                      "N/A"}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
