@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { KeyboardEvent } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
 import InputField from "../InputField/Input-field.component";
@@ -34,6 +35,7 @@ export default function Login(props: propsType) {
   const [toast, setToast] = useState<toastType>({ show: false, message: "" });
 
   const handleSubmit = () => {
+    console.log("dataToSend: ", dataToSend)
     dispatch(setStartLoadingTrue());
     fetch(`${getUrl()}/${props.searchParams.role}-login`, {
       method: "POST",
@@ -43,9 +45,8 @@ export default function Login(props: propsType) {
       body: JSON.stringify(dataToSend),
     })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         res.json().then((data) => {
-          dispatch(setStartLoadingFalse());
           if (!data.error) {
             dispatch(setDetail(data));
             localStorage.setItem("OEMS-authDetail", JSON.stringify(data));
@@ -57,19 +58,20 @@ export default function Login(props: propsType) {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
+      })
+      .finally(() => {
         dispatch(setStartLoadingFalse());
       });
   };
 
-  useEffect(() => {
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          handleSubmit();
-        }
-      })
-      return () => document.removeEventListener("keydown", () => { });
-    }, []);
+  const handleSubmitOnEnterKeyPress = (event: KeyboardEvent<HTMLFormElement>) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
+  console.log(dataToSend)
 
   return (
     <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>
@@ -82,6 +84,7 @@ export default function Login(props: propsType) {
         <div className="text-3xl my-4 capitalize">
           {props.searchParams.role} Login
         </div>
+        <form onKeyDown={handleSubmitOnEnterKeyPress}>
         <div className="bg-blue-300 min-w-1 max-w-96 rounded mx-auto p-10">
           <InputField
             updateDataToSend={(data) =>
@@ -103,6 +106,7 @@ export default function Login(props: propsType) {
             <Button onClick={handleSubmit}>Enter</Button>
           </div>
         </div>
+          </form>
         <div>
           Do not have an account? Click here to &nbsp;
           <Link className="text-blue-200" href={"/Auth?type=signup"}>

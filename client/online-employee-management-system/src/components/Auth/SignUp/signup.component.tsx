@@ -1,6 +1,7 @@
 "use client";
 import styles from "./signup.module.scss";
-import { useState, useEffect } from "react";
+import { KeyboardEvent } from "react";
+import { useState } from "react";
 import InputField from "../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
@@ -64,7 +65,7 @@ export default function SignUp() {
 
   const handleRoleSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
     const current = event.target as HTMLInputElement;
-    console.log(current.parentElement?.parentElement?.textContent);
+    // console.log(current.parentElement?.parentElement?.textContent);
     if (current.parentElement?.parentElement?.textContent) {
       setDataToSend({
         ...dataToSend,
@@ -73,7 +74,7 @@ export default function SignUp() {
     }
   };
 
-  console.log("hiiiiiiiiiiiii: ", (new Date()).toString().split(' ')[3]);
+  // console.log("hiiiiiiiiiiiii: ", (new Date()).toString().split(' ')[3]);
 
   const fetchData = async () => {
     fetch(`${getUrl()}/${dataToSend.role}-signup`, {
@@ -95,7 +96,7 @@ export default function SignUp() {
           localStorage.setItem("OEMS-authDetail", JSON.stringify(data));
           router.push(`/Dashboard`);
         }
-        console.log(data);
+        // console.log(data);
       });
   };
 
@@ -108,16 +109,11 @@ export default function SignUp() {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        handleSubmit();
-      }
-    })
-    return () => document.removeEventListener("keydown", () => { });
-  }, []);
-
-  console.log(dataToSend);
+  const handleSubmitOnEnterKeyPress = (event: KeyboardEvent<HTMLFormElement>) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
 
   return (
     <div
@@ -127,6 +123,7 @@ export default function SignUp() {
       <Toast show={toast.show} hide={() => setToast({ show: false, message: "" })} message={toast.message} />
       <div className="mx-auto w-full">
         <div className="text-2xl sm:text-3xl mb-2">New user? Register here</div>
+          <form onKeyDown={handleSubmitOnEnterKeyPress}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center items-start">
           <div className="col-span-1 mb-4 sm:mb-0">
             <div
@@ -264,6 +261,7 @@ export default function SignUp() {
             </div>
           </div>
         </div>
+          </form>
         <div className="mt-4">
           By signing up, you indicate that you have read, understood and agree to
           Employeeverse&#39;s <Link className="text-blue-200" href={'/TermsOfService'}>Terms of Use</Link> and <Link className="text-blue-200" href={'/PrivacyPolicy'}>Privacy Policy</Link> <br />
