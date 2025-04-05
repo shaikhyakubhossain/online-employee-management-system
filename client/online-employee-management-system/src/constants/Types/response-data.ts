@@ -26,7 +26,7 @@ export type employeeData = {
   genderCode?: string;
   dateOfJoining?: string;
   workExperience?: number;
-  dob?: number;
+  dob?: string;
   employmentType?: string;
 };
 

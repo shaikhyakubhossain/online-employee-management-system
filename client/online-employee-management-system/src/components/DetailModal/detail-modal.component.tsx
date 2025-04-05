@@ -8,6 +8,10 @@ type propsType = {
   hide: () => void;
 };
 export default function DetailModal(props: propsType) {
+
+  const dob = props.data?.dob?.split(" ");
+  const dateOfJoining = props.data?.dateOfJoining?.split(" ");
+
   return (
     <div
       onClick={(e) => e.target === e.currentTarget && props.hide()}
@@ -49,12 +53,12 @@ export default function DetailModal(props: propsType) {
                 <div>RegdNo:&nbsp;{props.data.regdNo}</div>
                 <div>Gender:&nbsp;{props.data.genderCode}</div>
               </div>
-              {props.data.workExperience && (
+              {props.data.workExperience !== undefined && (
                 <div className="bg-slate-100 rounded-lg p-4 text-left text-lg leading-9">
                   <div>Employment Type:&nbsp;{props.data.employmentType}</div>
                   <div>Work Experience:&nbsp;{props.data.workExperience > 1 ? props.data.workExperience + " years" : props.data.workExperience + " year"}</div>
-                  <div>Date of Joining:&nbsp;{props.data.dateOfJoining}</div>
-                  <div>Date of Birth:&nbsp;{props.data.dob}</div>
+                  <div>Date of Joining:&nbsp;{dateOfJoining && dateOfJoining[0] + " - " + dateOfJoining[1] + " - " + dateOfJoining[2] + " - " + dateOfJoining[3]}</div>
+                  <div>Date of Birth:&nbsp;{dob && dob[0] + " - " + dob[1] + " - " + dob[2] + " - " + dob[3]}</div>
                 </div>
               )}
             </div>
