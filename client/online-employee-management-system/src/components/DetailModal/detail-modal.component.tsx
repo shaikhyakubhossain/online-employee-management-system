@@ -15,57 +15,102 @@ export default function DetailModal(props: propsType) {
   return (
     <div
       onClick={(e) => e.target === e.currentTarget && props.hide()}
-      className="fixed top-0 left-0 flex justify-center items-center w-full h-full z-10 bg-[#00000060]"
-      style={{ backdropFilter: "blur(5px)" }}
+      className="fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center z-50 p-4 backdrop-blur-sm"
     >
       {props.data && (
-        <div className="flex justify-between items-center w-3/4 h-3/4 p-4 z-20 bg-[#cbcafb] rounded-lg">
-          <div className="flex flex-col justify-between items-center w-full h-full">
-            <div className="flex justify-evenly items-center w-full bg-[#dcdbff] text-2xl">
-              <div>
-            <Button onClick={props.hide} customTW="text-sm bg-[#FFFFFF]"><img src={btnList2[1].base64Icon} alt="" /></Button>
-              </div>
-              <div className="flex justify-between px-12 items-center w-full ">
-              <div>
-                {props.data.firstName}&nbsp;{props.data.lastName}
-              </div>
-              <div>{props.data.designation}</div>
-              <div>{props.data.email}</div>
-              </div>
+        <div className="flex flex-col md:flex-row bg-white shadow-xl rounded-2xl p-6 max-w-4xl w-full relative">
+          {/* Close Button */}
+          <button
+            onClick={props.hide}
+            className="absolute top-4 right-4 text-gray-500 hover:text-black transition"
+          >
+            <img src={btnList2[1].base64Icon} alt="close" className="w-6 h-6" />
+          </button>
+
+          {/* Left Panel - Profile */}
+          <div className="flex flex-col justify-center items-center md:w-1/3 border-b md:border-b-0 md:border-r pb-4 md:pb-0 md:pr-6">
+            <div className="bg-gray-300 rounded-full p-2 shadow-md">
+              <img
+                className="w-32 h-32 rounded-full"
+                src={btnList[7].base64Icon}
+                alt="profile"
+              />
             </div>
-            <div className="flex justify-evenly w-full gap-3">
-              <div className="flex flex-col justify-center items-center">
-                <div className="bg-gray-400 rounded-full p-4">
-                  <img
-                    className="w-32 h-32 rounded-full"
-                    src={btnList[7].base64Icon}
-                    alt="profile"
-                  />
-                </div>
-                <div>Employee Id:&nbsp;{props.data.employeeId}</div>
-              </div>
-              <div className="bg-slate-100 rounded-lg p-4 text-left text-lg leading-9">
-                <div>
-                  Name:&nbsp;{props.data.firstName}&nbsp;{props.data.lastName}
-                </div>
-                <div>Email:&nbsp;{props.data.email}</div>
-                <div>Designation:&nbsp;{props.data.designation}</div>
-                <div>RegdNo:&nbsp;{props.data.regdNo}</div>
-                <div>Gender:&nbsp;{props.data.genderCode}</div>
-              </div>
-              {props.data.workExperience !== undefined && (
-                <div className="bg-slate-100 rounded-lg p-4 text-left text-lg leading-9">
-                  <div>Employment Type:&nbsp;{props.data.employmentType}</div>
-                  <div>Work Experience:&nbsp;{props.data.workExperience > 1 ? props.data.workExperience + " years" : props.data.workExperience + " year"}</div>
-                  <div>Date of Joining:&nbsp;{dateOfJoining && dateOfJoining[0] + " - " + dateOfJoining[1] + " - " + dateOfJoining[2] + " - " + dateOfJoining[3]}</div>
-                  <div>Date of Birth:&nbsp;{dob && dob[0] + " - " + dob[1] + " - " + dob[2] + " - " + dob[3]}</div>
-                </div>
+            <h2 className="text-xl font-bold text-gray-800 mt-4">
+              {props.data.firstName} {props.data.lastName}
+            </h2>
+            <p className="text-gray-500 text-sm mt-1">
+              {props.data.designation}
+            </p>
+          </div>
+
+          {/* Right Panel - Info */}
+          <div className="md:w-2/3 md:pl-6 mt-4 md:mt-0">
+            <h3 className="text-lg font-semibold text-gray-700 mb-4">
+              Employee Details
+            </h3>
+            <div className="bg-gray-100 p-4 rounded-lg shadow-inner space-y-3 text-sm sm:text-base">
+              {[
+                {
+                  label: "Employee ID",
+                  value: props.data.employeeId,
+                },
+                { label: "Email", value: props.data.email },
+                { label: "Regd No", value: props.data.regdNo },
+                { label: "Gender", value: props.data.genderCode },
+                { label: "Department", value: props.data.department },
+                { label: "Employment Type", value: props.data.employmentType },
+                {
+                  label: "Work Experience",
+                  value:
+                    props.data.workExperience &&
+                    (props.data.workExperience > 1
+                      ? `${props.data.workExperience} years`
+                      : `${props.data.workExperience} year`),
+                },
+              ].map(
+                (item, idx) =>
+                  item.value && (
+                    <div
+                      key={idx}
+                      className="flex justify-between border-b last:border-none pb-1"
+                    >
+                      <span className="text-gray-600 font-medium">
+                        {item.label}:
+                      </span>
+                      <span className="text-gray-800 font-semibold text-right">
+                        {item.value}
+                      </span>
+                    </div>
+                  )
               )}
+              {[
+                { label: "Date of Joining", value: props.data.dateOfJoining },
+                { label: "Date of Birth", value: props.data.dob },
+              ].map((item, idx) => {
+                const shortDate = item.value?.split(" ");
+                return (
+                  <div
+                    key={idx}
+                    className="flex justify-between border-b last:border-none pb-1"
+                  >
+                    <span className="text-gray-600 font-medium">
+                      {item.label}:
+                    </span>
+                    <span className="text-gray-800 font-semibold text-right">
+                      {(shortDate &&
+                        `${shortDate[0]} ${shortDate[1]} ${shortDate[2]} ${shortDate[3]}`) ||
+                        "N/A"}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
-            <div></div>
           </div>
         </div>
       )}
     </div>
   );
+
+
 }
