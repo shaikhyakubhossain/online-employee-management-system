@@ -14,7 +14,6 @@ type propsType = {
 };
 
 export default function BodyContainer(props: propsType): JSX.Element {
-
   const pathname = usePathname();
 
   const isLeftMenuOpen = useSelector(
@@ -27,7 +26,17 @@ export default function BodyContainer(props: propsType): JSX.Element {
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
   const handleMarginLeft = () => {
-    if (pathname === "/" || pathname === "/Auth" || pathname === "/AboutUs" || pathname === "/ContactUs" || pathname === "/Help" || pathname === "/Credits" ) {
+    if (
+      pathname === "/" ||
+      pathname === "/Auth" ||
+      pathname === "/AboutUs" ||
+      pathname === "/ContactUs" ||
+      pathname === "/Help" ||
+      pathname === "/Credits" ||
+      pathname === "/TermsOfService" ||
+      pathname === "/PrivacyPolicy" ||
+      pathname === "/404"
+    ) {
       return "0px";
     } else {
       if (isLeftMenuOpen) {
@@ -48,7 +57,17 @@ export default function BodyContainer(props: propsType): JSX.Element {
     <div>
       <TopLoading startLoading={startLoading} />
       <Nav />
-      {pathname === "/" || pathname === "/Auth" || pathname === "/AboutUs" || pathname === "/ContactUs" || pathname === "/Help" || pathname === "/Credits" ? null : <LeftMenu screenSize={windowWidth} />}
+      {pathname === "/" ||
+      pathname === "/Auth" ||
+      pathname === "/AboutUs" ||
+      pathname === "/ContactUs" ||
+      pathname === "/Help" ||
+      pathname === "/Credits" ||
+      pathname === "/TermsOfService" ||
+      pathname === "/PrivacyPolicy" ||
+      pathname === "/404" ? null : (
+        <LeftMenu screenSize={windowWidth} />
+      )}
       <div
         className={`mt-20 ${
           pathname === "/" || pathname === "/Auth" ? "" : "p-9"
