@@ -7,21 +7,38 @@ type propsType = {
 }
 
 export default function Section(props: propsType): JSX.Element {
-    return (
-        <div className={`${styles.mainContainer} my-6`}>
-            <div className={`${styles.sectionTitle} text-red-500 text-2xl font-semibold`}>{props.title}</div>
-            <div className={`${styles.sectionBody}`}>
-                {
-                    props.data ? props.data.map((item) => (
-                        <div className={`${styles.notice} text-blue-700 font-semibold my-4`} key={item.noticeId}>
-                            <div className="text-2xl m-2">{item.title}</div>
-                            <div className="self-center m-2">• {item.message}</div>
-                        </div>
-                    ))
-                    :
-                    <div>Loading...</div>
-                }
-            </div>
-        </div>
-    )
+   return (
+     <div className={`${styles.mainContainer} my-6`}>
+       {/* Section Title */}
+       <div className="text-2xl font-bold text-gray-800 mb-5 flex items-center gap-2">
+         📝 {props.title}
+       </div>
+
+       {/* Notices Body */}
+       <div className={`${styles.sectionBody} grid gap-4`}>
+         {props.data && props.data.length > 0 ? (
+           props.data.map((item) => (
+             <div
+               key={item.noticeId}
+               className="rounded-xl bg-white border border-gray-200 shadow-md p-5 hover:shadow-lg transition-all"
+             >
+               <div className="text-xl font-semibold text-indigo-600 mb-2">
+                 {item.title}
+               </div>
+               <div className="text-gray-700 text-lg leading-relaxed">
+                {item.message}
+               </div>
+             </div>
+           ))
+         ) : (
+           <div className="text-sm text-gray-500 italic text-center py-5">
+             No notices available.
+           </div>
+         )}
+       </div>
+     </div>
+   );
+
+
+
 }

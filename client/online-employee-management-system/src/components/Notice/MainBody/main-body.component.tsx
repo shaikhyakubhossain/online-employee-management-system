@@ -50,13 +50,25 @@ export default function MainBody() {
     console.log(data);
     
     return (
-        <div>
-            <Toast show={toast.show} hide={() => setToast({ show: false, message: "" })} message={toast.message} />
-            {
-                role === "admin" && <AddNotice updateTitle={(data: string) => setDataToSend({ ...dataToSend, title: data })} updateMessage={(data: string) => setDataToSend({ ...dataToSend, message: data })} handleAddNotice={handleAddNotice} />
+      <div className="p-6 bg-gray-100 min-h-screen">
+        <Toast
+          show={toast.show}
+          hide={() => setToast({ show: false, message: "" })}
+          message={toast.message}
+        />
+        {role === "admin" && (
+          <AddNotice
+            updateTitle={(data: string) =>
+              setDataToSend({ ...dataToSend, title: data })
             }
-            <Section title="Latest Notices" data={data && data.slice(0, 5)} />
-            <Section title="Other Notices" data={data} />
-        </div>
-    )
+            updateMessage={(data: string) =>
+              setDataToSend({ ...dataToSend, message: data })
+            }
+            handleAddNotice={handleAddNotice}
+          />
+        )}
+        <Section title="Latest Notices" data={data && data.slice(0, 5)} />
+        <Section title="Other Notices" data={data} />
+      </div>
+    );
 }
