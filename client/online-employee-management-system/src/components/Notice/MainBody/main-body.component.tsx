@@ -46,6 +46,8 @@ export default function MainBody() {
             setToast({ show: true, message: data.message ? data.message : data.error });
         })
     }
+
+    console.log(data);
     
     return (
         <div>
