@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { getUrl } from "@/constants/url";
+import type { employeeData } from "@/constants/Types/response-data";
 
 import { RootState } from "@/lib/store";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,15 +13,16 @@ import {
 const useFetchGetMethod = (
   endpoint: string,
   role: string,
-  callback: (data: null) => void,
-  shouldReverse: boolean = false
+  callback: (data: employeeData[] | null) => void,
+  shouldReverse: boolean = false,
+  page: number
 ) => {
   const dispatch = useDispatch();
 
   const token = useSelector((state: RootState) => state.authDetail.token);
 
   const fetchData = async () => {
-    fetch(`${getUrl()}/${endpoint}`, {
+    fetch(`${getUrl()}/${endpoint}${page && `?page=${page}`}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +49,7 @@ const useFetchGetMethod = (
   useEffect(() => {
     dispatch(setStartLoadingTrue());
     fetchData();
-  }, []);
+  }, [page && page]);
 };
 
 export default useFetchGetMethod;

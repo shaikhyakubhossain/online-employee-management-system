@@ -24,6 +24,10 @@ const setModel = (modelName) => {
   }
 };
 
+const getCollectionLength = async (collectionName) => {
+  return await setModel(collectionName).countDocuments();
+}
+
 const sendNotification = async (res, regdNo, title, message) => {
   const notification = await Notification.createNotification(
     regdNo,
@@ -39,4 +43,4 @@ const sendNotification = async (res, regdNo, title, message) => {
   }
 };
 
-module.exports = { setModel, sendNotification };
+module.exports = { setModel, sendNotification, getCollectionLength };
