@@ -1,6 +1,5 @@
 import type { employeeData } from "@/constants/Types/response-data";
 import { btnList } from "@/constants/Basic/data";
-import Button from "../Button/button.component";
 import { btnList2 } from "@/constants/Basic/data";
 
 type propsType = {
@@ -9,8 +8,8 @@ type propsType = {
 };
 export default function DetailModal(props: propsType) {
 
-  const dob = props.data?.dob?.split(" ");
-  const dateOfJoining = props.data?.dateOfJoining?.split(" ");
+  // const dob = props.data?.dob?.split(" ");
+  // const dateOfJoining = props.data?.dateOfJoining?.split(" ");
 
   return (
     <div
