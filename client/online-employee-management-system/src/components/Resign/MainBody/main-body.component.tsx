@@ -77,15 +77,6 @@ export default function MainBody() {
     window.location.reload();
   };
 
-  // const handleSearch = () => {
-  //   if (!data) return;
-  //   const localData: employeeData[] = data.filter((item) =>
-  //     item.firstName.includes(searchData)
-  //   );
-  //   console.log("searching: ", searchData);
-  //   setSearchResults(localData);
-  // };
-
   console.log(dataToSend);
 
   return (
