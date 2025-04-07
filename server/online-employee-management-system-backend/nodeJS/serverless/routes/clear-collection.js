@@ -3,8 +3,8 @@ const { AuthKey } = require("../secrets/api-keys");
 
 const clearCollection = async (req, res, collectionName) => {
   console.log(req.headers);
-  const { authorization } = req.headers;
-  if (authorization === AuthKey) {
+  const { secretKey } = req.headers;
+  if (secretKey === AuthKey) {
     await setModel(collectionName).deleteMany({});
     res
       .status(200)
