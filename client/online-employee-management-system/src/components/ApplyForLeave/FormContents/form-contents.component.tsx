@@ -153,8 +153,11 @@ export default function FormContents() {
          />
          <label className="ml-2 text-sm text-gray-800">
            I agree to the{" "}
-           <Link href="#" className="text-blue-600 hover:underline">
-             terms and conditions
+           <Link
+             href="/TermsOfService"
+             className="text-blue-600 hover:underline"
+           >
+             Terms and conditions
            </Link>
            .
          </label>
