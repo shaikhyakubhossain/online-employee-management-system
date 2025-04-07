@@ -14,14 +14,16 @@ const useFetchGetMethod = (
   role: string,
   callback: (data:  null) => void,
   shouldReverse: boolean = false,
-  page?: number
+  page?: number,
+  specificSearch?: string
 ) => {
   const dispatch = useDispatch();
 
   const token = useSelector((state: RootState) => state.authDetail.token);
 
   const fetchData = async () => {
-    fetch(`${getUrl()}/${endpoint}${page ? `?page=${page}` : ""}`, {
+    // console.log("specificSearch: ", `${getUrl()}/${endpoint}${page ? `?page=${page}` : ""}${specificSearch ? `${page ? "&" : "?"}specificSearch=${specificSearch}` : ""}`);
+    fetch(`${getUrl()}/${endpoint}${page ? `?page=${page}` : ""}${specificSearch ? `${page ? "&" : "?"}specificSearch=${specificSearch}` : ""}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -32,12 +34,12 @@ const useFetchGetMethod = (
       .then((res) => res.json())
       .then((data) => {
         if(data.data && shouldReverse){
-          const reverse = data.data.reverse();
+          const reverse = {...data, data: data.data.reverse()};
+          console.log("raw data: ", data);
           callback(reverse); 
         }
         else{
-          callback(data.data);
-          console.log(data);
+          callback(data);
         }
       })
       .finally(() => {
@@ -48,7 +50,7 @@ const useFetchGetMethod = (
   useEffect(() => {
     dispatch(setStartLoadingTrue());
     fetchData();
-  }, [page && page]);
+  }, [page && page, specificSearch && page === 0 && specificSearch]);
 };
 
 export default useFetchGetMethod;
