@@ -261,18 +261,18 @@ export default function SignUp() {
             </div>
             <div className="mt-4 text-black">
           By signing up, you indicate that you have read, understood and agree to
-          Employeeverse&#39;s <Link className="text-blue-600" href={'/TermsOfService'}>Terms of Use</Link> and <Link className="text-blue-600" href={'/PrivacyPolicy'}>Privacy Policy</Link> <br />
-          I already have an account. Click here to &nbsp;
-          <Link
-            className="text-blue-600 login"
-            href={"/Auth?type=login&role=employee"}
-          >
-            Log In
-          </Link>
+          Employeeverse&#39;s <Link className="text-blue-600" href={'/TermsOfService'}>Terms of Service</Link> and <Link className="text-blue-600" href={'/PrivacyPolicy'}>Privacy Policy</Link> <br />
         </div>
           </div>
           
         </div>
+          I already have an account. Click here to &nbsp;
+          <Link
+            className="text-blue-200 login"
+            href={"/Auth?type=login&role=employee"}
+          >
+            Log In
+          </Link>
           </form>
         
       </div>
