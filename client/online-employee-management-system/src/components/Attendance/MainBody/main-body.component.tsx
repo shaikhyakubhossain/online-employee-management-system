@@ -2,29 +2,44 @@
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Table from "@/components/Table/table.component";
 import { useState } from "react";
+import type { defaultData } from "@/constants/Types/response-data";
+import SearchBox from "@/components/SearchBox/search-box.component";
+import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 
 type serverData = {
-    data: any;
-    pageCount: number
-}
+  data: defaultData[] | null;
+  pageCount: number;
+};
 
 export default function MainBody(): JSX.Element {
+  const [data, setData] = useState<serverData | null>(null);
+  const [searchData, setSearchData] = useState<string>("");
+  const [page, setPage] = useState<number>(0);
 
-    const [data, setData] = useState<serverData | null>(null);
-    const [page, setPage] = useState<number>(0);
+  useFetchGetMethod(
+    "get-all-attendances",
+    "both",
+    (data: serverData | null) => setData(data),
+    false,
+    page,
+    searchData
+  );
+  console.log(data);
 
-    useFetchGetMethod(
-        "get-all-attendances",
-        "both",
-        (data: any) => setData(data),
-        false,
-        page
-    );
-    console.log(data);
-
-    return (
-        <div>
-            <Table headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]} data={data && data.data} />
-        </div>
-    )
+  return (
+    <div>
+      <SearchBox updateSearchData={setSearchData} />
+      <Table
+        headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
+        data={data && data.data}
+      />
+      <PaginationBar
+        page={page}
+        pageCount={data && data.pageCount}
+        incrementPage={setPage}
+        decrementPage={setPage}
+        setCustomPage={setPage}
+      />
+    </div>
+  );
 }

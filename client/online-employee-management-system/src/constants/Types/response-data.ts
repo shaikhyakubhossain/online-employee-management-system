@@ -39,6 +39,7 @@ export type defaultData = {
   department: string;
   regdNo: string;
   email: string;
+  attendanceId?: number;
   leaveType?: string;
   leaveReason?: string;
   leaveDateFrom?: string;
@@ -48,6 +49,16 @@ export type defaultData = {
   status?: string;
   title?: string;
   message?: string;
+};
+
+export type attendanceData = {
+  _id: string;
+  attendanceId: number;
+  employeeId: number;
+  firstName: string;
+  lastName: string;
+  designation: string;
+  regdNo: string;
 };
 
 export type notificationData = {
