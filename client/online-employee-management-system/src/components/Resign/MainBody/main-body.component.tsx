@@ -5,8 +5,8 @@ import SearchBox from "@/components/SearchBox/search-box.component";
 import ApproveResignation from "../ApproveResignation/approve-resignation.component";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Toast from "@/components/Toast/toast.component";
+import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import { getUrl } from "@/constants/url";
-import type { employeeData } from "@/constants/Types/response-data";
 import type { toastType } from "@/constants/Types/local";
 import type { defaultData } from "@/constants/Types/response-data";
 
@@ -17,22 +17,30 @@ type dataToSendType = {
   reason: string;
 };
 
+type serverData = {
+  data: defaultData[] | null;
+  pageCount: number;
+};
+
 export default function MainBody() {
-  const [data, setData] = useState<defaultData[] | null>(null);
+  const [data, setData] = useState<serverData | null>(null);
   const [dataToSend, setDataToSend] = useState<dataToSendType>({
     reason: "",
   });
   const [toast, setToast] = useState<toastType>({ show: false, message: "" });
-  const [searchResults, setSearchResults] = useState<employeeData[]>([]);
+  // const [searchResults, setSearchResults] = useState<employeeData[]>([]);
   const [searchData, setSearchData] = useState<string>("");
+  const [page, setPage] = useState<number>(0);
 
   const { role, token } = useSelector((state: RootState) => state.authDetail);
 
   useFetchGetMethod(
     "get-all-resign-applications",
     "admin",
-    (data: defaultData[] | null) => setData(data),
-    true
+    (data: serverData | null) => setData(data),
+    true,
+    page,
+    searchData
   );
 
   const handleGiveResignation = () => {
@@ -69,14 +77,14 @@ export default function MainBody() {
     window.location.reload();
   };
 
-  const handleSearch = () => {
-    if (!data) return;
-    const localData: employeeData[] = data.filter((item) =>
-      item.firstName.includes(searchData)
-    );
-    console.log("searching: ", searchData);
-    setSearchResults(localData);
-  };
+  // const handleSearch = () => {
+  //   if (!data) return;
+  //   const localData: employeeData[] = data.filter((item) =>
+  //     item.firstName.includes(searchData)
+  //   );
+  //   console.log("searching: ", searchData);
+  //   setSearchResults(localData);
+  // };
 
   console.log(dataToSend);
 
@@ -89,11 +97,18 @@ export default function MainBody() {
       />
       {role === "admin" ? (
         <>
-          <SearchBox
-            updateSearchData={(data: string) => setSearchData(data)}
-            startSearch={handleSearch}
+          <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
+          <ApproveResignation
+            data={data && data.data}
+            handleAction={handleAction}
           />
-          <ApproveResignation data={searchResults.length > 0 ? searchResults : data} handleAction={handleAction} />
+          <PaginationBar
+            page={page}
+            pageCount={data && data.pageCount}
+            incrementPage={(value) => setPage(value)}
+            decrementPage={(value) => setPage(value)}
+            setCustomPage={(value) => setPage(value)}
+          />
         </>
       ) : (
         <GiveResignation

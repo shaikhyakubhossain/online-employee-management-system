@@ -11,20 +11,25 @@ import type { toastType } from "@/constants/Types/local";
 import { RootState } from "@/lib/store";
 import { useSelector } from "react-redux";
 
+type serverData = {
+  data: noticeData[] | null;
+  pageCount: number;
+}
+
 export default function MainBody() {
 
     const [dataToSend, setDataToSend] = useState<noticeData>({
         title: "",
         message: ""
     });
-    const [data, setData] = useState<noticeData[] | null>(null);
+    const [data, setData] = useState<serverData | null>(null);
     const [toast, setToast] = useState<toastType>({ show: false, message: "" });
     const { role, token } = useSelector((state: RootState) => state.authDetail);
 
     useFetchGetMethod(
         "get-all-notices",
         "both",
-        (data: noticeData[] | null) => setData(data),
+        (data: serverData | null) => setData(data),
         true
     );
 
@@ -67,8 +72,8 @@ export default function MainBody() {
             handleAddNotice={handleAddNotice}
           />
         )}
-        <Section title="Latest Notices" data={data && data.slice(0, 5)} />
-        <Section title="Other Notices" data={data} />
+        <Section title="Latest Notices" data={data  && data.data && data.data.slice(0, 5)} />
+        <Section title="Other Notices" data={data && data.data} />
       </div>
     );
 }

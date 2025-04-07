@@ -1,6 +1,5 @@
 type propsType = {
   updateSearchData?: (data: string) => void;
-  startSearch?: () => void;
 }
 
 export default function SearchBox(props: propsType) {
