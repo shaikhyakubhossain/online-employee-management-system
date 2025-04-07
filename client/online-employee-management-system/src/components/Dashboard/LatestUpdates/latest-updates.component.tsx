@@ -20,7 +20,7 @@ export default function LatestUpdates(props: propsType) {
       <div
         className={`${styles.subContainer} text-sm font-medium h-40 overflow-y-auto pr-2`}
       >
-        {props.noticeData && props.noticeData.length > 0 ? (
+        {props.noticeData ? (
           props.noticeData.map((item) => (
             <div
               key={item.noticeId}
@@ -31,10 +31,11 @@ export default function LatestUpdates(props: propsType) {
             </div>
           ))
         ) : (
-          <div className="text-gray-500 italic">No notices available.</div>
+          <div className="text-gray-500 italic">Loading...</div>
         )}
       </div>
     </div>
   );
+
 
 }

@@ -81,26 +81,51 @@ export default function MainBody() {
   console.log(dataToSend);
 
   return (
-    <div className="font-times">
+    <div className="font-times px-4 py-8 sm:px-10 md:px-16 lg:px-24 xl:px-32 bg-gradient-to-b bg-gray-100">
       <Toast
         show={toast.show}
         hide={() => setToast({ show: false, message: "" })}
         message={toast.message}
       />
-      {role === "admin" ? (
-        <>
-          <SearchBox
-            updateSearchData={(data: string) => setSearchData(data)}
-            startSearch={handleSearch}
-          />
-          <ApproveResignation data={searchResults.length > 0 ? searchResults : data} handleAction={handleAction} />
-        </>
-      ) : (
-        <GiveResignation
-          updateDataToSend={(e) => setDataToSend({ ...dataToSend, reason: e })}
-          submit={handleGiveResignation}
-        />
-      )}
+
+      <div className="mx-auto">
+        {role === "admin" ? (
+          <div className="space-y-3">
+            <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
+              🗂️ Resignation Requests
+            </h1>
+
+            <div className="bg-gray-100 rounded-2xl p-4 sm:p-6 border border-gray-100">
+              <SearchBox
+                updateSearchData={(data: string) => setSearchData(data)}
+                startSearch={handleSearch}
+              />
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+              <ApproveResignation
+                data={searchResults.length > 0 ? searchResults : data}
+                handleAction={handleAction}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-6">
+            <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
+              📩 Give Resignation
+            </h1>
+
+            <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+              <GiveResignation
+                updateDataToSend={(e) =>
+                  setDataToSend({ ...dataToSend, reason: e })
+                }
+                submit={handleGiveResignation}
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
