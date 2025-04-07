@@ -89,7 +89,7 @@ export default function MainBody() {
   console.log(dataToSend);
 
   return (
-    <div className="font-times">
+    <div className="font-times px-4 py-8 sm:px-10 md:px-16 lg:px-24 xl:px-32 bg-gradient-to-b bg-gray-100">
       <Toast
         show={toast.show}
         hide={() => setToast({ show: false, message: "" })}

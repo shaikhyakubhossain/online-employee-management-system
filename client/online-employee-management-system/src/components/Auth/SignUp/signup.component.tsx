@@ -120,152 +120,168 @@ export default function SignUp() {
       className={`${styles.mainContainer} text-center flex flex-col p-5 sm:p-10 lg:p-20 justify-center`}
       style={{ fontFamily: "Lora, serif" }}
     >
-      <Toast show={toast.show} hide={() => setToast({ show: false, message: "" })} message={toast.message} />
+      <Toast
+        show={toast.show}
+        hide={() => setToast({ show: false, message: "" })}
+        message={toast.message}
+      />
       <div className="mx-auto w-full">
         <div className="text-2xl sm:text-3xl mb-2">New user? Register here</div>
-          <form onKeyDown={handleSubmitOnEnterKeyPress}>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center items-start">
-          <div className="col-span-1 mb-4 sm:mb-0">
-            <div
-              className={`${styles.roleSelection} flex flex-wrap justify-center text-white`}
-            >
-              <RadioBtn
-                label="Admin"
-                onRadioClick={(event) => handleRoleSelection(event)}
-              />
-              <RadioBtn
-                label="Employee"
-                onRadioClick={(event) => handleRoleSelection(event)}
-              />
+        <form onKeyDown={handleSubmitOnEnterKeyPress}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-center items-start">
+            <div className="col-span-1 mb-4 sm:mb-0">
+              <div
+                className={`${styles.roleSelection} flex flex-wrap justify-center text-white`}
+              >
+                <RadioBtn
+                  label="Admin"
+                  onRadioClick={(event) => handleRoleSelection(event)}
+                />
+                <RadioBtn
+                  label="Employee"
+                  onRadioClick={(event) => handleRoleSelection(event)}
+                />
+              </div>
+            </div>
+            <div className="col-span-1 sm:col-span-2 bg-blue-300 rounded p-4 sm:p-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, firstName: event })
+                  }
+                  label="First name"
+                  type="text"
+                  placeholder="Enter First name"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, lastName: event })
+                  }
+                  label="Last name"
+                  type="text"
+                  placeholder="Enter Last name"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, username: event })
+                  }
+                  label="Username"
+                  type="text"
+                  placeholder="Choose username"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, regdNo: event })
+                  }
+                  label="Regd. No"
+                  type="text"
+                  placeholder="Enter Regd. No"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, designation: event })
+                  }
+                  label="Designation"
+                  type="text"
+                  placeholder="Enter Designation"
+                />
+                {dataToSend.role === "employee" && (
+                  <InputField
+                    updateDataToSend={(event) =>
+                      setDataToSend({ ...dataToSend, department: event })
+                    }
+                    label="Department"
+                    type="text"
+                    placeholder="Enter Department"
+                  />
+                )}
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({
+                      ...dataToSend,
+                      workExperience: parseInt(event),
+                    })
+                  }
+                  label="Work Experience (in years)"
+                  type="number"
+                  placeholder="Enter Work Experience"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, employmentType: event })
+                  }
+                  label="Employment Type"
+                  type="select"
+                  selectList={["Full-time", "Part-time", "Contract", "Intern"]}
+                  placeholder="Select Employment Type"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, genderCode: event })
+                  }
+                  label="Gender"
+                  type="select"
+                  selectList={["Male", "Female"]}
+                  placeholder="Select Gender"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, dob: event })
+                  }
+                  label="Date of Birth"
+                  type="text"
+                  placeholder="Enter Date of Birth"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, email: event })
+                  }
+                  label="Email"
+                  type="email"
+                  placeholder="Enter your email"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, password: event })
+                  }
+                  label="Create password"
+                  type="password"
+                  placeholder="Enter password"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, confirmPassword: event })
+                  }
+                  label="Re-enter password"
+                  type="password"
+                  placeholder="Re-enter password"
+                />
+                <InputField
+                  updateDataToSend={(event) =>
+                    setDataToSend({ ...dataToSend, secretCode: event })
+                  }
+                  label="Authorized Pin"
+                  type="text"
+                  placeholder="Enter Authorized Pin"
+                />
+              </div>
+              <div className="mt-4">
+                <Button onClick={handleSubmit}>Submit</Button>
+              </div>
+              <div className="mt-4 text-black">
+                By signing up, you indicate that you have read, understood and
+                agree to Employeeverse&#39;s{" "}
+                <Link className="text-blue-600" href={"/TermsOfService"}>
+                  Terms of Service
+                </Link>{" "}
+                and{" "}
+                <Link className="text-blue-600" href={"/PrivacyPolicy"}>
+                  Privacy Policy
+                </Link>{" "}
+                <br />
+              </div>
             </div>
           </div>
-          <div className="col-span-1 sm:col-span-2 bg-blue-300 rounded p-4 sm:p-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, firstName: event })
-                }
-                label="First name"
-                type="text"
-                placeholder="Enter First name"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, lastName: event })
-                }
-                label="Last name"
-                type="text"
-                placeholder="Enter Last name"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, username: event })
-                }
-                label="Username"
-                type="text"
-                placeholder="Enter Username"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, designation: event })
-                }
-                label="Designation"
-                type="text"
-                placeholder="Enter Designation"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, workExperience: parseInt(event) })
-                }
-                label="Work Experience"
-                type="number"
-                placeholder="Enter Work Experience"
-              />
-              {dataToSend.role === "employee" && <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, department: event })
-                }
-                label="Department"
-                type="text"
-                placeholder="Enter Department"
-              />}
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, genderCode: event })
-                }
-                label="Gender"
-                type="select"
-                selectList={["Male", "Female"]}
-                placeholder="Enter Gender"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, employmentType: event })
-                }
-                label="Employment Type"
-                type="select"
-                selectList={["Full-time", "Part-time", "Contract", "Intern"]}
-                placeholder="Enter Employment Type"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, regdNo: event })
-                }
-                label="Regd. No"
-                type="text"
-                placeholder="Enter Regd. No"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, dob: event })
-                }
-                label="Date of Birth"
-                type="text"
-                placeholder="Enter Date of Birth"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, email: event })
-                }
-                label="Email"
-                type="email"
-                placeholder="Enter your email"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, password: event })
-                }
-                label="Create password"
-                type="password"
-                placeholder="Enter password"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, confirmPassword: event })
-                }
-                label="Re-enter password"
-                type="password"
-                placeholder="Re-enter password"
-              />
-              <InputField
-                updateDataToSend={(event) =>
-                  setDataToSend({ ...dataToSend, secretCode: event })
-                }
-                label="Authorized Pin"
-                type="text"
-                placeholder="Enter Authorized Pin"
-              />
-            </div>
-            <div className="mt-4">
-              <Button onClick={handleSubmit}>Submit</Button>
-            </div>
-            <div className="mt-4 text-black">
-          By signing up, you indicate that you have read, understood and agree to
-          Employeeverse&#39;s <Link className="text-blue-600" href={'/TermsOfService'}>Terms of Service</Link> and <Link className="text-blue-600" href={'/PrivacyPolicy'}>Privacy Policy</Link> <br />
-        </div>
-          </div>
-          
-        </div>
           I already have an account. Click here to &nbsp;
           <Link
             className="text-blue-200 login"
@@ -273,8 +289,7 @@ export default function SignUp() {
           >
             Log In
           </Link>
-          </form>
-        
+        </form>
       </div>
     </div>
   );

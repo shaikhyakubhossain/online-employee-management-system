@@ -54,9 +54,8 @@ export default function DetailModal(props: propsType) {
                   label: "Employee ID",
                   value: props.data.employeeId,
                 },
-                { label: "Email", value: props.data.email },
                 { label: "Regd No", value: props.data.regdNo },
-                { label: "Gender", value: props.data.genderCode },
+                { label: "Email", value: props.data.email },
                 { label: "Department", value: props.data.department },
                 { label: "Employment Type", value: props.data.employmentType },
                 {
@@ -67,6 +66,7 @@ export default function DetailModal(props: propsType) {
                       ? `${props.data.workExperience} years`
                       : `${props.data.workExperience} year`),
                 },
+                { label: "Gender", value: props.data.genderCode },
               ].map(
                 (item, idx) =>
                   item.value && (

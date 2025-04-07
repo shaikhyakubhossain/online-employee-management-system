@@ -16,7 +16,7 @@ export default function Section(props: propsType): JSX.Element {
 
        {/* Notices Body */}
        <div className={`${styles.sectionBody} grid gap-4`}>
-         {props.data && props.data.length > 0 ? (
+         {props.data ? (
            props.data.map((item) => (
              <div
                key={item.noticeId}
@@ -26,19 +26,16 @@ export default function Section(props: propsType): JSX.Element {
                  {item.title}
                </div>
                <div className="text-gray-700 text-lg leading-relaxed">
-                {item.message}
+                 {item.message}
                </div>
              </div>
            ))
          ) : (
            <div className="text-sm text-gray-500 italic text-center py-5">
-             No notices available.
+             Loading...
            </div>
          )}
        </div>
      </div>
    );
-
-
-
 }

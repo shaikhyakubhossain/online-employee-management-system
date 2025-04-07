@@ -55,7 +55,7 @@ export default function MainBody() {
     console.log(data);
     
     return (
-      <div className="p-6 bg-gray-100 min-h-screen">
+      <div className="p-6 bg-gray-100">
         <Toast
           show={toast.show}
           hide={() => setToast({ show: false, message: "" })}

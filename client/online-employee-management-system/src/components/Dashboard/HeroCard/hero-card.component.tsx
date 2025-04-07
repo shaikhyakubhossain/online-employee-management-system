@@ -27,11 +27,11 @@ export default function HeroCard(props: propsType): JSX.Element {
           </div>
           <div>{props.btnList.detail}</div>
         </div>
-        <div className={`${styles.row2}`}>
+        {/* <div className={`${styles.row2}`}>
           <div className="text-xs text-slate-500">People Added</div>
           <div>
           </div>
-        </div>
+        </div> */}
       </div>
     </Link>
   );
