@@ -1,11 +1,16 @@
 const jwt = require("jsonwebtoken");
 const Employee = require("../model/employee-model");
 const Admin = require("../model/admin-model");
-const {tokenSecret} = require("../secrets/token");
+const {tokenSecret, } = require("../secrets/token");
+const {AuthKey} = require("../secrets/api-keys");
 
 const requireAuth = async (req, res, next) => {
 
-    const { authorization, role } = req.headers;
+    const { authorization, role, authkey } = req.headers;
+
+    if(req.originalUrl === "/clear-attendance" && authkey === AuthKey){
+        return next();
+    }
 
     if(!authorization){
         return res.status(401).json({error: "Authorization token required"});

@@ -1,5 +1,4 @@
 const { setModel } = require("../utils/methods");
-const { AuthKey } = require("../secrets/api-keys");
 
 const clearCollection = async (req, res, collectionName) => {
   const { secret } = req.query;
