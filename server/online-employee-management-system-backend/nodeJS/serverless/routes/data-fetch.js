@@ -16,6 +16,7 @@ const simpleGet = async (req, res, dataToGetFromModel) => {
     )
     .skip(page * limit)
     .limit(limit);
+    // console.log(data)
   res.status(200).json({
     data: data,
     pageCount: Math.ceil(

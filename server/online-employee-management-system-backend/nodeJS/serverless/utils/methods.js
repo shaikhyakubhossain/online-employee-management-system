@@ -4,6 +4,7 @@ const Leave = require("../model/leave-model");
 const Notice = require("../model/notice-model");
 const Notification = require("../model/notification-model");
 const Resign = require("../model/resign-model");
+const Attendance = require("../model/attendance-model");
 
 const setModel = (modelName) => {
   switch (modelName) {
@@ -11,6 +12,8 @@ const setModel = (modelName) => {
       return Admin;
     case "employee":
       return Employee;
+    case "attendance":
+      return Attendance;
     case "resign":
       return Resign;
     case "leave":

@@ -50,7 +50,7 @@ export default function MainBody() {
 
   return (
     <div className={`${styles.mainContainer}`}>
-      <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
+      <SearchBox updateSearchData={setSearchData} />
       <div className="flex gap-4">
         <div className="font-semibold text-2xl">Filter By : </div>
         <div className="flex flex-wrap gap-4">
@@ -83,9 +83,9 @@ export default function MainBody() {
       <PaginationBar
         page={page}
         pageCount={data && data.pageCount}
-        incrementPage={(value) => setPage(value)}
-        decrementPage={(value) => setPage(value)}
-        setCustomPage={(value) => setPage(value)}
+        incrementPage={setPage}
+        decrementPage={setPage}
+        setCustomPage={setPage}
       />
     </div>
   );

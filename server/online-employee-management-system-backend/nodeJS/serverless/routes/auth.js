@@ -4,15 +4,19 @@ const { setModel } = require("../utils/methods");
 
 const login = async (req, res, loginRole) => {
   const { username, password } = req.body;
-  console.log(username, password);
+  // console.log(username, password);
   try {
     const user = await setModel(loginRole).login(username, password);
-    console.log(user);
+    // console.log(user);
     if (user.error) {
       return res.status(400).json({ error: user.error });
     } else {
       const token = createToken(user._id);
       const data = await setModel(loginRole).findById(user._id);
+      const userAlreadyPresent = await setModel("attendance").findOne({ employeeId: user.employeeId });
+      if(!userAlreadyPresent && loginRole === "employee"){ 
+        await setModel("attendance").addAttendance(user.employeeId, user.firstName, user.lastName, user.designation, user.regdNo, user.email);
+      }
       res.status(200).json({ data: data, role: loginRole, token: token });
     }
   } catch (error) {

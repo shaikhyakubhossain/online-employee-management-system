@@ -22,7 +22,6 @@ const useFetchGetMethod = (
   const token = useSelector((state: RootState) => state.authDetail.token);
 
   const fetchData = async () => {
-    // console.log("specificSearch: ", `${getUrl()}/${endpoint}${page ? `?page=${page}` : ""}${specificSearch ? `${page ? "&" : "?"}specificSearch=${specificSearch}` : ""}`);
     fetch(`${getUrl()}/${endpoint}${page ? `?page=${page}` : ""}${specificSearch ? `${page ? "&" : "?"}specificSearch=${specificSearch}` : ""}`, {
       method: "GET",
       headers: {

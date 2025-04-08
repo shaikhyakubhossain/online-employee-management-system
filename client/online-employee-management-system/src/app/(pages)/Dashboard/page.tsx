@@ -13,14 +13,19 @@ interface Employee {
   lastName: string;
 }
 
+type serverData = {
+  data: noticeData[] | null;
+  pageCount: number;
+}
+
 export default function Dashboard() {
   const [topEmployee, setTopEmployee] = useState<Employee | null>(null);
-  const [noticeData, setNoticeData] = useState<noticeData[] | null>(null);
+  const [noticeData, setNoticeData] = useState<serverData | null>(null);
 
     useFetchGetMethod(
       "get-all-notices",
        "both", 
-      (data: null | noticeData[]) => setNoticeData(data),
+      (data: null | serverData) => setNoticeData(data),
       true
     )
 
@@ -47,7 +52,7 @@ export default function Dashboard() {
         showCurrentUserName={true}
         showSvg={true}
       />
-      <SubHeaderContainer noticeData={noticeData && noticeData.slice(0, 5)} />
+      <SubHeaderContainer noticeData={noticeData && noticeData.data && noticeData.data.slice(0, 5)} />
       <HeroHeader
         greeting="We congratulate"
         title="Employee of the Year"

@@ -9,6 +9,7 @@ const { login, signup } = require("./routes/auth");
 const { adminAction } = require("./routes/admin-action");
 const { applyLeave } = require("./routes/apply-leave");
 const { addNotice } = require("./routes/notice");
+const { clearCollection } = require("./routes/clear-collection");
 
 const corsOrigin = {
   origin: "https://employeeverse.vercel.app",
@@ -43,6 +44,8 @@ app.post("/employee-signup", async (req, res) => signup(req, res, "employee"));
 
 app.post("/admin-signup", async (req, res) => signup(req, res, "admin"));
 
+app.delete("/clear-attendance", async (req, res) => clearCollection(req, res, "attendance"));
+
 app.use(requireAuth);
 
 app.post("/apply-leave", async (req, res) => applyLeave(req, res, "employee"));
@@ -58,6 +61,8 @@ app.get("/get-all-leave-applications", async (req, res) => simpleGet(req, res, "
 app.get("/get-all-resign-applications", async (req, res) => simpleGet(req, res, "resign"));;
 
 app.get("/get-all-notices", async (req, res) => simpleGet(req, res, "notice"));
+
+app.get("/get-all-attendances", async (req, res) => simpleGet(req, res, "attendance"));
 
 app.get("/get-all-notifications", async (req, res) => getNotification(req, res));
 

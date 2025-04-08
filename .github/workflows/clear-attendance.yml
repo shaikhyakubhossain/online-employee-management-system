@@ -1,0 +1,18 @@
+name: Clear Attendance Collection
+
+on:
+  schedule:
+    - cron: '0 0 * * *' 
+  workflow_dispatch:
+
+jobs:
+  call-api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call API
+        run: |
+          curl -X POST "https://online-employee-management-system.vercel.app/clear-attendance?secret=${{ secrets.AUTH_KEY }}" \
+          
+        env:
+          AUTH_KEY: ${{ secrets.AUTH_KEY }}

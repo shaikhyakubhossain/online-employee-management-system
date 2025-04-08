@@ -5,8 +5,8 @@ import SearchBox from "@/components/SearchBox/search-box.component";
 import ApproveResignation from "../ApproveResignation/approve-resignation.component";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Toast from "@/components/Toast/toast.component";
+import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import { getUrl } from "@/constants/url";
-import type { employeeData } from "@/constants/Types/response-data";
 import type { toastType } from "@/constants/Types/local";
 import type { defaultData } from "@/constants/Types/response-data";
 
@@ -17,22 +17,30 @@ type dataToSendType = {
   reason: string;
 };
 
+type serverData = {
+  data: defaultData[] | null;
+  pageCount: number;
+};
+
 export default function MainBody() {
-  const [data, setData] = useState<defaultData[] | null>(null);
+  const [data, setData] = useState<serverData | null>(null);
   const [dataToSend, setDataToSend] = useState<dataToSendType>({
     reason: "",
   });
   const [toast, setToast] = useState<toastType>({ show: false, message: "" });
-  const [searchResults, setSearchResults] = useState<employeeData[]>([]);
+  // const [searchResults, setSearchResults] = useState<employeeData[]>([]);
   const [searchData, setSearchData] = useState<string>("");
+  const [page, setPage] = useState<number>(0);
 
   const { role, token } = useSelector((state: RootState) => state.authDetail);
 
   useFetchGetMethod(
     "get-all-resign-applications",
     "admin",
-    (data: defaultData[] | null) => setData(data),
-    true
+    (data: serverData | null) => setData(data),
+    true,
+    page,
+    searchData
   );
 
   const handleGiveResignation = () => {
@@ -69,15 +77,6 @@ export default function MainBody() {
     window.location.reload();
   };
 
-  const handleSearch = () => {
-    if (!data) return;
-    const localData: employeeData[] = data.filter((item) =>
-      item.firstName.includes(searchData)
-    );
-    console.log("searching: ", searchData);
-    setSearchResults(localData);
-  };
-
   console.log(dataToSend);
 
   return (
@@ -87,45 +86,27 @@ export default function MainBody() {
         hide={() => setToast({ show: false, message: "" })}
         message={toast.message}
       />
-
-      <div className="mx-auto">
-        {role === "admin" ? (
-          <div className="space-y-3">
-            <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-              🗂️ Resignation Requests
-            </h1>
-
-            <div className="bg-gray-100 rounded-2xl p-4 sm:p-6 border border-gray-100">
-              <SearchBox
-                updateSearchData={(data: string) => setSearchData(data)}
-                startSearch={handleSearch}
-              />
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-              <ApproveResignation
-                data={searchResults.length > 0 ? searchResults : data}
-                handleAction={handleAction}
-              />
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-6">
-            <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-              📩 Give Resignation
-            </h1>
-
-            <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-              <GiveResignation
-                updateDataToSend={(e) =>
-                  setDataToSend({ ...dataToSend, reason: e })
-                }
-                submit={handleGiveResignation}
-              />
-            </div>
-          </div>
-        )}
-      </div>
+      {role === "admin" ? (
+        <>
+          <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
+          <ApproveResignation
+            data={data && data.data}
+            handleAction={handleAction}
+          />
+          <PaginationBar
+            page={page}
+            pageCount={data && data.pageCount}
+            incrementPage={(value) => setPage(value)}
+            decrementPage={(value) => setPage(value)}
+            setCustomPage={(value) => setPage(value)}
+          />
+        </>
+      ) : (
+        <GiveResignation
+          updateDataToSend={(e) => setDataToSend({ ...dataToSend, reason: e })}
+          submit={handleGiveResignation}
+        />
+      )}
     </div>
   );
 }
