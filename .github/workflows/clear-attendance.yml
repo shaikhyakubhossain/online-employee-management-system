@@ -13,6 +13,6 @@ jobs:
       - name: Call API
         run: |
           curl -X POST "https://online-employee-management-system.vercel.app/clear-attendance" \
-          -H "secretKey: ${{ secrets.AUTH_KEY }}"
+          -H "secret: ${{ secrets.AUTH_KEY }}"
         env:
           AUTH_KEY: ${{ secrets.AUTH_KEY }}
