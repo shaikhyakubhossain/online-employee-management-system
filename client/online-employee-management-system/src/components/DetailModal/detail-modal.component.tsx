@@ -35,7 +35,10 @@ export default function DetailModal(props: propsType) {
                 alt="profile"
               />
             </div>
-            <h2 className="text-xl font-bold text-gray-800 mt-4">
+            <p className="text-gray-500 text-sm mt-4">
+              @{props.data.username}
+            </p>
+            <h2 className="text-xl font-bold text-gray-800 mt-1">
               {props.data.firstName} {props.data.lastName}
             </h2>
             <p className="text-gray-500 text-sm mt-1">

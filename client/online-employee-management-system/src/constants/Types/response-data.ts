@@ -19,6 +19,7 @@ export type employeeData = {
   firstName: string;
   lastName: string;
   employeeId: number;
+  username: string;
   designation: string;
   department: string;
   regdNo: string;
