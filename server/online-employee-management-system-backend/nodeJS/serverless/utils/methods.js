@@ -5,7 +5,7 @@ const Notice = require("../model/notice-model");
 const Notification = require("../model/notification-model");
 const Resign = require("../model/resign-model");
 const Attendance = require("../model/attendance-model");
-const Counter = require("../model/counter-model");
+const Counters = require("../model/counters-model");
 
 const setModel = (modelName) => {
   switch (modelName) {
@@ -23,8 +23,8 @@ const setModel = (modelName) => {
       return Notice;
     case "notification":
       return Notification;
-    case "counter":
-      return Counter;
+    case "counters":
+      return Counters;
     default:
       return null;
   }

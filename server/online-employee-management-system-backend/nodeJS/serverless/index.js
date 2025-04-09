@@ -26,11 +26,12 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect(MongoDBUrl).then(async () => {
+mongoose.connect(MongoDBUrl).then(async (db) => {
     const server = app.listen(PORT, () => {
       console.log("Server is listening on PORT " + PORT);
     });
     console.log("Connected to MongoDB");
+    // console.log(await db.connection.db.collection("admin").find({}).toArray());
   })
   .catch((err) => {
     console.log(err);
@@ -44,7 +45,7 @@ app.post("/employee-signup", async (req, res) => signup(req, res, "employee"));
 
 app.post("/admin-signup", async (req, res) => signup(req, res, "admin"));
 
-app.use(requireAuth);
+// app.use(requireAuth);
 
 app.post("/apply-leave", async (req, res) => applyLeave(req, res, "employee"));
 
