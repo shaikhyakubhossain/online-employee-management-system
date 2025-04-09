@@ -11,7 +11,7 @@ import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 type serverData = {
   data: employeeData[];
   pageCount: number | null;
-}
+};
 
 export default function MainBody() {
   const [data, setData] = useState<serverData | null>(null);

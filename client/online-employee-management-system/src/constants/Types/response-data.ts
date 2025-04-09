@@ -19,11 +19,11 @@ export type employeeData = {
   firstName: string;
   lastName: string;
   employeeId: number;
-  username: string;
   designation: string;
   department: string;
   regdNo: string;
   email: string;
+  username?: string;
   genderCode?: string;
   dateOfJoining?: string;
   workExperience?: number;
@@ -37,6 +37,7 @@ export type defaultData = {
   lastName: string;
   employeeId: number;
   designation: string;
+  username?: string;
   department: string;
   regdNo: string;
   email: string;
