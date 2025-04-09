@@ -2,7 +2,7 @@ name: Clear Attendance Collection
 
 on:
   schedule:
-    - cron: '0 0 * * *' 
+    - cron: '30 0 * * *' 
   workflow_dispatch:
 
 jobs:
