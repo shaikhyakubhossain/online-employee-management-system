@@ -2,6 +2,7 @@ const { setModel } = require("../utils/methods");
 
 const clearCollection = async (req, res, collectionName) => {
     await setModel(collectionName).deleteMany({});
+    await setModel("counter").reset(collectionName + "Id");
     res
       .status(200)
       .json({ message: collectionName + " Collection cleared successfully" });

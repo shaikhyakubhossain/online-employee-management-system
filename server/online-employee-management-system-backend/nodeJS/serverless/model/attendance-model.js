@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const validator = require("validator");
 const autoSequence = require("mongoose-sequence")(mongoose);
 
 const attendanceSchema = new mongoose.Schema({

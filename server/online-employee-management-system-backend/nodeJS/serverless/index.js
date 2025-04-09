@@ -12,8 +12,8 @@ const { addNotice } = require("./routes/notice");
 const { clearCollection } = require("./routes/clear-collection");
 
 const corsOrigin = {
-  origin: "https://employeeverse.vercel.app",
-  // origin: "http://localhost:3000",
+  // origin: "https://employeeverse.vercel.app",
+  origin: "http://localhost:3000",
 };
 
 const app = express();
