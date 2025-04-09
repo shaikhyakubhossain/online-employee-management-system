@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const requireAuth = require("./middleware/require-auth");
-const { simpleGet, getNotification, getEmployee } = require("./routes/data-fetch");
+const { simpleGet, getNotification } = require("./routes/data-fetch");
 const { addResignApplication } = require("./routes/resign");
 const { login, signup } = require("./routes/auth");
 const { adminAction } = require("./routes/admin-action");
@@ -12,8 +12,8 @@ const { addNotice } = require("./routes/notice");
 const { clearCollection } = require("./routes/clear-collection");
 
 const corsOrigin = {
-  // origin: "https://employeeverse.vercel.app",
-  origin: "http://localhost:3000",
+  origin: "https://employeeverse.vercel.app",
+  // origin: "http://localhost:3000",
 };
 
 const app = express();
@@ -52,7 +52,7 @@ app.post("/add-notice", async (req, res) => addNotice(req, res));
 
 app.post("/add-resign", async (req, res) => addResignApplication(req, res));
 
-app.get("/get-all-employees", async (req, res) => getEmployee(req, res));
+app.get("/get-all-employees", async (req, res) => simpleGet(req, res, "employee"));
 
 app.get("/get-all-leave-applications", async (req, res) => simpleGet(req, res, "leave"));
 

@@ -55,10 +55,16 @@ export default function MainBody() {
         <div className="font-semibold text-2xl">Filter By : </div>
         <div className="flex flex-wrap gap-4">
           <div>
-            <Button>Approved</Button>
+            <Button onClick={() => setSearchData("")}>All</Button>
           </div>
           <div>
-            <Button>Rejected</Button>
+            <Button onClick={() => setSearchData("approved")}>Approved</Button>
+          </div>
+          <div>
+            <Button onClick={() => setSearchData("rejected")}>Rejected</Button>
+          </div>
+          <div>
+            <Button onClick={() => setSearchData("pending")}>Pending</Button>
           </div>
         </div>
       </div>
