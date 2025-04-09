@@ -2,7 +2,7 @@ name: Clear Attendance Collection
 
 on:
   schedule:
-    - cron: '* * * * *' 
+    - cron: '30 18 * * *' 
   workflow_dispatch:
 
 jobs:
@@ -13,6 +13,6 @@ jobs:
       - name: Call API
         run: |
           curl -X DELETE "https://online-employee-management-system.vercel.app/clear-attendance" \
-          -H "authkey:${{ secrets.AUTH_KEY }}"
+          -H "authkey: ${{ secrets.AUTH_KEY }}"
         env:
           AUTH_KEY: ${{ secrets.AUTH_KEY }}
