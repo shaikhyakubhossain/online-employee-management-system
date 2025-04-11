@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { defaultData } from "@/constants/Types/response-data";
 import SearchBox from "@/components/SearchBox/search-box.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
+import NoDataFound from "@/components/NoDataFound/no-data-found.component";
 
 type serverData = {
   data: defaultData[] | null;
@@ -29,17 +30,23 @@ export default function MainBody(): JSX.Element {
   return (
     <div>
       <SearchBox updateSearchData={setSearchData} />
-      <Table
-        headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
-        data={data && data.data}
-      />
-      <PaginationBar
-        page={page}
-        pageCount={data && data.pageCount}
-        incrementPage={setPage}
-        decrementPage={setPage}
-        setCustomPage={setPage}
-      />
+      {data && data.data && data.data.length > 0 ? (
+        <div>
+          <Table
+            headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
+            data={data && data.data}
+          />
+          <PaginationBar
+            page={page}
+            pageCount={data && data.pageCount}
+            incrementPage={setPage}
+            decrementPage={setPage}
+            setCustomPage={setPage}
+          />
+        </div>
+      ) : (
+        <NoDataFound />
+      )}
     </div>
   );
 }

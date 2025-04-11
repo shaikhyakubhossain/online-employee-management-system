@@ -7,6 +7,7 @@ import type { employeeData } from "@/constants/Types/response-data";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import DetailModal from "@/components/DetailModal/detail-modal.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
+import NoDataFound from "@/components/NoDataFound/no-data-found.component";
 
 type serverData = {
   data: employeeData[];
@@ -45,22 +46,28 @@ export default function MainBody() {
         />
       )}
       <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
-      <Table
-        handleRowDetailToShowInModal={(row) => {
-          setModalDetailToShow(row);
-          setShowModal(true);
-        }}
-        data={data && data.data}
-        headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
-        showAction={false}
-      />
-      <PaginationBar
-        page={page}
-        pageCount={data && data.pageCount}
-        incrementPage={(value) => setPage(value)}
-        decrementPage={(value) => setPage(value)}
-        setCustomPage={(value) => setPage(value)}
-      />
+      {data && data.data.length > 0 ? (
+        <div>
+          <Table
+            handleRowDetailToShowInModal={(row) => {
+              setModalDetailToShow(row);
+              setShowModal(true);
+            }}
+            data={data && data.data}
+            headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
+            showAction={false}
+          />
+          <PaginationBar
+            page={page}
+            pageCount={data && data.pageCount}
+            incrementPage={(value) => setPage(value)}
+            decrementPage={(value) => setPage(value)}
+            setCustomPage={(value) => setPage(value)}
+          />
+        </div>
+      ) : (
+        <NoDataFound />
+      )}
     </div>
   );
 }

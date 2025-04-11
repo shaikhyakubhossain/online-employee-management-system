@@ -7,21 +7,20 @@ type propsType = {
 };
 
 export default function ApproveResignation(props: propsType) {
-
   return (
     <div>
-        <Table
-          data={props.data}
-          headers={[
-            "Employee Name",
-            "Regd.ID",
-            "Email ID",
-            "Designation",
-            "Status",
-          ]}
-          showAction={true}
-          handleAction={props.handleAction}
-        />
+      <Table
+        data={props.data}
+        headers={[
+          "Employee Name",
+          "Regd.ID",
+          "Email ID",
+          "Designation",
+          "Status",
+        ]}
+        showAction={true}
+        handleAction={props.handleAction}
+      />
     </div>
   );
 }

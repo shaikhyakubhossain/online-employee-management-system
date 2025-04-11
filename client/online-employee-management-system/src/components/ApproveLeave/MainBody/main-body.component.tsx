@@ -4,6 +4,7 @@ import styles from "./main-body.module.scss";
 import Button from "@/components/Button/button.component";
 import Table from "../../Table/table.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
+import NoDataFound from "@/components/NoDataFound/no-data-found.component";
 import SearchBox from "../../SearchBox/search-box.component";
 import type { leaveData } from "@/constants/Types/response-data";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
@@ -31,7 +32,6 @@ export default function MainBody() {
     page,
     searchData
   );
-  console.log("data: ", data);
 
   const handleAction = async (id: string, action: string) => {
     const response = await fetch(`${getUrl()}/leave-action`, {
@@ -69,30 +69,36 @@ export default function MainBody() {
         </div>
       </div>
       <div className={`${styles.tableContainer} my-5`}>
-        <Table
-          data={data && data.data}
-          headers={[
-            "Employee Name",
-            "Regd.ID",
-            "Email ID",
-            "Designation",
-            "Leave Type",
-            "Date",
-            "Status",
-            "Action",
-          ]}
-          showAction={true}
-          isLeave={true}
-          handleAction={handleAction}
-        />
+        {data && data.data && data.data.length > 0 ? (
+          <div>
+            <Table
+              data={data && data.data}
+              headers={[
+                "Employee Name",
+                "Regd.ID",
+                "Email ID",
+                "Designation",
+                "Leave Type",
+                "Date",
+                "Status",
+                "Action",
+              ]}
+              showAction={true}
+              isLeave={true}
+              handleAction={handleAction}
+            />
+            <PaginationBar
+              page={page}
+              pageCount={data && data.pageCount}
+              incrementPage={setPage}
+              decrementPage={setPage}
+              setCustomPage={setPage}
+            />
+          </div>
+        ) : (
+          <NoDataFound />
+        )}
       </div>
-      <PaginationBar
-        page={page}
-        pageCount={data && data.pageCount}
-        incrementPage={setPage}
-        decrementPage={setPage}
-        setCustomPage={setPage}
-      />
     </div>
   );
 }

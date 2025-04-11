@@ -6,6 +6,7 @@ import ApproveResignation from "../ApproveResignation/approve-resignation.compon
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Toast from "@/components/Toast/toast.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
+import NoDataFound from "@/components/NoDataFound/no-data-found.component";
 import { getUrl } from "@/constants/url";
 import type { toastType } from "@/constants/Types/local";
 import type { defaultData } from "@/constants/Types/response-data";
@@ -89,17 +90,23 @@ export default function MainBody() {
       {role === "admin" ? (
         <>
           <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
-          <ApproveResignation
-            data={data && data.data}
-            handleAction={handleAction}
-          />
-          <PaginationBar
-            page={page}
-            pageCount={data && data.pageCount}
-            incrementPage={(value) => setPage(value)}
-            decrementPage={(value) => setPage(value)}
-            setCustomPage={(value) => setPage(value)}
-          />
+          {data && data.data && data.data.length > 0 ? (
+            <div>
+              <ApproveResignation
+                data={data && data.data}
+                handleAction={handleAction}
+              />
+              <PaginationBar
+                page={page}
+                pageCount={data && data.pageCount}
+                incrementPage={(value) => setPage(value)}
+                decrementPage={(value) => setPage(value)}
+                setCustomPage={(value) => setPage(value)}
+              />
+            </div>
+          ) : (
+            <NoDataFound />
+          )}
         </>
       ) : (
         <GiveResignation
