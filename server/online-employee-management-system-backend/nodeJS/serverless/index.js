@@ -7,6 +7,7 @@ const { simpleGet, getNotification } = require("./routes/data-fetch");
 const { addResignApplication } = require("./routes/resign");
 const { login, signup } = require("./routes/auth");
 const { adminAction } = require("./routes/admin-action");
+const { getPDF } = require('./routes/get-pdf')
 const { applyLeave } = require("./routes/apply-leave");
 const { addNotice } = require("./routes/notice");
 const { clearCollection } = require("./routes/clear-collection");
@@ -45,7 +46,7 @@ app.post("/employee-signup", async (req, res) => signup(req, res, "employee"));
 
 app.post("/admin-signup", async (req, res) => signup(req, res, "admin"));
 
-// app.use(requireAuth);
+app.use(requireAuth);
 
 app.post("/apply-leave", async (req, res) => applyLeave(req, res, "employee"));
 
@@ -64,6 +65,8 @@ app.get("/get-all-notices", async (req, res) => simpleGet(req, res, "notice"));
 app.get("/get-all-attendances", async (req, res) => simpleGet(req, res, "attendance"));
 
 app.get("/get-all-notifications", async (req, res) => getNotification(req, res));
+
+app.get("/get-pdf-data", async (req, res) => getPDF(req, res));
 
 app.patch("/leave-action", async (req, res) => adminAction(req, res, "leave", { title: "Leave Application", message: "Your leave application has been successfully submitted" }));
 

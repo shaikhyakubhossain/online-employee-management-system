@@ -30,9 +30,20 @@ const setModel = (modelName) => {
   }
 };
 
+const setGDriveFolder = (section) => {
+  switch (section) {
+    case "caseStudy":
+      return "1RxgeOZoYDW2geOX-tVhxCZh7zraP0_bB";
+    case "project":
+      return "1Tje6o1_K3awW0NEWfGvw02cYgcl4zech";
+    default:
+      return null;
+  }
+};
+
 const getCollectionLength = async (collectionName) => {
   return await setModel(collectionName).countDocuments();
-}
+};
 
 const sendNotification = async (res, regdNo, title, message) => {
   const notification = await Notification.createNotification(
@@ -43,10 +54,8 @@ const sendNotification = async (res, regdNo, title, message) => {
   if (notification.error) {
     res.status(400).json({ error: notification.error });
   } else {
-    res
-      .status(200)
-      .json({ message: "successfully done" });
+    res.status(200).json({ message: "successfully done" });
   }
 };
 
-module.exports = { setModel, sendNotification, getCollectionLength };
+module.exports = { setModel, sendNotification, getCollectionLength, setGDriveFolder };

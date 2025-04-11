@@ -87,3 +87,10 @@ export type noticeData = {
   title: string;
   message: string;
 }
+
+export type gDriveFolderDataType = {
+  kind: string,
+  mimeType: string,
+  id: string,
+  name: string
+}
