@@ -7,7 +7,7 @@ import type { employeeData } from "@/constants/Types/response-data";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import DetailModal from "@/components/DetailModal/detail-modal.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
-import NoDataFound from "@/components/Loader/loader.component";
+import Loader from "@/components/Loader/loader.component";
 
 type serverData = {
   data: employeeData[];
@@ -66,9 +66,9 @@ export default function MainBody() {
           />
         </div>
       ) : data === null ?(
-        <NoDataFound title={"Loading..."} />
+        <Loader title={"Loading..."} />
       ) : (
-      <NoDataFound title={"No data found"} />
+      <Loader title={"No data found"} />
       )}
     </div>
   );

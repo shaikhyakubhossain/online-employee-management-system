@@ -4,7 +4,7 @@ import styles from "./main-body.module.scss";
 import Button from "@/components/Button/button.component";
 import Table from "../../Table/table.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
-import NoDataFound from "@/components/Loader/loader.component";
+import Loader from "@/components/Loader/loader.component";
 import SearchBox from "../../SearchBox/search-box.component";
 import type { leaveData } from "@/constants/Types/response-data";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
@@ -96,9 +96,9 @@ export default function MainBody() {
             />
           </div>
         ) : data === null ?(
-                <NoDataFound title={"Loading..."} />
+                <Loader title={"Loading..."} />
               ) : (
-              <NoDataFound title={"No data found"} />
+              <Loader title={"No data found"} />
               )}
       </div>
     </div>
