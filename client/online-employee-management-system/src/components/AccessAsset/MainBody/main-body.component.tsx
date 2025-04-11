@@ -31,8 +31,8 @@ export default function MainBody(): JSX.Element {
   }
 
   useEffect(() => {
-    fetchData("project", setDataProject);
-    fetchData("caseStudy", setDataCaseStudy);
+    dataProject === null && fetchData("project", setDataProject);
+    dataCaseStudy === null && fetchData("caseStudy", setDataCaseStudy);
   }, []);
 
   return (
