@@ -7,7 +7,7 @@ import type { employeeData } from "@/constants/Types/response-data";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import DetailModal from "@/components/DetailModal/detail-modal.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
-import NoDataFound from "@/components/NoDataFound/no-data-found.component";
+import NoDataFound from "@/components/Loader/loader.component";
 
 type serverData = {
   data: employeeData[];
@@ -60,13 +60,15 @@ export default function MainBody() {
           <PaginationBar
             page={page}
             pageCount={data && data.pageCount}
-            incrementPage={(value) => setPage(value)}
-            decrementPage={(value) => setPage(value)}
-            setCustomPage={(value) => setPage(value)}
+            incrementPage={setPage}
+            decrementPage={setPage}
+            setCustomPage={setPage}
           />
         </div>
+      ) : data === null ?(
+        <NoDataFound title={"Loading..."} />
       ) : (
-        <NoDataFound />
+      <NoDataFound title={"No data found"} />
       )}
     </div>
   );

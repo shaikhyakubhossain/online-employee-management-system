@@ -5,7 +5,7 @@ import { useState } from "react";
 import type { defaultData } from "@/constants/Types/response-data";
 import SearchBox from "@/components/SearchBox/search-box.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
-import NoDataFound from "@/components/NoDataFound/no-data-found.component";
+import NoDataFound from "@/components/Loader/loader.component";
 
 type serverData = {
   data: defaultData[] | null;
@@ -44,9 +44,11 @@ export default function MainBody(): JSX.Element {
             setCustomPage={setPage}
           />
         </div>
-      ) : (
-        <NoDataFound />
-      )}
+      ) : data === null ?(
+              <NoDataFound title={"Loading..."} />
+            ) : (
+            <NoDataFound title={"No data found"} />
+            )}
     </div>
   );
 }

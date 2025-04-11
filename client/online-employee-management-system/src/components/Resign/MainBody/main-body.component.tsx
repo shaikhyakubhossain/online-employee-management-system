@@ -6,7 +6,7 @@ import ApproveResignation from "../ApproveResignation/approve-resignation.compon
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Toast from "@/components/Toast/toast.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
-import NoDataFound from "@/components/NoDataFound/no-data-found.component";
+import NoDataFound from "@/components/Loader/loader.component";
 import { getUrl } from "@/constants/url";
 import type { toastType } from "@/constants/Types/local";
 import type { defaultData } from "@/constants/Types/response-data";
@@ -104,9 +104,11 @@ export default function MainBody() {
                 setCustomPage={(value) => setPage(value)}
               />
             </div>
-          ) : (
-            <NoDataFound />
-          )}
+          ) : data === null ?(
+                  <NoDataFound title={"Loading..."} />
+                ) : (
+                <NoDataFound title={"No data found"} />
+                )}
         </>
       ) : (
         <GiveResignation
