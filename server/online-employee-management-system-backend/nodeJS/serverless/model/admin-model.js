@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const autoSequence = require("mongoose-sequence")(mongoose);
-const {checkPassword, createPassword} = require("../utils/methods");
+const {checkPassword, createPassword} = require("../utils/password-utils");
 
 const adminSchema = new mongoose.Schema({
   adminId: {
@@ -108,6 +108,8 @@ adminSchema.statics.login = async function (username, password) {
   const admin = await this.findOne({ username });
 
   if (!admin) return { error: "Admin does not exist" };
+
+  console.log("typeof:", typeof checkPassword)
 
   const isPasswordCorrect = await checkPassword(admin.password, password);
 

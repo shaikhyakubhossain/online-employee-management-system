@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const autoSequence = require("mongoose-sequence")(mongoose);
-const {checkPassword, createPassword} = require("../utils/methods");
+const {checkPassword, createPassword} = require("../utils/password-utils");
+
 
 const employeeSchema = new mongoose.Schema({
   employeeId: {
