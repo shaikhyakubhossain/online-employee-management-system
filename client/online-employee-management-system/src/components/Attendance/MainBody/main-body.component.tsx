@@ -32,6 +32,7 @@ export default function MainBody(): JSX.Element {
       <SearchBox updateSearchData={setSearchData} />
       {data && data.data && data.data.length > 0 ? (
         <div>
+          <div className="text-xl mb-4">Todays Attendance:{data.data.length * data.pageCount}</div>
           <Table
             headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
             data={data && data.data}
