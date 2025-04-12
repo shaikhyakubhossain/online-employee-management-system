@@ -2,7 +2,7 @@
 import styles from "./signup.module.scss";
 import { KeyboardEvent } from "react";
 import { useState } from "react";
-import InputField from "../InputField/Input-field.component";
+import InputField from "../../InputField/Input-field.component";
 import Button from "@/components/Button/button.component";
 import RadioBtn from "@/components/RadioBtn/radio-btn.component";
 import Link from "next/link";

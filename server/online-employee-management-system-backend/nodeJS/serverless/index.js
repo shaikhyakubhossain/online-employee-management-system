@@ -11,6 +11,7 @@ const { getPDF } = require('./routes/get-pdf')
 const { applyLeave } = require("./routes/apply-leave");
 const { addNotice } = require("./routes/notice");
 const { clearCollection } = require("./routes/clear-collection");
+const { changePassword } = require("./routes/change-password");
 
 const corsOrigin = {
   origin: "https://employeeverse.vercel.app",
@@ -71,6 +72,8 @@ app.get("/get-pdf-data", async (req, res) => getPDF(req, res));
 app.patch("/leave-action", async (req, res) => adminAction(req, res, "leave", { title: "Leave Application", message: "Your leave application has been successfully submitted" }));
 
 app.patch("/resign-action", async (req, res) => adminAction(req, res, "resign", { title: "Resign Application", message: "Your resign application has been successfully submitted" }));
+
+app.patch("/change-password", async (req, res) => changePassword(req, res));
 
 
 app.delete("/clear-attendance", async (req, res) => clearCollection(req, res, "attendance"));

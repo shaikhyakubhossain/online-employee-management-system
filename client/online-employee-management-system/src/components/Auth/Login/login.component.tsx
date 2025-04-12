@@ -3,7 +3,7 @@ import { KeyboardEvent } from "react";
 import { useState } from "react";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
-import InputField from "../InputField/Input-field.component";
+import InputField from "../../InputField/Input-field.component";
 import Toast from "@/components/Toast/toast.component";
 import { getUrl } from "@/constants/url";
 import { useRouter } from "next/navigation";
