@@ -1,9 +1,7 @@
 const { setModel, checkPassword, createPassword } = require("../utils/methods");
-const bcrypt = require("bcrypt");
 
 const changePassword = async (req, res) => {
     const { oldPassword, newPassword, confirmPassword, role } = req.body;
-    console.log(oldPassword, newPassword, confirmPassword);
 
     if(role !== "admin" && role !== "employee") return res.status(401).json({ error: "You are not authorized" });
     if(!oldPassword || !newPassword || !confirmPassword) return res.status(400).json({ error: "All fields are required" });
@@ -23,7 +21,6 @@ const changePassword = async (req, res) => {
 
     res.status(200).json({ message: "Password changed successfully" });
 
-    console.log(user)
 };
 
 module.exports = { changePassword };

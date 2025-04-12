@@ -61,7 +61,6 @@ const sendNotification = async (res, regdNo, title, message) => {
 };
 
 const checkPassword = async (actualPassword, inputPassword) => {
-  console.log("here: ", actualPassword, inputPassword);
 
   if (actualPassword.slice(0, 4) === "$2b$") {
       const matchPassword = await bcrypt.compare(inputPassword, actualPassword);

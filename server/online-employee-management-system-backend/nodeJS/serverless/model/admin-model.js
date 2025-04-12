@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 const validator = require("validator");
 const autoSequence = require("mongoose-sequence")(mongoose);
+const {checkPassword, createPassword} = require("../utils/methods");
 
 const adminSchema = new mongoose.Schema({
   adminId: {
@@ -87,15 +87,7 @@ adminSchema.statics.signup = async function (
     return { error: "Username No already exists" };
   }
 
-  if (password.length <= 5) {
-    return { error: "Password must be at least 6 characters" };
-  }
-  if(password !== confirmPassword){
-    return { error: "Passwords do not match" };
-  }
-
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
+  const hashedPassword = await createPassword(password, confirmPassword);
 
   const admin = await this.create({
     firstName,
@@ -115,20 +107,11 @@ adminSchema.statics.signup = async function (
 adminSchema.statics.login = async function (username, password) {
   const admin = await this.findOne({ username });
 
-  if (!admin) {
-    return { error: "Admin does not exist" };
-  }
+  if (!admin) return { error: "Admin does not exist" };
 
-  if (admin.password.slice(0, 4) === "$2b$") {
-    const matchPassword = await bcrypt.compare(password, admin.password);
+  const isPasswordCorrect = await checkPassword(admin.password, password);
 
-    if (!matchPassword) {
-      return { error: "Incorrect password" };
-    }
-  }
-  else if(admin.password !== password){
-    return { error: "Incorrect password" };
-  }
+  if(!isPasswordCorrect.success) return { error: isPasswordCorrect.error };
 
   return admin;
 };
