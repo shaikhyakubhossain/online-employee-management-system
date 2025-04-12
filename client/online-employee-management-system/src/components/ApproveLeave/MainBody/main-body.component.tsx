@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./main-body.module.scss";
-import Button from "@/components/Button/button.component";
+import FilterBar from "@/components/FilterBar/filter-bar.component";
 import Table from "../../Table/table.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import Loader from "@/components/Loader/loader.component";
@@ -51,23 +51,7 @@ export default function MainBody() {
   return (
     <div className={`${styles.mainContainer}`}>
       <SearchBox updateSearchData={setSearchData} />
-      <div className="flex gap-4">
-        <div className="font-semibold text-2xl">Filter By : </div>
-        <div className="flex flex-wrap gap-4">
-          <div>
-            <Button onClick={() => setSearchData("")}>All</Button>
-          </div>
-          <div>
-            <Button onClick={() => setSearchData("approved")}>Approved</Button>
-          </div>
-          <div>
-            <Button onClick={() => setSearchData("rejected")}>Rejected</Button>
-          </div>
-          <div>
-            <Button onClick={() => setSearchData("pending")}>Pending</Button>
-          </div>
-        </div>
-      </div>
+      <FilterBar updateSearchData={setSearchData} />
       <div className={`${styles.tableContainer} my-5`}>
         {data && data.data && data.data.length > 0 ? (
           <div>

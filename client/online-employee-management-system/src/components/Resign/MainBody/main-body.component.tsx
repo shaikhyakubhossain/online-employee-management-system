@@ -6,6 +6,7 @@ import ApproveResignation from "../ApproveResignation/approve-resignation.compon
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Toast from "@/components/Toast/toast.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
+import FilterBar from "@/components/FilterBar/filter-bar.component";
 import Loader from "@/components/Loader/loader.component";
 import { getUrl } from "@/constants/url";
 import type { toastType } from "@/constants/Types/local";
@@ -92,6 +93,7 @@ export default function MainBody() {
           <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
           {data && data.data && data.data.length > 0 ? (
             <div>
+              <FilterBar updateSearchData={(data: string) => setSearchData(data)} />
               <ApproveResignation
                 data={data && data.data}
                 handleAction={handleAction}
