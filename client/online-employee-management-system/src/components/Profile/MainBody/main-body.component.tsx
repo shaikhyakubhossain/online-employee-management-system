@@ -68,7 +68,7 @@ export default function MainBody(): JSX.Element {
                 {
                   label: "Work Experience",
                   value:
-                    data?.workExperience && data?.workExperience > 1
+                    data?.workExperience !== undefined && data?.workExperience > 1
                       ? `${data?.workExperience} years`
                       : `${data?.workExperience} year`,
                 },

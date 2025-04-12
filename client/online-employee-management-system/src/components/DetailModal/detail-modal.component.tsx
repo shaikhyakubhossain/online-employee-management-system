@@ -64,7 +64,7 @@ export default function DetailModal(props: propsType) {
                 {
                   label: "Work Experience",
                   value:
-                    props.data.workExperience &&
+                    props.data.workExperience !== undefined &&
                     (props.data.workExperience > 1
                       ? `${props.data.workExperience} years`
                       : `${props.data.workExperience} year`),
