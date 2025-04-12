@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="relative text-white p-8 sm:p-12 md:p-16 overflow-y-scroll pb-0"
+        className="relative flex flex-col justify-between text-white p-8 sm:p-12 md:p-16 overflow-y-scroll pb-0"
         style={{
           background: "rgba(20, 19, 112, 0.85)",
           height: "calc(100dvh - 80px)",
