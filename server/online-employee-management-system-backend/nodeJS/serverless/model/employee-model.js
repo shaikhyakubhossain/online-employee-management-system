@@ -89,7 +89,7 @@ employeeSchema.statics.signup = async function (
     !lastName ||
     !designation ||
     !department ||
-    !workExperience ||
+    workExperience < 0 ||
     !dateOfJoining ||
     !dob ||
     !employmentType ||
@@ -97,15 +97,6 @@ employeeSchema.statics.signup = async function (
     !email ||
     !genderCode
   ) {
-    console.log(
-      firstName,
-      lastName,
-      username,
-      designation,
-      department,
-      regdNo,
-      email
-    );
     return { error: "All fields must be filled" };
   }
 
@@ -152,9 +143,7 @@ employeeSchema.statics.signup = async function (
 employeeSchema.statics.login = async function (username, password) {
   const employee = await this.findOne({ username });
 
-  if (!employee) {
-    return { error: "Employee does not exist" };
-  }
+  if (!employee) return { error: "Employee does not exist" };
 
   const isPasswordCorrect = await checkPassword(employee.password, password);
 

@@ -42,7 +42,23 @@ const adminSchema = new mongoose.Schema({
   genderCode: {
     type: String,
     required: true,
-  }
+  },
+  dob : {
+    type: String,
+    required: true,
+  },
+  dateOfJoining : {
+    type: String,
+    required: true,
+  },
+  workExperience : {
+    type: Number,
+    required: true,
+  },
+  employmentType : {
+    type: String,
+    required: true,
+  },
 });
 
 adminSchema.plugin(autoSequence, { inc_field: "adminId" });
@@ -56,7 +72,11 @@ adminSchema.statics.signup = async function (
   email,
   password,
   confirmPassword,
-  genderCode
+  genderCode,
+  dateOfJoining,
+  workExperience,
+  dob,
+  employmentType
 ) {
   if (
     !firstName ||
@@ -64,7 +84,11 @@ adminSchema.statics.signup = async function (
     !designation ||
     !regdNo ||
     !email ||
-    !genderCode
+    !genderCode ||
+    !dateOfJoining ||
+    workExperience < 0 ||
+    !dob ||
+    !employmentType
   ) {
     return { error: "All fields must be filled" };
   }
@@ -94,6 +118,10 @@ adminSchema.statics.signup = async function (
     lastName,
     username,
     designation,
+    workExperience,
+    dateOfJoining,
+    dob,
+    employmentType,
     regdNo,
     genderCode,
     email,
@@ -108,8 +136,6 @@ adminSchema.statics.login = async function (username, password) {
   const admin = await this.findOne({ username });
 
   if (!admin) return { error: "Admin does not exist" };
-
-  console.log("typeof:", typeof checkPassword)
 
   const isPasswordCorrect = await checkPassword(admin.password, password);
 
