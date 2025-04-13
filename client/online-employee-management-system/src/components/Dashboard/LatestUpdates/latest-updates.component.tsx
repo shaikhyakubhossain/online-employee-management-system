@@ -9,10 +9,7 @@ export default function LatestUpdates(props: propsType) {
 
     console.log(props.noticeData)
   return (
-    <div
-      className="w-1/2 max-[743px]:w-full p-6 mr-7 rounded-2xl h-60 shadow-md transition-all duration-300 ease-in-out"
-      style={{ background: "#F3F3F3" }}
-    >
+    <div className="w-1/2 max-[743px]:w-full p-6 mr-7 rounded-2xl h-60 shadow-md bg-gray-100">
       <div className="flex justify-between items-center mb-3">
         <h2 className="text-2xl font-bold text-gray-800">📝 Notice Board</h2>
       </div>
@@ -31,7 +28,9 @@ export default function LatestUpdates(props: propsType) {
             </div>
           ))
         ) : (
-          <div className="text-gray-500 italic">Loading...</div>
+          <div className="text-xl italic flex justify-center items-center h-full">
+            Loading...
+          </div>
         )}
       </div>
     </div>

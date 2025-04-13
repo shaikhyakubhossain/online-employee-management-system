@@ -10,7 +10,7 @@ export default function HeroCard(props: propsType): JSX.Element {
   return (
     <Link href={props.btnList.link}>
       <div
-        className={`${styles.mainContainer} p-8 rounded-lg cursor-pointer`}
+        className={`${styles.mainContainer} p-8 rounded-lg cursor-pointer shadow-md`}
         style={{ backgroundColor: props.btnList.bg + "25" }}
       >
         <div className={`${styles.row1} mb-10`}>

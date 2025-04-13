@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function PrivacyPolicy() {
   const router = useRouter();
   return (
-    <div className="font-times p-4 sm:p-6 lg:p-8 bg-gray-200 text-base sm:text-lg lg:text-xl">
+    <div className="font-times p-4 sm:p-6 lg:p-8 bg-gray-100 text-base sm:text-lg lg:text-xl">
       <PageHeader title="Privacy Policy" />
       <div
         onClick={() => router.back()}

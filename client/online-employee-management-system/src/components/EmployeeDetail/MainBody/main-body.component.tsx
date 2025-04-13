@@ -68,7 +68,7 @@ export default function MainBody() {
       ) : data === null ?(
         <Loader title={"Loading..."} />
       ) : (
-      <Loader title={"No data found"} />
+      <Loader title={"No data found!"} />
       )}
     </div>
   );

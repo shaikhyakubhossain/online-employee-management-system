@@ -21,8 +21,14 @@ const currentDate = new Date();
   };
 
   return (
-    <div className={`w-1/2 max-[743px]:w-full rounded-lg bg-[#FFEBEB] h-60 flex flex-col justify-evenly items-center overflow-hidden` }>
-      <Calendar value={currentDate} className="h-3/4 w-4/5 text-center font-semibold text-xl" tileClassName={tileClassName}/>
+    <div
+      className={`w-1/2 max-[743px]:w-full rounded-lg bg-[#FFEBEB] h-60 flex flex-col justify-evenly items-center overflow-hidden shadow-md`}
+    >
+      <Calendar
+        value={currentDate}
+        className="h-3/4 w-4/5 text-center font-semibold text-xl"
+        tileClassName={tileClassName}
+      />
     </div>
   );
 }

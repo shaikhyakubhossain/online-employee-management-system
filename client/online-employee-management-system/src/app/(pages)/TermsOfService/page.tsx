@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function TermsOfService() {
   const router = useRouter();
   return (
-    <div className="font-times p-4 sm:p-6 lg:p-8 bg-gray-200 text-base sm:text-lg lg:text-xl">
+    <div className="font-times p-4 sm:p-6 lg:p-8 bg-gray-100 text-base sm:text-lg lg:text-xl">
       <PageHeader title="Terms of Service" />
       <div
         onClick={() => router.back()}

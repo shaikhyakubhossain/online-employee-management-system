@@ -44,7 +44,7 @@ export default function SearchBox(props: propsType) {
             type="search"
             id="default-search"
             className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-600 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-            placeholder="Search employee"
+            placeholder="Search employee name here"
             required
           />
           <button

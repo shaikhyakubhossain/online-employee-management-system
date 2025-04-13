@@ -4,6 +4,8 @@ type propsType = {
 
 export default function Loader(props: propsType): JSX.Element {
     return (
-        <div className="text-center text-2xl font-semibold">{props.title}</div>
+      <div className="mt-10 text-center text-2xl font-semibold text-blue-600">
+        {props.title}
+      </div>
     );
 }

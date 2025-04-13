@@ -7,7 +7,7 @@ type propsType = {
 export default function AddNotice(props: propsType) {
   return (
     <div className="px-4 py-6 sm:px-6 md:px-12 lg:px-24 xl:px-32 bg-gray-100 font-times">
-      <div className="max-w-2xl mx-auto bg-white border border-red-100 shadow-xl rounded-2xl p-6 space-y-6">
+      <div className="max-w-2xl mx-auto bg-white border border-red-100 shadow-md rounded-2xl p-6 space-y-6">
         <h1 className="text-3xl font-bold text-red-600">Add Notice</h1>
 
         <div className="space-y-4">

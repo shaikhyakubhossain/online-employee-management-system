@@ -32,7 +32,14 @@ export default function MainBody(): JSX.Element {
       <SearchBox updateSearchData={setSearchData} />
       {data && data.data && data.data.length > 0 ? (
         <div>
-          <div className="text-xl mb-4">Todays Attendance:{data.data.length * data.pageCount}</div>
+          <div className="text-xl mb-4">
+            Today&apos;s Attendance:{" "}
+            <span className="text-3xl font-bold text-blue-600">
+              {data.data.length * data.pageCount}
+            </span>{" "}
+            employees.
+          </div>
+
           <Table
             headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
             data={data && data.data}
@@ -45,11 +52,11 @@ export default function MainBody(): JSX.Element {
             setCustomPage={setPage}
           />
         </div>
-      ) : data === null ?(
-              <Loader title={"Loading..."} />
-            ) : (
-            <Loader title={"No data found"} />
-            )}
+      ) : data === null ? (
+        <Loader title={"Loading..."} />
+      ) : (
+        <Loader title={"No data found"} />
+      )}
     </div>
   );
 }

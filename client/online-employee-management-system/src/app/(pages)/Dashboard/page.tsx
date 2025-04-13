@@ -43,7 +43,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="font-times">
+    <div>
       <HeroHeader
         greeting="Welcome"
         title="Hello"

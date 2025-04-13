@@ -79,11 +79,11 @@ export default function MainBody() {
               setCustomPage={setPage}
             />
           </div>
-        ) : data === null ?(
-                <Loader title={"Loading..."} />
-              ) : (
-              <Loader title={"No data found"} />
-              )}
+        ) : data === null ? (
+          <Loader title={"Loading..."} />
+        ) : (
+          <Loader title={"No data found!"} />
+        )}
       </div>
     </div>
   );

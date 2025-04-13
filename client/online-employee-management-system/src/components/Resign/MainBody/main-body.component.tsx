@@ -82,7 +82,7 @@ export default function MainBody() {
   console.log(dataToSend);
 
   return (
-    <div className="font-times px-4 py-8 sm:px-10 md:px-16 lg:px-24 xl:px-32 bg-gradient-to-b bg-gray-100">
+    <div>
       <Toast
         show={toast.show}
         hide={() => setToast({ show: false, message: "" })}
@@ -91,9 +91,10 @@ export default function MainBody() {
       {role === "admin" ? (
         <>
           <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
+          <FilterBar updateSearchData={(data: string) => setSearchData(data)} />
+
           {data && data.data && data.data.length > 0 ? (
             <div>
-              <FilterBar updateSearchData={(data: string) => setSearchData(data)} />
               <ApproveResignation
                 data={data && data.data}
                 handleAction={handleAction}
@@ -106,11 +107,11 @@ export default function MainBody() {
                 setCustomPage={(value) => setPage(value)}
               />
             </div>
-          ) : data === null ?(
-                  <Loader title={"Loading..."} />
-                ) : (
-                <Loader title={"No data found"} />
-                )}
+          ) : data === null ? (
+            <Loader title={"Loading..."} />
+          ) : (
+            <Loader title={"No data found!"} />
+          )}
         </>
       ) : (
         <GiveResignation
@@ -120,4 +121,5 @@ export default function MainBody() {
       )}
     </div>
   );
+
 }

@@ -36,7 +36,7 @@ export default function MainBody(): JSX.Element {
 
   return (
     <div className="flex flex-col items-center p-6">
-      <div className="w-full max-w-4xl p-6 bg-gray-100 shadow-lg rounded-xl border">
+      <div className="w-full max-w-4xl p-6 bg-gray-100 shadow-md rounded-xl border">
         <BigCalendar
           handleNavigate={(event) => setDate(event)}
           handleEventClick={(event) => setSelectedHoliday(event.title)}
@@ -46,12 +46,12 @@ export default function MainBody(): JSX.Element {
       </div>
 
       <div className="w-full max-w-3xl mt-6">
-        <h2 className="text-xl font-semibold text-gray-700 text-center mb-3">
+        <h2 className="text-xl font-semibold text-center mb-3">
           List of Holidays
         </h2>
 
         {loading ? (
-          <div className="text-center text-gray-500 py-4 animate-pulse">
+          <div className="text-center py-4 animate-pulse">
             Fetching holidays...
           </div>
         ) : (
