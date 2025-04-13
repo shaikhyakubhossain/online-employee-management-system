@@ -37,8 +37,8 @@ export default function MainBody(): JSX.Element {
 
   return (
     <div className="">
-      <Section title="Project" data={dataProject}/>
-      <Section title="Case study" data={dataCaseStudy}/>
+      <Section title="Project reports" data={dataProject}/>
+      <Section title="Case studies" data={dataCaseStudy}/>
     </div>
   );
 }

@@ -38,43 +38,44 @@ export default function Settings() {
   };
 
   return (
-    <div className="font-times">
+    <div className="font-times py-10 px-4">
       <Toast
         show={toast.show}
         hide={() => setToast({ show: false, message: "" })}
         message={toast.message}
       />
       <PageHeader title="Settings" />
-      <div className="w-52">
+
+      <div className="max-w-md mx-auto mt-10 bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
         <form action="">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Change Password
+          <label className="block text-gray-700 text-lg font-semibold mb-6 text-center">
+            🔒 Change Password
           </label>
-          <InputField
-            type="password"
-            placeholder="Old Password"
-            required={true}
-            updateDataToSend={(data) =>
-              setDataToSend({ ...dataToSend, oldPassword: data })
-            }
-          />
-          <InputField
-            type="password"
-            placeholder="New Password"
-            required={true}
-            updateDataToSend={(data) =>
-              setDataToSend({ ...dataToSend, newPassword: data })
-            }
-          />
-          <InputField
-            type="password"
-            placeholder="Confirm Password"
-            required={true}
-            updateDataToSend={(data) =>
-              setDataToSend({ ...dataToSend, confirmPassword: data })
-            }
-          />
-          <Button onClick={handleSubmit}>Change</Button>
+            <InputField
+              type="password"
+              placeholder="Old Password"
+              required={true}
+              updateDataToSend={(data) =>
+                setDataToSend({ ...dataToSend, oldPassword: data })
+              }
+            />
+            <InputField
+              type="password"
+              placeholder="New Password"
+              required={true}
+              updateDataToSend={(data) =>
+                setDataToSend({ ...dataToSend, newPassword: data })
+              }
+            />
+            <InputField
+              type="password"
+              placeholder="Confirm Password"
+              required={true}
+              updateDataToSend={(data) =>
+                setDataToSend({ ...dataToSend, confirmPassword: data })
+              }
+            />
+            <Button onClick={handleSubmit}>Change Password</Button>
         </form>
       </div>
     </div>

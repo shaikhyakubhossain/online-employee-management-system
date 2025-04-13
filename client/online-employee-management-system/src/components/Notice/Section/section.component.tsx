@@ -8,7 +8,7 @@ type propsType = {
 
 export default function Section(props: propsType): JSX.Element {
    return (
-     <div className={`${styles.mainContainer} my-6`}>
+     <div className={`${styles.mainContainer} my-6 min-h-screen`}>
        {/* Section Title */}
        <div className="text-2xl font-bold text-gray-800 mb-5 flex items-center gap-2">
          📝 {props.title}
@@ -31,7 +31,7 @@ export default function Section(props: propsType): JSX.Element {
              </div>
            ))
          ) : (
-           <div className="text-sm text-gray-500 italic text-center py-5">
+           <div className="text-xl italic flex justify-center items-center h-full">
              Loading...
            </div>
          )}
