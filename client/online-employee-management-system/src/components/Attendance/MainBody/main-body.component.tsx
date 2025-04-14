@@ -6,6 +6,7 @@ import type { defaultData } from "@/constants/Types/response-data";
 import SearchBox from "@/components/SearchBox/search-box.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import Loader from "@/components/Loader/loader.component";
+import * as XLSX from "xlsx";
 
 type serverData = {
   data: defaultData[] | null;
@@ -27,6 +28,58 @@ export default function MainBody(): JSX.Element {
   );
   console.log(data);
 
+  // Function to download data as CSV
+  const downloadCSV = () => {
+    if (!data?.data) return;
+    const headers = [
+      "First Name",
+      "Last Name",
+      "Regd No",
+      "Email",
+      "Designation",
+    ];
+    const rows = data.data.map((attendance) => [
+      attendance.firstName, // First Name
+      attendance.lastName, // Last Name
+      attendance.regdNo, // Registration No
+      attendance.email, // Email
+      attendance.designation, // Designation
+    ]);
+
+    // Adding the headers as the first row
+    const csvContent = [
+      headers.join(","),
+      ...rows.map((row) => row.join(",")),
+    ].join("\n");
+
+    // Creating a downloadable link and triggering the download
+    const link = document.createElement("a");
+    link.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
+    link.target = "_blank";
+    link.download = "attendance.csv";
+    link.click();
+  };
+
+  // Function to download data as Excel
+  const downloadExcel = () => {
+    if (!data?.data) return;
+    const rows = data.data.map((attendance) => ({
+      "First Name": attendance.firstName,
+      "Last Name": attendance.lastName,
+      "Regd No": attendance.regdNo,
+      Email: attendance.email,
+      Designation: attendance.designation,
+    }));
+
+    // Create a new workbook and add a worksheet
+    const ws = XLSX.utils.json_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Attendance");
+
+    // Trigger the download
+    XLSX.writeFile(wb, "attendance.xlsx");
+  };
+
   return (
     <div>
       <SearchBox updateSearchData={setSearchData} />
@@ -38,6 +91,22 @@ export default function MainBody(): JSX.Element {
               {data.data.length * data.pageCount}
             </span>{" "}
             employee(s).
+          </div>
+
+          {/* Download buttons */}
+          <div className="mb-4">
+            <button
+              onClick={downloadCSV}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md mr-2"
+            >
+              Download CSV
+            </button>
+            <button
+              onClick={downloadExcel}
+              className="px-4 py-2 bg-green-600 text-white rounded-md"
+            >
+              Download Excel
+            </button>
           </div>
 
           <Table
