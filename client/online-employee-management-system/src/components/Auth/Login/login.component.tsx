@@ -16,6 +16,8 @@ import {
   setStartLoadingFalse,
 } from "@/lib/features/MainLoading/mainLoadingSlice";
 
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Eye icon imports
+
 type propsType = {
   searchParams: searchParamsType;
 };
@@ -34,8 +36,11 @@ export default function Login(props: propsType) {
   });
   const [toast, setToast] = useState<toastType>({ show: false, message: "" });
 
+  // State to handle visibility of password
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = () => {
-    console.log("dataToSend: ", dataToSend)
+    console.log("dataToSend: ", dataToSend);
     dispatch(setStartLoadingTrue());
     fetch(`${getUrl()}/${props.searchParams.role}-login`, {
       method: "POST",
@@ -51,8 +56,7 @@ export default function Login(props: propsType) {
             dispatch(setDetail(data));
             localStorage.setItem("OEMS-authDetail", JSON.stringify(data));
             router.push(`/Dashboard`);
-          }
-          else {
+          } else {
             setToast({ show: true, message: data.error });
           }
         });
@@ -65,13 +69,18 @@ export default function Login(props: propsType) {
       });
   };
 
-  const handleSubmitOnEnterKeyPress = (event: KeyboardEvent<HTMLFormElement>) => {
+  const handleSubmitOnEnterKeyPress = (
+    event: KeyboardEvent<HTMLFormElement>
+  ) => {
     if (event.key === "Enter") {
       handleSubmit();
     }
   };
+  console.log(dataToSend);
 
-  console.log(dataToSend)
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="text-center p-4" style={{ fontFamily: "Lora, serif" }}>
@@ -85,28 +94,39 @@ export default function Login(props: propsType) {
           {props.searchParams.role} Login
         </div>
         <form onKeyDown={handleSubmitOnEnterKeyPress}>
-        <div className="bg-blue-300 min-w-1 max-w-96 rounded mx-auto p-10">
-          <InputField
-            updateDataToSend={(data) =>
-              setDataToSend({ ...dataToSend, username: data })
-            }
-            label={props.searchParams.role + " username"}
-            type="text"
-            placeholder={"Enter " + props.searchParams.role + " username"}
-          />
-          <InputField
-            updateDataToSend={(data) =>
-              setDataToSend({ ...dataToSend, password: data })
-            }
-            label={"Password"}
-            type="password"
-            placeholder={"Enter password"}
-          />
-          <div className="mt-14">
-            <Button onClick={handleSubmit}>Enter</Button>
+          <div className="bg-blue-300 min-w-1 max-w-96 rounded mx-auto p-10">
+            <InputField
+              updateDataToSend={(data) =>
+                setDataToSend({ ...dataToSend, username: data })
+              }
+              label={props.searchParams.role + " username"}
+              type="text"
+              placeholder={"Enter " + props.searchParams.role + " username"}
+            />
+
+            {/* Password Field with Eye Icon for visibility toggle */}
+            <div className="relative">
+              <InputField
+                updateDataToSend={(data) =>
+                  setDataToSend({ ...dataToSend, password: data })
+                }
+                label={"Password"}
+                type={showPassword ? "text" : "password"}
+                placeholder={"Enter password"}
+              />
+              <div
+                className="absolute top-11 right-3 transform -translate-y-1/2 cursor-pointer text-black"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+              </div>
+            </div>
+
+            <div className="mt-14">
+              <Button onClick={handleSubmit}>Enter</Button>
+            </div>
           </div>
-        </div>
-          </form>
+        </form>
         <div>
           Do not have an account? Click here to &nbsp;
           <Link className="text-blue-200" href={"/Auth?type=signup"}>

@@ -37,7 +37,7 @@ export default function MainBody(): JSX.Element {
             <span className="text-3xl font-bold text-blue-600">
               {data.data.length * data.pageCount}
             </span>{" "}
-            employees.
+            employee(s).
           </div>
 
           <Table
