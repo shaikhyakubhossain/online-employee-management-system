@@ -1,4 +1,4 @@
-const { setGDriveFolder } = require('../utils/methods')
+const { setGDriveFolder } = require('../utils/g-drive')
 const { gDriveApiKey } = require('../secrets/api-keys')
 
 const getPDF = async (req, res) => {
