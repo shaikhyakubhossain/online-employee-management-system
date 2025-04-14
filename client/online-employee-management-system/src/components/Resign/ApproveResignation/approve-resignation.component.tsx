@@ -17,6 +17,7 @@ export default function ApproveResignation(props: propsType) {
           "Email ID",
           "Designation",
           "Status",
+          "Action",
         ]}
         showAction={true}
         handleAction={props.handleAction}

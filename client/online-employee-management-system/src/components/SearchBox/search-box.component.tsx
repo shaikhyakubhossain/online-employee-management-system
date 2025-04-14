@@ -4,7 +4,7 @@ type propsType = {
 
 export default function SearchBox(props: propsType) {
   return (
-    <div className="w-1/3 max-[730px]:w-full ml-auto my-8">
+    <div className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 ml-auto my-8 px-4">
       <form
         onKeyDown={(event) => {
           if (event.key === "Enter" && props.updateSearchData) {
@@ -44,7 +44,7 @@ export default function SearchBox(props: propsType) {
             type="search"
             id="default-search"
             className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-600 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
-            placeholder="Search employee name here"
+            placeholder="Search by employee name..."
             required
           />
           <button

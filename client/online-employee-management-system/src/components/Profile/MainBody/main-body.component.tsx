@@ -68,7 +68,8 @@ export default function MainBody(): JSX.Element {
                 {
                   label: "Work Experience",
                   value:
-                    data?.workExperience !== undefined && data?.workExperience > 1
+                    data?.workExperience !== undefined &&
+                    data?.workExperience > 1
                       ? `${data?.workExperience} years`
                       : `${data?.workExperience} year`,
                 },
@@ -118,7 +119,7 @@ export default function MainBody(): JSX.Element {
       <div className="mt-5">
         <Button
           customClassName={styles.btn}
-          customTW="w-full bg-white text-black font-medium shadow-md rounded-lg py-3"
+          customTW="w-full bg-white font-medium shadow-md rounded-lg py-3 hover:bg-blue-200"
           onClick={handleLogout}
         >
           <div className="flex items-center justify-center">
