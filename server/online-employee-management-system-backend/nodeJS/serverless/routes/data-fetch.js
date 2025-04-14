@@ -22,7 +22,7 @@ const simpleGet = async (req, res, dataToGetFromModel) => {
   res.status(200).json({
     data: data,
     pageCount: Math.ceil(
-      (await getCollectionLength(dataToGetFromModel)) / limit
+      (await getCollectionLength(dataToGetFromModel))
     ),
   });
 };
