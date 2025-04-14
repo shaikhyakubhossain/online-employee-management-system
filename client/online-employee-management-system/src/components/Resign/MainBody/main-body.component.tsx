@@ -5,6 +5,7 @@ import SearchBox from "@/components/SearchBox/search-box.component";
 import ApproveResignation from "../ApproveResignation/approve-resignation.component";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Toast from "@/components/Toast/toast.component";
+import TotalCounter from "@/components/TotalCounter/total-counter.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import FilterBar from "@/components/FilterBar/filter-bar.component";
 import Loader from "@/components/Loader/loader.component";
@@ -91,6 +92,7 @@ export default function MainBody() {
       {role === "admin" ? (
         <>
           <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
+          <TotalCounter title="Total Employees" pageCount={data && data.pageCount} />
           <FilterBar updateSearchData={(data: string) => setSearchData(data)} />
 
           {data && data.data && data.data.length > 0 ? (
