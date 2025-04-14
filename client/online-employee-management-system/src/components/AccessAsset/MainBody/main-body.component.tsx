@@ -36,9 +36,10 @@ export default function MainBody(): JSX.Element {
   }, []);
 
   return (
-    <div className="">
-      <Section title="Project reports" data={dataProject}/>
-      <Section title="Case studies" data={dataCaseStudy}/>
+    <div className="min-h-screen bg-gray-100 px-4 py-8 space-y-12">
+      <Section title="Project Reports" data={dataProject} />
+      <Section title="Case Studies" data={dataCaseStudy} />
     </div>
   );
+
 }
