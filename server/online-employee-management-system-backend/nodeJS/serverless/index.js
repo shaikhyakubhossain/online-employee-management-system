@@ -14,8 +14,8 @@ const { clearCollection } = require("./routes/clear-collection");
 const { changePassword } = require("./routes/change-password");
 
 const corsOrigin = {
-  // origin: "https://employeeverse.vercel.app",
-  origin: "http://localhost:3000",
+  origin: "https://employeeverse.vercel.app",
+  // origin: "http://localhost:3000",
 };
 
 const app = express();
