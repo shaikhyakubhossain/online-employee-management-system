@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./main-body.module.scss";
 import FilterBar from "@/components/FilterBar/filter-bar.component";
 import Table from "../../Table/table.component";
+import TotalCounter from "../../TotalCounter/total-counter.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import Loader from "@/components/Loader/loader.component";
 import SearchBox from "../../SearchBox/search-box.component";
@@ -51,6 +52,7 @@ export default function MainBody() {
   return (
     <div className={`${styles.mainContainer}`}>
       <SearchBox updateSearchData={setSearchData} />
+      <TotalCounter title={"Total Leaves"} pageCount={data && data.pageCount} />
       <FilterBar updateSearchData={setSearchData} />
       <div className={`${styles.tableContainer} my-5`}>
         {data && data.data && data.data.length > 0 ? (

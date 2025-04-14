@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import SearchBox from "@/components/SearchBox/search-box.component";
 import Table from "@/components/Table/table.component";
+import TotalCounter from "@/components/TotalCounter/total-counter.component";
 import type { employeeData } from "@/constants/Types/response-data";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import DetailModal from "@/components/DetailModal/detail-modal.component";
@@ -46,6 +47,7 @@ export default function MainBody() {
         />
       )}
       <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
+      <TotalCounter title="Total Employees" pageCount={data && data.pageCount} />
       {data && data.data.length > 0 ? (
         <div>
           <Table

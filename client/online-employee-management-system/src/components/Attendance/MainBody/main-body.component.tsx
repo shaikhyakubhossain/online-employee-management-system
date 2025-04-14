@@ -4,6 +4,7 @@ import Table from "@/components/Table/table.component";
 import { useState } from "react";
 import type { defaultData } from "@/constants/Types/response-data";
 import SearchBox from "@/components/SearchBox/search-box.component";
+import TotalCounter from "@/components/TotalCounter/total-counter.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import Loader from "@/components/Loader/loader.component";
 import * as XLSX from "xlsx";
@@ -83,6 +84,7 @@ export default function MainBody(): JSX.Element {
   return (
     <div>
       <SearchBox updateSearchData={setSearchData} />
+      <TotalCounter title="Total Attendance" pageCount={data && data.pageCount} />
       {data && data.data && data.data.length > 0 ? (
         <div>
           <div className="text-xl mb-4">

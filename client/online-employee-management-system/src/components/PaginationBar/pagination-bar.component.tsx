@@ -33,7 +33,7 @@ export default function PaginationBar(props: propsType): JSX.Element {
           />
         </div>
         <Button
-          disabled={props.pageCount ? props.page === (props.pageCount - 1) / 10 : false}
+          disabled={props.pageCount ? props.page >= (props.pageCount - 1) / 10 : false}
           onClick={() => props.decrementPage(props.page + 1)}
         >
           <img className="rotate-180" src={btnList2[1].base64Icon} alt="" />
