@@ -87,15 +87,6 @@ export default function MainBody(): JSX.Element {
       <TotalCounter title="Total Attendance" pageCount={data && data.pageCount} />
       {data && data.data && data.data.length > 0 ? (
         <div>
-          <div className="text-xl mb-4">
-            Today&apos;s Attendance:{" "}
-            <span className="text-3xl font-bold text-blue-600">
-              {data.data.length * data.pageCount}
-            </span>{" "}
-            employee(s).
-          </div>
-
-          {/* Download buttons */}
           <div className="mb-4">
             <button
               onClick={downloadCSV}
