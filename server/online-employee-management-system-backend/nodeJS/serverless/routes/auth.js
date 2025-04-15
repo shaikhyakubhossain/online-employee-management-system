@@ -13,10 +13,14 @@ const login = async (req, res, loginRole) => {
     } else {
       const token = createToken(user._id);
       const data = await setModel(loginRole).findById(user._id);
-      const userAlreadyPresent = await setModel("attendance").findOne({ employeeId: user.employeeId });
-      if(!userAlreadyPresent && loginRole === "employee"){ 
-        await setModel("attendance").addAttendance(user.employeeId, user.firstName, user.lastName, user.designation, user.regdNo, user.email);
-      }
+        // const allowedIP = '123.45.67.89';
+        // const requestIP = req.ip;
+        //if (requestIP === allowedIP) {
+          const userAlreadyPresent = await setModel("attendance").findOne({ employeeId: user.employeeId });
+          if(!userAlreadyPresent && loginRole === "employee"){ 
+            await setModel("attendance").addAttendance(user.employeeId, user.firstName, user.lastName, user.designation, user.regdNo, user.email);
+          }
+        //}
       res.status(200).json({ data: data, role: loginRole, token: token });
     }
   } catch (error) {

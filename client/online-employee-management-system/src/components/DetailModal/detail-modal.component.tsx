@@ -4,6 +4,7 @@ import { btnList2 } from "@/constants/Basic/data";
 
 type propsType = {
   data: employeeData | null;
+  additionalInfo?: string | null;
   hide: () => void;
 };
 export default function DetailModal(props: propsType) {
@@ -35,9 +36,9 @@ export default function DetailModal(props: propsType) {
                 alt="profile"
               />
             </div>
-            <p className="text-gray-500 text-sm mt-4">
+            {props.data.username && <p className="text-gray-500 text-sm mt-4">
               @{props.data.username}
-            </p>
+            </p>}
             <h2 className="text-xl font-bold text-gray-800 mt-1">
               {props.data.firstName} {props.data.lastName}
             </h2>
@@ -47,7 +48,7 @@ export default function DetailModal(props: propsType) {
           </div>
 
           {/* Right Panel - Info */}
-          <div className="md:w-2/3 md:pl-6 mt-4 md:mt-0">
+          <div className="flex flex-col gap-3 md:w-2/3 md:pl-6 mt-4 md:mt-0">
             <h3 className="text-lg font-semibold text-gray-700 mb-4">
               Employee Details
             </h3>
@@ -108,6 +109,9 @@ export default function DetailModal(props: propsType) {
                 );
               })}
             </div>
+            {props.additionalInfo && <div className="bg-gray-100 p-4 rounded-lg shadow-inner space-y-3 text-sm sm:text-base">
+              {props.additionalInfo}
+            </div>}
           </div>
         </div>
       )}

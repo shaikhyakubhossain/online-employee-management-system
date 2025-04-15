@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 export default function MainBody(): JSX.Element {
 
-  const {token} = useSelector((state: RootState) => state.authDetail);
+  const {token, role} = useSelector((state: RootState) => state.authDetail);
 
   const [dataProject, setDataProject] = useState<gDriveFolderDataType[] | null>(null);
   const [dataCaseStudy, setDataCaseStudy] = useState<gDriveFolderDataType[] | null>(null);
@@ -45,7 +45,10 @@ export default function MainBody(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-8 space-y-12">
-      <div className="relative mb-4">
+      {
+        role === "admin" && 
+        (
+          <div className="relative mb-4">
         <button
           className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-md shadow"
           onClick={() => setShowDropDown(!showDropDown)}
@@ -80,6 +83,9 @@ export default function MainBody(): JSX.Element {
           </div>
         )}
       </div>
+        )
+      }
+      
       <Section title="Project Reports" data={dataProject} />
       <Section title="Case Studies" data={dataCaseStudy} />
     </div>

@@ -12,6 +12,7 @@ export type leaveData = {
   leaveDateFrom: string;
   leaveDateTo: string;
   leaveStatus: string;
+  additionalInfo?: string;
 };
 
 export type employeeData = {

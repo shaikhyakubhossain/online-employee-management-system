@@ -6,8 +6,9 @@ import Table from "../../Table/table.component";
 import TotalCounter from "../../TotalCounter/total-counter.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import Loader from "@/components/Loader/loader.component";
+import DetailModal from "@/components/DetailModal/detail-modal.component";
 import SearchBox from "../../SearchBox/search-box.component";
-import type { leaveData } from "@/constants/Types/response-data";
+import type { leaveData, employeeData } from "@/constants/Types/response-data";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import { getUrl } from "@/constants/url";
 
@@ -22,6 +23,9 @@ type serverData = {
 export default function MainBody() {
   const token = useSelector((state: RootState) => state.authDetail.token);
   const [data, setData] = useState<serverData | null>(null);
+  const [modalDetailToShow, setModalDetailToShow] =
+      useState<employeeData | null>(null);
+    const [showModal, setShowModal] = useState<boolean>(false);
   const [searchData, setSearchData] = useState<string>("");
   const [page, setPage] = useState<number>(0);
 
@@ -51,6 +55,13 @@ export default function MainBody() {
 
   return (
     <div className={`${styles.mainContainer}`}>
+      {showModal && (
+              <DetailModal
+                data={modalDetailToShow}
+                additionalInfo={data && data.data[0].additionalInfo}
+                hide={() => setShowModal(false)}
+              />
+            )}
       <SearchBox updateSearchData={setSearchData} />
       <TotalCounter title={"Total Leaves"} pageCount={data && data.pageCount} />
       <FilterBar updateSearchData={setSearchData} />
@@ -58,6 +69,10 @@ export default function MainBody() {
         {data && data.data && data.data.length > 0 ? (
           <div>
             <Table
+            handleRowDetailToShowInModal={(row) => {
+              setModalDetailToShow(row);
+              setShowModal(true);
+            }}
               data={data && data.data}
               headers={[
                 "Employee Name",

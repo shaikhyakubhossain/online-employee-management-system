@@ -3,7 +3,6 @@ const { setModel, getCollectionLength } = require("../utils/methods");
 const simpleGet = async (req, res, dataToGetFromModel) => {
   const { page, specificSearch } = req.query;
   const limit = 10;
-  console.log(await getCollectionLength(dataToGetFromModel))
   const data = await setModel(dataToGetFromModel)
     .find(
       specificSearch

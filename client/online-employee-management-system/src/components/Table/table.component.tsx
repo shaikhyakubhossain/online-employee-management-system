@@ -12,7 +12,7 @@ type PropsType = {
 
 export default function Table(props: PropsType) {
   const { data, showAction = false, isLeave = false } = props;
-
+  console.log("here: ", data);
   return (
     <div className="relative overflow-x-auto">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">

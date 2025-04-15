@@ -31,7 +31,7 @@ export default function MainBody() {
     reason: "",
   });
   const [toast, setToast] = useState<toastType>({ show: false, message: "" });
-  // const [searchResults, setSearchResults] = useState<employeeData[]>([]);
+  
   const [searchData, setSearchData] = useState<string>("");
   const [page, setPage] = useState<number>(0);
 
@@ -94,7 +94,6 @@ export default function MainBody() {
           <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
           <TotalCounter title="Total Employees" pageCount={data && data.pageCount} />
           <FilterBar updateSearchData={(data: string) => setSearchData(data)} />
-
           {data && data.data && data.data.length > 0 ? (
             <div>
               <ApproveResignation
