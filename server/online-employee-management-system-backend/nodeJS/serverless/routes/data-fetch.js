@@ -1,6 +1,6 @@
 const { setModel, getCollectionLength } = require("../utils/methods");
 
-const simpleGet = async (req, res, dataToGetFromModel) => {
+const getAllRecords = async (req, res, dataToGetFromModel) => {
   const { page, specificSearch } = req.query;
   const limit = 10;
   const data = await setModel(dataToGetFromModel)
@@ -26,30 +26,6 @@ const simpleGet = async (req, res, dataToGetFromModel) => {
   });
 };
 
-// const getEmployee = async (req, res) => {
-//   const { page, specificSearch } = req.query;
-//   const limit = 10;
-//   const employees = await setModel("employee")
-//     .find(
-//       specificSearch
-//         ? {
-//             $or: [
-//               { firstName: { $regex: specificSearch, $options: "i" } },
-//               { lastName: { $regex: specificSearch, $options: "i" } },
-//             ]
-//           }
-//         : {}
-//     )
-//     .skip(page * limit)
-//     .limit(limit);
-//   // const admin = await setModel('admin').find({});
-//   // const combinedData = [...employees, ...admin];
-//   res.status(200).json({
-//     data: employees,
-//     pageCount: Math.ceil((await getCollectionLength("employee")) / limit),
-//   });
-// };
-
 const getNotification = async (req, res) => {
   let regdNo = await setModel("admin").findById(req.user._id).select("regdNo");
 
@@ -65,7 +41,7 @@ const getNotification = async (req, res) => {
 };
 
 module.exports = {
-  simpleGet,
+  getAllRecords,
   getNotification,
   // getEmployee,
 };
