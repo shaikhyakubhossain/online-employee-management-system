@@ -77,7 +77,7 @@ export default function SignUp() {
   // console.log("hiiiiiiiiiiiii: ", (new Date()).toString().split(' ')[3]);
 
   const fetchData = async () => {
-    fetch(`${getUrl()}/${dataToSend.role}-signup`, {
+    fetch(`${getUrl()}/auth/${dataToSend.role}-signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -4,9 +4,9 @@ const { MongoDBUrl, PORT } = require("./secrets/api-keys");
 const mongoose = require("mongoose");
 const express = require("express");
 const requireAuth = require("./middleware/require-auth");
+const authRouter = require("./routes/auth");
 const { getAllRecords, getNotification } = require("./routes/data-fetch");
 const { addResignApplication } = require("./routes/resign");
-const { login, signup } = require("./routes/auth");
 const { adminAction } = require("./routes/admin-action");
 const { getPDF } = require('./routes/get-pdf')
 const { applyLeave } = require("./routes/apply-leave");
@@ -23,13 +23,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/employee-login", async (req, res) => login(req, res, "employee"));
-
-app.post("/admin-login", async (req, res) => login(req, res, "admin"));
-
-app.post("/employee-signup", async (req, res) => signup(req, res, "employee"));
-
-app.post("/admin-signup", async (req, res) => signup(req, res, "admin"));
+app.use("/auth", authRouter);
 
 app.use(requireAuth);
 

@@ -42,7 +42,7 @@ export default function Login(props: propsType) {
   const handleSubmit = () => {
     console.log("dataToSend: ", dataToSend);
     dispatch(setStartLoadingTrue());
-    fetch(`${getUrl()}/${props.searchParams.role}-login`, {
+    fetch(`${getUrl()}/auth/${props.searchParams.role}-login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
