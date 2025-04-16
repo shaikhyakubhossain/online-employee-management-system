@@ -32,28 +32,19 @@ export default function MainBody(): JSX.Element {
   // Function to download data as CSV
   const downloadCSV = () => {
     if (!data?.data) return;
-    const headers = [
-      "First Name",
-      "Last Name",
-      "Regd No",
-      "Email",
-      "Designation",
-    ];
+    const headers = ["Name", "Regd No", "Email", "Designation"];
     const rows = data.data.map((attendance) => [
-      attendance.firstName, // First Name
-      attendance.lastName, // Last Name
-      attendance.regdNo, // Registration No
-      attendance.email, // Email
-      attendance.designation, // Designation
+      `${attendance.firstName} ${attendance.lastName}`,
+      attendance.regdNo,
+      attendance.email,
+      attendance.designation,
     ]);
 
-    // Adding the headers as the first row
     const csvContent = [
       headers.join(","),
       ...rows.map((row) => row.join(",")),
     ].join("\n");
 
-    // Creating a downloadable link and triggering the download
     const link = document.createElement("a");
     link.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
     link.target = "_blank";
@@ -65,26 +56,23 @@ export default function MainBody(): JSX.Element {
   const downloadExcel = () => {
     if (!data?.data) return;
     const rows = data.data.map((attendance) => ({
-      "First Name": attendance.firstName,
-      "Last Name": attendance.lastName,
+      Name: `${attendance.firstName} ${attendance.lastName}`,
       "Regd No": attendance.regdNo,
       Email: attendance.email,
       Designation: attendance.designation,
     }));
 
-    // Create a new workbook and add a worksheet
     const ws = XLSX.utils.json_to_sheet(rows);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Attendance");
 
-    // Trigger the download
     XLSX.writeFile(wb, "attendance.xlsx");
   };
 
   return (
     <div>
       <SearchBox updateSearchData={setSearchData} />
-      <TotalCounter title="Total Attendance" pageCount={data && data.pageCount} />
+      <TotalCounter title="Total no. of employee present today" pageCount={data && data.pageCount} />
       {data && data.data && data.data.length > 0 ? (
         <div>
           <div className="mb-4">
@@ -101,7 +89,6 @@ export default function MainBody(): JSX.Element {
               Download Excel
             </button>
           </div>
-
           <Table
             headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
             data={data && data.data}

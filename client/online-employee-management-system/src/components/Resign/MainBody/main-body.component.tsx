@@ -92,7 +92,7 @@ export default function MainBody() {
       {role === "admin" ? (
         <>
           <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
-          <TotalCounter title="Total Employees" pageCount={data && data.pageCount} />
+          <TotalCounter title="Total resign requests received" pageCount={data && data.pageCount} />
           <FilterBar updateSearchData={(data: string) => setSearchData(data)} />
           {data && data.data && data.data.length > 0 ? (
             <div>

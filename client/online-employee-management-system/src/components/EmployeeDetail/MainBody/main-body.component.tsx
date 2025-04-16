@@ -47,7 +47,7 @@ export default function MainBody() {
         />
       )}
       <SearchBox updateSearchData={(data: string) => setSearchData(data)} />
-      <TotalCounter title="Total Employees" pageCount={data && data.pageCount} />
+      <TotalCounter title="Total no. of employees in database" pageCount={data && data.pageCount} />
       {data && data.data.length > 0 ? (
         <div>
           <Table
