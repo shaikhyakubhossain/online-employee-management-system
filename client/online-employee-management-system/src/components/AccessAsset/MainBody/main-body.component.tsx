@@ -90,19 +90,15 @@ export default function MainBody(): JSX.Element {
 
       <Section title="Project Reports" data={dataProject} />
       <Section title="Case Studies" data={dataCaseStudy} />
-      <div className="mt-12 text-sm text-gray-600">
-        <h2 className="text-base font-semibold text-gray-800 mb-2">
-          Confidential Assets
-        </h2>
-        <p className="text-justify">
+      <h2 className="font-semibold text-gray-800">Confidential Assets:</h2>
+      <p className="text-justify">
           The documents and files accessible through this platform may contain
           sensitive or proprietary information intended solely for authorized
           personnel. Unauthorized distribution, reproduction, or misuse of any
           content is strictly prohibited and may result in disciplinary or legal
           action. Please ensure all assets are handled in compliance with
           company policies and data protection regulations.
-        </p>
-      </div>
+      </p>
     </div>
   );
 
