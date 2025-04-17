@@ -63,7 +63,7 @@ export default function MainBody() {
               />
             )}
       <SearchBox updateSearchData={setSearchData} />
-      <TotalCounter title={"Total Leaves"} pageCount={data && data.pageCount} />
+      <TotalCounter title={"Total leave requests received"} pageCount={data && data.pageCount} />
       <FilterBar updateSearchData={setSearchData} />
       <div className={`${styles.tableContainer} my-5`}>
         {data && data.data && data.data.length > 0 ? (

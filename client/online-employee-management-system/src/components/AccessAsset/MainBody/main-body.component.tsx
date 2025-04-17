@@ -18,22 +18,26 @@ export default function MainBody(): JSX.Element {
 
   const fetchData = async (section: string, setter: (data: gDriveFolderDataType[]) => void) => {
     console.log(section);
-    const response = await fetch(`${getUrl()}/get-pdf-data?section=${section}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          role: "both",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    const data = await response.json();
-    console.log(data);
-    setter(data.data);
-  }
+    try {
+      const response = await fetch(`${getUrl()}/get-pdf-data?section=${section}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            role: "both",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      const data = await response.json();
+      console.log(data);
+      setter(data.data);
+    } catch (error) {
+      console.error(`Error fetching ${section} data:`, error);
+    }
+  };
 
   useEffect(() => {
-    dataProject === null && fetchData("project", setDataProject);
-    dataCaseStudy === null && fetchData("caseStudy", setDataCaseStudy);
+    if (dataProject === null) fetchData("project", setDataProject);
+    if (dataCaseStudy === null) fetchData("caseStudy", setDataCaseStudy);
   }, []);
 
   const folderLinks = {
@@ -45,50 +49,57 @@ export default function MainBody(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-8 space-y-12">
-      {
-        role === "admin" && 
-        (
-          <div className="relative mb-4">
-        <button
-          className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-md shadow"
-          onClick={() => setShowDropDown(!showDropDown)}
-        >
-          Upload Files
-        </button>
-        <p className="text-sm text-gray-600 mt-2">
-          Note: You need to be signed in to your Google Drive before starting the upload.
-        </p>
-        {showDropDown && (
-          <div className="absolute top-20 left-0 bg-white border rounded-md shadow-lg z-10 w-64">
-            <a
-              href={folderLinks.project}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block px-4 py-2 hover:bg-gray-100"
-              title="Click to open the folder. In Google Drive, click 'New' > 'File upload' to add your report."
-              onClick={() => setShowDropDown(false)}
-            >
-              📁 Upload to Project Reports
-            </a>
-            <a
-              href={folderLinks.caseStudy}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block px-4 py-2 hover:bg-gray-100"
-              title="Click to open the folder. In Google Drive, click 'New' > 'File upload' to add your case study."
-              onClick={() => setShowDropDown(false)}
-            >
-              📁 Upload to Case Studies
-            </a>
-          </div>
-        )}
-      </div>
-        )
-      }
-      
+      {role === "admin" && (
+        <div className="relative mb-4">
+          <button
+            className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-md shadow"
+            onClick={() => setShowDropDown(!showDropDown)}
+          >
+            Upload Files
+          </button>
+          <p className="text-sm text-gray-600 mt-2">
+            Note: You need to be signed in to your <strong>Google Drive</strong>{" "}
+            account before starting the upload.
+          </p>
+          {showDropDown && (
+            <div className="absolute top-10 left-0 bg-white border rounded-md shadow-lg z-10 w-64">
+              <a
+                href={folderLinks.project}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-4 py-2 hover:bg-gray-100"
+                title="Click to open the folder. In Google Drive, click 'New' > 'File upload' to add your report."
+                onClick={() => setShowDropDown(false)}
+              >
+                📁 Upload to Project Reports
+              </a>
+              <a
+                href={folderLinks.caseStudy}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block px-4 py-2 hover:bg-gray-100"
+                title="Click to open the folder. In Google Drive, click 'New' > 'File upload' to add your case study."
+                onClick={() => setShowDropDown(false)}
+              >
+                📁 Upload to Case Studies
+              </a>
+            </div>
+          )}
+        </div>
+      )}
+
       <Section title="Project Reports" data={dataProject} />
       <Section title="Case Studies" data={dataCaseStudy} />
+      <h2 className="font-semibold text-gray-800">Confidential Assets:</h2>
+      <p className="text-justify">
+          The documents and files accessible through this platform may contain
+          sensitive or proprietary information intended solely for authorized
+          personnel. Unauthorized distribution, reproduction, or misuse of any
+          content is strictly prohibited and may result in disciplinary or legal
+          action. Please ensure all assets are handled in compliance with
+          company policies and data protection regulations.
+      </p>
     </div>
   );
-  
+
 }
