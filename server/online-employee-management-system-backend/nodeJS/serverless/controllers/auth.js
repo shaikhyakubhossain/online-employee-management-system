@@ -45,7 +45,7 @@ const login = async (req, res, loginRole) => {
       } else {
         const token = createToken(user._id);
         const data = {
-        id: user.employeeId ? user.employeeId : user.adminId,
+        [signUpRole + "Id"]: user[signUpRole + "Id"],
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username,

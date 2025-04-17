@@ -43,8 +43,8 @@ export default function MainBody(): JSX.Element {
           <div className="bg-gray-100 p-4 rounded-lg shadow-sm">
             {[
               {
-                label: !data?.department ? "Admin ID" : "Employee ID",
-                value: data?.id,
+                label: data?.adminId ? "Admin ID" : "Employee ID",
+                value: data?.adminId ? data?.adminId : data?.employeeId,
               },
               { label: "Email", value: data?.email },
               { label: "Designation", value: data?.designation },

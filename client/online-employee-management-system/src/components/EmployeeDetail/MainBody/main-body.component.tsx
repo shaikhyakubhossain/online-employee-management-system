@@ -27,7 +27,7 @@ export default function MainBody() {
     `get-all-employees`,
     "admin",
     (data: serverData | null) => setData(data),
-    true,
+    false,
     page,
     searchData
   );
