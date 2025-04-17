@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 // import styles from "./form-contents.module.scss";
-// import RadioBtn from "@/components/RadioBtn/radio-btn.component";
-import SetDate from "../SetDate/set-date.component";
+import InputField from "@/components/InputField/Input-field.component";
+import RadioBtn from "@/components/RadioBtn/radio-btn.component";
 import Link from "next/link";
 import Button from "@/components/Button/button.component";
 import Toast from "@/components/Toast/toast.component";
@@ -88,38 +88,28 @@ export default function FormContents() {
          { label: "Sick Leave", value: "sick" },
          { label: "Maternity Leave", value: "maternity" },
        ].map((option, index) => (
-         <label
+         <RadioBtn
            key={index}
-           className="flex items-center gap-3 p-4 bg-white border border-gray-300 rounded-lg shadow-sm cursor-pointer hover:bg-gray-100 transition-all duration-200"
-         >
-           <input
-             type="radio"
-             name="leaveType"
-             value={option.value}
-             className="accent-blue-600"
-             onChange={() =>
-               setDataToSend({ ...dataToSend, leaveType: option.value })
-             }
-           />
-           <span className="text-gray-700 font-medium">{option.label}</span>
-         </label>
+           label={option.label}
+           onRadioClick={() => setDataToSend({ ...dataToSend, leaveType: option.value })}
+         />
        ))}
      </div>
      <div className="text-2xl font-semibold text-gray-800 mt-6">
        Select Date Range
      </div>
      <div className="flex flex-col md:flex-row gap-4 mt-4">
-       <SetDate
-         updateDataToSend={(event) =>
-           setDataToSend({ ...dataToSend, fromDate: event.target.value })
-         }
+       <InputField
+         type="date"
          label="From"
-       />
-       <SetDate
-         updateDataToSend={(event) =>
-           setDataToSend({ ...dataToSend, toDate: event.target.value })
+         updateDataToSend={(data) => setDataToSend({ ...dataToSend, fromDate: data })
          }
+       />
+       <InputField
+         type="date"
          label="To"
+         updateDataToSend={(data) => setDataToSend({ ...dataToSend, toDate: data })
+         }
        />
      </div>
      <div className="mt-6">

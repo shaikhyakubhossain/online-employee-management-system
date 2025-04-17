@@ -71,6 +71,8 @@ export default function DetailModal(props: propsType) {
                       : `${props.data.workExperience} year`),
                 },
                 { label: "Gender", value: props.data.genderCode },
+                { label: "Date of Birth", value: props.data?.dob },
+                { label: "Date of Joining", value: props.data?.dateOfJoining },
               ].map(
                 (item, idx) =>
                   item.value && (
@@ -87,7 +89,7 @@ export default function DetailModal(props: propsType) {
                     </div>
                   )
               )}
-              {[
+              {/* {[
                 { label: "Date of Joining", value: props.data.dateOfJoining },
                 { label: "Date of Birth", value: props.data.dob },
               ].map((item, idx) => {
@@ -107,7 +109,7 @@ export default function DetailModal(props: propsType) {
                     </span>
                   </div>
                 );
-              })}
+              })} */}
             </div>
             {props.additionalInfo && <div className="bg-gray-100 p-4 rounded-lg shadow-inner space-y-3 text-sm sm:text-base">
               {props.additionalInfo}

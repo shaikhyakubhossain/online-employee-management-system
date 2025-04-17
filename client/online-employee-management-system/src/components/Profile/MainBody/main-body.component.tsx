@@ -50,6 +50,8 @@ export default function MainBody(): JSX.Element {
               { label: "Designation", value: data?.designation },
               { label: "Regd No", value: data?.regdNo },
               { label: "Gender", value: data?.genderCode },
+              { label: "Date of Birth", value: data?.dob },
+              { label: "Date of Joining", value: data?.dateOfJoining },
             ].map((item, index) => (
               <div
                 key={index}
@@ -86,7 +88,7 @@ export default function MainBody(): JSX.Element {
                   </span>
                 </div>
               ))}
-            {[
+            {/* {[
               { label: "Date of Joining", value: data?.dateOfJoining },
               { label: "Date of Birth", value: data?.dob },
             ].map((item, index) => {
@@ -112,7 +114,7 @@ export default function MainBody(): JSX.Element {
                   </span>
                 </div>
               );
-            })}
+            })} */}
           </div>
         </div>
       </div>

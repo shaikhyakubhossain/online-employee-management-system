@@ -63,17 +63,6 @@ export default function SignUp() {
   });
   const [toast, setToast] = useState<toastType>({ show: false, message: "" });
 
-  const handleRoleSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const current = event.target as HTMLInputElement;
-    // console.log(current.parentElement?.parentElement?.textContent);
-    if (current.parentElement?.parentElement?.textContent) {
-      setDataToSend({
-        ...dataToSend,
-        role: current.parentElement?.parentElement?.textContent.toLowerCase(),
-      });
-    }
-  };
-
   // console.log("hiiiiiiiiiiiii: ", (new Date()).toString().split(' ')[3]);
 
   const fetchData = async () => {
@@ -135,11 +124,11 @@ export default function SignUp() {
               >
                 <RadioBtn
                   label="Admin"
-                  onRadioClick={(event) => handleRoleSelection(event)}
+                  onRadioClick={() => setDataToSend({ ...dataToSend, role: "admin" })}
                 />
                 <RadioBtn
                   label="Employee"
-                  onRadioClick={(event) => handleRoleSelection(event)}
+                  onRadioClick={() => setDataToSend({ ...dataToSend, role: "employee" })}
                 />
               </div>
             </div>
@@ -229,7 +218,7 @@ export default function SignUp() {
                     setDataToSend({ ...dataToSend, dob: event })
                   }
                   label="Date of Birth"
-                  type="text"
+                  type="date"
                   placeholder="Enter Date of Birth"
                 />
                 <InputField

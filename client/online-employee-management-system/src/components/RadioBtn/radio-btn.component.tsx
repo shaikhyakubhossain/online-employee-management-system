@@ -8,7 +8,7 @@ export default function RadioBtn(props: propsType): JSX.Element {
     <div
       className={`flex items-center min-w-32 m-6 ps-4 border px-5 bg-gray-50 border-gray-200 rounded dark:border-gray-700`}
     >
-      <label className="flex justify-between items-center w-full py-4 ms-2 text-sm font-medium dark:text-gray-900 text-gray-300">
+      <label className="flex justify-start items-center gap-2 w-full py-4 ms-2 text-sm font-medium dark:text-gray-900 text-gray-300">
       <div>
       <input
         type="radio"

@@ -34,8 +34,7 @@ export default function BodyContainer(props: propsType): JSX.Element {
       pathname === "/Help" ||
       pathname === "/Credits" ||
       pathname === "/TermsOfService" ||
-      pathname === "/PrivacyPolicy" ||
-      pathname === "/404"
+      pathname === "/PrivacyPolicy"
     ) {
       return "0px";
     } else {
