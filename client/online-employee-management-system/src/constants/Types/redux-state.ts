@@ -1,4 +1,5 @@
 export type authDetailDataType = {
+    id?: string;
     adminId?: string;
     employeeId?: string;
     firstName: string;

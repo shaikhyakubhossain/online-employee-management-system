@@ -63,8 +63,6 @@ export default function SignUp() {
   });
   const [toast, setToast] = useState<toastType>({ show: false, message: "" });
 
-  // conole.log("hiiiiiiiiiiiii: ", (new Date()).toString().split(' ')[3]);
-
   const fetchData = async () => {
     fetch(`${getUrl()}/auth/${dataToSend.role}-signup`, {
       method: "POST",
@@ -80,7 +78,7 @@ export default function SignUp() {
           setToast({ show: true, message: data.error });
         } else {
           dispatch(setStartLoadingFalse());
-          console.log(data);
+          console.log("dataHere: ", data);
           dispatch(setDetail(data));
           localStorage.setItem("OEMS-authDetail", JSON.stringify(data));
           router.push(`/Dashboard`);

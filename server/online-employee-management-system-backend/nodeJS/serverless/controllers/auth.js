@@ -45,9 +45,20 @@ const login = async (req, res, loginRole) => {
       } else {
         const token = createToken(user._id);
         const data = {
-          ...user,
-          token,
-        };
+        id: user.employeeId ? user.employeeId : user.adminId,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        designation: req.body.designation,
+        department: req.body.department,
+        workExperience: req.body.workExperience,
+        dateOfJoining: req.body.dateOfJoining,
+        dob: req.body.dob,
+        employmentType: req.body.employmentType,
+        regdNo: req.body.regdNo,
+        email: req.body.email,
+        genderCode: req.body.genderCode,
+          }
         res.status(200).json({
           data,
           role: signUpRole,

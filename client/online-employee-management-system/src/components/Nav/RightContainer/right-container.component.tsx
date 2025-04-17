@@ -22,7 +22,7 @@ export default function RightContainer() {
         }
     }, [])
 
-    console.log("token:", token);
+    console.log("token:", data);
 
     return (
         <div>
