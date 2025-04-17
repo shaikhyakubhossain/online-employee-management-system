@@ -1,6 +1,7 @@
 "use client";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Table from "@/components/Table/table.component";
+import DetailModal from "@/components/DetailModal/detail-modal.component";
 import { useState } from "react";
 import type { defaultData } from "@/constants/Types/response-data";
 import SearchBox from "@/components/SearchBox/search-box.component";
@@ -16,6 +17,9 @@ type serverData = {
 
 export default function MainBody(): JSX.Element {
   const [data, setData] = useState<serverData | null>(null);
+  const [modalDetailToShow, setModalDetailToShow] =
+      useState<defaultData | null>(null);
+    const [showModal, setShowModal] = useState<boolean>(false);
   const [searchData, setSearchData] = useState<string>("");
   const [page, setPage] = useState<number>(0);
 
@@ -71,6 +75,12 @@ export default function MainBody(): JSX.Element {
 
   return (
     <div>
+      {showModal && (
+              <DetailModal
+                data={modalDetailToShow}
+                hide={() => setShowModal(false)}
+              />
+            )}
       <SearchBox updateSearchData={setSearchData} />
       <TotalCounter title="Total no. of employee present today" pageCount={data && data.pageCount} />
       {data && data.data && data.data.length > 0 ? (
@@ -90,6 +100,10 @@ export default function MainBody(): JSX.Element {
             </button>
           </div>
           <Table
+          handleRowDetailToShowInModal={(row) => {
+            setModalDetailToShow(row);
+            setShowModal(true);
+          }}
             headers={["Employee Name", "Regd.ID", "Email ID", "Designation"]}
             data={data && data.data}
           />
