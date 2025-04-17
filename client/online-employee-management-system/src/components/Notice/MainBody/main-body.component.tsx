@@ -5,6 +5,7 @@ import type { noticeData } from "@/constants/Types/response-data";
 import { getUrl } from "@/constants/url";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import AddNotice from "../AddNotice/add-notice.component copy";
+import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import Toast from "@/components/Toast/toast.component";
 import type { toastType } from "@/constants/Types/local";
 
@@ -23,20 +24,31 @@ export default function MainBody() {
         message: ""
     });
     const [data, setData] = useState<serverData | null>(null);
+    const [dataLatest, setDataLatest] = useState<serverData | null>(null);
     const [toast, setToast] = useState<toastType>({ show: false, message: "" });
+    const [page, setPage] = useState<number>(0);
     const { role, token } = useSelector((state: RootState) => state.authDetail);
 
     useFetchGetMethod(
         "get-all-notices",
         "both",
         (data: serverData | null) => setData(data),
-        true
+        true,
+        page
     );
+
+    useFetchGetMethod(
+      "get-all-notices",
+      "both",
+      (data: serverData | null) => setDataLatest(data),
+      true
+  );
 
     const handleAddNotice = () => {
         sendData();
-        window.location.reload();
     }
+
+    console.log(data);
 
     const sendData = () => {
         fetch(`${getUrl()}/add-notice`, {
@@ -49,6 +61,7 @@ export default function MainBody() {
             body: JSON.stringify(dataToSend),
         }).then((res) => res.json()).then((data) => {
             setToast({ show: true, message: data.message ? data.message : data.error });
+        window.location.reload();
         })
     }
 
@@ -72,8 +85,15 @@ export default function MainBody() {
             handleAddNotice={handleAddNotice}
           />
         )}
-        <Section title="Latest Notices" data={data  && data.data && data.data.slice(0, 5)} />
+        <Section title="Latest Notices" data={dataLatest  && dataLatest.data && dataLatest.data.slice(0, 5)} />
         <Section title="Other Notices" data={data && data.data} />
+        <PaginationBar
+          page={page}
+          pageCount={data && data.pageCount}
+          incrementPage={setPage}
+          decrementPage={setPage}
+          setCustomPage={setPage}
+        />
       </div>
     );
 }

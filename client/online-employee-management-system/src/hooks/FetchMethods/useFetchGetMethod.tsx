@@ -22,7 +22,7 @@ const useFetchGetMethod = (
   const token = useSelector((state: RootState) => state.authDetail.token);
 
   const fetchData = async () => {
-    fetch(`${getUrl()}/${endpoint}${page ? `?page=${page}` : ""}${specificSearch ? `${page ? "&" : "?"}specificSearch=${specificSearch}` : ""}`, {
+    fetch(`${getUrl()}/${endpoint}?shouldReverse=${shouldReverse}${page ? `&page=${page}` : ""}${specificSearch ? `&specificSearch=${specificSearch}` : ""}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -32,14 +32,7 @@ const useFetchGetMethod = (
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.data && shouldReverse){
-          const reverse = {...data, data: data.data.reverse()};
-          console.log("raw data: ", data);
-          callback(reverse); 
-        }
-        else{
-          callback(data);
-        }
+        callback(data);
       })
       .finally(() => {
         dispatch(setStartLoadingFalse());

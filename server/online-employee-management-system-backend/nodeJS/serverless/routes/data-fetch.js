@@ -1,7 +1,7 @@
 const { setModel, getCollectionLength } = require("../utils/methods");
 
 const getAllRecords = async (req, res, dataToGetFromModel) => {
-  const { page, specificSearch } = req.query;
+  const { page, specificSearch, shouldReverse } = req.query;
   const limit = 10;
   const data = await setModel(dataToGetFromModel)
     .find(
@@ -14,7 +14,7 @@ const getAllRecords = async (req, res, dataToGetFromModel) => {
             ],
           }
         : {}
-    )
+    ).sort({ _id: shouldReverse ? -1 : 1 })
     .skip(page * limit)
     .limit(limit);
     // console.log(data)
