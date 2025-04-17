@@ -31,61 +31,21 @@ const login = async (req, res, loginRole) => {
   
   const signup = async (req, res, signUpRole) => {
     const {
-      firstName,
-      lastName,
-      username,
-      designation,
-      department,
-      workExperience,
-      dateOfJoining,
-      dob,
-      employmentType,
-      regdNo,
-      email,
-      password,
-      confirmPassword,
-      genderCode,
       secretCode,
     } = req.body;
-    console.log("req.body here", req.body);
+    // console.log("req.body here", req.body);
     if (secretCode !== SecretCode) {
       return res.status(400).json({ error: "You are not authorized" });
     }
     try {
-      const user = await setModel(signUpRole).signup(
-        firstName,
-        lastName,
-        username,
-        designation,
-        department,
-        workExperience,
-        dateOfJoining,
-        dob,
-        employmentType,
-        regdNo,
-        email,
-        password,
-        confirmPassword,
-        genderCode
-      );
+      // console.log(req.body);
+      const user = await setModel(signUpRole).signup(req.body);
       if (user.error) {
         return res.status(400).json({ error: user.error });
       } else {
         const token = createToken(user._id);
         const data = {
-          employeeId: user.employeeId,
-          firstName,
-          lastName,
-          username,
-          designation,
-          department,
-          workExperience,
-          dateOfJoining,
-          dob,
-          employmentType,
-          regdNo,
-          email,
-          genderCode,
+          ...user,
           token,
         };
         res.status(200).json({

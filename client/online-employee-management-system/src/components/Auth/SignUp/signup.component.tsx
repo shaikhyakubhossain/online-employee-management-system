@@ -63,7 +63,7 @@ export default function SignUp() {
   });
   const [toast, setToast] = useState<toastType>({ show: false, message: "" });
 
-  // console.log("hiiiiiiiiiiiii: ", (new Date()).toString().split(' ')[3]);
+  // conole.log("hiiiiiiiiiiiii: ", (new Date()).toString().split(' ')[3]);
 
   const fetchData = async () => {
     fetch(`${getUrl()}/auth/${dataToSend.role}-signup`, {

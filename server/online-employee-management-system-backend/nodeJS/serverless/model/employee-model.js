@@ -68,22 +68,8 @@ const employeeSchema = new mongoose.Schema({
 
 employeeSchema.plugin(autoSequence, { inc_field: "employeeId" });
 
-employeeSchema.statics.signup = async function (
-  firstName,
-  lastName,
-  username,
-  designation,
-  department,
-  workExperience,
-  dateOfJoining,
-  dob,
-  employmentType,
-  regdNo,
-  email,
-  password,
-  confirmPassword,
-  genderCode
-) {
+employeeSchema.statics.signup = async function (data) {
+  const { firstName, lastName, username, designation, department, workExperience, dateOfJoining, dob, employmentType, regdNo, email, password, confirmPassword, genderCode } = data
   if (
     !firstName ||
     !lastName ||

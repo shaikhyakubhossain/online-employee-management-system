@@ -63,21 +63,9 @@ const adminSchema = new mongoose.Schema({
 
 adminSchema.plugin(autoSequence, { inc_field: "adminId" });
 
-adminSchema.statics.signup = async function (
-  firstName,
-  lastName,
-  username,
-  designation,
-  regdNo,
-  email,
-  password,
-  confirmPassword,
-  genderCode,
-  dateOfJoining,
-  workExperience,
-  dob,
-  employmentType
-) {
+adminSchema.statics.signup = async function (data) {
+  const { firstName, lastName, username, designation, regdNo, email, password, confirmPassword, genderCode, dob, dateOfJoining, workExperience, employmentType } = data;
+  console.log("data", data);
   if (
     !firstName ||
     !lastName ||
