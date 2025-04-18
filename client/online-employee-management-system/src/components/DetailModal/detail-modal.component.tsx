@@ -37,8 +37,8 @@ export default function DetailModal(props: propsType) {
               />
             </div>
             {props.data.username && <p className="text-gray-500 text-sm mt-4">
-              @{props.data.username}
-            </p>}
+                @{props.data.username}
+              </p>}
             <h2 className="text-xl font-bold text-gray-800 mt-1">
               {props.data.firstName} {props.data.lastName}
             </h2>
@@ -57,7 +57,7 @@ export default function DetailModal(props: propsType) {
                 {
                   label: "Employee ID",
                   value: props.data.employeeId,
-                },  
+                },
                 { label: "Regd No", value: props.data.regdNo },
                 { label: "Email", value: props.data.email },
                 { label: "Department", value: props.data.department },
@@ -111,14 +111,14 @@ export default function DetailModal(props: propsType) {
                 );
               })} */}
             </div>
-            {props.additionalInfo && <div className="bg-gray-100 p-4 rounded-lg shadow-inner space-y-3 text-sm sm:text-base">
-              {props.additionalInfo}
-            </div>}
+            {props.additionalInfo && (
+              <div className="bg-gray-100 p-4 rounded-lg shadow-inner space-y-3 text-sm sm:text-base">
+                <strong>Reason:</strong> {props.additionalInfo}
+              </div>
+            )}
           </div>
         </div>
       )}
     </div>
   );
-
-
 }
