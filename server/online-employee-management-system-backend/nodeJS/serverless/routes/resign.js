@@ -8,9 +8,12 @@ const addResignApplication = async (req, res) => {
   const user = await Employee.findById(req.user._id);
   if (user) {
     const resign = await Resign.createResignApplication(
+      user.employeeId,
       user.firstName,
       user.lastName,
       user.designation,
+      user.department,
+      user.username,
       user.email,
       user.regdNo,
       reason

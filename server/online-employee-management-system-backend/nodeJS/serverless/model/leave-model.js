@@ -22,6 +22,14 @@ const leaveSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  department: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
   regdNo: {
     type: String,
     required: true,
@@ -58,6 +66,8 @@ leaveSchema.statics.applyLeave = async function (
   lastName,
   employeeId,
   designation,
+  department,
+  username,
   regdNo,
   email,
   leaveType,
@@ -70,6 +80,8 @@ leaveSchema.statics.applyLeave = async function (
     !lastName ||
     !employeeId ||
     !designation ||
+    !department ||
+    !username ||
     !regdNo ||
     !email
   ) {
@@ -85,6 +97,8 @@ leaveSchema.statics.applyLeave = async function (
     lastName,
     employeeId,
     designation,
+    department,
+    username,
     regdNo,
     email,
     leaveType,

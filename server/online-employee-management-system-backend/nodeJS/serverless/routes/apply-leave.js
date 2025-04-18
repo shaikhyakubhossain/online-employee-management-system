@@ -15,6 +15,8 @@ const applyLeave = async (req, res, leaveAppliedBy) => {
               userDetails.lastName,
               userDetails.employeeId,
               userDetails.designation,
+              userDetails.department,
+              userDetails.username,
               userDetails.regdNo,
               userDetails.email,
               leaveType,

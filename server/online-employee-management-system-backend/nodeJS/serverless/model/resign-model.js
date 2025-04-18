@@ -18,6 +18,14 @@ const resignSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  department: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
   regdNo: {
     type: String,
     required: true,
@@ -38,8 +46,8 @@ const resignSchema = new mongoose.Schema({
 
 resignSchema.plugin(autoSequence, { inc_field: "resignId" });
 
-resignSchema.statics.createResignApplication = async function (firstName, lastName, designation, email, regdNo, reason) {
-  if (!regdNo || !email || !firstName || !lastName || !designation) {
+resignSchema.statics.createResignApplication = async function (employeeId, firstName, lastName, designation, department, username, email, regdNo, reason) {
+  if (!employeeId || !regdNo || !email || !firstName || !lastName || !designation || !department || !username) {
     return { error: "user not logged in" };
   }
   if (!reason) {
@@ -47,9 +55,12 @@ resignSchema.statics.createResignApplication = async function (firstName, lastNa
   }
 
   const resign = await this.create({
+    employeeId,
     firstName,
     lastName,
     designation,
+    department,
+    username,
     email,
     regdNo,
     reason,
