@@ -47,9 +47,9 @@ app.get("/get-all-notifications", async (req, res) => getNotification(req, res))
 
 app.get("/get-pdf-data", async (req, res) => getPDF(req, res));
 
-app.patch("/leave-action", async (req, res) => adminAction(req, res, "leave", { title: "Leave Application", message: "Your leave application has been successfully submitted" }));
+app.patch("/leave-action", async (req, res) => adminAction(req, res, "leave"));
 
-app.patch("/resign-action", async (req, res) => adminAction(req, res, "resign", { title: "Resign Application", message: "Your resign application has been successfully submitted" }));
+app.patch("/resign-action", async (req, res) => adminAction(req, res, "resign"));
 
 app.patch("/change-password", async (req, res) => changePassword(req, res));
 

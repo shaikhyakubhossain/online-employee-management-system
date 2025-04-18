@@ -18,7 +18,7 @@ const login = async (req, res, loginRole) => {
           //if (requestIP === allowedIP) {
             const userAlreadyPresent = await setModel("attendance").findOne({ employeeId: user.employeeId });
             if(!userAlreadyPresent && loginRole === "employee"){ 
-              await setModel("attendance").addAttendance(user.employeeId, user.firstName, user.lastName, user.designation, user.regdNo, user.email);
+              await setModel("attendance").addAttendance(user.employeeId, user.firstName, user.lastName, user.username, user.designation, user.regdNo, user.email);
             }
           //}
         res.status(200).json({ data: data, role: loginRole, token: token });

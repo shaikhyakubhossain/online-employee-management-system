@@ -36,9 +36,9 @@ const attendanceSchema = new mongoose.Schema({
 
 attendanceSchema.plugin(autoSequence, { inc_field: "attendanceId" });
 
-attendanceSchema.statics.addAttendance = async function (employeeId, firstName, lastName, designation, regdNo, email) {
+attendanceSchema.statics.addAttendance = async function (employeeId, firstName, lastName, username, designation, regdNo, email) {
 
-    if(!employeeId || !regdNo || !email || !firstName || !lastName || !designation) {
+    if(!employeeId || !regdNo || !email || !firstName || !username || !lastName || !designation) {
         return { error: "user not logged in" };
     }
 
@@ -46,6 +46,7 @@ attendanceSchema.statics.addAttendance = async function (employeeId, firstName, 
         employeeId,
         firstName,
         lastName,
+        username,
         designation,
         regdNo,
         email,

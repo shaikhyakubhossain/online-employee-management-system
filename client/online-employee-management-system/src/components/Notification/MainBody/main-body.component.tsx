@@ -3,6 +3,7 @@ import styles from "./main-body.module.scss";
 import { useState } from "react";
 import type { notificationData } from "@/constants/Types/response-data";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
+import Loader from "@/components/Loader/loader.component";
 
 type serverData = {
     data: notificationData[],
@@ -28,7 +29,7 @@ export default function MainBody(){
                             <div className="text-lg my-auto">{notification.message}</div>
                         </div>
                     )
-                }) : <div className="text-2xl">No notifications</div>
+                }) : notification === null ? <Loader title={"Loading..."} /> : <Loader title={"No notifications found"} />
             }
         </div>
     )
