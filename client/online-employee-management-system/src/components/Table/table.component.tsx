@@ -33,7 +33,7 @@ export default function Table(props: PropsType) {
               return (
                 <tr
                   key={item._id}
-                  onClick={(event) => event.target === event.currentTarget && props.handleRowDetailToShowInModal && props.handleRowDetailToShowInModal(item)}
+                  onClick={() => props.handleRowDetailToShowInModal && props.handleRowDetailToShowInModal(item)}
                   className="bg-white border-b cursor-pointer hover:bg-gray-100"
                 >
                   <th
@@ -58,20 +58,24 @@ export default function Table(props: PropsType) {
                       <td className="px-6 py-4">{item.status}</td>
                       { item.status === "pending" && <td className="px-6 py-4">
                         <span
-                          onClick={() =>
-                            props.handleAction
-                              ? props.handleAction(item._id, "approved")
-                              : null
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            if (props.handleAction) {
+                              props.handleAction(item._id, "approved");
+                            }
+                          }
                           }
                           className="text-green-900 bg-green-200 px-2 py-1 rounded-md mr-1 hover:bg-green-600 hover:text-white cursor-pointer"
                         >
                           Approve
                         </span>
                         <span
-                          onClick={() =>
-                            props.handleAction
-                              ? props.handleAction(item._id, "rejected")
-                              : null
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            if (props.handleAction) {
+                              props.handleAction(item._id, "rejected");
+                            }
+                          }
                           }
                           className="text-red-900 bg-red-200 px-2 py-1 rounded-md ml-1 hover:bg-red-600 hover:text-white cursor-pointer"
                         >
