@@ -57,7 +57,7 @@ export default function DetailModal(props: propsType) {
                 {
                   label: "Employee ID",
                   value: props.data.employeeId,
-                },
+                },  
                 { label: "Regd No", value: props.data.regdNo },
                 { label: "Email", value: props.data.email },
                 { label: "Department", value: props.data.department },

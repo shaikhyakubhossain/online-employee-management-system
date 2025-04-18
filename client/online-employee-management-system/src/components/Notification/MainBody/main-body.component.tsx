@@ -11,7 +11,12 @@ type serverData = {
 export default function MainBody(){
     const [notification, setNotification] = useState<serverData | null>(null);
 
-    useFetchGetMethod("get-all-notifications", "both", (data: serverData | null) => setNotification(data), true);
+    useFetchGetMethod(
+      "get-all-notifications",
+      "both",
+      (data: serverData | null) => setNotification(data),
+      true
+    );
     console.log(notification);
     return(
         <div className={`${styles.mainContainer}`}>

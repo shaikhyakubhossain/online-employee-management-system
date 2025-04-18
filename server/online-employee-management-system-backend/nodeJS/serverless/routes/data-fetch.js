@@ -3,7 +3,6 @@ const { setModel, getCollectionLength } = require("../utils/methods");
 const getAllRecords = async (req, res, dataToGetFromModel) => {
   const { page, specificSearch, shouldReverse } = req.query;
   const limit = 10;
-  console.log(typeof shouldReverse)
   const data = await setModel(dataToGetFromModel)
     .find(
       specificSearch
@@ -34,7 +33,7 @@ const getNotification = async (req, res) => {
     regdNo = await setModel("employee").findById(req.user._id).select("regdNo");
   }
   if (regdNo) {
-    const data = await setModel("notification").find({ regdNo: regdNo.regdNo });
+    const data = await setModel("notification").find({ regdNo: regdNo.regdNo }).sort({ _id: req.query.shouldReverse === "true" ? -1 : 1 });
     res.status(200).json({ data });
   } else {
     res.status(400).json({ error: "User does not exist" });
