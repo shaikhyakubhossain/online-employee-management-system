@@ -35,19 +35,31 @@ const getCollectionLength = async (collectionName) => {
   return await setModel(collectionName).countDocuments();
 };
 
-const sendNotification = async (res, regdNo, title, message) => {
+const sendNotification = async (regdNo, title, message) => {
   const notification = await Notification.createNotification(
     regdNo,
     title,
     message
   );
   if (notification.error) {
-    res.status(400).json({ error: notification.error });
-  } else {
-    res.status(200).json({ message: "successfully done" });
+    return ({ error: notification.error });
   }
+  else {
+    return ({ message: "successfully done" });
+  }
+};
+
+const sendNotificationToAll = async (collectionName, title, message) => {
+  const sendTo = await setModel(collectionName).find({}).select("regdNo");
+  for (let i = 0; i < sendTo.length; i++) {
+    const send = await sendNotification(sendTo[i].regdNo, title, message);
+    if (send.error) {
+      return ({ error: send.error });
+    }
+  }
+  return ({ message: "successfully done" });
 };
 
 
 
-module.exports = { setModel, sendNotification, getCollectionLength };
+module.exports = { setModel, sendNotification, sendNotificationToAll, getCollectionLength };

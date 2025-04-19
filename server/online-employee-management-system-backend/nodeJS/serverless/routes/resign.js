@@ -21,10 +21,13 @@ const addResignApplication = async (req, res) => {
     if (resign.error) {
       res.status(400).json({ error: resign.error });
     } else {
-      // res
-      //   .status(200)
-      //   .json({ message: "Resign application submitted successfully" });
-      sendNotification(res, user.regdNo, "Resign Application", "Your resign application has been successfully submitted");
+                const sendToAdmins = await sendNotificationToAll("admin", "Resign Application", "A resign application has been submitted by " + userDetails.firstName + " " + userDetails.lastName);
+                const sendToUser = await sendNotification(userDetails.regdNo, "Resign Application", "Your resign application has been successfully submitted");
+                if (sendToAdmins.error || sendToUser.error) {
+                  return res.status(400).json({ error: "Server error" });
+                } else {
+                  return res.status(200).json({ message: "Resign application submitted successfully" });
+                }
     }
   } else {
     res.status(400).json({ error: "access denied" });
