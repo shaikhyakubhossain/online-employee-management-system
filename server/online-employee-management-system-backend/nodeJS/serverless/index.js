@@ -6,6 +6,7 @@ const express = require("express");
 const requireAuth = require("./middleware/require-auth");
 const authRouter = require("./routes/auth");
 const { getAllRecords, getNotification } = require("./routes/data-fetch");
+const { getCSV } = require("./routes/get-csv");
 const { addResignApplication } = require("./routes/resign");
 const { adminAction } = require("./routes/admin-action");
 const { getPDF } = require('./routes/get-pdf')
@@ -44,6 +45,8 @@ app.get("/get-all-notices", async (req, res) => getAllRecords(req, res, "notice"
 app.get("/get-all-attendances", async (req, res) => getAllRecords(req, res, "attendance"));
 
 app.get("/get-all-notifications", async (req, res) => getNotification(req, res));
+
+app.get("/get-attendance-csv", async (req, res) => getCSV(req, res, "attendance"));
 
 app.get("/get-pdf-data", async (req, res) => getPDF(req, res));
 

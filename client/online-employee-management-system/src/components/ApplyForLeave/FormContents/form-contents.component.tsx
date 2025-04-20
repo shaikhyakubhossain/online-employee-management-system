@@ -86,7 +86,7 @@ export default function FormContents() {
          { label: "Casual Leave", value: "casual" },
          { label: "Pay Leave", value: "pay" },
          { label: "Sick Leave", value: "sick" },
-         { label: "Maternity Leave", value: "maternity" },
+         { label: "Maternity/Paternity Leave", value: "maternity" },
        ].map((option, index) => (
          <RadioBtn
            key={index}
