@@ -17,7 +17,7 @@ export default function Home() {
       >
         <MainBackgroundImg />
         <HeroHeaderHome />
-        <div className="flex flex-wrap text-xs sm:text-sm md:text-xl mt-4 sm:mt-6">
+        <div className="flex flex-wrap text-xs sm:text-sm md:text-xl">
           <div className="mx-2 my-2 sm:mx-4">
             <Link href={"/Auth?type=login&role=admin"}>
               <Button customTW="bg-blue-500 rounded-xl hover:bg-blue-400 hover:text-white px-4 py-2 sm:px-6 sm:py-3">
@@ -35,7 +35,7 @@ export default function Home() {
           <div className="mx-2 my-2 sm:mx-4"><ContinueAs customTW="bg-pink-500 rounded-xl hover:bg-pink-400 hover:text-white px-4 py-2 sm:px-6 sm:py-3" /></div>
         </div>
 
-        <footer className="text-white pt-12 sm:pt-16 text-center pb-0">
+        <footer className="text-white pt-12 sm:pt-16 text-center">
           <p className="text-sm sm:text-base md:text-lg">
             Made with <span className="text-red-500">&hearts;</span> by Team{" "}
             <Link href={"/Credits"} className="text-cyan-400 hover:underline">
