@@ -69,7 +69,7 @@ export default function MainBody() {
       <div className={`${styles.tableContainer} my-5`}>
         {data && data.data && data.data.length > 0 ? (
           <div>
-            <CsvDownload />
+            <CsvDownload collectionName="leave"/>
             <Table
             handleRowDetailToShowInModal={(row) => {
               setModalDetailToShow(row);

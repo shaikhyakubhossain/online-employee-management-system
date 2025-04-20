@@ -51,7 +51,7 @@ export default function MainBody() {
       <TotalCounter title="Total no. of employees in database" pageCount={data && data.pageCount} />
       {data && data.data.length > 0 ? (
         <div>
-          <CsvDownload />
+          <CsvDownload collectionName="employee" />
           <Table
             handleRowDetailToShowInModal={(row) => {
               setModalDetailToShow(row);

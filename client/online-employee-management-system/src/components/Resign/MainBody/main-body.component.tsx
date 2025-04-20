@@ -97,7 +97,7 @@ export default function MainBody() {
           <FilterBar updateSearchData={(data: string) => setSearchData(data)} />
           {data && data.data && data.data.length > 0 ? (
             <div>
-              <CsvDownload />
+              <CsvDownload collectionName={"resign"} />
               <ApproveResignation
                 data={data && data.data}
                 handleAction={handleAction}

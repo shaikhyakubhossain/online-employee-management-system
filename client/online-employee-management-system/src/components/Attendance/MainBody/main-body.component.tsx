@@ -44,7 +44,7 @@ export default function MainBody(): JSX.Element {
       <TotalCounter title="Total no. of employee present today" pageCount={data && data.pageCount} />
       {data && data.data && data.data.length > 0 ? (
         <div>
-          <CsvDownload />
+          <CsvDownload collectionName="attendance" />
           <Table
           handleRowDetailToShowInModal={(row) => {
             setModalDetailToShow(row);
