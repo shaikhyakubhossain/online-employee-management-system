@@ -4,7 +4,7 @@ import styles from "./main-body.module.scss";
 import FilterBar from "@/components/FilterBar/filter-bar.component";
 import Table from "../../Table/table.component";
 import TotalCounter from "../../TotalCounter/total-counter.component";
-import { downloadCSV } from "@/utils/apiHelpers";
+import CsvDownload from "@/components/CsvDownload/csv-download";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import Loader from "@/components/Loader/loader.component";
 import DetailModal from "@/components/DetailModal/detail-modal.component";
@@ -69,14 +69,7 @@ export default function MainBody() {
       <div className={`${styles.tableContainer} my-5`}>
         {data && data.data && data.data.length > 0 ? (
           <div>
-            <div>
-          {token && <button
-              onClick={() => downloadCSV(token, "attendance")}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md mr-2"
-            >
-              Download CSV
-            </button>}
-          </div>
+            <CsvDownload />
             <Table
             handleRowDetailToShowInModal={(row) => {
               setModalDetailToShow(row);

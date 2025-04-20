@@ -3,7 +3,7 @@ import { useState } from "react";
 import GiveResignation from "../GiveResignation/give-resignation.component";
 import SearchBox from "@/components/SearchBox/search-box.component";
 import ApproveResignation from "../ApproveResignation/approve-resignation.component";
-import { downloadCSV } from "@/utils/apiHelpers";
+import CsvDownload from "@/components/CsvDownload/csv-download";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Toast from "@/components/Toast/toast.component";
 import TotalCounter from "@/components/TotalCounter/total-counter.component";
@@ -97,14 +97,7 @@ export default function MainBody() {
           <FilterBar updateSearchData={(data: string) => setSearchData(data)} />
           {data && data.data && data.data.length > 0 ? (
             <div>
-              <div>
-          {token && <button
-              onClick={() => downloadCSV(token, "attendance")}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md mr-2"
-            >
-              Download CSV
-            </button>}
-          </div>
+              <CsvDownload />
               <ApproveResignation
                 data={data && data.data}
                 handleAction={handleAction}

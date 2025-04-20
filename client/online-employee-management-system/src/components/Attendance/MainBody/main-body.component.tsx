@@ -2,16 +2,13 @@
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Table from "@/components/Table/table.component";
 import DetailModal from "@/components/DetailModal/detail-modal.component";
-import { downloadCSV } from "@/utils/apiHelpers";
+import CsvDownload from "@/components/CsvDownload/csv-download";
 import { useState } from "react";
 import type { defaultData } from "@/constants/Types/response-data";
 import SearchBox from "@/components/SearchBox/search-box.component";
 import TotalCounter from "@/components/TotalCounter/total-counter.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
 import Loader from "@/components/Loader/loader.component";
-
-import { RootState } from "@/lib/store";
-import { useSelector } from "react-redux";
 
 type serverData = {
   data: defaultData[] | null;
@@ -25,8 +22,6 @@ export default function MainBody(): JSX.Element {
     const [showModal, setShowModal] = useState<boolean>(false);
   const [searchData, setSearchData] = useState<string>("");
   const [page, setPage] = useState<number>(0);
-
-  const { token } = useSelector((state: RootState) => state.authDetail);
 
   useFetchGetMethod(
     "get-all-attendances",
@@ -49,14 +44,7 @@ export default function MainBody(): JSX.Element {
       <TotalCounter title="Total no. of employee present today" pageCount={data && data.pageCount} />
       {data && data.data && data.data.length > 0 ? (
         <div>
-          <div className="mb-4">
-            {token && <button
-              onClick={() => downloadCSV(token, "attendance")}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md mr-2"
-            >
-              Download CSV
-            </button>}
-          </div>
+          <CsvDownload />
           <Table
           handleRowDetailToShowInModal={(row) => {
             setModalDetailToShow(row);
