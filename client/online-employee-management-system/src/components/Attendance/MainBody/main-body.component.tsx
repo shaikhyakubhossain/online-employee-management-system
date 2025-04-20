@@ -2,7 +2,7 @@
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Table from "@/components/Table/table.component";
 import DetailModal from "@/components/DetailModal/detail-modal.component";
-import { getUrl } from "@/constants/url";
+import { downloadCSV } from "@/utils/apiHelpers";
 import { useState } from "react";
 import type { defaultData } from "@/constants/Types/response-data";
 import SearchBox from "@/components/SearchBox/search-box.component";
@@ -36,33 +36,6 @@ export default function MainBody(): JSX.Element {
     page,
     searchData
   );
-  console.log(data);
-
-  const downloadCSV = async () => {
-    try{
-      const response = await fetch(`${getUrl()}/get-attendance-csv`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-          role: "both",
-        },
-      });
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "attendance.csv";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-    }
-    catch(e){
-      console.error(e);
-    }
-  }
-  
 
   return (
     <div>
@@ -77,12 +50,12 @@ export default function MainBody(): JSX.Element {
       {data && data.data && data.data.length > 0 ? (
         <div>
           <div className="mb-4">
-            <button
-              onClick={downloadCSV}
+            {token && <button
+              onClick={() => downloadCSV(token, "attendance")}
               className="px-4 py-2 bg-blue-600 text-white rounded-md mr-2"
             >
               Download CSV
-            </button>
+            </button>}
           </div>
           <Table
           handleRowDetailToShowInModal={(row) => {

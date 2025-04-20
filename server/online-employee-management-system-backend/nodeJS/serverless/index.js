@@ -46,7 +46,7 @@ app.get("/get-all-attendances", async (req, res) => getAllRecords(req, res, "att
 
 app.get("/get-all-notifications", async (req, res) => getNotification(req, res));
 
-app.get("/get-attendance-csv", async (req, res) => getCSV(req, res, "attendance"));
+app.get("/get-collection-csv", async (req, res) => getCSV(req, res));
 
 app.get("/get-pdf-data", async (req, res) => getPDF(req, res));
 
