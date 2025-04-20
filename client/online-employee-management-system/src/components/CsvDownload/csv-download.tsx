@@ -11,7 +11,7 @@ export default function CsvDownload(props: propsType) {
   const token = useSelector((state: RootState) => state.authDetail.token);
 
   return (
-    <div>
+    <div className="my-4">
       {token && (
         <Button onClick={() => downloadCSV(token, props.collectionName)}>
           Download CSV
