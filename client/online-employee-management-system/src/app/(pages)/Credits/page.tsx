@@ -5,23 +5,25 @@ import { btnList2 } from "@/constants/Basic/data";
 const teamMembers = [
   {
     name: "Shaikh Yakub Hossain",
-    regdNo: "2221229012",
+    regdNo: "DRMU2221229012",
     designation: "Full Stack Developer",
     photoUrl: "https://avatars.githubusercontent.com/u/74724579?v=4",
+    webUrl: "https://yakubhossain.vercel.app/",
     github: "https://github.com/shaikhyakubhossain",
     linkedin: "https://www.linkedin.com/in/shaikh-yakub-hossain/",
   },
   {
     name: "Samarjit Sahoo",
-    regdNo: "2101229204",
+    regdNo: "DRMU2101229204",
     designation: "Machine Learning Engineer",
     photoUrl: "https://avatars.githubusercontent.com/u/145245473?v=4",
+    webUrl: "https://samarjit.vercel.app/",
     github: "https://github.com/samarjitsahoo",
     linkedin: "https://www.linkedin.com/in/samarjitsahoo",
   },
   {
     name: "Soumya Das",
-    regdNo: "2221229014",
+    regdNo: "DRMU2221229014",
     designation: "Database Administrator",
     photoUrl: "https://avatars.githubusercontent.com/u/181587082?v=4",
     github: "https://github.com/soumya-das22",
@@ -29,23 +31,25 @@ const teamMembers = [
   },
   {
     name: "Soumya Ranjan Satapathy",
-    regdNo: "2221229016",
+    regdNo: "DRMU2221229016",
     designation: "UI/UX Designer",
     photoUrl: "https://avatars.githubusercontent.com/u/111912787?v=4",
+    webUrl: "https://portfoliosrs.vercel.app/",
     github: "https://github.com/Bot-srs",
     linkedin: "https://www.linkedin.com/in/soumya-ranjan-satapathy-837333251/",
   },
   {
     name: "Udit Narayan Giri",
-    regdNo: "2101229192",
+    regdNo: "DRMU2101229192",
     designation: "Software Developer",
     photoUrl: "https://avatars.githubusercontent.com/u/144381953?v=4",
+    webUrl: "https://myportfollio-iota.vercel.app/",
     github: "https://github.com/uditnarayan122",
     linkedin: "https://www.linkedin.com/in/udit-narayan-giri/",
   },
   {
     name: "Shaik Ahesanuddin",
-    regdNo: "2221229011",
+    regdNo: "DRMU2221229011",
     designation: "QA Engineer",
     photoUrl: "https://avatars.githubusercontent.com/u/179226225?v=4",
     github: "https://github.com/ShaikAhesanuddin",
@@ -79,9 +83,20 @@ export default function Credits() {
             <p className="text-lg text-gray-700">{member.designation}</p>
 
             <div className="flex justify-center space-x-4 mt-4">
+              {member.webUrl && (
+                <a
+                  href={member.webUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  Website
+                </a>
+              )}
               <a
                 href={member.github}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-500 hover:underline"
               >
                 GitHub
@@ -89,6 +104,7 @@ export default function Credits() {
               <a
                 href={member.linkedin}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-500 hover:underline"
               >
                 LinkedIn

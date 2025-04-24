@@ -29,10 +29,11 @@ export default function HeroHeaderHome() {
     const options = {
       strings: [
         "Employee Details",
-        "Academic Notes",
-        "Interview Questions",
+        "Notice Updates",
         "Leave Applications",
+        "Project Assets",
         "Attendance Records",
+        "Calendar Events",
       ],
       typeSpeed: 25,
       backSpeed: 25,
@@ -64,13 +65,7 @@ export default function HeroHeaderHome() {
         Explore <span className="typed-text"></span>
       </div>
       <div className="text-base sm:text-lg md:text-lg lg:text-2xl mt-4 text-justify">
-        The Online Employee Management System is a comprehensive web-based
-        application designed to streamline HR operations by managing employee
-        information, tracking attendance, and monitoring performance. It
-        provides functionalities for adding, updating, and removing employee
-        details, while maintaining an organized database. The system supports
-        role-based access control, allowing administrators to assign different
-        permissions to employees and manage their roles efficiently.
+        The Online Employee Management System (OEMS) is a web-based platform designed to streamline and simplify employee-related operations within an organization. It offers features like secure authentication, attendance tracking, leave management, project and file access, and a centralized dashboard for both employees and administrators. With an intuitive interface and integrated machine learning capabilities, OEMS enhances productivity and ensures smooth management of daily tasks.
       </div>
     </div>
   );
