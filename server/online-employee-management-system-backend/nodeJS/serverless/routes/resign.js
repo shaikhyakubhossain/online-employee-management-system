@@ -1,6 +1,6 @@
 const Resign = require("../model/resign-model");
 const Employee = require("../model/employee-model");
-const { sendNotification } = require("../utils/methods");
+const { sendNotification, sendNotificationToAll } = require("../utils/methods");
 
 const addResignApplication = async (req, res) => {
   console.log(req.user);
