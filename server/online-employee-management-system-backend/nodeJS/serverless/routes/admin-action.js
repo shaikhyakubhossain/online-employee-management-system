@@ -17,7 +17,7 @@ const adminAction = async (req, res, actionOnModel) => {
         "firstName lastName"
       );
       if (regdNo && adminName) {
-        const notification = await sendNotification(regdNo[0].regdNo, actionOnModel === 'leave' ? "Leave" : "Resign", "Your " + actionOnModel + " has been " + action + " by " + adminName.firstName + " " + adminName.lastName);
+        const notification = await sendNotification(regdNo[0].regdNo, actionOnModel === 'leave' ? "Leave Application" : "Resign Application", "Your " + actionOnModel + " has been " + action + " by " + adminName.firstName + " " + adminName.lastName);
         if (notification.error) {
           return res.status(400).json({ error: "Server error" });
         }
