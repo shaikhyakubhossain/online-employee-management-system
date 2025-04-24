@@ -75,7 +75,7 @@ export const btnList: btnListType[] = [
         link: "/Attendance",
         detail: "Track and manage your attendance records with ease.",
         peopleAddedList: [],
-        role: "both"
+        role: "admin",
     },
     {
         name: "Calendar",
