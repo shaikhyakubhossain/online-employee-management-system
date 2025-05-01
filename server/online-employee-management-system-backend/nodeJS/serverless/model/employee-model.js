@@ -109,6 +109,8 @@ employeeSchema.statics.signup = async function (data) {
 
   const hashedPassword = await createPassword(password, confirmPassword);
 
+  if(hashedPassword.error) return { error: hashedPassword.error };
+
   const employee = await this.create({
     firstName,
     lastName,
