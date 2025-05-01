@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const autoSequence = require("mongoose-sequence")(mongoose);
 const {checkPassword, createPassword} = require("../utils/password-utils");
+const { dobValidator } = require("../utils/validator");
 
 
 const employeeSchema = new mongoose.Schema({
@@ -86,9 +87,11 @@ employeeSchema.statics.signup = async function (data) {
     return { error: "All fields must be filled" };
   }
 
-  if (!validator.isEmail(email)) {
-    return { error: "Email is not valid" };
-  }
+  const isDobValid = dobValidator(dob);
+
+  if(isDobValid.error) return { error: isDobValid.error };
+
+  if (!validator.isEmail(email)) return { error: "Email is not valid" };
 
   const doesEmailExist = await this.findOne({ email });
   const doesRegdNoExist = await this.findOne({ regdNo });
