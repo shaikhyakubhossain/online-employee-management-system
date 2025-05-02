@@ -31,7 +31,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetch(
-      "https://online-employee-management-system.onrender.com/top-employees"
+      "https://oems-backend-python.onrender.com/top-employees"
     )
       .then((res) => res.json())
       .then((data) => {
