@@ -22,7 +22,7 @@ app.add_middleware(
 # Connect to MongoDB
 mongo_uri = os.getenv("MONGO_DB_URI")
 client = MongoClient(mongo_uri)
-db = client["employeeverse"]
+db = client["employee-verse"]
 collection = db["employee"]
 
 # Load the pre-trained ML model
