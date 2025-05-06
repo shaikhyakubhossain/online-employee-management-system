@@ -6,9 +6,6 @@ type propsType = {
 export default function GiveResignation(props: propsType) {
   return (
     <div>
-      <div className="text-3xl text-red-500 bg-slate-200 p-3 rounded-lg">
-        Danger Zone
-      </div>
       <div className="text-2xl">Reason for Resignation</div>
       <div>
         <textarea onChange={(event) => props.updateDataToSend(event.target.value)} className="w-full h-40 border-2 border-red-500 rounded-lg p-1"></textarea>
