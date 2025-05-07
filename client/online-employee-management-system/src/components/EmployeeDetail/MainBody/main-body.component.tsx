@@ -5,7 +5,6 @@ import SearchBox from "@/components/SearchBox/search-box.component";
 import Table from "@/components/Table/table.component";
 import TotalCounter from "@/components/TotalCounter/total-counter.component";
 import type { employeeData } from "@/constants/Types/response-data";
-import CsvDownload from "@/components/CsvDownload/csv-download";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import DetailModal from "@/components/DetailModal/detail-modal.component";
 import PaginationBar from "@/components/PaginationBar/pagination-bar.component";
@@ -51,7 +50,6 @@ export default function MainBody() {
       <TotalCounter title="Total no. of employees in database" pageCount={data && data.pageCount} />
       {data && data.data.length > 0 ? (
         <div>
-          <CsvDownload collectionName="employee" />
           <Table
             handleRowDetailToShowInModal={(row) => {
               setModalDetailToShow(row);

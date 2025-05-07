@@ -3,7 +3,6 @@ import { useState } from "react";
 import GiveResignation from "../GiveResignation/give-resignation.component";
 import SearchBox from "@/components/SearchBox/search-box.component";
 import ApproveResignation from "../ApproveResignation/approve-resignation.component";
-import CsvDownload from "@/components/CsvDownload/csv-download";
 import useFetchGetMethod from "@/hooks/FetchMethods/useFetchGetMethod";
 import Toast from "@/components/Toast/toast.component";
 import TotalCounter from "@/components/TotalCounter/total-counter.component";
@@ -97,7 +96,6 @@ export default function MainBody() {
           <FilterBar updateSearchData={(data: string) => setSearchData(data)} />
           {data && data.data && data.data.length > 0 ? (
             <div>
-              <CsvDownload collectionName={"resign"} />
               <ApproveResignation
                 data={data && data.data}
                 handleAction={handleAction}
