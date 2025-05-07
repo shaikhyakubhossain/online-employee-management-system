@@ -1,5 +1,6 @@
 "use client";
 import Section from "../Section/section.component";
+// import AddFile from "../AddFile/add-file.component";
 import { useState, useEffect } from "react";
 import { getUrl } from "@/constants/url";
 import type { gDriveFolderDataType } from "@/constants/Types/response-data";
@@ -10,11 +11,10 @@ import { useSelector } from "react-redux";
 
 export default function MainBody(): JSX.Element {
 
-  const {token, role} = useSelector((state: RootState) => state.authDetail);
+  const {token} = useSelector((state: RootState) => state.authDetail);
 
   const [dataProject, setDataProject] = useState<gDriveFolderDataType[] | null>(null);
   const [dataCaseStudy, setDataCaseStudy] = useState<gDriveFolderDataType[] | null>(null);
-  const [showDropDown, setShowDropDown] = useState(false);
 
   const fetchData = async (section: string, setter: (data: gDriveFolderDataType[]) => void) => {
     console.log(section);
@@ -40,65 +40,14 @@ export default function MainBody(): JSX.Element {
     if (dataCaseStudy === null) fetchData("caseStudy", setDataCaseStudy);
   }, []);
 
-  const folderLinks = {
-    project:
-      "https://drive.google.com/drive/folders/1Tje6o1_K3awW0NEWfGvw02cYgcl4zech?usp=sharing",
-    caseStudy:
-      "https://drive.google.com/drive/folders/1RxgeOZoYDW2geOX-tVhxCZh7zraP0_bB?usp=sharing",
-  };
 
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-8 space-y-12">
-      {role === "admin" && (
-        <div className="relative mb-4">
-          <button
-            className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-md shadow"
-            onClick={() => setShowDropDown(!showDropDown)}
-          >
-            Upload Files
-          </button>
-          <p className="text-sm text-gray-600 mt-2">
-            Note: You need to be signed in to your <strong>Google Drive</strong>{" "}
-            account before starting the upload.
-          </p>
-          {showDropDown && (
-            <div className="absolute top-10 left-0 bg-white border rounded-md shadow-lg z-10 w-64">
-              <a
-                href={folderLinks.project}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-4 py-2 hover:bg-gray-100"
-                title="Click to open the folder. In Google Drive, click 'New' > 'File upload' to add your report."
-                onClick={() => setShowDropDown(false)}
-              >
-                📁 Upload to Project Reports
-              </a>
-              <a
-                href={folderLinks.caseStudy}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-4 py-2 hover:bg-gray-100"
-                title="Click to open the folder. In Google Drive, click 'New' > 'File upload' to add your case study."
-                onClick={() => setShowDropDown(false)}
-              >
-                📁 Upload to Case Studies
-              </a>
-            </div>
-          )}
-        </div>
-      )}
-
+      {/* {role === "admin" && (
+        <AddFile />
+      )} */}
       <Section title="Project Reports" data={dataProject} />
       <Section title="Case Studies" data={dataCaseStudy} />
-      <h2 className="font-semibold text-gray-800">Confidential Assets:</h2>
-      <p className="text-justify">
-          The documents and files accessible through this platform may contain
-          sensitive or proprietary information intended solely for authorized
-          personnel. Unauthorized distribution, reproduction, or misuse of any
-          content is strictly prohibited and may result in disciplinary or legal
-          action. Please ensure all assets are handled in compliance with
-          company policies and data protection regulations.
-      </p>
     </div>
   );
 
