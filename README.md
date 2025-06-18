@@ -1,5 +1,4 @@
-<h2 align="center">Employee Verse</h2>
-<div align="center"><img src="https://github.com/shaikhyakubhossain/online-employee-management-system/blob/main/client/online-employee-management-system/src/app/favicon.ico" height="100px" width="100px" alt=""></div>
+# Employee Verse
 <p align="justify">The Online Employee Management System is a comprehensive web-based application designed to streamline HR operations by managing employee information, tracking attendance, and monitoring performance. It provides functionalities for adding, updating, and removing employee details, while maintaining an organized database. The system supports role-based access control, allowing administrators to assign different permissions to employees and manage their roles efficiently. Additionally, it includes features such as leave management, payroll generation, and real-time reporting, making it an all-in-one solution for simplifying workforce management.</p>
 <h2 align="left">Tech Stack</h2>
 
