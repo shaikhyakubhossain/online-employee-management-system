@@ -39,15 +39,6 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/soumya-ranjan-satapathy-837333251/",
   },
   {
-    name: "Udit Narayan Giri",
-    regdNo: "DRMU2101229192",
-    designation: "Software Developer",
-    photoUrl: "https://avatars.githubusercontent.com/u/144381953?v=4",
-    webUrl: "https://myportfollio-iota.vercel.app/",
-    github: "https://github.com/uditnarayan122",
-    linkedin: "https://www.linkedin.com/in/udit-narayan-giri/",
-  },
-  {
     name: "Shaik Ahesanuddin",
     regdNo: "DRMU2221229011",
     designation: "QA Engineer",
